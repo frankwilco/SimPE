@@ -1,0 +1,2390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="pbarche.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ctlLoadPackage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 0</value>
+  </data>
+  <assembly alias="System" name="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="groupBox2.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cbeye.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;lv.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupBox3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="cbeye.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbface.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="groupBox2.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="pbpatient.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBox3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="llusepatient.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 3</value>
+  </data>
+  <data name="cbface.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="cbface.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="cbface.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 24</value>
+  </data>
+  <data name="cbface.Text" xml:space="preserve">
+    <value>Face only</value>
+  </data>
+  <data name="label1.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="label3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lv.ToolTip" xml:space="preserve">
+    <value>Select a Sim and "use" it as either Patient or Archetype</value>
+  </data>
+  <data name="pbarche.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
+  </data>
+  <data name="groupBox3.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="$this.SnapToGrid" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBox2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="llusearche.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
+  </data>
+  <data name="cbmakeup.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="llexport.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="groupBox2.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;llusearche.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;llusearche.Name" xml:space="preserve">
+    <value>llusearche</value>
+  </data>
+  <data name="groupBox2.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="label3.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lbpatlife.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="cbeye.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="lbarchname.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 56</value>
+  </data>
+  <data name="llusearche.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lbarchname.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cbmakeup.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="llusearche.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="lvskin.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="groupBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="button1.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ctlLoadPackage.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lbpatname.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbmakeup.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
+  </data>
+  <data name="lv.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cbeye.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="llexport.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="lbpatname.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lbpatlife.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
+    <value>toolTip1</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.TrayLargeIcon" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="button1.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="lbarchname.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="ctlLoadPackage.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 6</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="lbarchlife.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="opd.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAYAMDAAAAEACACoDgAAZgAAACAgAAABAAgAqAgAAA4PAAAQEAAAAQAgAGgEAAC2FwAAEBAAAAEA
+        CABoBQAAHhwAABgYAAABAAgAyAYAAIYhAABAQAAAAQAIACgWAABOKAAAKAAAADAAAABgAAAAAQAIAAAA
+        AACACgAAAAAAAAAAAAAAAQAAAAAAAAAAAAD///8AgICAAACAgACAAAAA/4CAAACAAADg4OAA4CAgAKCg
+        oAAgICAAYGBgAICgoACgQEAAwCAgAKDAwAAAYOAAQGBgAIBgYAAA4OAA4AAAACAAAABAICAAIEBAAKCA
+        gAD/ICAAYICAAMCgoADgwMAAoODgAMDg4AAAQOAAIEDgAEBgAAAAICAAYCAgAKAgIADAQCAAYEBAAOCA
+        QAAgYGAA4P//AECggABgwKAAACDAAKAA4ADAAOAAYCDgAGAAAACgACAA4EAgAGBAIACgYCAAwGAgAIBg
+        QADgYEAA/2BAAKCAQACgoIAAwICgAPiQkABISEgASFBQAPj4+AD4qKgA2NjYAGhoaACoqKgAWFhYALi4
+        uACYmJgAQEhIAHh4eAD4oKAAqLCwAPiIiACooKAA8IiIAOiQkADo6OgAALh4AIiQkAC4sLAAsLi4ALjA
+        wACIiIgAsKioAMDIyADI0NAAoJiYAMC4uADIyMgA0MjIAPD4+ACQiIgA2IiIAKiYmADIwMAAeICAANCI
+        iACYkJAA+LC4ANDQ2AD4//8AAKhwAICIiADIiIgA4IiIAOiIiACYoKAAoKioANDY2ADg2NgA4OjoAACQ
+        aACAeHgAeHiAAJiIiAD/iIgA+IiQAMiQkACQmJgA6JiYAPiYmADY0NAAAJhoAHB4eAAAsHgA6ICIAPiA
+        iACokJAA+JCYAP+oqADQuLgAUEhIAFhYYABYYGAAAKBoAIiAgADggIgAoIiIAMCIiADwkIgA+JCIAP+I
+        kAD4uKAAwKioAMioqADQqKgA2MCoAPiwsADYyLgA+LjAAFBYWABoYGAAAJhgAGBoaABwaGgAKIhoAGhw
+        cABwiIAACLiAAKiIiACIiJAAuJCQAKigqAC4qKgA4MCoAOjAqADYwLAA6MjIADhQSABYaGAACIhgAACI
+        aAB4cHAAWIBwANiAiAB4iIgAuIiIALCQiADYkIgA+ICQAOiIkADwiJAA8JiQAJiQmACImJgAsJiYALiY
+        mADQmJgA4JiYAOigoADYqKgAsLCoAPi4qADIwKgA8MCoAMC4sADIuLAA8LC4ALi4wADQyMAA8MDIAODY
+        4ADY4OAA6PDwAP/4+ABIQEAAWFBQABhoUAAAiFAAQFhYAGBgWABAWGAASGBgACh4YAAAiGAAWGhoAIBo
+        aABIeGgAIIBoAACoaAA4iHAAcHB4AGh4eACIeHgAkHh4AICAeAAwkHgAAKh4AADAeACgeIAAmICAAMiA
+        gABoiIAAOKCAAHiAiACYgIgAwICIAMiAiADwgIgAcJCIAJCQiADgkIgAyIiQANiQkACYmKAAuJigALig
+        oADYqKAA4KigAOiwoACgoKgA+KCoAJioqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEhISEgAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABISEhISwb+/vxISEhISAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAABISEsFfX19fX19fX19fX19fEhISAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAASEoW1X19fvpSUhYWFhZT6vl9fX1+/EhIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIcX19fvpQcB09d
+        P2dnZz9PBxyUvl9fX78SAAAAAAAAAAAAAAAAAAAAAAAAAAASEvpfX76FQQdPBwcHBwcHB09dP2c/Bxy+
+        X19fEhIAAAAAAAAAAAAAAAAAAAAAABKqX19flEEHB3yFhVIJCQkJQ1JaXAdPZ2cHhb5fX78SAAAAAAAA
+        AAAAAAAAAAAAEoVfX76FXFyFk76+auOaC0REC53iGKSSXAddPweUX1++EgAAAAAAAAAAAAAAAAASlV9f
+        voWFlL4bgqR4GCYmEtEmJtAmJhLjohtcBz8HhV9fvhIAAAAAAAAAAAAAABLBX1+1lJS+v5NZ1J+CEiZZ
+        ZmFSWYoShtAmJhKiknxPTxxfX8ESAAAAAAAAAAAAABJfX1++vl++wZIC0tJC0a8/AQEBAc4HYYrR0CYm
+        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
+        uABIUFAAAKhwANCIiADYiIgA4IiIALiQkAComJgAuMDAAMDIyADg2NgAUEhIAGhgYAAAmGgAAKBoAIB4
+        eAAAsHgAeICAAOiAiAD4gIgAsIiIALiIiADIiIgA6IiIAPCIiADwiJAAiJCQAKCoqACwqKgA2KioAPi4
+        wADQyMgA2NDQANDQ2ADw+PgASFhYAEhgWABYYGAAWGhoAGBoaABQcGgAAJBoAACoaABoaHAAaHBwAHhw
+        cABIgHAAKIhwAHBweACIeHgAaIh4AHh4gAD/iIgAeJCIAMiQiADwkIgA+JCIAPiAkADYiJAAiJCYAOiQ
+        mADooJgAmKCgAMigoADYoKAA+LigAKCgqADIqKgAwMCoAODAqADYwLAA2MiwALC4uADIyMAAuMjIAODI
+        yADI0NAA0NjYANjg4AAgODAAQEhIAFhISAAwUEgAOFBIABhoSABAWFAAKGBQABhoUAAAiFAAQFhYAGBY
+        WAAwYFgAAHhYABh4WAAgeFgAEIBYAAiQWABIYGAAWGhgAAiAYAAYgGAAAIhgAACYYABIaGgAeGhoAJBo
+        aABAeGgASHhoADiAaAAQiGgAGIhoAAiQaAAImGgAALhoAHhocACAaHAAOIBwAECIcAAokHAAeHB4AIBw
+        eACQcHgAcHh4AKB4eACweHgAWIB4AECIeABIiHgAIKB4AAioeAAQsHgAkHiAAJiAgACogIAAuICAAFiQ
+        gAA4qIAACLiAABC4gACoeIgAgICIANCAiADYgIgA8ICIAGCIiABoiIgAeIiIAJCIiACgiIgAqIiIAMCI
+        iACQkIgA0JCIAGCgiAA4qIgAiIiQAJCIkACgiJAAsIiQAMiIkAD4iJAA/4iQAKiQkADIkJAA2JCQAHiY
+        kACImJAA8JiQANigkAD4oJAAwKiQAMiwkACQkJgAoJCYANiQmADwkJgA+JCYAKCYmACwmJgA2JiYAAAA
+        AAAAAAAAAAAAAAAAJycnJwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACcnJydQT09QJycnJwAAAAAAAAAA
+        AAAAAAAAAAAAACcn8E+MkpeXl5eSjE9PJycAAAAAAAAAAAAAAAAAAAAn8E+SQAlBQUFBbjNuCZLwTycA
+        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
+        HsLCwsIVFcLCHVxbHw8iJcLCwsLCFRUlB8IaWyAPIRgZwsLCGxUAFQfDJVsbIg8hGxrCwhUAABUHHyAc
+        JSUHIR3CwsIVAAAAFQceISAnHQceJcIVAAAAAAAVFRglJSUlGBUVAAAAAAAAAAAVFRUVFRUAAAAAAPgf
+        ///gB///wAP//4AB//+AAf//AAD//wAA//8AAP//AAD//wAA//8AAP//gAH//4AB///AA///4Af///gf
+        //8oAAAAGAAAADAAAAABAAgAAAAAAKACAAAAAAAAAAAAAAABAAAAAAAAAAAAAP///wBoaGgAWFhYAEhI
+        SABQUFAAYGBgAHh4gACAgIAAcGhoAFhQUABQSEgAQEBAAICAeACIiIgAgIiIAKigmADIuLAAuLCwAJCQ
+        kACAeHgAcHBwAFhgYABIUFAAqKioANDQ0ADY2NgAyNDQAODIsADowKAAsKigAKiosAC4uLgAsLCwAHB4
+        eACouLAA2MjQAMi4wADAwMAAwLCoALigkACoqKAAwMDIALjAwADQqKgA8JiYANCIiACQcHAAUGBgAHh4
+        eAC4qKgA6NjYAMjIyACIoJgAaIiAAKCYmADg4OAA2ODgAKiwsACoiIgA4IiIAPiQkACAcHAASFhYAPDA
+        wAD4sLAAsKCoADCYeAAIkGAAeIiAAMiwuADo6OgA+Pj4AKCgoAB4gIAAkICAAOiIiAB4YGAAQFBQAIig
+        oAC4yMgA+IiIAKiAiAAQiGgAAJhoAJCooADo2OAAyMDAAGh4eACIgIAAwIiIAJiAgABYeHgAsJiYALig
+        oADAsLAA6KCgANiIiAAQiGAAIKB4AMDQyAD48PgAmJiYAMiIiADwiIgAuJCQAMiQkADwkJAA2JigAIio
+        oAAYsIAAAKBgACCYcACwwMAA+OjwAPDw8ACwuLgAmIiIAOCAgADQkJgAYLCgAADAgAAAsGgAGIhgANi4
+        wADg6OgA0MjIANioqADokJAAwICIAGCQgAAIsHgAALBwAAiIYAA4WFAA8Pj4ALjQ0ADIqKgAsHiAAFB4
+        cAAAsHgAAJBoACBYSABoWGAA0NjYAMCoqADYkIgA+JCIALiAiABQgHAAAJhgABBgSABIODgAeHBwAOj4
+        +ADI2NgAwJiYANiAgADYiJAA0JCQAMiQmABokIgACJBoAACocAAAuHgAMHhgAGhgYABoYGgAmKioAKCA
+        gADgmJAAiJiYAFhoaAAomHAAAIBQAEiAaACgkJAAkIiIAICAiADouKAA+MCgAOCgoADAkJgAkHB4ACiQ
+        cACIkJAAyMDIAMjIuADQyKgAoJCYACCAaAAIcEgAwKiwAKigoADY0NAAsKioAPiAgACooKgAWHhwADhI
+        QACYkJAAoLCwANjAwAD4uLgA6KioAPiYmAD4kJgA+KCgANC4qACYmJAAgIiQAPjIyAD4qKgA+LC4APi4
+        qADwyKAA0MiwALi4wACIiIAA4NjYAOC4uAD4wLgA6MCoAMi4qACwsLgA4NCwAPjAqAD4iJAAyKiwAOio
+        oADgwKAA0Mi4AMjI0ADQwKgA4KCIAOCAiABsbGwAXFxcAExMTABobGwAfHyAAISAgABwbGwAWFRUAFBM
+        TABEREQAgIB8AIiMjACEiIgArKCYAMy8sAC4tLAAlJSUAIB8fAB0dHQA1NTUAAAAAAAAAAAAAAAMDAwM
+        AAAAAAAAAAAAAAAAAAAAAAAMDAy1f39sDAwMAAAAAAAAAAAAAAAADAxNfDM4OEdHRyS1DAwAAAAAAAAA
+        AAAMTSx+fCxbFRR1EhpHJJIMAAAAAAAAAAw8LH9e8S9NdRSPC007GjOqDAAAAAAADDwukn9Fl/MkAQFl
+        GXUKTX4zqgwAAAAADC4uqiylvwczOEgBAQEaCS/KygwAAAAMPC4utROuo791LJwlAQEBR01aJCwMAAAM
+        Li6qLK9UeUSLLDwvJQEBATuKf/oMAAwuLi5s+a6keYO/sIoKJQEBATuBLiyqDAwuLi5/NkR5eXlExwoy
+        AQEBOIouLncuDAwuLqospaODg6OXAyUBAQFHnC4uLi4uDAwuLpJ/goODepc+RwEBASRqLi4uLi4uDAxa
+        bC5g+aN5b/JyAQFIiVouLi4uLi4uDAyKf3eqf0N5eyUBAQEyijwuLi4uLjyBDAAMLHwuYLl6uCUBAQG3
+        TYouLi4uLi4MAAAMiiQsqixwY3VIAQEaTQtNgS4uPIEMAAAADJwzbGCCg4IyRwEBSBkvgTw8LgwAAAAA
+        DE0RM39eeBBsXSVlARmKLqouLwwAAAAAAAxNiTgkGCyqLlqcwDtaf5xNDAAAAAAAAAAMTTsZRzN8f39/
+        fCQlO00MAAAAAAAAAAAADAwKWxIZ//8Z+ztNDAwAAAAAAAAAAAAAAAAMDAwLCgoKDAwMAAAAAAAAAAAA
+        AAAAAAAAAAAMDAwMAAAAAAAAAAAAAP/D/wD+AH8A+AAfAPAADwDgAAcAwAADAMAAAwCAAAEAgAABAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAQCAAAEAwAADAMAAAwDgAAcA8AAPAPgAHwD+AH8A/8P/ACgA
+        AABAAAAAgAAAAAEACAAAAAAAABIAAAAAAAAAAAAAAAEAAAAAAAAAAAAA////AICAgAAAgIAA/4CAAIAA
+        AACAAIAAoKCgACAgIADg4OAA4CAgAGBgYACgICAAQCAgAGAgIADgQEAAgGBgAICgoAAAIMAAoIBgAABg
+        4AAgAAAAACAgACBAQABgQEAAoICAAEBgYADgwMAA4AAAAGAAAADAICAAIOCgACAAwAAA4OAAoADgAABA
+        4ACAICAAwIBgAKDAwADA4OAAwADgACBA4ACgAAAA/yAgAMBgQADgYEAAwKCgAEDAoAAAAKAAQODAAKDg
+        4AAg4OAAYADgAIAA4ABgIOAA4OAAAMAgAABAYAAA4EAgAKBAQAD/YEAA4IBAAP9gYADggGAAYICAAKCg
+        gADg//8A+JCQAEhQUABISEgAqLCwAPiIiAD4+PgAQEhIAKioqABYWFgAeHh4AGhoaAD4oKAA2NjYAIiI
+        iACwqKgA6OjoAPCIiACIkJAA8Pj4AMjIyABIQEAAALh4ALiwsADAyMgA+P//ANiIiAD4qKgAkJiYAKig
+        oAC4wMAA6JCQAPiYmACQiIgAmJCQALi4uADY0NAA6PDwALC4uADAuLgA6IiIAJiYmAAAqHAA0NDYAFBY
+        WAB4gIAAgIiIAMjQ0ABYYGAAeHBwAKiYmACYoKAAoKioAACgaADAiIgAoJiYAPiwuADQ2NgA4OjoAACw
+        eACYiIgA0IiIAPCQiADg2NgA2ODgANDIyAAAmGgA6ICIAMCoqADIwMAA//j4AHB4eADwgIgA/4iIAPi4
+        oAC4qKgA2MCoAOjAqABgaGgAAJBoAIB4eAD4iJAAuJCQANigoABIWFgA4ICIAOCIiADAuLAAUEhIAJiA
+        gAAIuIAAyIiIAPCIkADwmJAA2MCwANjIyABoYGAAAIhgAAiIYAAAmGAAeHiAANiAiACoiIgAuIiIAOCQ
+        iADYmJgA4JiYAOiYmAD/qLAA2Li4AFBQWAAAiGgAaHBwAIiAgACAgIgA+ICIAOiQiAD4kIgAUKCIAP+I
+        kACokJAAyJiYAMiwsAD4sLAAyMC4AOjIyABYUFAAYFhYAHBoaABIeGgAIIhoAHBweACIeHgAqHiAAMiA
+        iAB4iIgAoIiIALCIiAC4oKAAyLCoALi4qACouLgAyLi4ANDAuADYyLgA+LjAAFhYYABgYGgAWGhoAGho
+        cACQeHgACLB4AGiIgACAiIAAwICIAICQiACIkIgAyJCIANiQkAD4mJAA6KCYAPC4oADYqKgA/6ioAMjA
+        qADgwKgA0Li4AMDAuADQyMAAwMDIADhQSAAYYEgAGGBQACBoUABAWFgAMHhgACiAaABAgGgACIhoAIhw
+        cABQeHAAaHh4AFiAeABggHgAWIh4ALiAgACogIgAwJCIAIiIkADomJAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAABgYGBgYGBgYGBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAABgYGBjgXFxcXFxcXFxcGBgYGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAYGBirXFxcXFxcXFxcXFxcXFxcXFwYGBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAABgYq1xcXFxcXKurlZWVlZWVq6tcXFxcXFxcGBgAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAGBhcXFxcXFyVr4NPCQlSUlJSCQlPg6+VXFxcXFxcGBgAAAAAAAAAAAAA
+        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
+        ENgZfrp0dHS6fhnYEBAYGBgYV1cYGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYGA1X
+        VxgYGBgYGBgYGBgYGBgYGBgYGBhXVxgYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAYGBgNV1dXDhgYGBgYGBgYGFdXV1cYGBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAGBgYGFcNDQ0NDQ0NV1cYGBgYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAYGBgYGBgYGBgYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//
+        /+AH///////+AAB///////AAAA//////wAAAA/////8AAAAA/////AAAAAA////4AAAAAB////AAAAAA
+        D///4AAAAAAH//+AAAAAAAH//4AAAAAAAf//AAAAAAAA//4AAAAAAAB//AAAAAAAAD/4AAAAAAAAH/gA
+        AAAAAAAf8AAAAAAAAA/wAAAAAAAAD+AAAAAAAAAH4AAAAAAAAAfAAAAAAAAAA8AAAAAAAAADwAAAAAAA
+        AAOAAAAAAAAAAYAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA
+        AAGAAAAAAAAAAYAAAAAAAAABgAAAAAAAAAHAAAAAAAAAA8AAAAAAAAADwAAAAAAAAAPgAAAAAAAAB+AA
+        AAAAAAAH8AAAAAAAAA/wAAAAAAAAD/gAAAAAAAAf+AAAAAAAAB/8AAAAAAAAP/4AAAAAAAB//wAAAAAA
+        AP//gAAAAAAB//+AAAAAAAP//+AAAAAAB///8AAAAAAP///4AAAAAB////wAAAAAP////wAAAAD/////
+        wAAAA//////wAAAP//////4AAH///////+AH////
+</value>
+  </data>
+  <data name="$this.Name" xml:space="preserve">
+    <value>Surgery</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Sims Surgery Tool</value>
+  </data>
+  <data name="groupBox2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox2.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cbskin.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cbskin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, -4</value>
+  </data>
+  <data name="lbpatlife.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbface.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="label2.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBox3.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="ctlLoadPackage.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="llexport.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lv.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <data name="pbarche.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 24</value>
+  </data>
+  <data name="iskin.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="&gt;&gt;cbeye.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="lbpatlife.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt</value>
+  </data>
+  <data name="lbpatlife.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="lbpatlife.Size" type="System.Drawing.Size, System.Drawing">
+    <value>344, 16</value>
+  </data>
+  <data name="lbpatlife.Text" xml:space="preserve">
+    <value>Lifestage</value>
+  </data>
+  <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbarchlife.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;lvskin.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pbarche.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="toolTip1.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="pbarche.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="lvskin.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="lvskin.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lvskin.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lvskin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>440, 81</value>
+  </data>
+  <data name="cbface.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="cbskin.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="&gt;&gt;cbeye.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="llusepatient.ToolTip" xml:space="preserve">
+    <value>Use the selected Sim as Patient</value>
+  </data>
+  <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="ctlLoadPackage.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cbeye.Location" type="System.Drawing.Point, System.Drawing">
+    <value>304, 92</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="groupBox1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="&gt;&gt;llexport.Name" xml:space="preserve">
+    <value>llexport</value>
+  </data>
+  <data name="&gt;&gt;llexport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="llusepatient.Size" type="System.Drawing.Size, System.Drawing">
+    <value>26, 17</value>
+  </data>
+  <data name="llusepatient.Text" xml:space="preserve">
+    <value>use</value>
+  </data>
+  <data name="llusepatient.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="llusepatient.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="lbarchlife.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="&gt;&gt;lbarchlife.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbarchlife.Name" xml:space="preserve">
+    <value>lbarchlife</value>
+  </data>
+  <data name="lbarchname.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="llusepatient.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 88</value>
+  </data>
+  <data name="lv.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBox3.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="llexport.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
+  </data>
+  <data name="label3.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>658, 422</value>
+  </data>
+  <data name="cbface.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="pbpatient.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="pbpatient.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="pbpatient.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 64</value>
+  </data>
+  <data name="pbpatient.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="$this.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="ilist.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="lbpatname.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="label2.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="sfd.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="pbpatient.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="$this.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cbmakeup.ToolTip" xml:space="preserve">
+    <value>Copy only the Skintones from the Archetype to the Patient</value>
+  </data>
+  <data name="iskin.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="lv.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="$this.DrawGrid" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbeye.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="cbmakeup.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ctlLoadPackage.ToolTip" xml:space="preserve">
+    <value>Load previously exported Sims.</value>
+  </data>
+  <data name="cbskin.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 17</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>The look of this Sim will be changed.</value>
+  </data>
+  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt</value>
+  </data>
+  <data name="label2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="lbpatname.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 48</value>
+  </data>
+  <data name="pbpatient.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lbarchlife.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cbskin.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>That's the way the Sim will look like afterwards.</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 17</value>
+  </data>
+  <data name="label3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt</value>
+  </data>
+  <data name="button1.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="llusepatient.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="label1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="ctlLoadPackage.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="lvskin.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="groupBox2.DrawGrid" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ctlLoadPackage.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
+  </data>
+  <data name="groupBox3.GridSize" type="System.Drawing.Size, System.Drawing">
+    <value>8, 8</value>
+  </data>
+  <data name="$this.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lbarchname.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Sim Pool:</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 17</value>
+  </data>
+  <data name="lv.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="button1.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="button1.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cbeye.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Normal</value>
+  </data>
+  <data name="&gt;&gt;lvskin.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="lvskin.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="&gt;&gt;llusepatient.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;lbpatname.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="groupBox3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="label1.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="label2.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="lbpatname.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbarchlife.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="lv.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 24</value>
+  </data>
+  <data name="&gt;&gt;lbpatlife.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="label3.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>456, 112</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Archetype Sim</value>
+  </data>
+  <data name="groupBox2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="groupBox2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="lbpatname.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="pbarche.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>456, 120</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="groupBox3.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
+    <value>6, 14</value>
+  </data>
+  <data name="groupBox3.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cbface.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 92</value>
+  </data>
+  <data name="cbface.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="pbarche.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lbarchlife.ImageIndex" type="System.Int32, mscorlib">
+    <value>-1</value>
+  </data>
+  <data name="pbarche.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="lbarchname.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbarchlife.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Patient Sim</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>456, 120</value>
+  </data>
+  <data name="groupBox1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="groupBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="llusearche.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lvskin.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbpatname.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;llusepatient.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="label2.ImageIndex" type="System.Int32, mscorlib">
+    <value>-1</value>
+  </data>
+  <data name="label2.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="llusepatient.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="lbpatlife.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="llusepatient.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
+  </data>
+  <data name="cbskin.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="&gt;&gt;ctlLoadPackage.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="pbpatient.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="cbeye.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbeye.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lvskin.Name" xml:space="preserve">
+    <value>lvskin</value>
+  </data>
+  <data name="&gt;&gt;lvskin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lv.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="button1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="cbeye.ImageIndex" type="System.Int32, mscorlib">
+    <value>-1</value>
+  </data>
+  <data name="cbmakeup.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;lbpatname.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="lbarchname.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="llusearche.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 3</value>
+  </data>
+  <data name="&gt;&gt;opd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;opd.Name" xml:space="preserve">
+    <value>opd</value>
+  </data>
+  <data name="llusepatient.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="pbarche.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="pbarche.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="pbarche.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pbarche.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 64</value>
+  </data>
+  <data name="lbpatname.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lbarchlife.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="cbskin.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lbpatlife.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="label1.ImageIndex" type="System.Int32, mscorlib">
+    <value>-1</value>
+  </data>
+  <data name="sfd.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="label1.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="label3.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="groupBox1.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="pbarche.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="ilist.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="lbpatlife.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="button1.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="llusearche.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="lbarchlife.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="cbmakeup.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="lbpatlife.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="llexport.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="llexport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 0</value>
+  </data>
+  <data name="&gt;&gt;llexport.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="llusepatient.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="lbarchlife.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="lbpatlife.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="button1.ToolTip" xml:space="preserve">
+    <value>Copies the Data from the Archetype to the Patient</value>
+  </data>
+  <data name="&gt;&gt;iskin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;iskin.Name" xml:space="preserve">
+    <value>iskin</value>
+  </data>
+  <data name="sfd.Filter" xml:space="preserve">
+    <value>Sims Package (*.package)|*.package|All Files (*.*)|*.*</value>
+  </data>
+  <data name="lv.LabelWrap" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBox1.GridSize" type="System.Drawing.Size, System.Drawing">
+    <value>8, 8</value>
+  </data>
+  <data name="toolTip1.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="groupBox1.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="opd.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="pbarche.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Normal</value>
+  </data>
+  <data name="cbeye.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lbarchname.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="lvskin.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="lv.Alignment" type="System.Windows.Forms.ListViewAlignment, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="cbmakeup.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="cbmakeup.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="cbmakeup.Text" xml:space="preserve">
+    <value>Makeup only</value>
+  </data>
+  <data name="cbmakeup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 24</value>
+  </data>
+  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="groupBox1.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cbface.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="label2.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="lv.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="button1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="pbarche.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="&gt;&gt;llexport.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="lbarchname.ImageIndex" type="System.Int32, mscorlib">
+    <value>-1</value>
+  </data>
+  <data name="lbarchname.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbarchname.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="groupBox2.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;ctlLoadPackage.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="groupBox1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lbarchname.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="cbmakeup.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="&gt;&gt;button1.Name" xml:space="preserve">
+    <value>button1</value>
+  </data>
+  <data name="&gt;&gt;button1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label2.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="label3.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="lbarchname.Size" type="System.Drawing.Size, System.Drawing">
+    <value>360, 16</value>
+  </data>
+  <data name="lbarchname.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="lbarchname.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lbarchname.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;cbface.Name" xml:space="preserve">
+    <value>cbface</value>
+  </data>
+  <data name="&gt;&gt;cbface.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="llusepatient.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lbpatname.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="lbpatname.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="lbpatname.ImageIndex" type="System.Int32, mscorlib">
+    <value>-1</value>
+  </data>
+  <data name="cbmakeup.ImageIndex" type="System.Int32, mscorlib">
+    <value>-1</value>
+  </data>
+  <data name="sfd.Title" xml:space="preserve">
+    <value>Export CAS Sim</value>
+  </data>
+  <data name="cbmakeup.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="lbarchlife.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbmakeup.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="ctlLoadPackage.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBox3.SnapToGrid" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbmakeup.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="pbpatient.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cbskin.ToolTip" xml:space="preserve">
+    <value>Copy only the Skintones from the Archetype to the Patient</value>
+  </data>
+  <data name="llexport.ImageIndex" type="System.Int32, mscorlib">
+    <value>-1</value>
+  </data>
+  <data name="lvskin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 31</value>
+  </data>
+  <data name="llexport.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="llusepatient.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbskin.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Normal</value>
+  </data>
+  <data name="cbface.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cbmakeup.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="cbface.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
+  </data>
+  <data name="&gt;&gt;cbface.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="llusearche.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="lvskin.Alignment" type="System.Windows.Forms.ListViewAlignment, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="pbpatient.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="pbpatient.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
+  </data>
+  <data name="llusepatient.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="cbskin.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="pbpatient.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="llexport.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="llexport.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="llexport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 17</value>
+  </data>
+  <data name="llexport.Text" xml:space="preserve">
+    <value>Export (thanks to Pinhead)</value>
+  </data>
+  <data name="cbface.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="llusearche.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="button1.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="ctlLoadPackage.ImageIndex" type="System.Int32, mscorlib">
+    <value>-1</value>
+  </data>
+  <data name="ctlLoadPackage.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbskin.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="label1.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="opd.Filter" xml:space="preserve">
+    <value>Sims Package (*.package)|*.package|All Files (*.*)|*.*</value>
+  </data>
+  <data name="groupBox2.GridSize" type="System.Drawing.Size, System.Drawing">
+    <value>8, 8</value>
+  </data>
+  <data name="lbarchlife.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="label1.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lvskin.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="sfd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 17</value>
+  </data>
+  <data name="llusearche.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="lbpatname.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;cbface.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="pbarche.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="llusepatient.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cbmakeup.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lvskin.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="llusepatient.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="$this.Language" type="System.Globalization.CultureInfo, mscorlib">
+    <value>Invariant Language (Invariant Country)</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label3.ImageIndex" type="System.Int32, mscorlib">
+    <value>-1</value>
+  </data>
+  <data name="groupBox1.DrawGrid" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>552, 396</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="label3.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cbskin.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="toolTip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>151, 17</value>
+  </data>
+  <data name="cbskin.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ctlLoadPackage.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="ctlLoadPackage.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="ctlLoadPackage.Text" xml:space="preserve">
+    <value>Load...</value>
+  </data>
+  <data name="ctlLoadPackage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 17</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>232, 16</value>
+  </data>
+  <data name="&gt;&gt;cbeye.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbeye.Name" xml:space="preserve">
+    <value>cbeye</value>
+  </data>
+  <data name="&gt;&gt;pbarche.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 8</value>
+  </data>
+  <data name="$this.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="llusearche.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lvskin.LabelWrap" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="$this.GridSize" type="System.Drawing.Size, System.Drawing">
+    <value>8, 8</value>
+  </data>
+  <data name="&gt;&gt;ctlLoadPackage.Name" xml:space="preserve">
+    <value>ctlLoadPackage</value>
+  </data>
+  <data name="&gt;&gt;ctlLoadPackage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cbskin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
+  </data>
+  <data name="llexport.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="$this.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cbeye.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="cbmakeup.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="groupBox3.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbpatlife.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cbface.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Normal</value>
+  </data>
+  <data name="lv.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="pbpatient.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbface.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="ctlLoadPackage.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="cbskin.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="$this.AutoScroll" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="pbpatient.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
+  </data>
+  <data name="pbpatient.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="lbpatname.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;pbarche.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="llexport.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="label3.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbarchname.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="opd.Title" xml:space="preserve">
+    <value>Load Sim Template Package</value>
+  </data>
+  <data name="lv.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 390</value>
+  </data>
+  <data name="lv.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lv.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="lv.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="llexport.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="groupBox2.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="llexport.ToolTip" xml:space="preserve">
+    <value>Exported Sims will show up in Body Shop and in the List of Preconfigured Sims in the CAS</value>
+  </data>
+  <data name="lbpatlife.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="pbpatient.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 24</value>
+  </data>
+  <data name="pbpatient.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="button1.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="&gt;&gt;cbmakeup.Name" xml:space="preserve">
+    <value>cbmakeup</value>
+  </data>
+  <data name="&gt;&gt;cbmakeup.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pbpatient.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="lbarchlife.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="&gt;&gt;lbarchname.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lbarchname.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbarchname.Name" xml:space="preserve">
+    <value>lbarchname</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="cbmakeup.Location" type="System.Drawing.Point, System.Drawing">
+    <value>192, 92</value>
+  </data>
+  <data name="cbface.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lbpatlife.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="llusearche.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="llusearche.ImageIndex" type="System.Int32, mscorlib">
+    <value>-1</value>
+  </data>
+  <data name="lbpatname.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cbmakeup.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="label2.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;pbarche.Name" xml:space="preserve">
+    <value>pbarche</value>
+  </data>
+  <data name="&gt;&gt;pbarche.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lbarchname.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cbeye.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
+  </data>
+  <data name="lbarchname.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="lvskin.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="llusepatient.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBox3.DrawGrid" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="pbarche.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cbmakeup.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="pbpatient.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="$this.TrayHeight" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="lbarchname.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cbface.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="lv.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lbpatname.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="lbpatlife.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="llexport.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lbpatname.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="lbpatlife.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 64</value>
+  </data>
+  <data name="lbarchname.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="lvskin.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="opd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>316, 17</value>
+  </data>
+  <data name="lbarchlife.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 72</value>
+  </data>
+  <data name="ctlLoadPackage.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="cbeye.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBox3.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="button1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cbmakeup.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="label3.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="cbeye.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="label2.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="groupBox1.SnapToGrid" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="pbarche.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="llusearche.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="pbarche.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="label1.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ctlLoadPackage.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="&gt;&gt;lbarchname.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="lbarchlife.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="cbskin.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="&gt;&gt;lbpatname.Name" xml:space="preserve">
+    <value>lbpatname</value>
+  </data>
+  <data name="&gt;&gt;lbpatname.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>168, 16</value>
+  </data>
+  <data name="cbeye.ToolTip" xml:space="preserve">
+    <value>Copy only the Skintones from the Archetype to the Patient</value>
+  </data>
+  <data name="lbpatname.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="groupBox3.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label1.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Surgery</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="lbarchlife.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lv.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="lv.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="pbpatient.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Normal</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="cbface.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbskin.Text" xml:space="preserve">
+    <value>Skintone only</value>
+  </data>
+  <data name="cbskin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 24</value>
+  </data>
+  <data name="cbskin.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="llusearche.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cbskin.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="cbface.ImageIndex" type="System.Int32, mscorlib">
+    <value>-1</value>
+  </data>
+  <data name="label3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;cbskin.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="cbface.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="lbpatlife.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="cbmakeup.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="$this.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="cbeye.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="button1.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="cbskin.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="pbarche.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbpatlife.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="llusearche.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="lbpatname.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cbeye.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="lbpatlife.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lvskin.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="button1.ImageIndex" type="System.Int32, mscorlib">
+    <value>-1</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>192, 152</value>
+  </data>
+  <data name="llexport.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 6</value>
+  </data>
+  <data name="button1.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;ilist.Name" xml:space="preserve">
+    <value>ilist</value>
+  </data>
+  <data name="&gt;&gt;ilist.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="label1.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="button1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>192, 24</value>
+  </data>
+  <data name="$this.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>WindowsDefaultLocation</value>
+  </data>
+  <data name="llusearche.ToolTip" xml:space="preserve">
+    <value>use selected Sim as Archetype</value>
+  </data>
+  <data name="iskin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>243, 17</value>
+  </data>
+  <data name="button1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="button1.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>Surgery</value>
+  </data>
+  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 23</value>
+  </data>
+  <data name="cbeye.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;cbskin.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="llusearche.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 88</value>
+  </data>
+  <data name="lbarchname.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="llexport.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;cbmakeup.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="ctlLoadPackage.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="llusearche.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ilist.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 17</value>
+  </data>
+  <data name="llusepatient.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="lv.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="lvskin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="groupBox1.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="label3.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;lbpatlife.Name" xml:space="preserve">
+    <value>lbpatlife</value>
+  </data>
+  <data name="&gt;&gt;lbpatlife.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox1.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ctlLoadPackage.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="llusearche.Text" xml:space="preserve">
+    <value>use</value>
+  </data>
+  <data name="llusearche.Size" type="System.Drawing.Size, System.Drawing">
+    <value>26, 17</value>
+  </data>
+  <data name="llusearche.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="llusearche.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lbarchlife.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="cbeye.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="&gt;&gt;cbskin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbskin.Name" xml:space="preserve">
+    <value>cbskin</value>
+  </data>
+  <data name="cbeye.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lbarchlife.Size" type="System.Drawing.Size, System.Drawing">
+    <value>344, 16</value>
+  </data>
+  <data name="lbarchlife.Text" xml:space="preserve">
+    <value>Lifestage</value>
+  </data>
+  <data name="lbarchlife.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt</value>
+  </data>
+  <data name="lbarchlife.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="groupBox2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="groupBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;cbmakeup.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="groupBox2.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="&gt;&gt;lv.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lv.Name" xml:space="preserve">
+    <value>lv</value>
+  </data>
+  <data name="cbface.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="lbpatlife.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="lbpatlife.ImageIndex" type="System.Int32, mscorlib">
+    <value>-1</value>
+  </data>
+  <data name="groupBox3.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="ctlLoadPackage.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ctlLoadPackage.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="&gt;&gt;llusearche.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;pbpatient.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;pbpatient.Name" xml:space="preserve">
+    <value>pbpatient</value>
+  </data>
+  <data name="&gt;&gt;pbpatient.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="llexport.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="llexport.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="&gt;&gt;lbarchlife.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lvskin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="&gt;&gt;llusepatient.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;llusepatient.Name" xml:space="preserve">
+    <value>llusepatient</value>
+  </data>
+  <data name="llusepatient.ImageIndex" type="System.Int32, mscorlib">
+    <value>-1</value>
+  </data>
+  <data name="llusepatient.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="groupBox2.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbeye.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 24</value>
+  </data>
+  <data name="cbeye.Text" xml:space="preserve">
+    <value>Eyes only</value>
+  </data>
+  <data name="cbeye.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="cbeye.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="cbskin.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cbskin.ImageIndex" type="System.Int32, mscorlib">
+    <value>-1</value>
+  </data>
+  <data name="lbpatname.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lbpatname.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="lbpatname.Size" type="System.Drawing.Size, System.Drawing">
+    <value>360, 16</value>
+  </data>
+  <data name="lbpatname.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="&gt;&gt;llusearche.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;pbpatient.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="llexport.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="llexport.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="label2.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="iskin.ImageSize" type="System.Drawing.Size, System.Drawing">
+    <value>48, 48</value>
+  </data>
+  <data name="lbarchlife.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;lv.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="cbskin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="llusepatient.Modifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+  <data name="ctlLoadPackage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbskin.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="groupBox3.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="ilist.ImageSize" type="System.Drawing.Size, System.Drawing">
+    <value>64, 64</value>
+  </data>
+  <data name="lvskin.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="llusepatient.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBox1.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;lbarchlife.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="cbface.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="groupBox1.Locked" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;sfd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sfd.Name" xml:space="preserve">
+    <value>sfd</value>
+  </data>
+  <data name="groupBox1.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lbpatlife.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="llusearche.Enabled" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBox2.SnapToGrid" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>192, 272</value>
+  </data>
+  <data name="$this.AutoScrollMargin" type="System.Drawing.Size, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="button1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cbface.ToolTip" xml:space="preserve">
+    <value>Copy only the Skintones from the Archetype to the Patient</value>
+  </data>
+  <data name="cbmakeup.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Normal</value>
+  </data>
+  <data name="cbface.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Private</value>
+  </data>
+</root>

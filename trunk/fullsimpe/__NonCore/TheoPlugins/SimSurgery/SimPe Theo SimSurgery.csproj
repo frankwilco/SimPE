@@ -108,6 +108,12 @@
     <Content Include="SimPe.Plugin.bin.simpe" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Surgery.resx">
+      <DependentUpon>Surgery.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
