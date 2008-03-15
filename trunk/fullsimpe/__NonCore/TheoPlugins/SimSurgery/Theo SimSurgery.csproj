@@ -79,203 +79,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UI\Controls\PackageSelector.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UI\Controls\PackageSelector.Designer.cs">
-      <DependentUpon>PackageSelector.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Wrapper\AbstractCpfInfo.cs" />
-    <Compile Include="Wrapper\AbstractRcolInfo.cs" />
-    <Compile Include="Helper\FileDatabase.cs" />
-    <Compile Include="Wrapper\AbstractRefInfo.cs" />
-    <Compile Include="Wrapper\SkinReferenceTable.cs" />
-    <Compile Include="Wrapper\GenericCpfInfo.cs" />
-    <Compile Include="Helper\EventLog.cs" />
-    <Compile Include="Helper\Localizable.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Wrapper\MaterialDefinitionInfo.cs" />
-    <Compile Include="Scenegraph\MeshChain.cs" />
-    <Compile Include="PackageBrowserSettings.cs" />
-    <Compile Include="Properties\SwatchIcons.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SwatchIcons.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Wrapper\AgeData.cs" />
-    <Compile Include="Wrapper\SkinInfo.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Wrapper\TextureOverlayInfo.cs" />
-    <Compile Include="Sims\SimInfo.cs" />
-    <Compile Include="Sims\SimsRegistry.cs" />
-    <Compile Include="Surgery\CloneAccessory.cs" />
-    <Compile Include="Surgery\CloneClothing.cs" />
-    <Compile Include="Surgery\CloneEyes.cs" />
-    <Compile Include="Surgery\CloneFace.cs" />
-    <Compile Include="Surgery\Finalize.cs" />
-    <Compile Include="Surgery\CloneHair.cs" />
-    <Compile Include="Surgery\CloneMakeup.cs" />
-    <Compile Include="Surgery\GeneticProcedure.cs" />
-    <Compile Include="Surgery\OperationRoom.cs" />
-    <Compile Include="Surgery\Procedure.cs" />
-    <Compile Include="Surgery\CloneSkin.cs" />
-    <Compile Include="UI\PackageBrowser.cs">
+    <Compile Include="PlasticSurgery.cs" />
+    <Compile Include="Surgery.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\PackageBrowser.Designer.cs">
-      <DependentUpon>PackageBrowser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\EyeBrowser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\EyeBrowser.Designer.cs">
-      <DependentUpon>EyeBrowser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\SkinBrowser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\SkinBrowser.Designer.cs">
-      <DependentUpon>SkinBrowser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\SimBrowser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\SurgeryForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\SurgeryForm.Designer.cs">
-      <DependentUpon>SurgeryForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SurgeryToolExt.cs" />
-    <Compile Include="Helper\Utility.cs" />
-    <Compile Include="Helper\EnumLocalizer.cs" />
-    <Compile Include="UI\Controls\WarningPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UI\Controls\WarningPanel.Designer.cs">
-      <DependentUpon>WarningPanel.cs</DependentUpon>
-    </Compile>
+    <Compile Include="SurgeryTool.cs" />
     <Compile Include="WrapperFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\3d.simpe" />
-    <Content Include="Resources\bin.simpe" />
-    <EmbeddedResource Include="PackageBrowserSettings.resx">
+    <EmbeddedResource Include="Surgery.resx">
+      <DependentUpon>Surgery.cs</DependentUpon>
       <SubType>Designer</SubType>
-      <DependentUpon>PackageBrowserSettings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\SwatchIcons.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SwatchIcons.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Surgery\CloneAccessory.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>CloneAccessory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Surgery\CloneClothing.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>CloneClothing.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Surgery\CloneEyes.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>CloneEyes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Surgery\CloneFace.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>CloneFace.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Surgery\Finalize.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>Finalize.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Surgery\CloneHair.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>CloneHair.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Surgery\CloneMakeup.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>CloneMakeup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Surgery\CloneSkin.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>CloneSkin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Surgery\OperationRoom.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>OperationRoom.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Controls\PackageSelector.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>PackageSelector.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\PackageBrowser.resx">
-      <DependentUpon>PackageBrowser.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\EyeBrowser.resx">
-      <DependentUpon>EyeBrowser.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\SkinBrowser.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>SkinBrowser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\SimBrowser.resx">
-      <DependentUpon>SimBrowser.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\SurgeryForm.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>SurgeryForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Helper\EnumLocalizer.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>EnumLocalizer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Controls\WarningPanel.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>WarningPanel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icon.png" />
+    <Content Include="SimPe.Plugin.3d.simpe" />
+    <Content Include="SimPe.Plugin.bin.simpe" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\warning.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\mr_pearhead.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="doc\aged_resource.html" />
-    <Content Include="doc\gzps_category.html" />
-    <Content Include="Resources\eye.alien.png" />
-    <Content Include="Resources\eye.dkblue.png" />
-    <Content Include="Resources\eye.dkbrown.png" />
-    <Content Include="Resources\eye.gray.png" />
-    <Content Include="Resources\eye.green.png" />
-    <Content Include="Resources\eye.ltblue.png" />
-    <Content Include="Resources\itemClear.png" />
-    <Content Include="Resources\itemFind.png" />
-    <Content Include="Resources\skin.alien.png" />
-    <Content Include="Resources\skin.dark.png" />
-    <Content Include="Resources\skin.light.png" />
-    <Content Include="Resources\skin.mannequin.png" />
-    <Content Include="Resources\skin.medium.png" />
-    <Content Include="Resources\skin.tan.png" />
-    <Content Include="Resources\skin.zombie.png" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
