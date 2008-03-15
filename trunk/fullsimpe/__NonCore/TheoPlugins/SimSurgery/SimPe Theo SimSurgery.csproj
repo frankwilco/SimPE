@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SimPe.Plugin</RootNamespace>
-    <AssemblyName>simpe.alt.surgery.plugin</AssemblyName>
+    <AssemblyName>theos.simsurgery.plugin</AssemblyName>
     <StartupObject>
     </StartupObject>
   </PropertyGroup>
