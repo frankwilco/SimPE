@@ -119,12 +119,6 @@
     <Compile Include="Factory.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GUIDChooser.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GUIDChooser.Designer.cs">
-      <DependentUpon>GUIDChooser.cs</DependentUpon>
-    </Compile>
     <Compile Include="JobDescPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -148,10 +142,6 @@
     <EmbeddedResource Include="EffectPanel.resx">
       <SubType>Designer</SubType>
       <DependentUpon>EffectPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUIDChooser.resx">
-      <DependentUpon>GUIDChooser.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="JobDescPanel.resx">
       <SubType>Designer</SubType>
