@@ -137,6 +137,21 @@ namespace SimPe.Packages
 		protected string GetBakFileName(string flname)
 		{
 			return System.IO.Path.Combine(System.IO.Path.GetDirectoryName(flname), System.IO.Path.GetFileNameWithoutExtension(flname)+".bak");
+            /*
+            string dir = System.IO.Path.GetDirectoryName(flname);
+            string stem = System.IO.Path.GetFileNameWithoutExtension(flname);
+            string bakfile = System.IO.Path.Combine(dir, stem + ".bak");
+            if (!System.IO.File.Exists(bakfile)) return bakfile;
+            else
+            {
+                short i = 0;
+                while (true)
+                {
+                    bakfile = System.IO.Path.Combine(dir, stem + "." + Helper.HexString(i) + ".bak");
+                    if (!System.IO.File.Exists(bakfile)) return bakfile;
+                }
+            }
+            */
 		}
 
 		/// <summary>
