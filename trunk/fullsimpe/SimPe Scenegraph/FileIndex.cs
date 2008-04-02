@@ -502,7 +502,15 @@ namespace SimPe.Plugin
 			}
 
 			Wait.SubStop();
+			OnFILoad(this, new EventArgs());
 		}
+
+
+		/// <summary>
+		/// Indicates the File Index was loaded
+		/// </summary>
+        public event EventHandler FILoad;
+        public virtual void OnFILoad(object sender, EventArgs e) { if (FILoad != null) { FILoad(sender, e); } }
 
 		ArrayList paths;
 		/// <summary>
@@ -1476,5 +1484,5 @@ namespace SimPe.Plugin
 		}
 
 		#endregion
-	}
+    }
 }
