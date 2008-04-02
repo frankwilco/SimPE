@@ -64,7 +64,7 @@ namespace SimPe.Interfaces
 			get;
 		}
 
-		// <summary>
+		/// <summary>
 		/// Returns the List of Known Tools
 		/// </summary>
 		/// <remarks>The Tools should be Returned in Order of Priority starting with the lowest!</remarks>
