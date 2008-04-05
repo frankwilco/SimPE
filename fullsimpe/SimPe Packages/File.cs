@@ -1356,14 +1356,19 @@ namespace SimPe.Packages
 		
 
 		/// <summary>
-		/// Returns the first File matching 
+		/// Determine if the <paramref name="pfd"/> is in the fileindex
 		/// </summary>
-		/// <param name="pfd">Type you want to look for</param>
-		/// <returns>The descriptor for the matching Dile or null</returns>
+		/// <param name="pfd">File you want to look for</param>
+		/// <returns><paramref name="pfd"/> if found, <value>null</value> otherwise</returns>
 		public IPackedFileDescriptor FindExactFile(Interfaces.Files.IPackedFileDescriptor pfd) 
 		{
-			return FindExactFile(pfd.Type, pfd.SubType, pfd.Group, pfd.Instance, pfd.Offset);
+            if (fileindex != null)
+                foreach (IPackedFileDescriptor ipfd in fileindex)
+                    if (ipfd == pfd) return pfd;
+            return null;
+            //return FindExactFile(pfd.Type, pfd.SubType, pfd.Group, pfd.Instance, pfd.Offset);
 		}
+
 		/// <summary>
 		/// Returns the first File matching 
 		/// </summary>

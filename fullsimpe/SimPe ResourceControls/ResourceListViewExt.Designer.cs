@@ -122,7 +122,7 @@
         private System.Windows.Forms.ColumnHeader clInst;
         private System.Windows.Forms.ColumnHeader clOffset;
         private System.Windows.Forms.ColumnHeader clSize;
-        private ListViewDoubleBuffered lv;
+        private System.Windows.Forms.ListView/*DoubleBuffered*/ lv;
         private System.Windows.Forms.ColumnHeader clTName;
 
     }

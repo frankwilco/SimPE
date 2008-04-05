@@ -57,7 +57,7 @@ namespace SimPe.Windows.Forms
             return "";
         }
 
-        void Descriptor_DescriptionChanged(object sender, EventArgs e)
+        /*void Descriptor_DescriptionChanged(object sender, EventArgs e)
         {
             ChangeDescription(false);
         }
@@ -70,7 +70,7 @@ namespace SimPe.Windows.Forms
         void Descriptor_ChangedData(SimPe.Interfaces.Files.IPackedFileDescriptor sender)
         {            
             ChangeDescription(false);
-        }        
+        }        */
 
         ~ResourceListItemExt()
         {
