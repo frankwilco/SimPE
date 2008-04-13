@@ -1145,7 +1145,8 @@ namespace SimPe
             if (this.Tag != null) return;
             if (lbfolder.SelectedItem == null) return;
 
-            ((FileTableItem)lbfolder.SelectedItem).Ignore = !((FileTableItem)lbfolder.SelectedItem).Ignore;
+            //((FileTableItem)lbfolder.SelectedItem).Ignore = !((FileTableItem)lbfolder.SelectedItem).Ignore;
+            ((FileTableItem)lbfolder.SelectedItem).Ignore = lbfolder.CheckedItems.Contains(lbfolder.SelectedItem);
             btReload.Enabled = true;
             SetupFileTableCheckboxes();
         }
