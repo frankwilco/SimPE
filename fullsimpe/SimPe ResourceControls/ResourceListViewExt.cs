@@ -115,12 +115,13 @@ namespace SimPe.Windows.Forms
         
         internal void SetResources(ResourceViewManager.ResourceNameList resources)
         {
+            ResourceViewManager.ResourceNameList rnl = this.SelectedItems;
             this.Clear();
             seltimer.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);
             this.CancelThreads();
             lock (names)
             {
-                
+
                 foreach (NamedPackedFileDescriptor pfd in names)
                 {
                     pfd.Descriptor.ChangedUserData -= new SimPe.Events.PackedFileChanged(Descriptor_ChangedUserData);
@@ -129,12 +130,12 @@ namespace SimPe.Windows.Forms
                 }
 
                 names.Clear();
-                
-                if (FileTable.WrapperRegistry!=null) lv.SmallImageList = FileTable.WrapperRegistry.WrapperImageList;
+
+                if (FileTable.WrapperRegistry != null) lv.SmallImageList = FileTable.WrapperRegistry.WrapperImageList;
                 //if (resources != this.resources)
-                {                    
+                {
                     this.Clear();
-                    
+
                     foreach (NamedPackedFileDescriptor pfd in resources)
                     {
                         bool add = true;
@@ -163,8 +164,15 @@ namespace SimPe.Windows.Forms
 
 
 
-                    
+
                     SortResources();
+                    foreach (NamedPackedFileDescriptor q in rnl)
+                        for (int i = 0; i < names.Count; i++)
+                            if (names[i].Descriptor == q.Descriptor)
+                            {
+                                lv.SelectedIndices.Add(i);
+                                break;
+                            }
                 }
                 lastresources = resources;
                 DoSignalSelectionChanged(Handle);

@@ -349,7 +349,9 @@ namespace SimPe
             SimPe.Events.ResourceEventArgs res = new SimPe.Events.ResourceEventArgs(package);
             try
             {
-                foreach (SimPe.Windows.Forms.NamedPackedFileDescriptor lvi in lv.SelectedItems)                
+                if (lv.SelectedItems.Count == 0)
+                    resloader.Clear();
+                else foreach (SimPe.Windows.Forms.NamedPackedFileDescriptor lvi in lv.SelectedItems)                
                     res.Items.Add(new SimPe.Events.ResourceContainer(lvi.Resource));                
             }
             catch (Exception ex)
