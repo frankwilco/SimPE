@@ -1477,7 +1477,7 @@
     <value>36</value>
   </data>
   <data name="cbpkgmaint.Text" xml:space="preserve">
-    <value>Use Pkg. Mainatiner</value>
+    <value>Use Pkg. Maintainer</value>
   </data>
   <data name="&gt;&gt;cbpkgmaint.Name" xml:space="preserve">
     <value>cbpkgmaint</value>
