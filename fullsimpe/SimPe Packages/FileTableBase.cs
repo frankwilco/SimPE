@@ -35,181 +35,186 @@ namespace SimPe
 		/// </summary>
 		public static ArrayList DefaultFolders
 		{
-			get 
-			{
-				if (!System.IO.File.Exists(FolderFile)) BuildFolderXml();
+            get
+            {
+                if (!System.IO.File.Exists(FolderFile)) BuildFolderXml();
 
-				try 
-				{
-                    System.Collections.Generic.Dictionary<string, ExpansionItem> shortmap = new System.Collections.Generic.Dictionary<string, ExpansionItem>();
-                    foreach (ExpansionItem ei in PathProvider.Global.Expansions)
-                        shortmap[ei.ShortId.ToLower()] = ei;
+                System.Collections.Generic.Dictionary<string, ExpansionItem> shortmap = new System.Collections.Generic.Dictionary<string, ExpansionItem>();
+                foreach (ExpansionItem ei in PathProvider.Global.Expansions)
+                    shortmap[ei.ShortId.ToLower()] = ei;
 
-					ArrayList folders = new ArrayList();
+                ArrayList folders = new ArrayList();
 
-					//read XML File
-					System.Xml.XmlDocument xmlfile = new XmlDocument();
-					xmlfile.Load(FolderFile);
+                System.Xml.XmlReaderSettings xrs = new XmlReaderSettings();
+                xrs.CloseInput = true;
+                xrs.IgnoreComments = true;
+                xrs.IgnoreProcessingInstructions = true;
+                xrs.IgnoreWhitespace = true;
+                System.Xml.XmlReader xr = System.Xml.XmlReader.Create(FolderFile, xrs);
+                try
+                {
+                    xr.ReadStartElement("folders");
+                    xr.ReadStartElement("filetable");
+                    while (xr.IsStartElement())
+                    {
+                        int ftiver = -1;
+                        bool ftiignore = false;
+                        bool ftirec = false;
+                        FileTableItemType ftitype = FileTablePaths.Absolute;
 
-					//seek Root Node
-					XmlNodeList XMLData = xmlfile.GetElementsByTagName("folders");					
-#if MAC
-					Console.WriteLine("Reading Folders from \""+FolderFile+"\".");
-#endif
-					//Process all Root Node Entries
-					for (int i=0; i<XMLData.Count; i++)
-					{
-						XmlNode node = XMLData.Item(i);	
-						foreach (XmlNode subnode in node) 
-						{
-							if (subnode.Name == "filetable")
-							{
-								foreach (XmlNode foldernode in subnode.ChildNodes) 
-								{
-									if (foldernode.Name != "path" && foldernode.Name != "file") continue;									
-									string name = foldernode.InnerText.Trim();		
-									int ftiver = -1;
-									bool ftiignore = false;
-									bool ftirec = false;
-                                    FileTableItemType ftitype = FileTablePaths.Absolute;									
-									
-									
-									
-									#region add Path Root if needed
-                                    foreach (XmlAttribute a in foldernode.Attributes)
-                                    {
-                                        if (a.Name == "recursive")
-                                        {
-                                            if (a.Value != "0") ftirec = true;
-                                        }
+                        if (xr.Name != "path" && xr.Name != "file")
+                        {
+                            xr.Skip();
+                            continue;
+                        }
+                        while (xr.MoveToNextAttribute())
+                        {
+                            if (xr.Name == "recursive" && xr.Value != "0") ftirec = true;
+                            else if (xr.Name == "ignore" && xr.Value != "0") ftiignore = true;
+                            else if (xr.Name == "version" || xr.Name == "epversion")
+                                try
+                                {
+                                    int ver = Convert.ToInt32(xr.Value);
+                                    ftiver = ver;
+                                }
+                                catch { }
+                            else if (xr.Name == "root")
+                            {
+                                string root = xr.Value.ToLower();
 
-                                        if (a.Name == "ignore")
-                                        {
-                                            ftiignore = (a.Value != "0");
-                                        }
+                                if (shortmap.ContainsKey(root))
+                                {
+                                    ExpansionItem ei = shortmap[root];
+                                    ftitype = ei.Expansion;
+                                    root = ei.InstallFolder;
+                                }
+                                else if (root == "save")
+                                {
+                                    root = PathProvider.SimSavegameFolder;
+                                    ftitype = FileTablePaths.SaveGameFolder;
+                                }
+                                else if (root == "simpe")
+                                {
+                                    root = Helper.SimPePath;
+                                    ftitype = FileTablePaths.SimPEFolder;
+                                }
+                                else if (root == "simpedata")
+                                {
+                                    root = Helper.SimPeDataPath;
+                                    ftitype = FileTablePaths.SimPEDataFolder;
+                                }
+                                else if (root == "simpeplugin")
+                                {
+                                    root = Helper.SimPePluginPath;
+                                    ftitype = FileTablePaths.SimPEPluginFolder;
+                                }
+                            }// root
+                        }// MoveToNextAttribute
+                        xr.MoveToElement();
 
-                                        if (a.Name == "version" || a.Name == "epversion")
-                                        {
-                                            try
-                                            {
-                                                int ver = Convert.ToInt32(a.Value);
-                                                ftiver = ver;
-                                            }
-                                            catch { }
-                                        }
+                        FileTableItem fti;
+                        if (xr.Name == "file")
+                            fti = new FileTableItem(xr.ReadString(), ftitype, false, true, ftiver, ftiignore);
+                        else
+                            fti = new FileTableItem(xr.ReadString(), ftitype, ftirec, false, ftiver, ftiignore);
+                        folders.Add(fti);
+                        xr.ReadEndElement();
+                    }
+                    xr.ReadEndElement();
+                    xr.ReadEndElement();
 
-                                        if (a.Name == "root")
-                                        {
-                                            string root = a.Value.ToLower();
-
-                                            if (shortmap.ContainsKey(root))
-                                            {
-                                                ExpansionItem ei = shortmap[root];
-                                                ftitype = ei.Expansion;
-                                                root = ei.InstallFolder;
-                                            }
-                                            else if (root == "save")
-                                            {
-                                                root = PathProvider.SimSavegameFolder;
-                                                ftitype = FileTablePaths.SaveGameFolder;
-                                            }
-                                            else if (root == "simpe")
-                                            {
-                                                root = Helper.SimPePath;
-                                                ftitype = FileTablePaths.SimPEFolder;
-                                            }
-                                            else if (root == "simpedata")
-                                            {
-                                                root = Helper.SimPeDataPath;
-                                                ftitype = FileTablePaths.SimPEDataFolder;
-                                            }
-                                            else if (root == "simpeplugin")
-                                            {
-                                                root = Helper.SimPePluginPath;
-                                                ftitype = FileTablePaths.SimPEPluginFolder;
-                                            }                                                                                       
-                                        }
-                                    } //foreach
-
-
-									FileTableItem fti;
-									if (foldernode.Name == "file") fti = new FileTableItem(name, ftitype, false, true, ftiver, ftiignore);
-									else  fti = new FileTableItem(name, ftitype, ftirec, false, ftiver, ftiignore);
-
-#if MAC
-									Console.WriteLine("    -> "+fti.Name);
-#endif
-									#endregion
-
-									folders.Add(fti);
-							
-								} //foreach foldernode
-							}
-						} //foreach subnode
-					}	 //for i
-	
-					return folders;
-				}
-				catch (Exception ex) 
-				{
-					Helper.ExceptionMessage("", ex);
-					return new ArrayList();
-				}
-			}
+                    return folders;
+                }
+                catch (Exception ex)
+                {
+                    Helper.ExceptionMessage("", ex);
+                    return new ArrayList();
+                }
+                finally
+                {
+                    xr.Close();
+                }
+            }
 		}
 
 		/// <summary>
 		/// Creates a default Folder xml
 		/// </summary>
-		public static void BuildFolderXml()
-		{
-			try 
-			{
-				System.IO.TextWriter tw = System.IO.File.CreateText(FolderFile);
+        public static void BuildFolderXml()
+        {
+            try
+            {
+                System.Xml.XmlWriterSettings xws = new System.Xml.XmlWriterSettings();
+                xws.CloseOutput = true;
+                xws.Indent = true;
+                xws.Encoding = System.Text.Encoding.UTF8;
+                System.Xml.XmlWriter xw = System.Xml.XmlWriter.Create(FolderFile, xws);
 
-				try 
-				{
-					tw.WriteLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-					tw.WriteLine("<folders>");
-					tw.WriteLine("  <filetable>");
-					tw.WriteLine("    <file root=\"save\">Downloads"+Helper.PATH_SEP+"_EnableColorOptionsGMND.package</file>");
-					tw.WriteLine("    <file root=\"game\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Sims3D"+Helper.PATH_SEP+"_EnableColorOptionsMMAT.package</file>");
+                try
+                {
 
+                    xw.WriteStartElement("folders");
+                    xw.WriteStartElement("filetable");
 
-                    for (int i=PathProvider.Global.Expansions.Count-1; i>=0; i--)
+                    xw.WriteStartElement("file");
+                    xw.WriteAttributeString("root", "save");
+                    xw.WriteValue("Downloads" + Helper.PATH_SEP + "_EnableColorOptionsGMND.package");
+                    xw.WriteEndElement();
+
+                    xw.WriteStartElement("file");
+                    xw.WriteAttributeString("root", "game");
+                    xw.WriteValue("TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Sims3D" + Helper.PATH_SEP + "_EnableColorOptionsMMAT.package");
+                    xw.WriteEndElement();
+
+                    xw.WriteStartElement("path");
+                    xw.WriteAttributeString("root", "save");
+                    xw.WriteAttributeString("recursive", "1");
+                    xw.WriteValue("zCEP");
+                    xw.WriteEndElement();
+
+                    for (int i = PathProvider.Global.Expansions.Count - 1; i >= 0; i--)
                     {
                         ExpansionItem ei = PathProvider.Global.Expansions[i];
                         string s = ei.ShortId.ToLower();
+
                         string ign = "";
-                        if ((ei.Group & 1) != 1) ign = " ignore=\"1\" ";
                         foreach (string folder in ei.PreObjectFileTableFolders)
-                        {
-                            tw.WriteLine("    <path " + ign + " root=\"" + s + "\">"+folder+"</path>");
-                        }
+                            writenode(xw, (ei.Group & 1) != 1, s, null, folder);
 
-                        if (ei.Flag.SimStory || !ei.Flag.FullObjectsPackage) tw.WriteLine("    <path " + ign + " root=\"" + s + "\">" + ei.ObjectsSubFolder.Replace("\\\\", "\\") + "</path>");
-                        else tw.WriteLine("    <path " + ign + " root=\"" + s + "\" version=\"" + ei.Version + "\">"+ei.ObjectsSubFolder.Replace("\\\\", "\\")+"</path>");
-                        
+                        if (ei.Flag.SimStory || !ei.Flag.FullObjectsPackage)
+                            writenode(xw, (ei.Group & 1) != 1, s, null, ei.ObjectsSubFolder);
+                        else
+                            writenode(xw, (ei.Group & 1) != 1, s, ei.Version.ToString(), ei.ObjectsSubFolder);
+
                         foreach (string folder in ei.FileTableFolders)
-                        {
-                            tw.WriteLine("    <path " + ign + " root=\"" + s + "\">" + folder + "</path>");
-                        }
+                            writenode(xw, (ei.Group & 1) != 1, s, null, folder);
                     }
-             
-					tw.WriteLine("  </filetable>");
-					tw.WriteLine("</folders>");
 
-				} 
-				finally 
-				{
-					tw.Close();
-				}
-			} 
-			catch (Exception ex) 
-			{
-				Helper.ExceptionMessage("Unable to create default Folder File!", ex);
-			}
-		}
+                    xw.WriteEndElement();
+                    xw.WriteEndElement();
+                }
+                finally
+                {
+                    xw.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Helper.ExceptionMessage("Unable to create default Folder File!", ex);
+            }
+        }
+
+        private static void writenode(System.Xml.XmlWriter xw, bool ign, string root, string version, string folder)
+        {
+            xw.WriteStartElement("path");
+            if (ign)
+                xw.WriteAttributeString("ignore", "1");
+            xw.WriteAttributeString("root", root);
+            if (version != null)
+                xw.WriteAttributeString("version", version);
+            xw.WriteValue(folder);
+            xw.WriteEndElement();
+        }
 
 		static SimPe.Interfaces.IWrapperRegistry wreg;
 		/// <summary>

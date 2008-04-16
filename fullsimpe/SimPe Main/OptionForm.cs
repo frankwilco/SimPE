@@ -395,17 +395,19 @@ namespace SimPe
         {
             try
             {
-                System.IO.TextWriter tw = System.IO.File.CreateText(FileTable.FolderFile);
+                System.Xml.XmlWriterSettings xws = new System.Xml.XmlWriterSettings();
+                xws.CloseOutput = true;
+                xws.Indent = true;
+                xws.Encoding = System.Text.Encoding.UTF8;
+                System.Xml.XmlWriter xw = System.Xml.XmlWriter.Create(FileTable.FolderFile, xws);
 
                 try
                 {
-                    tw.WriteLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-                    tw.WriteLine("<folders>");
-                    tw.WriteLine("  <filetable>");
+                    xw.WriteStartElement("folders");
+                    xw.WriteStartElement("filetable");
                     foreach (FileTableItem fti in lbfolder.Items)
                     {
-                        if (fti.IsFile) tw.Write("     <file");
-                        else tw.Write("     <path");
+                        xw.WriteStartElement(fti.IsFile ? "file" : "path");
 
                         if (fti.Type != FileTablePaths.Absolute)
                         {
@@ -414,7 +416,7 @@ namespace SimPe
                             {
                                 if (fti.Type == ei.Expansion)
                                 {
-                                    tw.Write(" root=\""+ei.ShortId.ToLower()+"\"");
+                                    xw.WriteAttributeString("root", ei.ShortId.ToLower());
                                     ok = true;
                                     break;
                                 }
@@ -426,51 +428,42 @@ namespace SimPe
 
                                     case (uint)FileTablePaths.SaveGameFolder:
                                         {
-                                            tw.Write(" root=\"save\"");
+                                            xw.WriteAttributeString("root", "save");
                                             break;
                                         }
                                     case (uint)FileTablePaths.SimPEFolder:
                                         {
-                                            tw.Write(" root=\"simpe\"");
+                                            xw.WriteAttributeString("root", "simpe");
                                             break;
                                         }
                                     case (uint)FileTablePaths.SimPEDataFolder:
                                         {
-                                            tw.Write(" root=\"simpeData\"");
+                                            xw.WriteAttributeString("root", "simpeData");
                                             break;
                                         }
                                     case (uint)FileTablePaths.SimPEPluginFolder:
                                         {
-                                            tw.Write(" root=\"simpePlugin\"");
+                                            xw.WriteAttributeString("root", "simpePlugin");
                                             break;
                                         }
                                 } //switch
                             }
                         }
 
-                        if (fti.IsRecursive) tw.Write(" recursive=\"1\"");
-                        if (fti.EpVersion >= 0) tw.Write(" version=\"" + fti.EpVersion.ToString() + "\"");
-                        if (fti.Ignore) tw.Write(" ignore=\"1\"");
+                        if (fti.IsRecursive) xw.WriteAttributeString("recursive", "1");
+                        if (fti.EpVersion >= 0) xw.WriteAttributeString("version", fti.EpVersion.ToString());
+                        if (fti.Ignore) xw.WriteAttributeString("ignore", "1");
 
-                        tw.Write(">");
-                        tw.Write(fti.RelativePath);
-                        if (fti.IsFile)
-                        {
-                            tw.WriteLine("</file>");
-                        }
-                        else
-                        {
-                            tw.WriteLine("</path>");
-                        }
+                        xw.WriteValue(fti.RelativePath);
+                        xw.WriteEndElement();
 
                     }
-                    tw.WriteLine("  </filetable>");
-                    tw.WriteLine("</folders>");
-
+                    xw.WriteEndElement();
+                    xw.WriteEndElement();
                 }
                 finally
                 {
-                    tw.Close();
+                    xw.Close();
                 }
             }
             catch (Exception ex)
@@ -1195,23 +1188,31 @@ namespace SimPe
 
             foreach (FileTableItem fti in lbfolder.Items)
             {
-                if (fti.IsFile)
+                if (cep)
                 {
-                    if (Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.GMND_PACKAGE) || Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.MMAT_PACKAGE))
+                    if (fti.IsFile)
                     {
-                        if (!cep) continue;
-                        else
+                        if (Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.GMND_PACKAGE)
+                            || Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.MMAT_PACKAGE))
                         {
                             found++;
                             if (fti.Ignore) ignored++;
                         }
                     }
+                    else if (fti.Type.AsExpansions == Expansions.Custom
+                        && Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.ZCEP_FOLDER))
+                    {
+                        found++;
+                        if (fti.Ignore) ignored++;
+                    }
                 }
-
-                if (fti.Type == epver && !cep)
+                else
                 {
-                    found++;
-                    if (fti.Ignore) ignored++;
+                    if (fti.Type == epver)
+                    {
+                        found++;
+                        if (fti.Ignore) ignored++;
+                    }
                 }
             }
 
@@ -1232,11 +1233,17 @@ namespace SimPe
 
                 if (fti.IsFile)
                 {
-                    if (Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.GMND_PACKAGE) || Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.MMAT_PACKAGE))
+                    if (Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.GMND_PACKAGE)
+                        || Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.MMAT_PACKAGE))
                     {
                         if (!cep) continue;
                         else lbfolder.SetItemChecked(i, cb.CheckState != CheckState.Unchecked);
                     }
+                }
+                else if (fti.Type.AsExpansions == Expansions.Custom && cep)
+                {
+                    if (Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.ZCEP_FOLDER))
+                        lbfolder.SetItemChecked(i, cb.CheckState != CheckState.Unchecked);
                 }
 
                 if (fti.Type == epver && !cep)

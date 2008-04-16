@@ -456,6 +456,7 @@ namespace SimPe.Data
 
         public static string GMND_PACKAGE = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Downloads\\_EnableColorOptionsGMND.package");
         public static string MMAT_PACKAGE = System.IO.Path.Combine(PathProvider.Global.GetExpansion(Expansions.BaseGame).InstallFolder, "TSData\\Res\\Sims3D\\_EnableColorOptionsMMAT.package");
+        public static string ZCEP_FOLDER = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "zCEP");
 
         #endregion
 
