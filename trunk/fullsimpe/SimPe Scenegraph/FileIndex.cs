@@ -534,7 +534,8 @@ namespace SimPe.Plugin
 		/// <param name="fti">A FileTableItem describing the Location</param>
 		public void AddIndexFromFolder(FileTableItem fti)
 		{
-			if (fti.Ignore) return;
+			//if (fti.Ignore) return;
+            if (!fti.Use) return;
 
 			if (!paths.Contains(fti.Name)) 
 				paths.Add(fti.Name);
