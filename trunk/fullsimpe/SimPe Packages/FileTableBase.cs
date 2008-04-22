@@ -169,7 +169,7 @@ namespace SimPe
                     xw.WriteStartElement("path");
                     xw.WriteAttributeString("root", "save");
                     xw.WriteAttributeString("recursive", "1");
-                    xw.WriteValue("zCEP");
+                    xw.WriteValue("zCEP-EXTRA");
                     xw.WriteEndElement();
 
                     for (int i = PathProvider.Global.Expansions.Count - 1; i >= 0; i--)
