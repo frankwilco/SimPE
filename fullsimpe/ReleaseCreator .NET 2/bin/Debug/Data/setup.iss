@@ -190,7 +190,7 @@ Source: ..\__Installer\AppFiles\Non-Core\Numenor\*.*; DestDir: {app}; Flags: ove
 ; pjse.coder.plugin\guidindex.txt
 ; ===========================================================================================================
 ; Component: ThirdParty\SimDeleter
-Source: ..\__Installer\AppFiles\Non-Core\SimPE-SimDeleter\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\simdeleter
+;Source: ..\__Installer\AppFiles\Non-Core\SimPE-SimDeleter\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\simdeleter
 ; Files in the NON-CORE\SIMPE-SIMDELETER\PLUGINS section (copied to {app}\Plugins);
 ; simpe.actiondeletesim.plugin.dll
 ; ===========================================================================================================
@@ -556,6 +556,7 @@ Name: it; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: ..\__Instal
 
 [InstallDelete]
 Name: {app}\Plugins\theo*.dll; Type: files
+Name: {app}\Data\*; Type: files
 
 [UninstallDelete]
 ;Name: {app}\Data\*.template; Type: files
