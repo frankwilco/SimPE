@@ -201,22 +201,22 @@ Source: ..\__Installer\AppFiles\Non-Core\SkankyBoy\*.*; DestDir: {app}; Flags: o
 ; skankyboy.smd.importer.exporter.dll
 ; ===========================================================================================================
 ; Component: ThirdParty\TheoSurgery
-Source: ..\__Installer\AppFiles\Non-Core\Theo-Surgery\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\TheoSurgery
+;Source: ..\__Installer\AppFiles\Non-Core\Theo-Surgery\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\TheoSurgery
 ; Files in the NON-CORE\THEO-SUERGERY\PLUGINS section (copied to {app}\Plugins);
 ; theo.surgery.plugin.dll
 ; ===========================================================================================================
 ; Component: ThirdParty\TheoScanner
-Source: ..\__Installer\AppFiles\Non-Core\Theo-MeshScanner\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\TheoScanner
+;Source: ..\__Installer\AppFiles\Non-Core\Theo-MeshScanner\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\TheoScanner
 ; Files in the NON-CORE\THEO-MESHSCANNER\PLUGINS section (copied to {app}\Plugins);
 ; theo.meshscanner.plugin.dll
 ; ===========================================================================================================
 ; Component: ThirdParty\TheoBinningTool
-Source: ..\__Installer\AppFiles\Non-Core\Theo-BinningTool\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\TheoBinningTool
+;Source: ..\__Installer\AppFiles\Non-Core\Theo-BinningTool\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\TheoBinningTool
 ; Files in the NON-CORE\THEO-BINNINGTOOL\PLUGINS section (copied to {app}\Plugins);
 ; theos.gbct.plugin.dll
 ; ===========================================================================================================
 ; Component: ThirdParty\TheoClothingEditor
-Source: ..\__Installer\AppFiles\Non-Core\Theo-ClothingEditor\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\TheoClothingEditor
+;Source: ..\__Installer\AppFiles\Non-Core\Theo-ClothingEditor\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\TheoClothingEditor
 ; Files in the NON-CORE\THEO-CLOTHINGEDITOR\PLUGINS section (copied to {app}\Plugins);
 ; theos.sim-clothing-editor.plugin.dll
 ; ===========================================================================================================
@@ -345,10 +345,10 @@ Name: plugins\pljonesbody; Description: {cm:C_PLJones_body}; Types: full custom;
 Name: plugins\pljonesobjkey; Description: {cm:C_PLJones_objkey}; Types: full custom; Flags: disablenouninstallwarning
 Name: plugins\simdeleter; Description: {cm:C_SimDeleter}; Types: full custom; Flags: disablenouninstallwarning
 Name: plugins\skankyboy; Description: {cm:C_SkankyBoy}; Types: full custom; Flags: disablenouninstallwarning
-Name: plugins\TheoScanner; Description: {cm:C_TheoScanner}; Types: full custom; Flags: disablenouninstallwarning
-Name: plugins\TheoSurgery; Description: {cm:C_TheoSurgery}; Types: full custom; Flags: disablenouninstallwarning
-Name: plugins\TheoBinningTool; Description: {cm:C_TheoBinningTool}; Types: full custom; Flags: disablenouninstallwarning
-Name: plugins\TheoClothingEditor; Description: {cm:C_TheoClothingEditor}; Types: full custom; Flags: disablenouninstallwarning
+;Name: plugins\TheoScanner; Description: {cm:C_TheoScanner}; Types: full custom; Flags: disablenouninstallwarning
+;Name: plugins\TheoSurgery; Description: {cm:C_TheoSurgery}; Types: full custom; Flags: disablenouninstallwarning
+;Name: plugins\TheoBinningTool; Description: {cm:C_TheoBinningTool}; Types: full custom; Flags: disablenouninstallwarning
+;Name: plugins\TheoClothingEditor; Description: {cm:C_TheoClothingEditor}; Types: full custom; Flags: disablenouninstallwarning
 
 
 
@@ -554,8 +554,12 @@ Name: pl; MessagesFile: compiler:Languages\Polish.isl; LicenseFile: ..\__Install
 Name: it; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: ..\__Installer\embedded\itLicense.txt; InfoBeforeFile: ..\__Installer\embedded\itInfoBefore.txt
 
 
+[InstallDelete]
+Name: {app}\Plugins\theo*.dll; Type: files
+
 [UninstallDelete]
-Name: {app}\Data\*.template; Type: files
+;Name: {app}\Data\*.template; Type: files
+Name: {app}\Data\*; Type: files
 Name: {app}\Teleport; Type: dirifempty
 Name: {app}; Type: dirifempty
 
