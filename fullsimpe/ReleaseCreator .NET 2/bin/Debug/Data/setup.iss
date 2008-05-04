@@ -275,6 +275,8 @@ Source: ..\__Installer\AppFiles\Extra\LanguagePacks\pl\*.*; DestDir: {app}\pl; F
 Source: ..\__Installer\AppFiles\Extra\LanguagePacks\ru\*.*; DestDir: {app}\ru; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Tasks: langRU
 ; ===========================================================================================================
 ; ===========================================================================================================
+Source: ..\__etc\__pjse\Data\*.*; DestDir: {app}\Data; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Components: core\pljones\includes
+Source: ..\__etc\__pjse\Plugins\*.*; DestDir: {app}\Plugins; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Components: core\pljones\help
 
 
 
@@ -324,6 +326,8 @@ Name: langRU; Description: {cm:C_LangRU}; Components: core\simpe; GroupDescripti
 Name: core; Description: {cm:C_Core}; Types: full custom min; Flags: disablenouninstallwarning fixed
 Name: core\simpe; Description: {cm:C_Main}; Types: full custom min; Flags: disablenouninstallwarning fixed
 Name: core\pljones; Description: {cm:C_PLJones}; Types: full custom min; Flags: disablenouninstallwarning fixed
+Name: core\pljones\includes; Description: {cm:C_PLJones_inc}; Types: full custom; Flags: disablenouninstallwarning
+Name: core\pljones\help; Description: {cm:C_PLJones_hlp}; Types: full custom; Flags: disablenouninstallwarning
 Name: extra; Description: {cm:C_Extra}; Types: full custom; Flags: disablenouninstallwarning
 Name: extra\SimpeDockBox; Description: {cm:C_SimpeDockBox}; Types: custom min full; Flags: disablenouninstallwarning
 Name: extra\SimpeDownloads; Description: {cm:C_SimpeDownloads}; Types: custom min full; Flags: disablenouninstallwarning
@@ -455,6 +459,10 @@ de.C_CareerEditor=Bidou's Kariere Editor
 C_PLJones=PLJones SimAntics Editor
 it.C_PLJones=SimAntics Editor (by PLJones)
 de.C_PLJones=PLJones SimAntics Editor
+C_PLJones_hlp=PLJones SimAntics Editor (Help Files)
+de.C_PLJones_hlp=PLJones SimAntics Editor (Hilfe Dateien)
+C_PLJones_inc=PLJones SimAntics Editor (Includes)
+de.C_PLJones_inc=PLJones SimAntics Editor (Include)
 C_doc_en=English Documentation
 it.C_doc_en=Documentazione in inglese
 de.C_doc_en=Englische Anleitungen
@@ -557,6 +565,7 @@ Name: it; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: ..\__Instal
 [InstallDelete]
 Name: {app}\Plugins\theo*.dll; Type: files
 Name: {app}\Data\*; Type: files
+Name: {app}\Plugins\*; Type: filesandordirs
 
 [UninstallDelete]
 ;Name: {app}\Data\*.template; Type: files
