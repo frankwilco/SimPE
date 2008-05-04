@@ -1,0 +1,361 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+</head>
+
+<body>
+
+<p align="left"><a href="Contents.htm">Go to Help Contents</a></p>
+<p align="left"><a href="Bhavs.htm">Go to Behaviour Functions Overview</a></p>
+<p align="left">&nbsp;</p>
+<p align="center"><b><font size="5">The Behaviour Function Editor Plugin (BHAV)</font></b></p>
+<p>&nbsp;</p>
+<p><font size="4">Title Bar</font></p>
+<p>In addition to the RFT and Help buttons described in <a href="General.htm">
+Features available from anywhere</a> there is a Float button which opens the 
+editor in a much larger window without you having to mess about pulling&nbsp; 
+the docks.&nbsp;&nbsp; In the floated large window, the special buttons are 
+always showing, even if you normally have them turned off. Editing in the 
+floated window always updates the BHAV in memory just the same as using the 
+standard tabbed interface; so Unfloating or closing the window in any way keeps 
+any changes you have made and shows them in the standard window.</p>
+<p><font size="4">Headers</font></p>
+<p>These values refer to the BHAV as a whole</p>
+<blockquote>
+  <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="96%" id="AutoNumber3">
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Filename</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">You 
+      can put a descriptive name in here</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Format</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Mainly affects how many lines you can have in your BHAV.&nbsp; Best not to 
+      change the setting for no good reason.</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Tree Type</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Whether called from the function table, or a menu interaction etc.&nbsp; 
+      Doesn't seem to make any difference in how it runs</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Header Flag</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Don't know</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Tree Version</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Don't know</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Cache Flags</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">Do 
+      not touch (advice from MaxoidTom)</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">Arg 
+      count</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Number of parameters used in this BHAV.&nbsp; They don't necessarily need 
+      to have been passed in from the calling BHAV.&nbsp; If you have so much as 
+      referred to a Params 4 in the listing, then your Arg count must be set to 
+      at least 5</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Local var count</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Every time you use a local variable, you need to increase this count.&nbsp; 
+      Variables start from 0.&nbsp; If your highest variable is Local 4, then 
+      this count must be set to 5, even if you didn't use Locals 0-3</td>
+    </tr>
+  </table>
+</blockquote>
+<p>.</p>
+<p><font size="4">Instruction Settings</font></p>
+<p>These values refer to the currently selected line (node)</p>
+<p>&nbsp;</p>
+<blockquote>
+  <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="96%" id="AutoNumber4">
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Opcode</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      This refers to the number of the function call you will make from this 
+      line.&nbsp; It could be a BHAV in this package, another package, or it 
+      could be one of the functions built into the core. The
+      <img border="0" src="PJSE_HelpImages/ScrollRight.png" width="15" height="17"> 
+      button next to it&nbsp; opens a tabbed file list where you can pick which 
+      function you wish to call.</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Node Version</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Don't bother to change this unless you know why.&nbsp; It makes a 
+      difference to what the operands mean for some opcodes</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      True target</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Line to go to if the operation returns True</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      False target</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Line to go to if the operation returns False</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Operands</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      These are the parameters passed to the function (opcode) you have called.&nbsp; 
+      They can be split up in different ways, so I can't say the first box is 
+      always Param 0 and so on.&nbsp; And also some functions read the 
+      parameters differently from others.<p>If there is a Wizard available for 
+      the opcode chosen, the
+      <img border="0" src="PJSE_HelpImages/Tools.png" width="23" height="20"> 
+      button will launch it.</p>
+      <p>The
+      <img border="0" src="PJSE_HelpImages/Quotes.png" width="23" height="20"> 
+      button pops up a box with the operands as a continuous string, in case you 
+      want to copy and paste them into another line or another window.</td>
+    </tr>
+  </table>
+</blockquote>
+<p>&nbsp;</p>
+<p><font size="4">Special Buttons</font></p>
+<p>Tick the &quot;Special buttons&quot; box</p>
+<p>&nbsp;</p>
+<blockquote>
+  <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="96%" id="AutoNumber2" height="730">
+    <tr>
+      <td width="13%" valign="top" style="padding-top: 5; padding-bottom: 5" height="57">
+      Insert via True</td>
+      <td width="87%" valign="top" style="padding-top: 5; padding-bottom: 5" height="57">
+      A copy of your currently selected line is created underneath the one you 
+      have selected.&nbsp; The selected line's True points to the new line and 
+      the new line's True points to the line the selected line's True used to 
+      point to.&nbsp;&nbsp; The selected line's False still points to the same 
+      place it did, and the new line's False points to the same line as the 
+      selected line's False.</td>
+    </tr>
+    <tr>
+      <td width="13%" valign="top" style="padding-top: 5; padding-bottom: 5" height="57">
+      Insert via False</td>
+      <td width="87%" valign="top" style="padding-top: 5; padding-bottom: 5" height="57">
+      A copy of your currently selected line is created underneath the one you 
+      have selected.&nbsp; The selected line's False points to the new line and 
+      the new line's False points to the line the selected line's False used to 
+      point to.&nbsp;&nbsp; The selected line's True still points to the same 
+      place it did, and the new line's True points to the same line as the 
+      selected line's True.</td>
+    </tr>
+    <tr>
+      <td width="13%" valign="top" style="padding-top: 5; padding-bottom: 5" height="38">
+      Pescado's Delete</td>
+      <td width="87%" valign="top" style="padding-top: 5; padding-bottom: 5" height="38">
+      Remaining lines will stay pointing to the same line number they used to, 
+      which will now be a new line if it was after the one that got deleted.&nbsp; 
+      Used most effectively after having sorted the BHAV.</td>
+    </tr>
+    <tr>
+      <td width="13%" valign="top" style="padding-top: 5; padding-bottom: 5" height="19">
+      Delete to end</td>
+      <td width="87%" valign="top" style="padding-top: 5; padding-bottom: 5" height="19">
+      Deletes selected line and all higher lines.&nbsp; Any lines that used to 
+      go to a deleted line will now be left &quot;hanging&quot;.</td>
+    </tr>
+    <tr>
+      <td width="13%" valign="top" style="padding-top: 5; padding-bottom: 5" height="19">
+      Copy Listing</td>
+      <td width="87%" valign="top" style="padding-top: 5; padding-bottom: 5" height="19">
+      Lists the entire BHAV into your clipboard</td>
+    </tr>
+    <tr>
+      <td width="13%" valign="top" style="padding-top: 5; padding-bottom: 5" height="38">
+      Append BHAV</td>
+      <td width="87%" valign="top" style="padding-top: 5; padding-bottom: 5" height="38">
+      Pops up the file picker window populated with available BHAVs.&nbsp; 
+      Chosen BHAV has its lines added after the last line in currect BHAV, and 
+      they are renumbered to appropriately, but not linked in to the existing 
+      flow.</td>
+    </tr>
+    <tr>
+      <td width="13%" valign="top" style="padding-top: 5; padding-bottom: 5" height="38">
+      Inge's Initlinker</td>
+      <td width="87%" valign="top" style="padding-top: 5; padding-bottom: 5" height="38">
+      Links every line in the current BHAV so that the True of each line goes to 
+      the next line numerically, while the False goes to Error.&nbsp; The last 
+      line returns True through through its True.&nbsp;&nbsp; This is ideal for 
+      an Init BHAV or similar.</td>
+    </tr>
+    <tr>
+      <td width="13%" valign="top" style="padding-top: 5; padding-bottom: 5" height="57">
+      Make labels</td>
+      <td width="87%" valign="top" style="padding-top: 5; padding-bottom: 5" height="57">
+      Creates a TPRP resource with the same Instance number as your current 
+      BHAV.&nbsp;&nbsp; Writes a dummy label line (ready for editing) to match 
+      your Arg Count and Local Var Count.&nbsp;&nbsp; You can use this button 
+      again if you add to the counts, and it will then overwrite the current 
+      values (Keep existing labels? No) or append lines for the additional ones 
+      (Keep existing labels? Yes)</td>
+    </tr>
+    <tr>
+      <td width="13%" valign="top" style="padding-top: 5; padding-bottom: 5" height="309">
+      GUID Index</td>
+      <td width="87%" valign="top" style="padding-top: 5; padding-bottom: 5" height="309">
+      This is the information used to translate GUIDs into object names in the 
+      display.&nbsp; Opens dialog with the following options:<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="97%" id="AutoNumber5">
+        <tr>
+          <td width="17%" align="left" valign="top">Create - all packages</td>
+          <td width="13%" align="left" valign="top">&nbsp;</td>
+          <td width="70%">Reads into memory any OBJD found in packages included 
+          in the file table.&nbsp; Makes an index of the GUIDs and OBJD name.&nbsp; 
+          Remember this is not self-updating.&nbsp; You need to use this option 
+          again from time to time to ensure the index is up to date with any new 
+          objects.</td>
+        </tr>
+        <tr>
+          <td width="17%" align="left" valign="top">Create - current package</td>
+          <td width="13%" align="left" valign="top">&nbsp;</td>
+          <td width="70%">Creates index from the package you have open at the 
+          time.&nbsp; Useful in some circumstances where you want a quicker and 
+          lighter index possibly for a self-referencing multi-tile object</td>
+        </tr>
+        <tr>
+          <td width="17%" align="left" valign="top">Load index</td>
+          <td width="13%" align="left" valign="top">Default file</td>
+          <td width="70%">Loading pre-saved index saves a LOT of time.&nbsp; In 
+          Extra | Preferences | Custom | PJSE editors | Load default GUID index 
+          at startup, you can configure to always load the default saved file at 
+          startup.&nbsp; Obviously you need to have created and saved one first.</td>
+        </tr>
+        <tr>
+          <td width="17%" align="left" valign="top">&nbsp;</td>
+          <td width="13%" align="left" valign="top">From file...</td>
+          <td width="70%">Loads index from file of your choice.&nbsp; This might 
+          be useful if you have various projects and would like a different 
+          index for each one - and do not have enough spare resources to load 
+          all known GUIDs</td>
+        </tr>
+        <tr>
+          <td width="17%" align="left" valign="top">Save index</td>
+          <td width="13%" align="left" valign="top">Default file</td>
+          <td width="70%">Saves&nbsp; the index currently in memory to 
+          SimPE\Data\Plugins\pjse.coder.plugin\guidindex.txt</td>
+        </tr>
+        <tr>
+          <td width="17%" align="left" valign="top">&nbsp;</td>
+          <td width="13%" align="left" valign="top">To file...</td>
+          <td width="70%">Saves&nbsp; the index currently in memory to file of 
+          your choice</td>
+        </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+</blockquote>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+<p><font size="4">Keyboard Shortcuts</font></p>
+<blockquote>
+  <blockquote>
+    <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="66%" id="AutoNumber1">
+      <tr>
+        <td width="37%">ESC</td>
+        <td width="63%">Close View-mode window</td>
+      </tr>
+      <tr>
+        <td width="37%">Alt-A</td>
+        <td width="63%">Add node</td>
+      </tr>
+      <tr>
+        <td width="37%">Alt-C</td>
+        <td width="63%">Cancel changes to node</td>
+      </tr>
+      <tr>
+        <td width="37%">Alt-L</td>
+        <td width="63%">Delete node</td>
+      </tr>
+      <tr>
+        <td width="37%">Alt-D</td>
+        <td width="63%">Down (move node down n lines - number entered in box)</td>
+      </tr>
+      <tr>
+        <td width="37%">Alt-S</td>
+        <td width="63%">Sort tree</td>
+      </tr>
+      <tr>
+        <td width="37%">Alt-U</td>
+        <td width="63%">Up (move node up n lines - number entered in box)</td>
+      </tr>
+      <tr>
+        <td width="37%">Alt-I</td>
+        <td width="63%">Instruction panel</td>
+      </tr>
+      <tr>
+        <td width="37%">Alt-M</td>
+        <td width="63%">Move panel</td>
+      </tr>
+      <tr>
+        <td width="37%">Alt-O</td>
+        <td width="63%">Operands</td>
+      </tr>
+      <tr>
+        <td width="37%">&nbsp;</td>
+        <td width="63%">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="37%"><b>When the node list has the focus</b></td>
+        <td width="63%">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="37%">Cursor Up</td>
+        <td width="63%">Select previous node</td>
+      </tr>
+      <tr>
+        <td width="37%">Cursor Down</td>
+        <td width="63%">Select next node</td>
+      </tr>
+      <tr>
+        <td width="37%">Delete</td>
+        <td width="63%">Delete node</td>
+      </tr>
+      <tr>
+        <td width="37%">Home</td>
+        <td width="63%">Go to first node</td>
+      </tr>
+      <tr>
+        <td width="37%">End</td>
+        <td width="63%">Go to last node</td>
+      </tr>
+    </table>
+  </blockquote>
+</blockquote>
+<blockquote>
+  <blockquote>
+  </blockquote>
+</blockquote>
+<p>&nbsp;</p>
+<p align="left"><a href="Contents.htm">Go to Help Contents</a></p>
+<p align="left"><a href="Bhavs.htm">Go to Behaviour Functions Overview</a></p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

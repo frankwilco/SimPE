@@ -1,0 +1,75 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+</head>
+
+<body>
+
+<p align="left"><a href="Contents.htm">Go to Help Contents</a></p>
+<p align="left"><a href="General.htm">Go to Features Available from Anywhere</a></p>
+<p align="center"><font size="5"><b>The PJSE Filetable</b></font></p>
+<p>&nbsp;</p>
+<p>The PJSE Filetable does not coincide with the SimPE filetable exactly.&nbsp; 
+PJSE does understand your latest EP or SP installation via the SimPE settings, 
+but not the extra paths you define in SimPE.&nbsp;&nbsp; This is so that it 
+doesn't waste memory on resources that are not connected with Simantics editing.&nbsp;&nbsp; 
+Extra paths and/or individual files can be defined to PJSE via 
+\&lt;SimpePath&gt;\Data\Plugins\pjse.coder.plugin\packages.txt (<i>case sensitive</i>).&nbsp; 
+You can create the folder and file if they do not already exist.</p>
+<p>Use one fresh line for each path or file defined.&nbsp; Typical lines in 
+packages.txt would look like the following</p>
+<table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber5">
+  <tr>
+    <td width="64%">C:\Documents and Settings\Inge Jones\My Documents\EA 
+    Games\The Sims 2\Downloads\</td>
+    <td width="36%">Loose packages in Downloads</td>
+  </tr>
+  <tr>
+    <td width="64%">C:\Documents and Settings\Inge Jones\My Documents\EA 
+    Games\The Sims 2\Downloads\+</td>
+    <td width="36%">All packages in Downloads including those in subfolders</td>
+  </tr>
+  <tr>
+    <td width="64%">C:\Documents and Settings\Inge Jones\My 
+    Documents\WorkInProgress\CurrentProject\+</td>
+    <td width="36%">All packages and folders under a particular project folder</td>
+  </tr>
+  <tr>
+    <td width="64%">C:\Documents and Settings\Inge Jones\My 
+    Documents\WorkInProgress\HandyResources.package</td>
+    <td width="36%">A particular package file</td>
+  </tr>
+</table>
+<p>Please note we use a + to mean recurse, so it does not get confused with the 
+more ambiguous *</p>
+<p>&nbsp;</p>
+<p><font size="4">Why would you want to define these extra paths and files?</font></p>
+<p>Most people will never feel the need to do this at all, but some of the 
+benefits are:</p>
+<p>1. If you have created new semiglobals or globals that your current project 
+needs to use (rare, but I have needed to do this on a couple of complex 
+projects), and PJSE can find the package containing them via its filetable, you 
+won't be told &quot;invalid BHAV&quot; on the line you call those globals from - it will 
+be able to display the name and show you how many parameters the called BHAV 
+expects etc.</p>
+<p>2. Maxis did not distribute most of their BCON labels with objects.package.&nbsp;&nbsp; 
+People are finding out what various BCONs mean and are creating their own TRCN 
+resources (BCON label files).&nbsp; These can be placed as packages in a folder 
+named by packages.txt, and then PJSE will use them to automatically display the 
+meaning of the BCON wherever it appears in the file you have open.&nbsp; There 
+are other types of label files such as one for local variables and parameters 
+(TPRP) which this applies to also.</p>
+<p>If one of the PJSE plugins is not showing some resources you expect it to, 
+then usually clicking the <b>RFT</b> (stands for Refresh File Table) button on 
+the top bar of your plugin window will put that right.&nbsp; Please remember 
+this is not the same as the overall SimPE filetable refresh option which is 
+found elsewhere on the menus.</p>
+<p><a href="Contents.htm">Go to Help Contents</a></p>
+<p><a href="General.htm">Go to Features Available from Anywhere</a></p>
+
+</body>
+
+</html>

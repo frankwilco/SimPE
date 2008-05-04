@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>PJ ObjKey Tool Help</title>
+</head>
+<body>
+
+<h1>PJ ObjKey Tool Help</h1>
+
+<p>This tool is designed to gather all the resources for an object into a single package
+to make it easier to customise.  It's based on wes_h's tutorial on making 
+<a id="l01" href="http://forums.modthesims2.com/showthread.php?t=208775">custom
+collars</a> and uses the same terms as that, i.e. ObjKey, FragKey, BinKey, etc.</p>
+
+<p>You have to decide on an object to work on from Skins.package.
+Other .package files may or may not work...<p>
+
+<p>Extract the overlay (GZPS, XMOL, XTOL) or matching index (3IDR) into a new .package.
+For example, ducollarsmooth_bonesyellow XMOL or 3IDR.  Open the new package and
+select the resource you put in it.</p>
+
+<p>Then you click on Tools, PJSE, ObjKey Tool and wait whilst it hunts for
+<ol>
+<li>the matching other half of the ObjKey</li>
+<li>all the FragKeys that reference the ObjKey</li>
+<li>the BinKeys for those FragKeys</li>
+<li>the string resources for the BinKeys and FragKeys</li>
+<li>the rcol chain hanging off the ObjKey, including TXMTs, TXTRs and LIFOs</li>
+</ol>
+These are all imported into the open package.</p>
+<p>Then it's back to you to customise the object.</p>
+</body>
+</html>

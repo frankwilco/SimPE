@@ -1,0 +1,275 @@
+<p align="left"><a href="Contents.htm">Go to Help Contents</a></p>
+<p align="center"><b><font size="5">The String Editor Plugin (STR#,CTSS,TTAs)</font></b></p>
+<p>&nbsp;</p>
+<p>String files can contain a set of strings translated into many languages.&nbsp; 
+The default is &quot;English&quot; which is also treated as the local language for United 
+States.&nbsp;&nbsp; Britain has a different English set.&nbsp;&nbsp; When making your own object, unless you are multilingual, it is recommended that 
+you only use the default (English) string set, and delete all the others (using 
+Default Lang Only), to keep the file size small.&nbsp;&nbsp; A player in any 
+country that does not have a set of strings for that language will automatically 
+see the default strings instead.&nbsp;&nbsp; This also applies to individual&nbsp; 
+missing strings.&nbsp;&nbsp; So if you are cloning say a chair which you want to 
+carry on acting as a chair as well as having some additional new options - you 
+can keep all the existing strings in the foreign languages, but add your new 
+ones in your own language to the default set.&nbsp;&nbsp;&nbsp; If you want to 
+change the text for an existing option, also do that in the default set, and 
+then clear that string out of the other language sets (using Default String 
+Only).</p>
+<p>On many types of string file - and I have yet to establish for sure which 
+ones these apply to - if a string is missing from the file altogether, the game 
+will look for the corresponding string in the semi-global set, and if that does 
+not exist, will fall back to the global set.</p>
+<p>&nbsp;</p>
+<p><font size="4">Headers</font></p>
+<p>These values refer to the textlist file as a whole</p>
+<blockquote>
+  <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="96%" id="AutoNumber3">
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Filename</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Any descriptive title you like</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Format</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Not sure, probably to do with how many strings you can have.&nbsp; 
+      Probably best not to edit this.</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Commit</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Updates the package file in memory to include edits to current resource.&nbsp; 
+      No change made to file on disk.&nbsp; If you don't commit, you can abandon 
+      edits to current resource by simply opening another resource.</td>
+    </tr>
+    </table>
+</blockquote>
+<p>.</p>
+<p><font size="4">Text input boxes</font></p>
+<p>These values refer to the currently selected string.&nbsp; While editing in 
+these boxes you can select the next or previous string using the keyboard 
+shortcuts Alt+D and Alt+U if you don't wish to lose focus by clicking on the 
+string list.&nbsp;&nbsp; The
+<img border="0" src="PJSE_HelpImages/ScrollRight.png" width="15" height="17"> 
+button to the right of each box opens up a nicer edit window in case you want to 
+lay out your text over several lines and want to be able to see it all at once 
+while doing so.&nbsp;&nbsp;&nbsp; The up and down arrows near the String input 
+box scroll through the strings without having to get RSI mousing down to the 
+string list.</p>
+<p>&nbsp;</p>
+<blockquote>
+  <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="96%" id="AutoNumber4">
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      String</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      This is the active text, for example what will display in a dialog box or 
+      the Buy catalog.</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Desc</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      This is for you to make your own reference notes.&nbsp; You do not need to 
+      fill anything in here unless you want to.</td>
+    </tr>
+    </table>
+</blockquote>
+<p>&nbsp;</p>
+<p><font size="4">Language Navigator - Go to / Add</font></p>
+<p>This enables you to turn to any other language set easily..</p>
+<blockquote>
+  <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="96%" id="AutoNumber5">
+    <tr>
+      <td width="7%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      <img border="0" src="PJSE_HelpImages/FastRewind.png" width="17" height="19"></td>
+      <td width="93%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Return to default language set immediately</td>
+    </tr>
+    <tr>
+      <td width="7%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      <img border="0" src="PJSE_HelpImages/ScrollRight.png" width="15" height="17"></td>
+      <td width="93%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Move to next language set</td>
+    </tr>
+    <tr>
+      <td width="7%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      <img border="0" src="PJSE_HelpImages/ScrollLeft.png" width="17" height="19"></td>
+      <td width="93%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Move back one language set</td>
+    </tr>
+    <tr>
+      <td width="7%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      <img border="0" src="PJSE_HelpImages/DropDown.png" width="20" height="21"></td>
+      <td width="93%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Pick language to move to</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Reveal default language for comparison</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">All 
+      5 columns are actually present in the display but if 
+      you tick this, their widths are automatically adjusted so that you can see 
+      another (non-editable) column, 
+      listing the default strings, so that you can use it for reference when you 
+      are translating strings into another language.</td>
+    </tr>
+    <tr>
+      <td width="7%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Reveal string descriptions</td>
+      <td width="93%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      All 5 columns are actually present in the display but if you tick this, 
+      the column widths will be adjusted so that you will see a small part of 
+      the description where present for any string you have displayed.&nbsp; 
+      Columns may be resized.</td>
+    </tr>
+    </table>
+</blockquote>
+<p>&nbsp;</p>
+<p><font size="4">Buttons</font></p>
+<p>Many of these buttons will be disabled when a language set other than default 
+is open, as it is vital to consider the affect of actions on the default set, 
+predominantly.&nbsp; When that is correct, then is the time to consider whether 
+you want a localised translation for any language.</p>
+<blockquote>
+  <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="96%" id="AutoNumber2">
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Export Lang</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Exports currently selected language to a text file.&nbsp; Uses labels 
+      &lt;-String-&gt; and &lt;-Desc-&gt; (one pair of each for every string in the language 
+      set whether used or empty) and &lt;-Comment-&gt; (optional for programmers' 
+      comments).&nbsp;&nbsp; The format of the output is deliberately 
+      non-technical looking so as not to scare off anyone who might be doing 
+      language translations for you. You can use a &lt;-Comment-&gt; block to remind 
+      your translator not to delete or rearrange any of the label blocks!</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Import Lang</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Imports text file in the above format to currently selected file.&nbsp; 
+      Text block beneath one label in the import file will be considered input 
+      to that field until the next label is reached.&nbsp;&nbsp; Reserve unused 
+      strings or descriptions in the middle of the set by using labels with no 
+      text block under them.<p>Any language file for import containing extended 
+      characters (e.g. accented characters or two-byte charcters like Chinese) 
+      should be saved to UTF-8 format which will allow PJSE to import it 
+      correctly.</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Append File</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Opens dialog where you can choose from available string files.&nbsp; 
+      Appends strings across all language sets, appropriately renumbered</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Default Lang Only</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Acts on entire file by wiping out all strings from all language sets other 
+      than default (English).</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Clear &lt;language&gt;</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Deletes all strings in the current language set.&nbsp; Not enabled when in 
+      default language as it would be unhelpful to do so.</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Add String</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Adds string to end of set across all languages.&nbsp; If an existing 
+      string was selected at the time, that will be copied (for the default 
+      string only), otherwise the string will be blank.</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Delete String</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Deletes current string across *all* language sets, and renumbers 
+      subsequent lines to close up the gap.</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Make Default</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Overwrites corresponding string of the default language set with selected 
+      string from current language set. </td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Default String Only</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Wipes out selected string across all language sets other than default</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Copy String to All</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Copies currently selected string in currently selected language set to all 
+      languages replacing whatever they already had in that string position.&nbsp; 
+      In most situations you don't need to do this, you just use &quot;make default&quot; 
+      and &quot;default string only&quot; which keeps the file size smaller.&nbsp; However 
+      there are some cases where the game will not fall back to default 
+      reliably, and it is appropriate to use this choice for those.</td>
+    </tr>
+    <tr>
+      <td width="19%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Replace String</td>
+      <td width="81%" valign="top" style="padding-top: 5; padding-bottom: 5">
+      Replace currently selected string with one from another string resource, 
+      across all language sets. Brings up a resource chooser where you can 
+      choose the source file and from there, the individual string.</td>
+    </tr>
+    </table>
+</blockquote>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal"><font size="4">Keyboard Shortcuts</font></p>
+<blockquote>
+  <blockquote>
+    <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="46%" id="AutoNumber1">
+      <tr>
+        <td width="34%">Alt-P </td>
+        <td width="66%">Append File</td>
+      </tr>
+      <tr>
+        <td width="34%">Alt-^</td>
+        <td width="66%">First language</td>
+      </tr>
+      <tr>
+        <td width="34%">Alt-&gt;</td>
+        <td width="66%">Next language</td>
+      </tr>
+      <tr>
+        <td width="34%">Alt-&lt;</td>
+        <td width="66%">Previous language</td>
+      </tr>
+      <tr>
+        <td width="34%">Alt-A</td>
+        <td width="66%">Add string</td>
+      </tr>
+      <tr>
+        <td width="34%">Alt-L</td>
+        <td width="66%">Delete string</td>
+      </tr>
+      <tr>
+        <td width="34%">Alt-D</td>
+        <td width="66%">Down (Next string)</td>
+      </tr>
+      <tr>
+        <td width="34%">Alt-U</td>
+        <td width="66%">Up (Previous string)</td>
+      </tr>
+    </table>
+  </blockquote>
+</blockquote>
+<p>&nbsp;</p>
+<p><a href="Contents.htm">Go to Help Contents</a></p>
