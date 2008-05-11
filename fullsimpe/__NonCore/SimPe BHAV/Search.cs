@@ -705,7 +705,7 @@ namespace SimPe.Plugin
 		{ 
 			uint guid = Convert.ToUInt32(tbguid.Text, 16);
 			
-			SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+			SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
 			objd.ProcessData(pfd, package);
 
 			if (objd.Guid == guid) return new SearchItem(objd.FileName, pfd);

@@ -174,6 +174,7 @@ namespace SimPe.Providers
 		/// The Folder from where the SimInformation was loaded
 		/// </summary>
 		private string dir;
+        private string ngbh;
 
 		/// <summary>
 		/// Additional FileIndex fro template SimNames
@@ -228,9 +229,11 @@ namespace SimPe.Providers
 				if (dir!=value) 
 				{
 					WaitForEnd();
-					content = null;							
+					content = null;		
 				}
 				dir = value;
+                string[] pe = dir.Split(new char[] {'/','\\'});
+                ngbh = pe.Length > 1 ? pe[pe.Length - 2] : null;
 			}
 		}		
 
@@ -317,7 +320,7 @@ namespace SimPe.Providers
 		void AddHoodsToFileIndex()
 		{
 			string mydir = System.IO.Directory.GetParent(dir).FullName;			
-			string[] names = System.IO.Directory.GetFiles(mydir, "N*.package");
+			string[] names = System.IO.Directory.GetFiles(mydir, ngbh + "_*.package");
 			foreach (string name in names)
 			{
 				SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromFile(name);
@@ -328,7 +331,7 @@ namespace SimPe.Providers
 		void AddLotsToFileIndex()
 		{
 			//ngbhfi.AddIndexFromFolder(dir);
-			string[] names = System.IO.Directory.GetFiles(dir, "N*.package");
+            string[] names = System.IO.Directory.GetFiles(dir, ngbh + "*_Lot*.package");
 			foreach (string name in names)
 			{
 				SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromFile(name);

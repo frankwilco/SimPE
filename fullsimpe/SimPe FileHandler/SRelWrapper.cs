@@ -87,6 +87,18 @@ namespace SimPe.PackedFiles.Wrapper
 			set { SetBit((byte)Data.MetaData.RelationshipStateBits.Known, value); }
 		}
 	}
+
+    public class UIFlags2 : FlagBase
+    {
+        public UIFlags2(ushort flags) : base(flags) { }
+
+        public bool isBFF
+        {
+            get { return GetBit((byte)Data.MetaData.UIFlags2Names.BestFriendForever); }
+            set { SetBit((byte)Data.MetaData.UIFlags2Names.BestFriendForever, value); }
+        }
+    }
+
 	/// <summary>
 	/// This is the actual FileWrapper
 	/// </summary>
@@ -101,10 +113,15 @@ namespace SimPe.PackedFiles.Wrapper
 		//,IPackedFileProperties		//This Interface can be used by thirdparties to retrive the FIleproperties, however you don't have to implement it!
 	{
 		#region Attribute
-		/// <summary>
+        /// <summary>
+        /// some unknown values
+        /// </summary>
+        uint[] reserved = new uint[3];
+
+        /// <summary>
 		/// Sores the Relationship Values
 		/// </summary>
-		private int[] values;
+		private int[] values = new int[4];
 
 		/// <summary>
 		/// Returns the Shortterm Relationship
@@ -115,6 +132,16 @@ namespace SimPe.PackedFiles.Wrapper
 			set { PutValue(0, value); }
 		}
 
+        RelationshipFlags flags = new RelationshipFlags((ushort)(1 << (byte)Data.MetaData.RelationshipStateBits.Known));
+        /// <summary>
+        /// Returns the Relationship Values.
+        /// </summary>
+        /// <remarks>The Meaning of the Bits is stored in MataData.RelationshipStateBits</remarks>
+        public RelationshipFlags RelationState
+        {
+            get { return flags; }
+        }
+
 		/// <summary>
 		/// Returns the Shortterm Relationship
 		/// </summary>
@@ -124,31 +151,24 @@ namespace SimPe.PackedFiles.Wrapper
 			set { PutValue(2, value); }
 		}
 
-		RelationshipFlags flags;
+        /// <summary>
+        /// The Type of Family Relationship the Sim has to another
+        /// </summary>
+        public Data.MetaData.RelationshipTypes FamilyRelation
+        {
+            get { return (Data.MetaData.RelationshipTypes)GetValue(3); }
+            set { PutValue(3, (int)value); }
+        }
 
-		/// <summary>
-		/// Returns the Relationship Values.
-		/// </summary>
-		/// <remarks>The Meaning of the Bits is stored in MataData.RelationshipStateBits</remarks>
-		public RelationshipFlags RelationState
-		{
-			get { return flags; }
-			set { flags = value; }
-		}
-
-		/// <summary>
-		/// The Type of Family Relationship the Sim has to another
-		/// </summary>
-		public Data.MetaData.RelationshipTypes FamilyRelation 
-		{
-			get { return (Data.MetaData.RelationshipTypes)GetValue(3); }
-			set { PutValue(3, (int)value); }
-		}
-
-		/// <summary>
-		/// some unknown values
-		/// </summary>
-		uint[] reserved;
+        UIFlags2 flags2 = new UIFlags2(0);
+        /// <summary>
+        /// Returns the second set of relationship state flags
+        /// </summary>
+        /// <remarks>The Meaning of the Bits is given by MetaData.UIFlags2Names</remarks>
+        public UIFlags2 RelationState2
+        {
+            get { return values.Length > 9 ? flags2 : null; }
+        }
 		#endregion
 
 		/// <summary>
@@ -182,17 +202,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public SRel() : base()
-		{
-			reserved = new uint[3];
-			values = new int[4];
-
-			flags = new RelationshipFlags(0);
-			flags.IsKnown = true;
-
-			reserved[0] = 0x00000002;
-			
-		}		
+		public SRel() : base() { reserved[0] = 0x00000002; }
 		
 		#region AbstractWrapper Member
 		protected override IPackedFileUI CreateDefaultUIHandler()
@@ -214,8 +224,9 @@ namespace SimPe.PackedFiles.Wrapper
 			for (int i=0; i<stored; i++) values[i] = reader.ReadInt32();
 			
 			//set some special Attributes
-			flags.Value = (ushort)values[1];
-		}
+            flags.Value = (ushort)values[1];
+            if (9 < values.Length) flags2.Value = (ushort)values[9];
+        }
 
 		/// <summary>
 		/// Serializes a the Attributes stored in this Instance to the BinaryStream
@@ -228,7 +239,8 @@ namespace SimPe.PackedFiles.Wrapper
 		protected override void Serialize(System.IO.BinaryWriter writer)
 		{
 			//set some special Attributes
-			values[1] = (int)(flags.Value | 0xffff0000);
+			values[1] = (int)((values[1] & 0xffff0000) | flags.Value);
+            if (9 < values.Length) values[9] = (int)((values[9] & 0xffff0000) | flags2.Value);
 
 			//write to file
 			writer.Write(reserved[0]);

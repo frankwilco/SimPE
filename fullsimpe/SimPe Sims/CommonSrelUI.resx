@@ -117,29 +117,56 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="flowLayoutPanel2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="flowLayoutPanel2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="flowLayoutPanel2.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="flowLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="flowLayoutPanel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="flowLayoutPanel1.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="label91.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="label91.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label91.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 8.25pt, style=Bold</value>
+    <value>Tahoma, 7.8pt</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label91.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label91.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 24</value>
+    <value>0, 3</value>
+  </data>
+  <data name="label91.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
   <data name="label91.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 21</value>
+    <value>96, 17</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label91.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
+    <value>47</value>
   </data>
   <data name="label91.Text" xml:space="preserve">
     <value>Relation Type:</value>
   </data>
   <data name="label91.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
+    <value>MiddleCenter</value>
   </data>
   <data name="&gt;&gt;label91.Name" xml:space="preserve">
     <value>label91</value>
@@ -148,25 +175,31 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label91.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>flowLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label91.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>0</value>
+  </data>
+  <data name="cbfamtype.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
   </data>
   <data name="cbfamtype.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 8.25pt</value>
+    <value>Tahoma, 7.8pt</value>
   </data>
   <data name="cbfamtype.ItemHeight" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>16</value>
   </data>
   <data name="cbfamtype.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 24</value>
+    <value>96, 0</value>
+  </data>
+  <data name="cbfamtype.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
   <data name="cbfamtype.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 21</value>
+    <value>240, 24</value>
   </data>
   <data name="cbfamtype.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>48</value>
   </data>
   <data name="&gt;&gt;cbfamtype.Name" xml:space="preserve">
     <value>cbfamtype</value>
@@ -175,205 +208,148 @@
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cbfamtype.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>flowLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;cbfamtype.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="flowLayoutPanel1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 6pt</value>
+  </data>
+  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="flowLayoutPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>336, 24</value>
+  </data>
+  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
+    <value>flowLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="pbDay.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="pbDay.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 7.8pt</value>
+  </data>
+  <data name="pbDay.LabelText" xml:space="preserve">
+    <value>Daily:</value>
+  </data>
+  <data name="pbDay.LabelWidth" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="pbDay.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 27</value>
+  </data>
+  <data name="pbDay.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="pbDay.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="pbDay.Size" type="System.Drawing.Size, System.Drawing">
+    <value>336, 27</value>
+  </data>
+  <data name="pbDay.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="pbDay.TextboxWidth" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="&gt;&gt;pbDay.Name" xml:space="preserve">
+    <value>pbDay</value>
+  </data>
+  <data name="&gt;&gt;pbDay.Type" xml:space="preserve">
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.3047.19127, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;pbDay.Parent" xml:space="preserve">
+    <value>flowLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;pbDay.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pbLife.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="pbLife.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 7.8pt</value>
+  </data>
+  <data name="pbLife.LabelText" xml:space="preserve">
+    <value>Lifetime:</value>
+  </data>
+  <data name="pbLife.LabelWidth" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="pbLife.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 54</value>
+  </data>
+  <data name="pbLife.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="pbLife.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="pbLife.Size" type="System.Drawing.Size, System.Drawing">
+    <value>336, 27</value>
+  </data>
+  <data name="pbLife.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="pbLife.TextboxWidth" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="&gt;&gt;pbLife.Name" xml:space="preserve">
+    <value>pbLife</value>
+  </data>
+  <data name="&gt;&gt;pbLife.Type" xml:space="preserve">
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.3047.19127, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;pbLife.Parent" xml:space="preserve">
+    <value>flowLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;pbLife.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tableLayoutPanel1.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="cbbest.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt</value>
-  </data>
-  <data name="cbbest.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cbbest.Location" type="System.Drawing.Point, System.Drawing">
-    <value>408, 56</value>
-  </data>
-  <data name="cbbest.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 16</value>
-  </data>
-  <data name="cbbest.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
-  </data>
-  <data name="cbbest.Text" xml:space="preserve">
-    <value>Known</value>
-  </data>
-  <data name="&gt;&gt;cbbest.Name" xml:space="preserve">
-    <value>cbbest</value>
-  </data>
-  <data name="&gt;&gt;cbbest.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2983.33090, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;cbbest.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;cbbest.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="cbfamily.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt</value>
-  </data>
-  <data name="cbfamily.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cbfamily.Location" type="System.Drawing.Point, System.Drawing">
-    <value>408, 72</value>
-  </data>
-  <data name="cbfamily.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 16</value>
-  </data>
-  <data name="cbfamily.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
-  </data>
-  <data name="cbfamily.Text" xml:space="preserve">
-    <value>Family</value>
-  </data>
-  <data name="&gt;&gt;cbfamily.Name" xml:space="preserve">
-    <value>cbfamily</value>
-  </data>
-  <data name="&gt;&gt;cbfamily.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2983.33090, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;cbfamily.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;cbfamily.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="cbmarried.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt</value>
-  </data>
-  <data name="cbmarried.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cbmarried.Location" type="System.Drawing.Point, System.Drawing">
-    <value>248, 72</value>
-  </data>
-  <data name="cbmarried.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 16</value>
-  </data>
-  <data name="cbmarried.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
-  </data>
-  <data name="cbmarried.Text" xml:space="preserve">
-    <value>Married</value>
-  </data>
-  <data name="&gt;&gt;cbmarried.Name" xml:space="preserve">
-    <value>cbmarried</value>
-  </data>
-  <data name="&gt;&gt;cbmarried.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2983.33090, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;cbmarried.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;cbmarried.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="cbengaged.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt</value>
-  </data>
-  <data name="cbengaged.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cbengaged.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 72</value>
-  </data>
-  <data name="cbengaged.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 16</value>
-  </data>
-  <data name="cbengaged.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
-  </data>
-  <data name="cbengaged.Text" xml:space="preserve">
-    <value>Engaged</value>
-  </data>
-  <data name="&gt;&gt;cbengaged.Name" xml:space="preserve">
-    <value>cbengaged</value>
-  </data>
-  <data name="&gt;&gt;cbengaged.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2983.33090, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;cbengaged.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;cbengaged.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="cbsteady.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt</value>
-  </data>
-  <data name="cbsteady.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cbsteady.Location" type="System.Drawing.Point, System.Drawing">
-    <value>328, 72</value>
-  </data>
-  <data name="cbsteady.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="cbsteady.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 16</value>
-  </data>
-  <data name="cbsteady.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
-  </data>
-  <data name="cbsteady.Text" xml:space="preserve">
-    <value>Steady</value>
-  </data>
-  <data name="&gt;&gt;cbsteady.Name" xml:space="preserve">
-    <value>cbsteady</value>
-  </data>
-  <data name="&gt;&gt;cbsteady.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2983.33090, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;cbsteady.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;cbsteady.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="cblove.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt</value>
-  </data>
-  <data name="cblove.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cblove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 72</value>
-  </data>
-  <data name="cblove.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 16</value>
-  </data>
-  <data name="cblove.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="cblove.Text" xml:space="preserve">
-    <value>Love</value>
-  </data>
-  <data name="&gt;&gt;cblove.Name" xml:space="preserve">
-    <value>cblove</value>
-  </data>
-  <data name="&gt;&gt;cblove.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2983.33090, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;cblove.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;cblove.ZOrder" xml:space="preserve">
-    <value>13</value>
+  <data name="cbcrush.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="cbcrush.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt</value>
+    <value>Tahoma, 7.8pt</value>
   </data>
   <data name="cbcrush.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="cbcrush.Location" type="System.Drawing.Point, System.Drawing">
-    <value>328, 56</value>
+    <value>0, 0</value>
+  </data>
+  <data name="cbcrush.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
   <data name="cbcrush.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 16</value>
+    <value>63, 21</value>
   </data>
   <data name="cbcrush.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
@@ -385,25 +361,241 @@
     <value>cbcrush</value>
   </data>
   <data name="&gt;&gt;cbcrush.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2983.33090, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.3047.19123, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbcrush.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;cbcrush.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>0</value>
+  </data>
+  <data name="cbfamily.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbfamily.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 7.8pt</value>
+  </data>
+  <data name="cbfamily.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbfamily.Location" type="System.Drawing.Point, System.Drawing">
+    <value>84, 42</value>
+  </data>
+  <data name="cbfamily.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="cbfamily.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="cbfamily.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="cbfamily.Text" xml:space="preserve">
+    <value>Family</value>
+  </data>
+  <data name="&gt;&gt;cbfamily.Name" xml:space="preserve">
+    <value>cbfamily</value>
+  </data>
+  <data name="&gt;&gt;cbfamily.Type" xml:space="preserve">
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.3047.19123, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;cbfamily.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;cbfamily.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tbRel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 7.8pt</value>
+  </data>
+  <data name="tbRel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>255, 45</value>
+  </data>
+  <data name="tbRel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 16</value>
+  </data>
+  <data name="tbRel.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="tbRel.Text" xml:space="preserve">
+    <value>0x00000000</value>
+  </data>
+  <data name="tbRel.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;tbRel.Name" xml:space="preserve">
+    <value>tbRel</value>
+  </data>
+  <data name="&gt;&gt;tbRel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbRel.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;tbRel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="cblove.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cblove.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 7.8pt</value>
+  </data>
+  <data name="cblove.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cblove.Location" type="System.Drawing.Point, System.Drawing">
+    <value>84, 0</value>
+  </data>
+  <data name="cblove.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="cblove.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 21</value>
+  </data>
+  <data name="cblove.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="cblove.Text" xml:space="preserve">
+    <value>Love</value>
+  </data>
+  <data name="&gt;&gt;cblove.Name" xml:space="preserve">
+    <value>cblove</value>
+  </data>
+  <data name="&gt;&gt;cblove.Type" xml:space="preserve">
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.3047.19123, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;cblove.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;cblove.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="cbengaged.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbengaged.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 7.8pt</value>
+  </data>
+  <data name="cbengaged.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbengaged.Location" type="System.Drawing.Point, System.Drawing">
+    <value>168, 0</value>
+  </data>
+  <data name="cbengaged.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="cbengaged.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 21</value>
+  </data>
+  <data name="cbengaged.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="cbengaged.Text" xml:space="preserve">
+    <value>Engaged</value>
+  </data>
+  <data name="&gt;&gt;cbengaged.Name" xml:space="preserve">
+    <value>cbengaged</value>
+  </data>
+  <data name="&gt;&gt;cbengaged.Type" xml:space="preserve">
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.3047.19123, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;cbengaged.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;cbengaged.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="cbmarried.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbmarried.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 7.8pt</value>
+  </data>
+  <data name="cbmarried.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbmarried.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 0</value>
+  </data>
+  <data name="cbmarried.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="cbmarried.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 21</value>
+  </data>
+  <data name="cbmarried.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="cbmarried.Text" xml:space="preserve">
+    <value>Married</value>
+  </data>
+  <data name="&gt;&gt;cbmarried.Name" xml:space="preserve">
+    <value>cbmarried</value>
+  </data>
+  <data name="&gt;&gt;cbmarried.Type" xml:space="preserve">
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.3047.19123, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;cbmarried.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;cbmarried.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="cbfriend.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbfriend.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 7.8pt</value>
+  </data>
+  <data name="cbfriend.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbfriend.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 21</value>
+  </data>
+  <data name="cbfriend.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="cbfriend.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 21</value>
+  </data>
+  <data name="cbfriend.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="cbfriend.Text" xml:space="preserve">
+    <value>Friends</value>
+  </data>
+  <data name="&gt;&gt;cbfriend.Name" xml:space="preserve">
+    <value>cbfriend</value>
+  </data>
+  <data name="&gt;&gt;cbfriend.Type" xml:space="preserve">
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.3047.19123, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;cbfriend.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;cbfriend.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="cbbuddie.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="cbbuddie.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt</value>
+    <value>Tahoma, 7.8pt</value>
   </data>
   <data name="cbbuddie.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="cbbuddie.Location" type="System.Drawing.Point, System.Drawing">
-    <value>248, 56</value>
+    <value>84, 21</value>
+  </data>
+  <data name="cbbuddie.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
   <data name="cbbuddie.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 16</value>
+    <value>74, 21</value>
   </data>
   <data name="cbbuddie.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
@@ -415,58 +607,109 @@
     <value>cbbuddie</value>
   </data>
   <data name="&gt;&gt;cbbuddie.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2983.33090, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.3047.19123, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbbuddie.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;cbbuddie.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="cbfriend.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt</value>
-  </data>
-  <data name="cbfriend.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cbfriend.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 56</value>
-  </data>
-  <data name="cbfriend.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 16</value>
-  </data>
-  <data name="cbfriend.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="cbfriend.Text" xml:space="preserve">
-    <value>Friends</value>
-  </data>
-  <data name="&gt;&gt;cbfriend.Name" xml:space="preserve">
-    <value>cbfriend</value>
-  </data>
-  <data name="&gt;&gt;cbfriend.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2983.33090, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;cbfriend.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;cbfriend.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="cbsteady.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbsteady.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 7.8pt</value>
+  </data>
+  <data name="cbsteady.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbsteady.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 42</value>
+  </data>
+  <data name="cbsteady.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="cbsteady.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="cbsteady.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="cbsteady.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="cbsteady.Text" xml:space="preserve">
+    <value>Steady</value>
+  </data>
+  <data name="&gt;&gt;cbsteady.Name" xml:space="preserve">
+    <value>cbsteady</value>
+  </data>
+  <data name="&gt;&gt;cbsteady.Type" xml:space="preserve">
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.3047.19123, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;cbsteady.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;cbsteady.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="cbbest.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbbest.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 7.8pt</value>
+  </data>
+  <data name="cbbest.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbbest.Location" type="System.Drawing.Point, System.Drawing">
+    <value>168, 21</value>
+  </data>
+  <data name="cbbest.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="cbbest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 21</value>
+  </data>
+  <data name="cbbest.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="cbbest.Text" xml:space="preserve">
+    <value>Known</value>
+  </data>
+  <data name="&gt;&gt;cbbest.Name" xml:space="preserve">
+    <value>cbbest</value>
+  </data>
+  <data name="&gt;&gt;cbbest.Type" xml:space="preserve">
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.3047.19123, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;cbbest.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;cbbest.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="cbenemy.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="cbenemy.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt</value>
+    <value>Tahoma, 7.8pt</value>
   </data>
   <data name="cbenemy.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="cbenemy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 56</value>
+    <value>168, 42</value>
+  </data>
+  <data name="cbenemy.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
   <data name="cbenemy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 16</value>
+    <value>70, 20</value>
   </data>
   <data name="cbenemy.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
+    <value>28</value>
   </data>
   <data name="cbenemy.Text" xml:space="preserve">
     <value>Enemy</value>
@@ -475,124 +718,127 @@
     <value>cbenemy</value>
   </data>
   <data name="&gt;&gt;cbenemy.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2983.33090, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.3047.19123, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbenemy.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;cbenemy.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
-  <data name="pbDay.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+  <data name="cbBFF.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="pbDay.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 8.25pt</value>
+  <data name="cbBFF.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 7.8pt</value>
   </data>
-  <data name="pbDay.LabelText" xml:space="preserve">
-    <value>Daily:</value>
+  <data name="cbBFF.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="pbDay.LabelWidth" type="System.Int32, mscorlib">
-    <value>64</value>
+  <data name="cbBFF.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 21</value>
   </data>
-  <data name="pbDay.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="cbBFF.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="cbBFF.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 21</value>
+  </data>
+  <data name="cbBFF.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="cbBFF.Text" xml:space="preserve">
+    <value>BFF</value>
+  </data>
+  <data name="&gt;&gt;cbBFF.Name" xml:space="preserve">
+    <value>cbBFF</value>
+  </data>
+  <data name="&gt;&gt;cbBFF.Type" xml:space="preserve">
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.3047.19123, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;cbBFF.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;cbBFF.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="tableLayoutPanel1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 6pt</value>
+  </data>
+  <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 81</value>
+  </data>
+  <data name="tableLayoutPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>336, 62</value>
+  </data>
+  <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
+    <value>flowLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="cbcrush" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cbfamily" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="tbRel" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="cblove" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="cbengaged" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="cbmarried" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="cbfriend" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cbbuddie" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="cbsteady" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cbbest" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="cbenemy" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="cbBFF" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,25,Percent,25,Percent,25,Percent,25,Absolute,20" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="flowLayoutPanel2.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
+    <value>TopDown</value>
+  </data>
+  <data name="flowLayoutPanel2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 7.8pt</value>
+  </data>
+  <data name="flowLayoutPanel2.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="pbDay.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 5</value>
+  <data name="flowLayoutPanel2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
-  <data name="pbDay.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 20</value>
+  <data name="flowLayoutPanel2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
   </data>
-  <data name="pbDay.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
+  <data name="flowLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>342, 146</value>
   </data>
-  <data name="pbDay.TextboxWidth" type="System.Int32, mscorlib">
-    <value>40</value>
+  <data name="flowLayoutPanel2.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
   </data>
-  <data name="&gt;&gt;pbDay.Name" xml:space="preserve">
-    <value>pbDay</value>
+  <data name="&gt;&gt;flowLayoutPanel2.Name" xml:space="preserve">
+    <value>flowLayoutPanel2</value>
   </data>
-  <data name="&gt;&gt;pbDay.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2983.33099, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;flowLayoutPanel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pbDay.Parent" xml:space="preserve">
+  <data name="&gt;&gt;flowLayoutPanel2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;pbDay.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="pbLife.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="pbLife.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 8.25pt</value>
-  </data>
-  <data name="pbLife.LabelText" xml:space="preserve">
-    <value>Lifetime:</value>
-  </data>
-  <data name="pbLife.LabelWidth" type="System.Int32, mscorlib">
-    <value>64</value>
-  </data>
-  <data name="pbLife.Location" type="System.Drawing.Point, System.Drawing">
-    <value>248, 0</value>
-  </data>
-  <data name="pbLife.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 5</value>
-  </data>
-  <data name="pbLife.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 20</value>
-  </data>
-  <data name="pbLife.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
-  </data>
-  <data name="pbLife.TextboxWidth" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="&gt;&gt;pbLife.Name" xml:space="preserve">
-    <value>pbLife</value>
-  </data>
-  <data name="&gt;&gt;pbLife.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2983.33099, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;pbLife.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pbLife.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tbRel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>352, 31</value>
-  </data>
-  <data name="tbRel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 14</value>
-  </data>
-  <data name="tbRel.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
-  </data>
-  <data name="tbRel.Text" xml:space="preserve">
-    <value>0x00000000</value>
-  </data>
-  <data name="&gt;&gt;tbRel.Name" xml:space="preserve">
-    <value>tbRel</value>
-  </data>
-  <data name="&gt;&gt;tbRel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbRel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tbRel.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;flowLayoutPanel2.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 8.25pt</value>
+  <data name="$this.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>473, 88</value>
+    <value>342, 146</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>CommonSrel</value>

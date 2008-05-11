@@ -165,6 +165,10 @@
       <HintPath>..\xpcommoncontrols.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <ProjectReference Include="..\..\pjseCoderPlugin-cvs\pjse System Classes\SimPe pjse System Classes.csproj">
+      <Project>{0B9D2E1D-30F3-4718-B66B-791BFBAC3DB7}</Project>
+      <Name>SimPe pjse System Classes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimPe Cache\SimPe Cache.csproj">
       <Project>{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}</Project>
       <Name>SimPe Cache</Name>

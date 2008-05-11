@@ -237,7 +237,7 @@ namespace SimPe.Plugin
 		}
 
 		TabPage.MaterialDefinition tMaterialDefinition;
-		TabPage.MaterialDefinitionProperties tMaterialDefinitionProperties;
+		TabPage.MatdForm tMaterialDefinitionProperties;
 		TabPage.MaterialDefinitionCategories tMaterialDefinitionCat;
 		TabPage.MaterialDefinitionFiles tMaterialDefinitionFiles;
 		public override System.Windows.Forms.TabPage TabPage
@@ -256,7 +256,7 @@ namespace SimPe.Plugin
 		protected override void InitTabPage() 
 		{
 			if (tMaterialDefinition==null) tMaterialDefinition = new SimPe.Plugin.TabPage.MaterialDefinition();			
-			if (tMaterialDefinitionProperties==null) tMaterialDefinitionProperties = new SimPe.Plugin.TabPage.MaterialDefinitionProperties();
+			if (tMaterialDefinitionProperties==null) tMaterialDefinitionProperties = new SimPe.Plugin.TabPage.MatdForm();
 			if (tMaterialDefinitionCat==null) tMaterialDefinitionCat = new SimPe.Plugin.TabPage.MaterialDefinitionCategories();
 			if (tMaterialDefinitionFiles==null) tMaterialDefinitionFiles = new SimPe.Plugin.TabPage.MaterialDefinitionFiles();
 			tMaterialDefinitionProperties.tbname.Tag = true;
@@ -435,6 +435,87 @@ namespace SimPe.Plugin
 			}
 			return mat;
 		}
+
+
+        /// <summary>
+        /// Exports the Material Definition Properties to an xml file
+        /// </summary>
+        /// <param name="filename">The filename to write to</param>
+        public void ExportProperties(string filename)
+        {
+            System.Xml.XmlWriterSettings xws = new System.Xml.XmlWriterSettings();
+            xws.CloseOutput = true;
+            xws.Indent = true;
+            xws.Encoding = System.Text.Encoding.UTF8;
+            System.Xml.XmlWriter xw = System.Xml.XmlWriter.Create(filename, xws);
+
+            try
+            {
+                xw.WriteStartElement("materialDefinition");
+                xw.WriteComment("Source: " + this.Parent.FileDescriptor.ExportFileName);
+                xw.WriteComment("Block name: " + this.BlockName);
+                xw.WriteComment("File description: " + this.FileDescription);
+                xw.WriteComment("Material Type: " + this.MatterialType);
+                foreach (MaterialDefinitionProperty p in this.properties)
+                {
+                    xw.WriteStartElement("materialDefinitionProperty");
+                    xw.WriteAttributeString("name", p.Name);
+                    xw.WriteValue(p.Value);
+                    xw.WriteEndElement();
+                }
+                xw.WriteEndElement();
+            }
+            finally { xw.Close(); }
+        }
+
+        /// <summary>
+        /// Imports the Material Definition Properties, replacing the current ones
+        /// </summary>
+        /// <param name="filename">The name of the file to import</param>
+        public void ImportProperties(string filename)
+        {
+            properties = new MaterialDefinitionProperty[0];
+            MergeProperties(filename);
+        }
+
+        /// <summary>
+        /// Merges the Material Definition Properties - adds, overwrites or retains as appropriate
+        /// </summary>
+        /// <param name="filename">The name of the file to merge</param>
+        public void MergeProperties(string filename)
+        {
+            System.Xml.XmlReaderSettings xrs = new System.Xml.XmlReaderSettings();
+            xrs.CloseInput = true;
+            xrs.IgnoreComments = true;
+            xrs.IgnoreProcessingInstructions = true;
+            xrs.IgnoreWhitespace = true;
+            System.Xml.XmlReader xr = System.Xml.XmlReader.Create(filename, xrs);
+
+            try
+            {
+                xr.ReadStartElement("materialDefinition");
+                while (xr.IsStartElement())
+                {
+                    if (xr.Name != "materialDefinitionProperty")
+                    {
+                        xr.Skip();
+                        continue;
+                    }
+                    MaterialDefinitionProperty p = new MaterialDefinitionProperty();
+                    while (xr.MoveToNextAttribute())
+                    {
+                        if (xr.Name == "name")
+                            p.Name = xr.Value;
+                    }
+                    xr.MoveToElement();
+                    p.Value = xr.ReadString();
+                    this.Add(p, false);
+                    xr.ReadEndElement();
+                }
+                xr.ReadEndElement();
+            }
+            finally { xr.Close(); }
+        }
 		
 
 		#region IDisposable Member

@@ -109,9 +109,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.srcRel = new SimPe.PackedFiles.UserInterface.CommonSrel();
 			this.dstRel = new SimPe.PackedFiles.UserInterface.CommonSrel();
 
-			this.srcTb.Controls.Add(this.srcRel);
-			this.dstTb.Controls.Add(this.dstRel);
-
 			// 
 			// srcRel
 			// 
@@ -129,6 +126,11 @@ namespace SimPe.PackedFiles.UserInterface
 			this.dstRel.Name = "dstRel";
 			this.dstRel.Srel = null;
 			this.dstRel.Visible = true;
+
+            this.srcTb.Controls.Add(this.srcRel);
+            this.dstTb.Controls.Add(this.dstRel);
+
+            this.dstTb.Top = this.srcTb.Bottom;
 
             this.cbEp3Asgn.ResourceManager = SimPe.Localization.Manager;
             this.cbEp3Asgn.Enum = typeof(Wrapper.JobAssignment);            

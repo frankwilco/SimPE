@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using System.Collections.Generic;
 using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
@@ -35,13 +36,35 @@ namespace SimPe.PackedFiles.UserInterface
 	/// Zusammenfassung für ExtSrelUI.
 	/// </summary>
 	public class CommonSrel : System.Windows.Forms.UserControl
-	{
-		/// <summary> 
+    {
+        #region Form fields
+        private FlowLayoutPanel flowLayoutPanel2;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Label label91;
+        private ComboBox cbfamtype;
+        private TextBox tbRel;
+        private LabeledProgressBar pbDay;
+        private LabeledProgressBar pbLife;
+        private TableLayoutPanel tableLayoutPanel1;
+        private TransparentCheckBox cblove;
+        private TransparentCheckBox cbcrush;
+        private TransparentCheckBox cbengaged;
+        private TransparentCheckBox cbmarried;
+        private TransparentCheckBox cbbuddie;
+        private TransparentCheckBox cbfriend;
+        private TransparentCheckBox cbsteady;
+        private TransparentCheckBox cbenemy;
+        private TransparentCheckBox cbfamily;
+        private TransparentCheckBox cbbest;
+        private TransparentCheckBox cbBFF;
+
+        /// <summary> 
 		/// Erforderliche Designervariable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
+        #endregion
 
-		public CommonSrel()
+        public CommonSrel()
 		{
 			// Dieser Aufruf ist für den Windows Form-Designer erforderlich.
 			InitializeComponent();
@@ -57,8 +80,14 @@ namespace SimPe.PackedFiles.UserInterface
 
 			InitComboBox();
 
-			tbRel.Visible = Helper.WindowsRegistry.HiddenMode;			
-		}
+			tbRel.Visible = Helper.WindowsRegistry.HiddenMode;
+            ltcb = new List<TransparentCheckBox>(new TransparentCheckBox[] {
+                cbcrush, cblove, cbengaged, cbmarried, cbfriend, cbbuddie, cbsteady, cbenemy,
+                null, null, null, null, null, null, cbfamily, cbbest,
+                cbBFF, null, null, null, null, null, null, null,
+                null, null, null, null, null, null, null, null,
+            });
+        }
 
 		/// <summary> 
 		/// Die verwendeten Ressourcen bereinigen.
@@ -83,22 +112,45 @@ namespace SimPe.PackedFiles.UserInterface
 		private void InitializeComponent()
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CommonSrel));
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label91 = new System.Windows.Forms.Label();
             this.cbfamtype = new System.Windows.Forms.ComboBox();
-            this.cbbest = new Ambertation.Windows.Forms.TransparentCheckBox();
-            this.cbfamily = new Ambertation.Windows.Forms.TransparentCheckBox();
-            this.cbmarried = new Ambertation.Windows.Forms.TransparentCheckBox();
-            this.cbengaged = new Ambertation.Windows.Forms.TransparentCheckBox();
-            this.cbsteady = new Ambertation.Windows.Forms.TransparentCheckBox();
-            this.cblove = new Ambertation.Windows.Forms.TransparentCheckBox();
-            this.cbcrush = new Ambertation.Windows.Forms.TransparentCheckBox();
-            this.cbbuddie = new Ambertation.Windows.Forms.TransparentCheckBox();
-            this.cbfriend = new Ambertation.Windows.Forms.TransparentCheckBox();
-            this.cbenemy = new Ambertation.Windows.Forms.TransparentCheckBox();
+            this.tbRel = new System.Windows.Forms.TextBox();
             this.pbDay = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.pbLife = new Ambertation.Windows.Forms.LabeledProgressBar();
-            this.tbRel = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.cbcrush = new Ambertation.Windows.Forms.TransparentCheckBox();
+            this.cbfamily = new Ambertation.Windows.Forms.TransparentCheckBox();
+            this.cblove = new Ambertation.Windows.Forms.TransparentCheckBox();
+            this.cbengaged = new Ambertation.Windows.Forms.TransparentCheckBox();
+            this.cbmarried = new Ambertation.Windows.Forms.TransparentCheckBox();
+            this.cbfriend = new Ambertation.Windows.Forms.TransparentCheckBox();
+            this.cbbuddie = new Ambertation.Windows.Forms.TransparentCheckBox();
+            this.cbsteady = new Ambertation.Windows.Forms.TransparentCheckBox();
+            this.cbbest = new Ambertation.Windows.Forms.TransparentCheckBox();
+            this.cbenemy = new Ambertation.Windows.Forms.TransparentCheckBox();
+            this.cbBFF = new Ambertation.Windows.Forms.TransparentCheckBox();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // flowLayoutPanel2
+            // 
+            resources.ApplyResources(this.flowLayoutPanel2, "flowLayoutPanel2");
+            this.flowLayoutPanel2.Controls.Add(this.flowLayoutPanel1);
+            this.flowLayoutPanel2.Controls.Add(this.pbDay);
+            this.flowLayoutPanel2.Controls.Add(this.pbLife);
+            this.flowLayoutPanel2.Controls.Add(this.tableLayoutPanel1);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            // 
+            // flowLayoutPanel1
+            // 
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.Controls.Add(this.label91);
+            this.flowLayoutPanel1.Controls.Add(this.cbfamtype);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
             // label91
             // 
@@ -107,80 +159,15 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // cbfamtype
             // 
-            this.cbfamtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.cbfamtype, "cbfamtype");
+            this.cbfamtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbfamtype.Name = "cbfamtype";
-            this.cbfamtype.SelectedIndexChanged += new System.EventHandler(this.ChangedRelation);
             // 
-            // cbbest
+            // tbRel
             // 
-            resources.ApplyResources(this.cbbest, "cbbest");
-            this.cbbest.Name = "cbbest";
-            this.cbbest.UseVisualStyleBackColor = false;
-            this.cbbest.CheckedChanged += new System.EventHandler(this.ChangedState);
-            // 
-            // cbfamily
-            // 
-            resources.ApplyResources(this.cbfamily, "cbfamily");
-            this.cbfamily.Name = "cbfamily";
-            this.cbfamily.UseVisualStyleBackColor = false;
-            this.cbfamily.CheckedChanged += new System.EventHandler(this.ChangedState);
-            // 
-            // cbmarried
-            // 
-            resources.ApplyResources(this.cbmarried, "cbmarried");
-            this.cbmarried.Name = "cbmarried";
-            this.cbmarried.UseVisualStyleBackColor = false;
-            this.cbmarried.CheckedChanged += new System.EventHandler(this.ChangedState);
-            // 
-            // cbengaged
-            // 
-            resources.ApplyResources(this.cbengaged, "cbengaged");
-            this.cbengaged.Name = "cbengaged";
-            this.cbengaged.UseVisualStyleBackColor = false;
-            this.cbengaged.CheckedChanged += new System.EventHandler(this.ChangedState);
-            // 
-            // cbsteady
-            // 
-            resources.ApplyResources(this.cbsteady, "cbsteady");
-            this.cbsteady.Name = "cbsteady";
-            this.cbsteady.UseVisualStyleBackColor = false;
-            this.cbsteady.CheckedChanged += new System.EventHandler(this.ChangedState);
-            // 
-            // cblove
-            // 
-            resources.ApplyResources(this.cblove, "cblove");
-            this.cblove.Name = "cblove";
-            this.cblove.UseVisualStyleBackColor = false;
-            this.cblove.CheckedChanged += new System.EventHandler(this.ChangedState);
-            // 
-            // cbcrush
-            // 
-            resources.ApplyResources(this.cbcrush, "cbcrush");
-            this.cbcrush.Name = "cbcrush";
-            this.cbcrush.UseVisualStyleBackColor = false;
-            this.cbcrush.CheckedChanged += new System.EventHandler(this.ChangedState);
-            // 
-            // cbbuddie
-            // 
-            resources.ApplyResources(this.cbbuddie, "cbbuddie");
-            this.cbbuddie.Name = "cbbuddie";
-            this.cbbuddie.UseVisualStyleBackColor = false;
-            this.cbbuddie.CheckedChanged += new System.EventHandler(this.ChangedState);
-            // 
-            // cbfriend
-            // 
-            resources.ApplyResources(this.cbfriend, "cbfriend");
-            this.cbfriend.Name = "cbfriend";
-            this.cbfriend.UseVisualStyleBackColor = false;
-            this.cbfriend.CheckedChanged += new System.EventHandler(this.ChangedState);
-            // 
-            // cbenemy
-            // 
-            resources.ApplyResources(this.cbenemy, "cbenemy");
-            this.cbenemy.Name = "cbenemy";
-            this.cbenemy.UseVisualStyleBackColor = false;
-            this.cbenemy.CheckedChanged += new System.EventHandler(this.ChangedState);
+            this.tbRel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.tbRel, "tbRel");
+            this.tbRel.Name = "tbRel";
             // 
             // pbDay
             // 
@@ -197,7 +184,6 @@ namespace SimPe.PackedFiles.UserInterface
             this.pbDay.TokenCount = 30;
             this.pbDay.UnselectedColor = System.Drawing.Color.Black;
             this.pbDay.Value = 100;
-            this.pbDay.Changed += new System.EventHandler(this.ChangedDay);
             // 
             // pbLife
             // 
@@ -214,57 +200,121 @@ namespace SimPe.PackedFiles.UserInterface
             this.pbLife.TokenCount = 30;
             this.pbLife.UnselectedColor = System.Drawing.Color.Black;
             this.pbLife.Value = 100;
-            this.pbLife.Changed += new System.EventHandler(this.ChangedLife);
             // 
-            // tbRel
+            // tableLayoutPanel1
             // 
-            this.tbRel.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            resources.ApplyResources(this.tbRel, "tbRel");
-            this.tbRel.Name = "tbRel";
-            this.tbRel.TextChanged += new System.EventHandler(this.ChangedRelationText);
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.cbcrush, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.cbfamily, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tbRel, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.cblove, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.cbengaged, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.cbmarried, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.cbfriend, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.cbbuddie, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.cbsteady, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.cbbest, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.cbenemy, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.cbBFF, 3, 1);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // cbcrush
+            // 
+            resources.ApplyResources(this.cbcrush, "cbcrush");
+            this.cbcrush.Name = "cbcrush";
+            this.cbcrush.UseVisualStyleBackColor = false;
+            this.cbcrush.CheckedChanged += new System.EventHandler(this.ChangedState);
+            // 
+            // cbfamily
+            // 
+            resources.ApplyResources(this.cbfamily, "cbfamily");
+            this.cbfamily.Name = "cbfamily";
+            this.cbfamily.UseVisualStyleBackColor = false;
+            this.cbfamily.CheckedChanged += new System.EventHandler(this.ChangedState);
+            // 
+            // cblove
+            // 
+            resources.ApplyResources(this.cblove, "cblove");
+            this.cblove.Name = "cblove";
+            this.cblove.UseVisualStyleBackColor = false;
+            this.cblove.CheckedChanged += new System.EventHandler(this.ChangedState);
+            // 
+            // cbengaged
+            // 
+            resources.ApplyResources(this.cbengaged, "cbengaged");
+            this.cbengaged.Name = "cbengaged";
+            this.cbengaged.UseVisualStyleBackColor = false;
+            this.cbengaged.CheckedChanged += new System.EventHandler(this.ChangedState);
+            // 
+            // cbmarried
+            // 
+            resources.ApplyResources(this.cbmarried, "cbmarried");
+            this.cbmarried.Name = "cbmarried";
+            this.cbmarried.UseVisualStyleBackColor = false;
+            this.cbmarried.CheckedChanged += new System.EventHandler(this.ChangedState);
+            // 
+            // cbfriend
+            // 
+            resources.ApplyResources(this.cbfriend, "cbfriend");
+            this.cbfriend.Name = "cbfriend";
+            this.cbfriend.UseVisualStyleBackColor = false;
+            this.cbfriend.CheckedChanged += new System.EventHandler(this.ChangedState);
+            // 
+            // cbbuddie
+            // 
+            resources.ApplyResources(this.cbbuddie, "cbbuddie");
+            this.cbbuddie.Name = "cbbuddie";
+            this.cbbuddie.UseVisualStyleBackColor = false;
+            this.cbbuddie.CheckedChanged += new System.EventHandler(this.ChangedState);
+            // 
+            // cbsteady
+            // 
+            resources.ApplyResources(this.cbsteady, "cbsteady");
+            this.cbsteady.Name = "cbsteady";
+            this.cbsteady.UseVisualStyleBackColor = false;
+            this.cbsteady.CheckedChanged += new System.EventHandler(this.ChangedState);
+            // 
+            // cbbest
+            // 
+            resources.ApplyResources(this.cbbest, "cbbest");
+            this.cbbest.Name = "cbbest";
+            this.cbbest.UseVisualStyleBackColor = false;
+            this.cbbest.CheckedChanged += new System.EventHandler(this.ChangedState);
+            // 
+            // cbenemy
+            // 
+            resources.ApplyResources(this.cbenemy, "cbenemy");
+            this.cbenemy.Name = "cbenemy";
+            this.cbenemy.UseVisualStyleBackColor = false;
+            this.cbenemy.CheckedChanged += new System.EventHandler(this.ChangedState);
+            // 
+            // cbBFF
+            // 
+            resources.ApplyResources(this.cbBFF, "cbBFF");
+            this.cbBFF.Name = "cbBFF";
+            this.cbBFF.UseVisualStyleBackColor = false;
+            this.cbBFF.CheckedChanged += new System.EventHandler(this.ChangedState);
             // 
             // CommonSrel
             // 
-            this.Controls.Add(this.tbRel);
-            this.Controls.Add(this.pbLife);
-            this.Controls.Add(this.pbDay);
-            this.Controls.Add(this.label91);
-            this.Controls.Add(this.cbfamtype);
-            this.Controls.Add(this.cbbest);
-            this.Controls.Add(this.cbbuddie);
-            this.Controls.Add(this.cbfriend);
-            this.Controls.Add(this.cbfamily);
-            this.Controls.Add(this.cbenemy);
-            this.Controls.Add(this.cbmarried);
-            this.Controls.Add(this.cbengaged);
-            this.Controls.Add(this.cbsteady);
-            this.Controls.Add(this.cblove);
-            this.Controls.Add(this.cbcrush);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             resources.ApplyResources(this, "$this");
+            this.Controls.Add(this.flowLayoutPanel2);
             this.Name = "CommonSrel";
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
 		}
 		#endregion
 
-		private System.Windows.Forms.Label label91;
-		private System.Windows.Forms.ComboBox cbfamtype;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbbest;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbfamily;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbmarried;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbengaged;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbsteady;
-		private Ambertation.Windows.Forms.TransparentCheckBox cblove;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbcrush;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbbuddie;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbfriend;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbenemy;
-		private Ambertation.Windows.Forms.LabeledProgressBar pbDay;
-		private Ambertation.Windows.Forms.LabeledProgressBar pbLife;
-		private System.Windows.Forms.TextBox tbRel;
 
-		SimPe.PackedFiles.Wrapper.ExtSrel srel;
+        SimPe.PackedFiles.Wrapper.ExtSrel srel;
 		public SimPe.PackedFiles.Wrapper.ExtSrel Srel
 		{
 			get {return srel;}
@@ -311,7 +361,9 @@ namespace SimPe.PackedFiles.UserInterface
 		}
 
 		bool intern;
-		protected void UpdateContent()
+        List<TransparentCheckBox> ltcb;
+
+        protected void UpdateContent()
 		{
 			this.Enabled = (Srel!=null);
 			if (Srel==null) return;
@@ -319,16 +371,19 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pbDay.Value = Srel.Shortterm;
 			this.pbLife.Value = Srel.Longterm;
 
-			this.cbenemy.Checked = Srel.RelationState.IsEnemy;
-			this.cbfriend.Checked = Srel.RelationState.IsFriend;
-			this.cbbuddie.Checked = Srel.RelationState.IsBuddie;
-			this.cbcrush.Checked = Srel.RelationState.HasCrush;
-			this.cblove.Checked = Srel.RelationState.InLove;
-			this.cbsteady.Checked = Srel.RelationState.GoSteady;
-			this.cbengaged.Checked = Srel.RelationState.IsEngaged;
-			this.cbmarried.Checked = Srel.RelationState.IsMarried;
-			this.cbbest.Checked = Srel.RelationState.IsKnown;
-			this.cbfamily.Checked = Srel.RelationState.IsFamilyMember;
+            Boolset bs = Srel.RelationState.Value;
+            for (int i = 0; i < bs.Length; i++) if (ltcb[i] != null) ltcb[i].Checked = bs[i];
+            if (Srel.RelationState2 != null)
+            {
+                bs = Srel.RelationState2.Value;
+                for (int i = 0; i < bs.Length; i++) if (ltcb[i + 16] != null)
+                    {
+                        ltcb[i + 16].Enabled = true;
+                        ltcb[i + 16].Checked = bs[i];
+                    }
+            }
+            else
+                for (int i = 0; i < bs.Length; i++) if (ltcb[i + 16] != null) ltcb[i + 16].Enabled = false;
 
 			this.cbfamtype.SelectedIndex = 0;
 			for (int i=1; i<this.cbfamtype.Items.Count; i++) 
@@ -411,18 +466,15 @@ namespace SimPe.PackedFiles.UserInterface
 		{
 			if (intern) return;
 
-			Srel.RelationState.IsEnemy = this.cbenemy.Checked;
-			Srel.RelationState.IsFriend = this.cbfriend.Checked;
-			Srel.RelationState.IsBuddie = this.cbbuddie.Checked;
-			Srel.RelationState.HasCrush = this.cbcrush.Checked;
-			Srel.RelationState.InLove = this.cblove.Checked;
-			Srel.RelationState.GoSteady = this.cbsteady.Checked;
-			Srel.RelationState.IsEngaged = this.cbengaged.Checked;
-			Srel.RelationState.IsMarried = this.cbmarried.Checked;
-			Srel.RelationState.IsKnown = this.cbbest.Checked;
-			Srel.RelationState.IsFamilyMember = this.cbfamily.Checked;
-
-			Srel.Changed = true;
+            int i = ltcb.IndexOf((TransparentCheckBox)sender);
+            if (i >= 0)
+            {
+                Boolset val = (i < 16) ? Srel.RelationState.Value : Srel.RelationState2.Value;
+                val[i & 0x0f] = ((TransparentCheckBox)sender).Checked;
+                if (i < 16) Srel.RelationState.Value = val;
+                else Srel.RelationState2.Value = val;
+                Srel.Changed = true;
+            }
 		}
 
 		public SimPe.PackedFiles.Wrapper.ExtSDesc SourceSim
