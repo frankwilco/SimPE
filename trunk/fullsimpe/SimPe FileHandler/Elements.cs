@@ -19,6 +19,7 @@
  ***************************************************************************/
 using System;
 using System.Drawing;
+using System.Collections.Generic;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -1908,18 +1909,18 @@ namespace SimPe.PackedFiles.UserInterface
 					srel.Shortterm = Convert.ToInt32(tbshortterm.Text);
 					srel.Longterm = Convert.ToInt32(tblongterm.Text);
 
-					SimPe.PackedFiles.Wrapper.RelationshipFlags outf = new SimPe.PackedFiles.Wrapper.RelationshipFlags(0);
-					outf.IsEnemy = this.cbenemy.Checked;
-					outf.IsFriend = this.cbfriend.Checked;
-					outf.IsBuddie = this.cbbuddie.Checked;
-					outf.IsKnown = this.cbbest.Checked;
-					outf.HasCrush = this.cbcrush.Checked;
-					outf.InLove = this.cblove.Checked;
-					outf.GoSteady = this.cbsteady.Checked;
-					outf.IsEngaged = this.cbengaged.Checked;
-					outf.IsMarried = this.cbmarried.Checked;
-					outf.IsFamilyMember = this.cbfamily.Checked;
-					srel.RelationState = outf;
+                    List<CheckBox> ltcb = new List<CheckBox>(new CheckBox[] {
+                        cbcrush, cblove, cbengaged, cbmarried, cbfriend, cbbuddie, cbsteady, cbenemy,
+                        //null, null, null, null, null, null, cbfamily, cbbest,
+                        // /*cbBFF,*/ null, null, null, null, null, null, null, null,
+                        //null, null, null, null, null, null, null, null,
+                    });
+                    Boolset bs1 = srel.RelationState.Value;
+                    //Boolset bs2 = srel.RelationState2.Value;
+                    for (int i = 0; i < 16; i++)
+                        if (ltcb[i] != null) bs1[i] = ltcb[i].Checked;
+                    srel.RelationState.Value = bs1;
+
 					if (cbfamtype.SelectedIndex>0)
 						srel.FamilyRelation = (Data.LocalizedRelationshipTypes)cbfamtype.Items[cbfamtype.SelectedIndex];
 

@@ -280,7 +280,7 @@ namespace SimPe
 			if (f.ok) 
 			{
                 fti.Type = FileTablePaths.Absolute;
-				fti.Name = f.tbName.Text;
+				fti.Name = f.tbName.Text.Trim();
 				fti.IsRecursive = f.cbRec.Checked;
                 string epname = f.cbEpVer.Text;
                 foreach (ExpansionItem ei in PathProvider.Global.Expansions)

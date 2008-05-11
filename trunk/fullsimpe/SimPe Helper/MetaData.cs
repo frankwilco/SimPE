@@ -575,17 +575,26 @@ namespace SimPe.Data
         /// </summary>
         public enum RelationshipStateBits : byte
         {
-            Enemy = 0x07,
-            Friends = 0x04,
-            Buddies = 0x05,
             Crush = 0x00,
             Love = 0x01,
-            Steady = 0x06,
             Engaged = 0x02,
             Married = 0x03,
+            Friends = 0x04,
+            Buddies = 0x05,
+            Steady = 0x06,
+            Enemy = 0x07,
+            Family = 0x0E,
             Known = 0x0F,
-            Family = 0x0E
         }
+
+        /// <summary>
+        /// UIFlags2 - more relationship states
+        /// </summary>
+        public enum UIFlags2Names : byte
+        {
+            BestFriendForever = 0x00,
+        };
+
 
         /// <summary>
         /// Available Zodia Signes

@@ -67,6 +67,8 @@ namespace SimPe.PackedFiles.Wrapper
                     e.GroupIndex = 0;
                 }
                 else e.GroupIndex = 1;
+
+                if (e.SimDescription.FileDescriptor.Instance == sim.FileDescriptor.Instance) res = false;
                 if (!res) e.Cancel = true;
             }
             base.OnAddSimToPool(e);
