@@ -448,32 +448,30 @@ namespace SimPe.Plugin
 			get {return loaded;}
 		}
 		/// <summary>
-		/// Load the FileIndex if it is not available yet
-		/// </summary>
+        /// Load the FileIndex if it has not previously been loaded and not in LocalMode
+        /// </summary>
 		/// <remarks>
-		/// Use Load() if you want to make sure that the FileIndex is available, 
-		/// use ForceReload() if you want to reload the FileIndex (for example, 
-		/// becuase the Files changed)
+        /// Use ForceReload() to reload if previously load (for example,
+        /// because the files changed) or to override LocalMode.
 		/// </remarks>
 		public void Load() 
-		{			
-			if (loaded) return;
-			ForceReload();
+		{
+            if (loaded) return;
+
+            //We do NOT use the Filetable in LocalMode - a ForceReload is required
+            if (Helper.LocalMode) return;
+
+            ForceReload();
 		}
 
 		/// <summary>
-		/// Add all Files stored in all the packages found in the passed Folder
+		/// Load the FileIndex whether or not it has previously been loaded or in LocalMode
 		/// </summary>
 		/// <remarks>
-		/// Use Load() if you want to make sure that the FileIndex is available, 
-		/// use ForceReload() if you want to reload the FileIndex (for example, 
-		/// becuase the Files changed)
-		/// </remarks>
+        /// Use Load() to only load if not yet loaded and not in LocalMode.
+        /// </remarks>
 		public void ForceReload()
 		{
-            //We do NOT use the Filetable in LocalMode!
-            if (Helper.LocalMode != Helper.RunModes.Normal) return;
-
 			//this.WaitForEnd();
 			loaded = true;
 			

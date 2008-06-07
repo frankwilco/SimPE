@@ -56,7 +56,7 @@ namespace SimPe.Plugin
 
 		public bool IsEnabled(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package)
 		{
-			if (package==null) 
+			if (package==null || package.FileName==null) 
 			{
 				return false;
 			}

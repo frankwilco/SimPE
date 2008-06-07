@@ -1199,11 +1199,19 @@ namespace SimPe
                             if (fti.Ignore) ignored++;
                         }
                     }
-                    else if (fti.Type.AsExpansions == Expansions.Custom
-                        && Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.ZCEP_FOLDER))
+                    else
                     {
-                        found++;
-                        if (fti.Ignore) ignored++;
+                        if (fti.Type.AsExpansions == Expansions.Custom
+                            && (Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.ZCEP_FOLDER)))
+                        {
+                            found++;
+                            if (fti.Ignore) ignored++;
+                        }
+                        else if (Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.CTLG_FOLDER))
+                        {
+                            found++;
+                            if (fti.Ignore) ignored++;
+                        }
                     }
                 }
                 else
@@ -1231,24 +1239,40 @@ namespace SimPe
             {
                 FileTableItem fti = (FileTableItem)lbfolder.Items[i];
 
-                if (fti.IsFile)
+                if (cep)
                 {
-                    if (Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.GMND_PACKAGE)
-                        || Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.MMAT_PACKAGE))
+                    if (fti.IsFile)
                     {
-                        if (!cep) continue;
-                        else lbfolder.SetItemChecked(i, cb.CheckState != CheckState.Unchecked);
+                        if (Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.GMND_PACKAGE)
+                            || Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.MMAT_PACKAGE))
+                            lbfolder.SetItemChecked(i, cb.CheckState != CheckState.Unchecked);
+                        else
+                            continue;
+                    }
+                    else
+                    {
+                        if (fti.Type.AsExpansions == Expansions.Custom)
+                        {
+                            if (Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.ZCEP_FOLDER))
+                                lbfolder.SetItemChecked(i, cb.CheckState != CheckState.Unchecked);
+                            else
+                                continue;
+                        }
+                        else
+                        {
+                            if (Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.CTLG_FOLDER))
+                                lbfolder.SetItemChecked(i, cb.CheckState != CheckState.Unchecked);
+                            else
+                                continue;
+                        }
                     }
                 }
-                else if (fti.Type.AsExpansions == Expansions.Custom && cep)
+                else
                 {
-                    if (Helper.CompareableFileName(fti.Name) == Helper.CompareableFileName(Data.MetaData.ZCEP_FOLDER))
+                    if (fti.Type == epver)
+                    {
                         lbfolder.SetItemChecked(i, cb.CheckState != CheckState.Unchecked);
-                }
-
-                if (fti.Type == epver && !cep)
-                {
-                    lbfolder.SetItemChecked(i, cb.CheckState != CheckState.Unchecked);
+                    }
                 }
 
                 fti.Ignore = !lbfolder.GetItemChecked(i);

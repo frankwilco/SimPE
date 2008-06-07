@@ -87,7 +87,8 @@ namespace SimPe
         string shortname;
         string shortername;
         string longname;
-        string namelistnr; 
+        string namelistnr;
+        string installsuffix;
 
         void SetDefaultFileTableFolders()
         {
@@ -173,7 +174,26 @@ namespace SimPe
                 version = (int)key.GetValue("Version", 0);
                 runtimeversion = (int)key.GetValue("PreferedRuntimeVersion", version);
                 exp = (Expansions)(Math.Pow(2, version));
-                rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey((string)key.GetValue("RegKey", "Software"), false);
+
+                int isnum = -1;
+                object o = key.GetValue("RegKey", null);
+                if (o is string)
+                    rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey((string)o, false);
+                else if (o is Ambertation.CaseInvariantArrayList)
+                    foreach (string s in (Ambertation.CaseInvariantArrayList)o)
+                    {
+                        isnum++;
+                        rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(s, false);
+                        if (rk != null)
+                            break;
+                    }
+                if (rk == null) isnum = -1;
+                o = key.GetValue("InstallSuffix", null);
+                if (o is string)
+                    installsuffix = (string)o;
+                else if (o is Ambertation.CaseInvariantArrayList && isnum >= 0 && isnum < ((Ambertation.CaseInvariantArrayList)o).Count)
+                    installsuffix = (string)((Ambertation.CaseInvariantArrayList)o)[isnum];
+
                 exe = (string)key.GetValue("ExeName", "Sims2.exe");
                 flag = new Flags((int)key.GetValue("Flag", 0));
                 censor = (string)key.GetValue("Censor", "");

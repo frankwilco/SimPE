@@ -59,7 +59,14 @@
     <!-- Information about Nightlife -->
     <key name="Nightlife">
       <int name="Version">2</int>
-      <string name="RegKey">Software\\EA Games\\The Sims 2 Nightlife</string>
+      <cilist name="RegKey">
+        <string name="0">Software\\EA Games\\The Sims 2 Nightlife</string>
+        <string name="1">Software\\EA Games\\The Sims 2 Deluxe</string>
+      </cilist>
+      <cilist name="InstallSuffix">
+        <string name="0"></string>
+        <string name="1">EP2</string>
+      </cilist>
       <int name="Flag">13</int><!-- 00001101 -->
       <string name="ExeName">Sims2EP2.exe</string>
       <string name="Censor">quaxi_nl_censor_v1.package</string>

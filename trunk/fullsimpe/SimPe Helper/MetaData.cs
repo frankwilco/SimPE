@@ -453,10 +453,14 @@ namespace SimPe.Data
         public const uint GLUA = 0x9012468A;
         public const uint OLUA = 0x9012468B;
 
+        #endregion
+
+        #region CEP Strings
 
         public static string GMND_PACKAGE = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Downloads\\_EnableColorOptionsGMND.package");
         public static string MMAT_PACKAGE = System.IO.Path.Combine(PathProvider.Global.GetExpansion(Expansions.BaseGame).InstallFolder, "TSData\\Res\\Sims3D\\_EnableColorOptionsMMAT.package");
-        public static string ZCEP_FOLDER = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "zCEP-EXTRA");
+        public static string ZCEP_FOLDER  = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "zCEP-EXTRA");
+        public static string CTLG_FOLDER  = System.IO.Path.Combine(PathProvider.Global.GetExpansion(Expansions.BaseGame).InstallFolder, "TSData\\Res\\Catalog\\zCEP-EXTRA");
 
         #endregion
 

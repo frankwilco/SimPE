@@ -172,6 +172,12 @@ namespace SimPe
                     xw.WriteValue("zCEP-EXTRA");
                     xw.WriteEndElement();
 
+                    xw.WriteStartElement("path");
+                    xw.WriteAttributeString("root", "game");
+                    xw.WriteAttributeString("recursive", "1");
+                    xw.WriteValue("TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "zCEP-EXTRA");
+                    xw.WriteEndElement();
+
                     for (int i = PathProvider.Global.Expansions.Count - 1; i >= 0; i--)
                     {
                         ExpansionItem ei = PathProvider.Global.Expansions[i];
