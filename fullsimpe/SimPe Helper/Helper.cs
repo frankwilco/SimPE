@@ -519,24 +519,39 @@ namespace SimPe
             }
         }
 
+        /// <summary>
+        /// Bit number identifying what's been "enabled" on the commandline
+        /// </summary>
+        private enum RunModeFlags : int { localmode = 0, noplugins, fileformat, }; // bit number
+        private static Boolset RunModeFlag = (int)0;
+        /// <summary>
+        /// "localmode": when true, do not load the file table
+        /// </summary>
+        public static bool LocalMode { get { return RunModeFlag[(int)RunModeFlags.localmode]; } set { RunModeFlag[(int)RunModeFlags.localmode] = value; } }
+        /// <summary>
+        /// "noplugins": when true, do not load plugins (other than core)
+        /// </summary>
+        public static bool NoPlugins { get { return RunModeFlag[(int)RunModeFlags.noplugins]; } set { RunModeFlag[(int)RunModeFlags.noplugins] = value; } }
+        /// <summary>
+        /// "fileformat": when true, prefix filenames with their format, when known (for PJSE wrappers at this stage)
+        /// </summary>
+        public static bool FileFormat { get { return RunModeFlag[(int)RunModeFlags.fileformat]; } set { RunModeFlag[(int)RunModeFlags.fileformat] = value; } }
 
-        public enum RunModes { Normal, Local, LocalNoPlugins };
-
-        static RunModes localmode = RunModes.Normal;
-        public static RunModes LocalMode
-        {
-            get { return localmode;  }
-            set { localmode = value; }
-        }
-
+        /// <summary>
+        /// Indicates whether a given plugin should load, based on "noplugins" command line option
+        /// </summary>
+        /// <param name="flname">plugin name to test</param>
+        /// <returns>true if okay to load, else false</returns>
         public static bool CanLoadPlugin(string flname)
         {
-            if (LocalMode != RunModes.LocalNoPlugins) return true;
+            if (!NoPlugins) return true;
             flname = flname.Trim().ToLower();
             if (flname.Contains("\\pj")) return true;
             if (flname.Contains("simpe.dockbox")) return true;
             return false;
         }
+
+
 		/// <summary>
 		/// Returns the Version Information for the started Executable
 		/// </summary>

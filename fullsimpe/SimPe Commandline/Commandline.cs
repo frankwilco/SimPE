@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using SimPe.Plugin;
 using System.Drawing;
 using SimPe.Interfaces.Scenegraph;
@@ -27,7 +28,7 @@ namespace SimPe
 			if (BuildPackage(args)) return true;
 			if (BuildTxtr(args)) return true;
 			if (FixPackage(args)) return true;
-            if (LocalMode(args)) return true;
+            if (EnableFlags(args)) return true;
 			return false;
 		}
 
@@ -55,26 +56,48 @@ namespace SimPe
 			Console.WriteLine("  -build -desc [packag.xml] -out [output].package");
 			Console.WriteLine("  -txtr -image [imgfile] -out [output].package -name [textureNam] -format [dxt1|dxt3|dxt5|raw8|raw24|raw32] -levels [nr] -width [max. Width] -height [max. Height]");
             Console.WriteLine("  -gensemiglob");
-            Console.WriteLine("  -localmode [-noplugins]");
+            Console.WriteLine("  -enable localmode");
+            Console.WriteLine("  -enable noplugins");
+            Console.WriteLine("  -enable fileformat");
             return true;
         }
 
-        #region Local Mode
-        static bool LocalMode(string[] args)
+        #region Enable flags
+        static bool EnableFlags(string[] args)
         {
-            if (args[0] != "-localmode") return false;
+            List<string> argv = new List<string>(args);
 
-            if (args[1] == "-noplugins") Helper.LocalMode = Helper.RunModes.LocalNoPlugins;
-            else Helper.LocalMode = Helper.RunModes.Local;
+            if (argv[0].ToLower() == "-localmode") // backward compatibility; uses ".Insert" as there may be trailing unknown stuff
+            {
+                argv.RemoveAt(0);
+                argv.InsertRange(0, new string[] { "-enable", "localmode" });
+                if (args.Length > 1 && args[1].ToLower() == "-noplugins")
+                {
+                    argv.RemoveAt(2);
+                    argv.Insert(2, "noplugins");
+                }
+            }
 
-            SimPe.Splash.Screen.Stop();
-            string s = Localization.GetString("InLocalMode");
-            if (Helper.LocalMode == Helper.RunModes.LocalNoPlugins)
-                s += Helper.lbr + Helper.lbr + Localization.GetString("NoPlugins");
-            Message.Show(s, "Notice", System.Windows.Forms.MessageBoxButtons.OK);
-            SimPe.Splash.Screen.Start();
+            if (argv[0].ToLower() != "-enable") return false;
 
-            return false;
+            while (argv.Count > 0)
+            {
+                if (argv[0].ToLower() == "-enable") { argv.RemoveAt(0); continue; } // allow interspersed "-enables"
+                if (argv[0].ToLower() == "localmode") { Helper.LocalMode = true; argv.RemoveAt(0); continue; }
+                if (argv[0].ToLower() == "noplugins") { Helper.NoPlugins = true; argv.RemoveAt(0); continue; }
+                if (argv[0].ToLower() == "fileformat") { Helper.FileFormat = true; argv.RemoveAt(0); continue; }
+                break; // hit an unrecognised "enable" option
+            }
+            if (Helper.LocalMode || Helper.NoPlugins)
+            {
+                SimPe.Splash.Screen.Stop();
+                string s = "";
+                if (Helper.LocalMode) s += Localization.GetString("InLocalMode") + "\r\n";
+                if (Helper.NoPlugins) s += "\r\n" + Localization.GetString("NoPlugins");
+                Message.Show(s, "Notice", System.Windows.Forms.MessageBoxButtons.OK);
+                SimPe.Splash.Screen.Start();
+            }
+            return false; // Don't exit SimPE!
         }
         #endregion
 

@@ -198,6 +198,9 @@ namespace SimPe
 
         void UpdateEnabledState()
         {
+#if DEBUG
+            Enabled = Tool.IsEnabled(pfd, package);
+#else
             try
             {
                 Enabled = Tool.IsEnabled(pfd, package);
@@ -206,6 +209,7 @@ namespace SimPe
             {
                 Enabled = false;
             }
+#endif
         }
     }
 }

@@ -267,8 +267,7 @@ namespace SimPe
 		public static object LoadPlugin(string file, Type interfaceType)
 		{
 			if (!File.Exists(file)) return null;
-            if (Helper.LocalMode == Helper.RunModes.LocalNoPlugins)
-                if (!Helper.CanLoadPlugin(file)) return null;
+            if (!Helper.CanLoadPlugin(file)) return null;
 
 			AssemblyName myAssemblyName;
 			try 
@@ -326,8 +325,7 @@ namespace SimPe
 		public static object[] LoadPlugins(string file, Type interfaceType, object[] args)
 		{
             if (!File.Exists(file)) return new object[0]; 
-            if (Helper.LocalMode == Helper.RunModes.LocalNoPlugins)
-                if (!Helper.CanLoadPlugin(file)) return new object[0];
+            if (!Helper.CanLoadPlugin(file)) return new object[0];
 
 			AssemblyName myAssemblyName;
 			try 
