@@ -1273,7 +1273,7 @@
     <value>66, 53</value>
   </data>
   <data name="biMax.Text" xml:space="preserve">
-    <value>Maximize</value>
+    <value>Max ALL</value>
   </data>
   <data name="biMax.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>ImageAboveText</value>

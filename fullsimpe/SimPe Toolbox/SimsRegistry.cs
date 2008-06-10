@@ -13,14 +13,20 @@ namespace SimPe.Plugin
 		{
 			this.form = form;
 			xrk = Helper.WindowsRegistry.PluginRegistryKey;
-			
-			form.cbNpc.Checked = this.ShowNPCs;
+
+            form.ckbPlayable.Checked = this.ShowPlayable;
+            form.ckbPlayable.CheckedChanged += new EventHandler(ckbPlayable_CheckedChanged);
+
+            form.cbTownie.Checked = this.ShowTownies;
+            form.cbTownie.CheckedChanged += new EventHandler(cbTownie_CheckedChanged);
+
+            form.cbNpc.Checked = this.ShowNPCs;
 			form.cbNpc.CheckedChanged += new EventHandler(cbNpc_CheckedChanged);
 
-			form.cbTownie.Checked = this.ShowTownies;
-			form.cbTownie.CheckedChanged += new EventHandler(cbTownie_CheckedChanged);
+            form.ckbUnEditable.Checked = this.ShowUnEditable;
+            form.ckbUnEditable.CheckedChanged += new EventHandler(ckbUnEditable_CheckedChanged);
 
-			form.cbdetail.Checked = this.ShowDetails;
+            form.cbdetail.Checked = this.ShowDetails;
 			form.cbdetail.CheckedChanged += new EventHandler(cbdetail_CheckedChanged);
 
 			form.sorter.CurrentColumn = this.SortedColumn;
@@ -29,22 +35,37 @@ namespace SimPe.Plugin
 		}
 
 		#region Properties
-		public  bool ShowTownies
-		{
-			get 
-			{
-				XmlRegistryKey rkf = xrk.CreateSubKey("SimBrowser");
-				object o = rkf.GetValue("ShowTownies", true);
-				return Convert.ToBoolean(o);
-			}
-			set
-			{
-				XmlRegistryKey rkf = xrk.CreateSubKey("SimBrowser");
-				rkf.SetValue("ShowTownies", value);
-			}
-		}
+        public bool ShowPlayable
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("SimBrowser");
+                object o = rkf.GetValue("ShowPlayable", true);
+                return Convert.ToBoolean(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("SimBrowser");
+                rkf.SetValue("ShowPlayable", value);
+            }
+        }
 
-		public bool ShowNPCs
+        public bool ShowTownies
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("SimBrowser");
+                object o = rkf.GetValue("ShowTownies", false);
+                return Convert.ToBoolean(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("SimBrowser");
+                rkf.SetValue("ShowTownies", value);
+            }
+        }
+
+        public bool ShowNPCs
 		{
 			get 
 			{
@@ -59,7 +80,22 @@ namespace SimPe.Plugin
 			}
 		}
 
-		public bool ShowDetails
+        public bool ShowUnEditable
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("SimBrowser");
+                object o = rkf.GetValue("ShowUnEditable", false);
+                return Convert.ToBoolean(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("SimBrowser");
+                rkf.SetValue("ShowUnEditable", value);
+            }
+        }
+
+        public bool ShowDetails
 		{
 			get 
 			{
@@ -119,16 +155,28 @@ namespace SimPe.Plugin
 
 		#endregion
 
-		private void cbNpc_CheckedChanged(object sender, EventArgs e)
-		{
-			System.Windows.Forms.CheckBox cb = sender as System.Windows.Forms.CheckBox;
-			this.ShowNPCs = cb.Checked;
-		}
+        private void ckbPlayable_CheckedChanged(object sender, EventArgs e)
+        {
+            System.Windows.Forms.CheckBox cb = sender as System.Windows.Forms.CheckBox;
+            this.ShowPlayable = cb.Checked;
+        }
 
-		private void cbTownie_CheckedChanged(object sender, EventArgs e)
+        private void cbTownie_CheckedChanged(object sender, EventArgs e)
+        {
+            System.Windows.Forms.CheckBox cb = sender as System.Windows.Forms.CheckBox;
+            this.ShowTownies = cb.Checked;
+        }
+
+        private void cbNpc_CheckedChanged(object sender, EventArgs e)
+        {
+            System.Windows.Forms.CheckBox cb = sender as System.Windows.Forms.CheckBox;
+            this.ShowNPCs = cb.Checked;
+        }
+
+        private void ckbUnEditable_CheckedChanged(object sender, EventArgs e)
 		{
 			System.Windows.Forms.CheckBox cb = sender as System.Windows.Forms.CheckBox;
-			this.ShowTownies = cb.Checked;
+            this.ShowUnEditable = cb.Checked;
 		}
 
 		private void cbdetail_CheckedChanged(object sender, EventArgs e)

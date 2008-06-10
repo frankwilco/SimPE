@@ -130,11 +130,11 @@ namespace SimPe.PackedFiles.Wrapper
             get { return sim; }
             set
             {
+            	// It seems that once set, "sim" somehow tracks "value"
                 if (sim != value)
-                {
                     sim = value;
-                    if (FilteredBySim && this.Package!=null) this.UpdateSimList();
-                }
+                // So we do this anyway...
+                if (FilteredBySim && this.Package != null) this.UpdateSimList();
             }
         }
 
