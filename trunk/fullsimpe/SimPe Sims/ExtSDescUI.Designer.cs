@@ -604,8 +604,8 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // biMax
             // 
-            this.biMax.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             resources.ApplyResources(this.biMax, "biMax");
+            this.biMax.Margin = new System.Windows.Forms.Padding(52, 1, 0, 2);
             this.biMax.Name = "biMax";
             this.biMax.Click += new System.EventHandler(this.Activate_biMax);
             // 

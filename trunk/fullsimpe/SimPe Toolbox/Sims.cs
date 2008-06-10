@@ -38,8 +38,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Panel panel2;
-		private System.Windows.Forms.ImageList iListSmall;
-		internal System.Windows.Forms.CheckBox cbdetail;
+        private System.Windows.Forms.ImageList iListSmall;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
 		private System.Windows.Forms.ColumnHeader columnHeader3;
@@ -51,12 +50,16 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.ColumnHeader columnHeader9;
 		private System.Windows.Forms.Label lbUbi;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Panel panel3;
-		internal System.Windows.Forms.CheckBox cbNpc;
-		internal System.Windows.Forms.CheckBox cbTownie;
+        private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.ColumnHeader chKind;
 		private System.Windows.Forms.ColumnHeader columnHeader10;
 		private System.ComponentModel.IContainer components;
+        private FlowLayoutPanel flowLayoutPanel1;
+        internal CheckBox cbNpc;
+        internal CheckBox cbTownie;
+        internal CheckBox ckbPlayable;
+        internal CheckBox cbdetail;
+        internal CheckBox ckbUnEditable;
 
 		SimsRegistry reg;
 		public Sims()
@@ -94,467 +97,235 @@ namespace SimPe.Plugin
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(Sims));
-			this.ilist = new System.Windows.Forms.ImageList(this.components);
-			this.lv = new System.Windows.Forms.ListView();
-			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-			this.chKind = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
-			this.iListSmall = new System.Windows.Forms.ImageList(this.components);
-			this.button1 = new System.Windows.Forms.Button();
-			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.cbdetail = new System.Windows.Forms.CheckBox();
-			this.lbUbi = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.panel3 = new System.Windows.Forms.Panel();
-			this.cbNpc = new System.Windows.Forms.CheckBox();
-			this.cbTownie = new System.Windows.Forms.CheckBox();
-			this.SuspendLayout();
-			// 
-			// ilist
-			// 
-			this.ilist.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-			this.ilist.ImageSize = ((System.Drawing.Size)(resources.GetObject("ilist.ImageSize")));
-			this.ilist.TransparentColor = System.Drawing.Color.Transparent;
-			// 
-			// lv
-			// 
-			this.lv.AccessibleDescription = resources.GetString("lv.AccessibleDescription");
-			this.lv.AccessibleName = resources.GetString("lv.AccessibleName");
-			this.lv.Alignment = ((System.Windows.Forms.ListViewAlignment)(resources.GetObject("lv.Alignment")));
-			this.lv.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lv.Anchor")));
-			this.lv.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lv.BackgroundImage")));
-			this.lv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-																				 this.columnHeader1,
-																				 this.columnHeader2,
-																				 this.columnHeader3,
-																				 this.chKind,
-																				 this.columnHeader4,
-																				 this.columnHeader5,
-																				 this.columnHeader6,
-																				 this.columnHeader9,
-																				 this.columnHeader7,
-																				 this.columnHeader8,
-																				 this.columnHeader10});
-			this.lv.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lv.Dock")));
-			this.lv.Enabled = ((bool)(resources.GetObject("lv.Enabled")));
-			this.lv.Font = ((System.Drawing.Font)(resources.GetObject("lv.Font")));
-			this.lv.FullRowSelect = true;
-			this.lv.HideSelection = false;
-			this.lv.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lv.ImeMode")));
-			this.lv.LabelWrap = ((bool)(resources.GetObject("lv.LabelWrap")));
-			this.lv.LargeImageList = this.ilist;
-			this.lv.Location = ((System.Drawing.Point)(resources.GetObject("lv.Location")));
-			this.lv.MultiSelect = false;
-			this.lv.Name = "lv";
-			this.lv.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lv.RightToLeft")));
-			this.lv.Size = ((System.Drawing.Size)(resources.GetObject("lv.Size")));
-			this.lv.SmallImageList = this.iListSmall;
-			this.lv.StateImageList = this.iListSmall;
-			this.lv.TabIndex = ((int)(resources.GetObject("lv.TabIndex")));
-			this.lv.Text = resources.GetString("lv.Text");
-			this.toolTip1.SetToolTip(this.lv, resources.GetString("lv.ToolTip"));
-			this.lv.View = System.Windows.Forms.View.Details;
-			this.lv.Visible = ((bool)(resources.GetObject("lv.Visible")));
-			this.lv.DoubleClick += new System.EventHandler(this.Open);
-			this.lv.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.SortList);
-			// 
-			// columnHeader1
-			// 
-			this.columnHeader1.Text = resources.GetString("columnHeader1.Text");
-			this.columnHeader1.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader1.TextAlign")));
-			this.columnHeader1.Width = ((int)(resources.GetObject("columnHeader1.Width")));
-			// 
-			// columnHeader2
-			// 
-			this.columnHeader2.Text = resources.GetString("columnHeader2.Text");
-			this.columnHeader2.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader2.TextAlign")));
-			this.columnHeader2.Width = ((int)(resources.GetObject("columnHeader2.Width")));
-			// 
-			// columnHeader3
-			// 
-			this.columnHeader3.Text = resources.GetString("columnHeader3.Text");
-			this.columnHeader3.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader3.TextAlign")));
-			this.columnHeader3.Width = ((int)(resources.GetObject("columnHeader3.Width")));
-			// 
-			// chKind
-			// 
-			this.chKind.Text = resources.GetString("chKind.Text");
-			this.chKind.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("chKind.TextAlign")));
-			this.chKind.Width = ((int)(resources.GetObject("chKind.Width")));
-			// 
-			// columnHeader4
-			// 
-			this.columnHeader4.Text = resources.GetString("columnHeader4.Text");
-			this.columnHeader4.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader4.TextAlign")));
-			this.columnHeader4.Width = ((int)(resources.GetObject("columnHeader4.Width")));
-			// 
-			// columnHeader5
-			// 
-			this.columnHeader5.Text = resources.GetString("columnHeader5.Text");
-			this.columnHeader5.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader5.TextAlign")));
-			this.columnHeader5.Width = ((int)(resources.GetObject("columnHeader5.Width")));
-			// 
-			// columnHeader6
-			// 
-			this.columnHeader6.Text = resources.GetString("columnHeader6.Text");
-			this.columnHeader6.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader6.TextAlign")));
-			this.columnHeader6.Width = ((int)(resources.GetObject("columnHeader6.Width")));
-			// 
-			// columnHeader9
-			// 
-			this.columnHeader9.Text = resources.GetString("columnHeader9.Text");
-			this.columnHeader9.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader9.TextAlign")));
-			this.columnHeader9.Width = ((int)(resources.GetObject("columnHeader9.Width")));
-			// 
-			// columnHeader7
-			// 
-			this.columnHeader7.Text = resources.GetString("columnHeader7.Text");
-			this.columnHeader7.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader7.TextAlign")));
-			this.columnHeader7.Width = ((int)(resources.GetObject("columnHeader7.Width")));
-			// 
-			// columnHeader8
-			// 
-			this.columnHeader8.Text = resources.GetString("columnHeader8.Text");
-			this.columnHeader8.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader8.TextAlign")));
-			this.columnHeader8.Width = ((int)(resources.GetObject("columnHeader8.Width")));
-			// 
-			// columnHeader10
-			// 
-			this.columnHeader10.Text = resources.GetString("columnHeader10.Text");
-			this.columnHeader10.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader10.TextAlign")));
-			this.columnHeader10.Width = ((int)(resources.GetObject("columnHeader10.Width")));
-			// 
-			// iListSmall
-			// 
-			this.iListSmall.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-			this.iListSmall.ImageSize = ((System.Drawing.Size)(resources.GetObject("iListSmall.ImageSize")));
-			this.iListSmall.TransparentColor = System.Drawing.Color.Transparent;
-			// 
-			// button1
-			// 
-			this.button1.AccessibleDescription = resources.GetString("button1.AccessibleDescription");
-			this.button1.AccessibleName = resources.GetString("button1.AccessibleName");
-			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("button1.Anchor")));
-			this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-			this.button1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("button1.Dock")));
-			this.button1.Enabled = ((bool)(resources.GetObject("button1.Enabled")));
-			this.button1.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("button1.FlatStyle")));
-			this.button1.Font = ((System.Drawing.Font)(resources.GetObject("button1.Font")));
-			this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-			this.button1.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button1.ImageAlign")));
-			this.button1.ImageIndex = ((int)(resources.GetObject("button1.ImageIndex")));
-			this.button1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("button1.ImeMode")));
-			this.button1.Location = ((System.Drawing.Point)(resources.GetObject("button1.Location")));
-			this.button1.Name = "button1";
-			this.button1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("button1.RightToLeft")));
-			this.button1.Size = ((System.Drawing.Size)(resources.GetObject("button1.Size")));
-			this.button1.TabIndex = ((int)(resources.GetObject("button1.TabIndex")));
-			this.button1.Text = resources.GetString("button1.Text");
-			this.button1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button1.TextAlign")));
-			this.toolTip1.SetToolTip(this.button1, resources.GetString("button1.ToolTip"));
-			this.button1.Visible = ((bool)(resources.GetObject("button1.Visible")));
-			this.button1.Click += new System.EventHandler(this.Open);
-			// 
-			// panel1
-			// 
-			this.panel1.AccessibleDescription = resources.GetString("panel1.AccessibleDescription");
-			this.panel1.AccessibleName = resources.GetString("panel1.AccessibleName");
-			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("panel1.Anchor")));
-			this.panel1.AutoScroll = ((bool)(resources.GetObject("panel1.AutoScroll")));
-			this.panel1.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("panel1.AutoScrollMargin")));
-			this.panel1.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("panel1.AutoScrollMinSize")));
-			this.panel1.BackColor = System.Drawing.Color.SteelBlue;
-			this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
-			this.panel1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("panel1.Dock")));
-			this.panel1.Enabled = ((bool)(resources.GetObject("panel1.Enabled")));
-			this.panel1.Font = ((System.Drawing.Font)(resources.GetObject("panel1.Font")));
-			this.panel1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("panel1.ImeMode")));
-			this.panel1.Location = ((System.Drawing.Point)(resources.GetObject("panel1.Location")));
-			this.panel1.Name = "panel1";
-			this.panel1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("panel1.RightToLeft")));
-			this.panel1.Size = ((System.Drawing.Size)(resources.GetObject("panel1.Size")));
-			this.panel1.TabIndex = ((int)(resources.GetObject("panel1.TabIndex")));
-			this.panel1.Text = resources.GetString("panel1.Text");
-			this.toolTip1.SetToolTip(this.panel1, resources.GetString("panel1.ToolTip"));
-			this.panel1.Visible = ((bool)(resources.GetObject("panel1.Visible")));
-			// 
-			// label1
-			// 
-			this.label1.AccessibleDescription = resources.GetString("label1.AccessibleDescription");
-			this.label1.AccessibleName = resources.GetString("label1.AccessibleName");
-			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label1.Anchor")));
-			this.label1.AutoSize = ((bool)(resources.GetObject("label1.AutoSize")));
-			this.label1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label1.Dock")));
-			this.label1.Enabled = ((bool)(resources.GetObject("label1.Enabled")));
-			this.label1.Font = ((System.Drawing.Font)(resources.GetObject("label1.Font")));
-			this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
-			this.label1.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label1.ImageAlign")));
-			this.label1.ImageIndex = ((int)(resources.GetObject("label1.ImageIndex")));
-			this.label1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label1.ImeMode")));
-			this.label1.Location = ((System.Drawing.Point)(resources.GetObject("label1.Location")));
-			this.label1.Name = "label1";
-			this.label1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label1.RightToLeft")));
-			this.label1.Size = ((System.Drawing.Size)(resources.GetObject("label1.Size")));
-			this.label1.TabIndex = ((int)(resources.GetObject("label1.TabIndex")));
-			this.label1.Text = resources.GetString("label1.Text");
-			this.label1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label1.TextAlign")));
-			this.toolTip1.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
-			this.label1.Visible = ((bool)(resources.GetObject("label1.Visible")));
-			// 
-			// label2
-			// 
-			this.label2.AccessibleDescription = resources.GetString("label2.AccessibleDescription");
-			this.label2.AccessibleName = resources.GetString("label2.AccessibleName");
-			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label2.Anchor")));
-			this.label2.AutoSize = ((bool)(resources.GetObject("label2.AutoSize")));
-			this.label2.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label2.Dock")));
-			this.label2.Enabled = ((bool)(resources.GetObject("label2.Enabled")));
-			this.label2.Font = ((System.Drawing.Font)(resources.GetObject("label2.Font")));
-			this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
-			this.label2.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label2.ImageAlign")));
-			this.label2.ImageIndex = ((int)(resources.GetObject("label2.ImageIndex")));
-			this.label2.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label2.ImeMode")));
-			this.label2.Location = ((System.Drawing.Point)(resources.GetObject("label2.Location")));
-			this.label2.Name = "label2";
-			this.label2.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label2.RightToLeft")));
-			this.label2.Size = ((System.Drawing.Size)(resources.GetObject("label2.Size")));
-			this.label2.TabIndex = ((int)(resources.GetObject("label2.TabIndex")));
-			this.label2.Text = resources.GetString("label2.Text");
-			this.label2.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label2.TextAlign")));
-			this.toolTip1.SetToolTip(this.label2, resources.GetString("label2.ToolTip"));
-			this.label2.Visible = ((bool)(resources.GetObject("label2.Visible")));
-			// 
-			// panel2
-			// 
-			this.panel2.AccessibleDescription = resources.GetString("panel2.AccessibleDescription");
-			this.panel2.AccessibleName = resources.GetString("panel2.AccessibleName");
-			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("panel2.Anchor")));
-			this.panel2.AutoScroll = ((bool)(resources.GetObject("panel2.AutoScroll")));
-			this.panel2.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("panel2.AutoScrollMargin")));
-			this.panel2.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("panel2.AutoScrollMinSize")));
-			this.panel2.BackColor = System.Drawing.Color.LightCoral;
-			this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
-			this.panel2.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("panel2.Dock")));
-			this.panel2.Enabled = ((bool)(resources.GetObject("panel2.Enabled")));
-			this.panel2.Font = ((System.Drawing.Font)(resources.GetObject("panel2.Font")));
-			this.panel2.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("panel2.ImeMode")));
-			this.panel2.Location = ((System.Drawing.Point)(resources.GetObject("panel2.Location")));
-			this.panel2.Name = "panel2";
-			this.panel2.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("panel2.RightToLeft")));
-			this.panel2.Size = ((System.Drawing.Size)(resources.GetObject("panel2.Size")));
-			this.panel2.TabIndex = ((int)(resources.GetObject("panel2.TabIndex")));
-			this.panel2.Text = resources.GetString("panel2.Text");
-			this.toolTip1.SetToolTip(this.panel2, resources.GetString("panel2.ToolTip"));
-			this.panel2.Visible = ((bool)(resources.GetObject("panel2.Visible")));
-			// 
-			// cbdetail
-			// 
-			this.cbdetail.AccessibleDescription = resources.GetString("cbdetail.AccessibleDescription");
-			this.cbdetail.AccessibleName = resources.GetString("cbdetail.AccessibleName");
-			this.cbdetail.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbdetail.Anchor")));
-			this.cbdetail.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbdetail.Appearance")));
-			this.cbdetail.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbdetail.BackgroundImage")));
-			this.cbdetail.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbdetail.CheckAlign")));
-			this.cbdetail.Checked = true;
-			this.cbdetail.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbdetail.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbdetail.Dock")));
-			this.cbdetail.Enabled = ((bool)(resources.GetObject("cbdetail.Enabled")));
-			this.cbdetail.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbdetail.FlatStyle")));
-			this.cbdetail.Font = ((System.Drawing.Font)(resources.GetObject("cbdetail.Font")));
-			this.cbdetail.Image = ((System.Drawing.Image)(resources.GetObject("cbdetail.Image")));
-			this.cbdetail.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbdetail.ImageAlign")));
-			this.cbdetail.ImageIndex = ((int)(resources.GetObject("cbdetail.ImageIndex")));
-			this.cbdetail.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbdetail.ImeMode")));
-			this.cbdetail.Location = ((System.Drawing.Point)(resources.GetObject("cbdetail.Location")));
-			this.cbdetail.Name = "cbdetail";
-			this.cbdetail.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbdetail.RightToLeft")));
-			this.cbdetail.Size = ((System.Drawing.Size)(resources.GetObject("cbdetail.Size")));
-			this.cbdetail.TabIndex = ((int)(resources.GetObject("cbdetail.TabIndex")));
-			this.cbdetail.Text = resources.GetString("cbdetail.Text");
-			this.cbdetail.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbdetail.TextAlign")));
-			this.toolTip1.SetToolTip(this.cbdetail, resources.GetString("cbdetail.ToolTip"));
-			this.cbdetail.Visible = ((bool)(resources.GetObject("cbdetail.Visible")));
-			this.cbdetail.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-			// 
-			// lbUbi
-			// 
-			this.lbUbi.AccessibleDescription = resources.GetString("lbUbi.AccessibleDescription");
-			this.lbUbi.AccessibleName = resources.GetString("lbUbi.AccessibleName");
-			this.lbUbi.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbUbi.Anchor")));
-			this.lbUbi.AutoSize = ((bool)(resources.GetObject("lbUbi.AutoSize")));
-			this.lbUbi.BackColor = System.Drawing.SystemColors.Window;
-			this.lbUbi.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbUbi.Dock")));
-			this.lbUbi.Enabled = ((bool)(resources.GetObject("lbUbi.Enabled")));
-			this.lbUbi.Font = ((System.Drawing.Font)(resources.GetObject("lbUbi.Font")));
-			this.lbUbi.ForeColor = System.Drawing.Color.Brown;
-			this.lbUbi.Image = ((System.Drawing.Image)(resources.GetObject("lbUbi.Image")));
-			this.lbUbi.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbUbi.ImageAlign")));
-			this.lbUbi.ImageIndex = ((int)(resources.GetObject("lbUbi.ImageIndex")));
-			this.lbUbi.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lbUbi.ImeMode")));
-			this.lbUbi.Location = ((System.Drawing.Point)(resources.GetObject("lbUbi.Location")));
-			this.lbUbi.Name = "lbUbi";
-			this.lbUbi.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lbUbi.RightToLeft")));
-			this.lbUbi.Size = ((System.Drawing.Size)(resources.GetObject("lbUbi.Size")));
-			this.lbUbi.TabIndex = ((int)(resources.GetObject("lbUbi.TabIndex")));
-			this.lbUbi.Text = resources.GetString("lbUbi.Text");
-			this.lbUbi.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbUbi.TextAlign")));
-			this.toolTip1.SetToolTip(this.lbUbi, resources.GetString("lbUbi.ToolTip"));
-			this.lbUbi.Visible = ((bool)(resources.GetObject("lbUbi.Visible")));
-			// 
-			// label3
-			// 
-			this.label3.AccessibleDescription = resources.GetString("label3.AccessibleDescription");
-			this.label3.AccessibleName = resources.GetString("label3.AccessibleName");
-			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label3.Anchor")));
-			this.label3.AutoSize = ((bool)(resources.GetObject("label3.AutoSize")));
-			this.label3.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label3.Dock")));
-			this.label3.Enabled = ((bool)(resources.GetObject("label3.Enabled")));
-			this.label3.Font = ((System.Drawing.Font)(resources.GetObject("label3.Font")));
-			this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
-			this.label3.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label3.ImageAlign")));
-			this.label3.ImageIndex = ((int)(resources.GetObject("label3.ImageIndex")));
-			this.label3.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label3.ImeMode")));
-			this.label3.Location = ((System.Drawing.Point)(resources.GetObject("label3.Location")));
-			this.label3.Name = "label3";
-			this.label3.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label3.RightToLeft")));
-			this.label3.Size = ((System.Drawing.Size)(resources.GetObject("label3.Size")));
-			this.label3.TabIndex = ((int)(resources.GetObject("label3.TabIndex")));
-			this.label3.Text = resources.GetString("label3.Text");
-			this.label3.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label3.TextAlign")));
-			this.toolTip1.SetToolTip(this.label3, resources.GetString("label3.ToolTip"));
-			this.label3.Visible = ((bool)(resources.GetObject("label3.Visible")));
-			// 
-			// panel3
-			// 
-			this.panel3.AccessibleDescription = resources.GetString("panel3.AccessibleDescription");
-			this.panel3.AccessibleName = resources.GetString("panel3.AccessibleName");
-			this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("panel3.Anchor")));
-			this.panel3.AutoScroll = ((bool)(resources.GetObject("panel3.AutoScroll")));
-			this.panel3.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("panel3.AutoScrollMargin")));
-			this.panel3.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("panel3.AutoScrollMinSize")));
-			this.panel3.BackColor = System.Drawing.Color.YellowGreen;
-			this.panel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel3.BackgroundImage")));
-			this.panel3.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("panel3.Dock")));
-			this.panel3.Enabled = ((bool)(resources.GetObject("panel3.Enabled")));
-			this.panel3.Font = ((System.Drawing.Font)(resources.GetObject("panel3.Font")));
-			this.panel3.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("panel3.ImeMode")));
-			this.panel3.Location = ((System.Drawing.Point)(resources.GetObject("panel3.Location")));
-			this.panel3.Name = "panel3";
-			this.panel3.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("panel3.RightToLeft")));
-			this.panel3.Size = ((System.Drawing.Size)(resources.GetObject("panel3.Size")));
-			this.panel3.TabIndex = ((int)(resources.GetObject("panel3.TabIndex")));
-			this.panel3.Text = resources.GetString("panel3.Text");
-			this.toolTip1.SetToolTip(this.panel3, resources.GetString("panel3.ToolTip"));
-			this.panel3.Visible = ((bool)(resources.GetObject("panel3.Visible")));
-			// 
-			// cbNpc
-			// 
-			this.cbNpc.AccessibleDescription = resources.GetString("cbNpc.AccessibleDescription");
-			this.cbNpc.AccessibleName = resources.GetString("cbNpc.AccessibleName");
-			this.cbNpc.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbNpc.Anchor")));
-			this.cbNpc.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbNpc.Appearance")));
-			this.cbNpc.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbNpc.BackgroundImage")));
-			this.cbNpc.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbNpc.CheckAlign")));
-			this.cbNpc.Checked = true;
-			this.cbNpc.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbNpc.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbNpc.Dock")));
-			this.cbNpc.Enabled = ((bool)(resources.GetObject("cbNpc.Enabled")));
-			this.cbNpc.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbNpc.FlatStyle")));
-			this.cbNpc.Font = ((System.Drawing.Font)(resources.GetObject("cbNpc.Font")));
-			this.cbNpc.Image = ((System.Drawing.Image)(resources.GetObject("cbNpc.Image")));
-			this.cbNpc.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbNpc.ImageAlign")));
-			this.cbNpc.ImageIndex = ((int)(resources.GetObject("cbNpc.ImageIndex")));
-			this.cbNpc.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbNpc.ImeMode")));
-			this.cbNpc.Location = ((System.Drawing.Point)(resources.GetObject("cbNpc.Location")));
-			this.cbNpc.Name = "cbNpc";
-			this.cbNpc.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbNpc.RightToLeft")));
-			this.cbNpc.Size = ((System.Drawing.Size)(resources.GetObject("cbNpc.Size")));
-			this.cbNpc.TabIndex = ((int)(resources.GetObject("cbNpc.TabIndex")));
-			this.cbNpc.Text = resources.GetString("cbNpc.Text");
-			this.cbNpc.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbNpc.TextAlign")));
-			this.toolTip1.SetToolTip(this.cbNpc, resources.GetString("cbNpc.ToolTip"));
-			this.cbNpc.Visible = ((bool)(resources.GetObject("cbNpc.Visible")));
-			this.cbNpc.CheckedChanged += new System.EventHandler(this.cbNpc_CheckedChanged);
-			// 
-			// cbTownie
-			// 
-			this.cbTownie.AccessibleDescription = resources.GetString("cbTownie.AccessibleDescription");
-			this.cbTownie.AccessibleName = resources.GetString("cbTownie.AccessibleName");
-			this.cbTownie.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbTownie.Anchor")));
-			this.cbTownie.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbTownie.Appearance")));
-			this.cbTownie.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbTownie.BackgroundImage")));
-			this.cbTownie.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbTownie.CheckAlign")));
-			this.cbTownie.Checked = true;
-			this.cbTownie.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbTownie.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbTownie.Dock")));
-			this.cbTownie.Enabled = ((bool)(resources.GetObject("cbTownie.Enabled")));
-			this.cbTownie.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbTownie.FlatStyle")));
-			this.cbTownie.Font = ((System.Drawing.Font)(resources.GetObject("cbTownie.Font")));
-			this.cbTownie.Image = ((System.Drawing.Image)(resources.GetObject("cbTownie.Image")));
-			this.cbTownie.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbTownie.ImageAlign")));
-			this.cbTownie.ImageIndex = ((int)(resources.GetObject("cbTownie.ImageIndex")));
-			this.cbTownie.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbTownie.ImeMode")));
-			this.cbTownie.Location = ((System.Drawing.Point)(resources.GetObject("cbTownie.Location")));
-			this.cbTownie.Name = "cbTownie";
-			this.cbTownie.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbTownie.RightToLeft")));
-			this.cbTownie.Size = ((System.Drawing.Size)(resources.GetObject("cbTownie.Size")));
-			this.cbTownie.TabIndex = ((int)(resources.GetObject("cbTownie.TabIndex")));
-			this.cbTownie.Text = resources.GetString("cbTownie.Text");
-			this.cbTownie.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbTownie.TextAlign")));
-			this.toolTip1.SetToolTip(this.cbTownie, resources.GetString("cbTownie.ToolTip"));
-			this.cbTownie.Visible = ((bool)(resources.GetObject("cbTownie.Visible")));
-			this.cbTownie.CheckedChanged += new System.EventHandler(this.cbTownie_CheckedChanged);
-			// 
-			// Sims
-			// 
-			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
-			this.AccessibleName = resources.GetString("$this.AccessibleName");
-			this.AutoScaleBaseSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScaleBaseSize")));
-			this.AutoScroll = ((bool)(resources.GetObject("$this.AutoScroll")));
-			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
-			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
-			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
-			this.Controls.Add(this.cbTownie);
-			this.Controls.Add(this.cbNpc);
-			this.Controls.Add(this.label3);
-			this.Controls.Add(this.panel3);
-			this.Controls.Add(this.lbUbi);
-			this.Controls.Add(this.label2);
-			this.Controls.Add(this.label1);
-			this.Controls.Add(this.panel2);
-			this.Controls.Add(this.panel1);
-			this.Controls.Add(this.button1);
-			this.Controls.Add(this.lv);
-			this.Controls.Add(this.cbdetail);
-			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
-			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("$this.ImeMode")));
-			this.Location = ((System.Drawing.Point)(resources.GetObject("$this.Location")));
-			this.MaximumSize = ((System.Drawing.Size)(resources.GetObject("$this.MaximumSize")));
-			this.MinimumSize = ((System.Drawing.Size)(resources.GetObject("$this.MinimumSize")));
-			this.Name = "Sims";
-			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
-			this.StartPosition = ((System.Windows.Forms.FormStartPosition)(resources.GetObject("$this.StartPosition")));
-			this.Text = resources.GetString("$this.Text");
-			this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
-			this.ResumeLayout(false);
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sims));
+            this.ilist = new System.Windows.Forms.ImageList(this.components);
+            this.lv = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.chKind = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
+            this.iListSmall = new System.Windows.Forms.ImageList(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lbUbi = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.cbNpc = new System.Windows.Forms.CheckBox();
+            this.cbTownie = new System.Windows.Forms.CheckBox();
+            this.ckbPlayable = new System.Windows.Forms.CheckBox();
+            this.cbdetail = new System.Windows.Forms.CheckBox();
+            this.ckbUnEditable = new System.Windows.Forms.CheckBox();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // ilist
+            // 
+            this.ilist.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            resources.ApplyResources(this.ilist, "ilist");
+            this.ilist.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // lv
+            // 
+            resources.ApplyResources(this.lv, "lv");
+            this.lv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.chKind,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader9,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader10});
+            this.lv.FullRowSelect = true;
+            this.lv.HideSelection = false;
+            this.lv.LargeImageList = this.ilist;
+            this.lv.MultiSelect = false;
+            this.lv.Name = "lv";
+            this.lv.SmallImageList = this.iListSmall;
+            this.lv.StateImageList = this.iListSmall;
+            this.toolTip1.SetToolTip(this.lv, resources.GetString("lv.ToolTip"));
+            this.lv.UseCompatibleStateImageBehavior = false;
+            this.lv.View = System.Windows.Forms.View.Details;
+            this.lv.DoubleClick += new System.EventHandler(this.Open);
+            this.lv.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.SortList);
+            // 
+            // columnHeader1
+            // 
+            resources.ApplyResources(this.columnHeader1, "columnHeader1");
+            // 
+            // columnHeader2
+            // 
+            resources.ApplyResources(this.columnHeader2, "columnHeader2");
+            // 
+            // columnHeader3
+            // 
+            resources.ApplyResources(this.columnHeader3, "columnHeader3");
+            // 
+            // chKind
+            // 
+            resources.ApplyResources(this.chKind, "chKind");
+            // 
+            // columnHeader4
+            // 
+            resources.ApplyResources(this.columnHeader4, "columnHeader4");
+            // 
+            // columnHeader5
+            // 
+            resources.ApplyResources(this.columnHeader5, "columnHeader5");
+            // 
+            // columnHeader6
+            // 
+            resources.ApplyResources(this.columnHeader6, "columnHeader6");
+            // 
+            // columnHeader9
+            // 
+            resources.ApplyResources(this.columnHeader9, "columnHeader9");
+            // 
+            // columnHeader7
+            // 
+            resources.ApplyResources(this.columnHeader7, "columnHeader7");
+            // 
+            // columnHeader8
+            // 
+            resources.ApplyResources(this.columnHeader8, "columnHeader8");
+            // 
+            // columnHeader10
+            // 
+            resources.ApplyResources(this.columnHeader10, "columnHeader10");
+            // 
+            // iListSmall
+            // 
+            this.iListSmall.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            resources.ApplyResources(this.iListSmall, "iListSmall");
+            this.iListSmall.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.Click += new System.EventHandler(this.Open);
+            // 
+            // panel1
+            // 
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel1.Name = "panel1";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // panel2
+            // 
+            resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.BackColor = System.Drawing.Color.LightCoral;
+            this.panel2.Name = "panel2";
+            // 
+            // lbUbi
+            // 
+            this.lbUbi.BackColor = System.Drawing.SystemColors.Window;
+            resources.ApplyResources(this.lbUbi, "lbUbi");
+            this.lbUbi.ForeColor = System.Drawing.Color.Brown;
+            this.lbUbi.Name = "lbUbi";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // panel3
+            // 
+            resources.ApplyResources(this.panel3, "panel3");
+            this.panel3.BackColor = System.Drawing.Color.YellowGreen;
+            this.panel3.Name = "panel3";
+            // 
+            // flowLayoutPanel1
+            // 
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.Controls.Add(this.ckbPlayable);
+            this.flowLayoutPanel1.Controls.Add(this.cbTownie);
+            this.flowLayoutPanel1.Controls.Add(this.cbNpc);
+            this.flowLayoutPanel1.Controls.Add(this.ckbUnEditable);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            // 
+            // cbNpc
+            // 
+            resources.ApplyResources(this.cbNpc, "cbNpc");
+            this.cbNpc.Name = "cbNpc";
+            this.cbNpc.CheckedChanged += new System.EventHandler(this.ckbFilter_CheckedChanged);
+            // 
+            // cbTownie
+            // 
+            resources.ApplyResources(this.cbTownie, "cbTownie");
+            this.cbTownie.Name = "cbTownie";
+            this.cbTownie.CheckedChanged += new System.EventHandler(this.ckbFilter_CheckedChanged);
+            // 
+            // ckbPlayable
+            // 
+            resources.ApplyResources(this.ckbPlayable, "ckbPlayable");
+            this.ckbPlayable.Checked = true;
+            this.ckbPlayable.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbPlayable.Name = "ckbPlayable";
+            this.ckbPlayable.UseVisualStyleBackColor = true;
+            this.ckbPlayable.CheckedChanged += new System.EventHandler(this.ckbFilter_CheckedChanged);
+            // 
+            // cbdetail
+            // 
+            resources.ApplyResources(this.cbdetail, "cbdetail");
+            this.cbdetail.Checked = true;
+            this.cbdetail.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbdetail.Name = "cbdetail";
+            this.cbdetail.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // ckbUnEditable
+            // 
+            resources.ApplyResources(this.ckbUnEditable, "ckbUnEditable");
+            this.ckbUnEditable.Name = "ckbUnEditable";
+            this.ckbUnEditable.UseVisualStyleBackColor = true;
+            this.ckbUnEditable.CheckedChanged += new System.EventHandler(this.ckbFilter_CheckedChanged);
+            // 
+            // Sims
+            // 
+            resources.ApplyResources(this, "$this");
+            this.Controls.Add(this.cbdetail);
+            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.lbUbi);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.lv);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Name = "Sims";
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 		#endregion
@@ -618,12 +389,17 @@ namespace SimPe.Plugin
 			lvi.Tag = sdesc;
 
 			lvi.SubItems.Add(sdesc.HouseholdName);
-			lvi.SubItems.Add(new Data.LocalizedLifeSections(sdesc.CharacterDescription.LifeSection).ToString());
+            if (sdesc.University.OnCampus == 0x1)
+                lvi.SubItems.Add(Localization.Manager.GetString("YoungAdult"));
+            else
+                lvi.SubItems.Add(new Data.LocalizedLifeSections(sdesc.CharacterDescription.LifeSection).ToString());
 
 			string kind = "";
-			if (sdesc.IsNPC) kind = "NPC";
-			else if (sdesc.IsTownie) kind = "Townie";
-			lvi.SubItems.Add(kind);
+            if (realIsNPC(sdesc)) kind = "NPC";
+            else if (realIsTownie(sdesc)) kind = "Townie";
+            else if (realIsPlayable(sdesc)) kind = "Playable";
+            else if (realIsUneditable(sdesc)) kind = "Uneditable";
+            lvi.SubItems.Add(kind);
 
 			if (sdesc.University.OnCampus==0x1) lvi.SubItems.Add(Localization.Manager.GetString("yes")); else lvi.SubItems.Add(Localization.Manager.GetString("no"));
 			lvi.SubItems.Add("0x"+Helper.HexString(sdesc.FileDescriptor.Instance));
@@ -660,7 +436,8 @@ namespace SimPe.Plugin
 
 		protected void FillList()
 		{
-			ilist.Images.Clear();
+            this.Cursor = Cursors.WaitCursor;
+            ilist.Images.Clear();
 			this.iListSmall.Images.Clear();
 			lv.BeginUpdate();
 			lv.Items.Clear();
@@ -670,11 +447,15 @@ namespace SimPe.Plugin
 				WaitingScreen.Wait();
 				PackedFiles.Wrapper.ExtSDesc sdesc = new SimPe.PackedFiles.Wrapper.ExtSDesc();
 				sdesc.ProcessData(spfd, package);
-				
-				if (!this.cbNpc.Checked && sdesc.IsNPC) continue;
-				if (!this.cbTownie.Checked && sdesc.IsTownie) continue;
-				//WaitingScreen.UpdateImage(ImageLoader.Preview(sdesc.Image, new Size(64, 64)));
-				AddSim(sdesc);
+
+                bool doAdd = false;
+                doAdd |= (this.cbNpc.Checked && realIsNPC(sdesc));
+                doAdd |= (this.cbTownie.Checked && realIsTownie(sdesc));
+                doAdd |= (this.ckbPlayable.Checked && realIsPlayable(sdesc));
+                doAdd |= (this.ckbUnEditable.Checked && realIsUneditable(sdesc));
+                
+                //WaitingScreen.UpdateImage(ImageLoader.Preview(sdesc.Image, new Size(64, 64)));
+				if (doAdd) AddSim(sdesc);
 			}
 
 			sorter.Sorting = lv.Sorting;
@@ -682,7 +463,34 @@ namespace SimPe.Plugin
 
 			lv.EndUpdate();
 			WaitingScreen.Stop(this);
-		}
+            this.Cursor = Cursors.Default;
+        }
+
+        private bool realIsNPC(PackedFiles.Wrapper.ExtSDesc sdesc)
+        {
+            return sdesc.FamilyInstance == 0x7fff;
+            /*if (sdesc.IsNPC) return true;
+            if (sdesc.CharacterDescription.NPCType == 0) return false;
+            if (sdesc.FamilyInstance != 0x7fff) return false;
+            return true;*/
+        }
+
+        private bool realIsTownie(PackedFiles.Wrapper.ExtSDesc sdesc)
+        {
+            return sdesc.FamilyInstance < 0x7fff && sdesc.FamilyInstance >= 0x7fe0;
+            /*return sdesc.IsTownie;*/
+        }
+
+        private bool realIsPlayable(PackedFiles.Wrapper.ExtSDesc sdesc)
+        {
+            return sdesc.FamilyInstance < 0x7fe0 && sdesc.FamilyInstance > 0;
+            /*return !realIsNPC(sdesc) && !realIsTownie(sdesc);*/
+        }
+
+        private bool realIsUneditable(PackedFiles.Wrapper.ExtSDesc sdesc)
+        {
+            return sdesc.FamilyInstance == 0;
+        }
 
 		SimPe.Interfaces.Files.IPackedFileDescriptor pfd;
 		SimPe.Interfaces.Files.IPackageFile package;
@@ -744,16 +552,10 @@ namespace SimPe.Plugin
 			lv.Sort();
 		}
 
-		private void cbNpc_CheckedChanged(object sender, System.EventArgs e)
-		{
-			if (package!=null)
-				this.FillList();
-		}
-
-		private void cbTownie_CheckedChanged(object sender, System.EventArgs e)
-		{
-			if (package!=null)
-				this.FillList();
-		}
+        private void ckbFilter_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (package != null)
+                this.FillList();
+        }
 	}
 }
