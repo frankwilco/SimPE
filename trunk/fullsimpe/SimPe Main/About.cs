@@ -356,6 +356,8 @@ namespace SimPe
                 System.IO.StreamReader sr = new System.IO.StreamReader(s);
                 html = sr.ReadToEnd();
                 sr.Close();
+                sr.Dispose();
+                sr = null;
             }
             return html;
         }
@@ -380,6 +382,8 @@ namespace SimPe
 				finally 
 				{
 					sr.Close();
+					sr.Dispose();
+					sr = null;
 				}
 			}
 
@@ -396,6 +400,8 @@ namespace SimPe
 			finally 
 			{
 				sw.Close();
+				sw.Dispose();
+				sw = null;
 			}
 		}
 

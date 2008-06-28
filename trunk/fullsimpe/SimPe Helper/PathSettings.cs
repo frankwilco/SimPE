@@ -79,6 +79,8 @@ namespace SimPe
                     System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(Helper.SimPePath, "RuntimePathSettings.cs"));
                     sw.Write(src);
                     sw.Close();
+                    sw.Dispose();
+                    sw = null;
 
                     Helper.ExceptionMessage(ex);
                 }

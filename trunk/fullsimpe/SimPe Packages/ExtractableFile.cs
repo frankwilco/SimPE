@@ -102,8 +102,8 @@ namespace SimPe.Packages
 			} 
 			else 
 			{
-				fs = si.FileStream;
-				si.SetFileAccess(FileAccess.Write);
+                si.SetFileAccess(FileAccess.Write);
+                fs = si.FileStream;
 			}
 
 			try 
@@ -113,7 +113,13 @@ namespace SimPe.Packages
 			} 
 			finally 
 			{
-				fs.Close();
+                if (si != null) si.Close();
+                else
+                {
+                    fs.Close();
+                    fs.Dispose();
+                    fs = null;
+                }
 			}
 		}
 
@@ -136,6 +142,8 @@ namespace SimPe.Packages
 			finally 
 			{
 				fs.Close();
+				fs.Dispose();
+				fs = null;
 			}
 		}
 
@@ -182,6 +190,8 @@ namespace SimPe.Packages
 			finally 
 			{
 				fs.Close();
+				fs.Dispose();
+				fs = null;
 			}
 		}
 	}

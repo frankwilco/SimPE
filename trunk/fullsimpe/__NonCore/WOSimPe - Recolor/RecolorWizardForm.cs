@@ -1118,7 +1118,7 @@ namespace SimPe.Wizards
 		private void invoke_LoadedItem(SimPe.Cache.ObjectCacheItem oci, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii, Data.Alias a)
 		{
 			//WaitingScreen.UpdateMessage(a.Name);
-			SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+			SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
 			objd.ProcessData(fii);
 			Image img = oci.Thumbnail;
 			if (img!=null) 

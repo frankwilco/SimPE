@@ -375,7 +375,8 @@ namespace SimPe
                     System.IO.BinaryReader br = new BinaryReader(s);
                     try
                     {
-                        System.IO.BinaryWriter bw = new BinaryWriter(System.IO.File.Create(fl));
+                        FileStream fs = System.IO.File.Create(fl);
+                        System.IO.BinaryWriter bw = new BinaryWriter(fs);
                         try
                         {
 
@@ -384,6 +385,10 @@ namespace SimPe
                         finally
                         {
                             bw.Close();
+                            bw = null;
+                            fs.Close();
+                            fs.Dispose();
+                            fs = null;
                         }
                     }
                     finally
@@ -427,6 +432,8 @@ namespace SimPe
                     System.IO.TextReader fs = System.IO.File.OpenText(StartupCheatFile);
                     string cont = fs.ReadToEnd();
                     fs.Close();
+                    fs.Dispose();
+                    fs = null;
                     string[] lines = cont.Split("\n".ToCharArray());
 
                     foreach (string line in lines)
@@ -461,6 +468,8 @@ namespace SimPe
                         System.IO.TextReader fs = System.IO.File.OpenText(StartupCheatFile);
                         string cont = fs.ReadToEnd();
                         fs.Close();
+                        fs.Dispose();
+                        fs = null;
 
                         string[] lines = cont.Split("\n".ToCharArray());
 
@@ -508,6 +517,8 @@ namespace SimPe
                     System.IO.TextWriter fw = System.IO.File.CreateText(StartupCheatFile);
                     fw.Write(newcont.Trim());
                     fw.Close();
+                    fw.Dispose();
+                    fw = null;
                 }
                 catch (Exception) { }
             }

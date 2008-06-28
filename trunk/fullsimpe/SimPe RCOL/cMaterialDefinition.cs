@@ -465,7 +465,7 @@ namespace SimPe.Plugin
                 }
                 xw.WriteEndElement();
             }
-            finally { xw.Close(); }
+            finally { xw.Close(); xw = null; }
         }
 
         /// <summary>
@@ -514,7 +514,7 @@ namespace SimPe.Plugin
                 }
                 xr.ReadEndElement();
             }
-            finally { xr.Close(); }
+            finally { xr.Close(); xr = null; }
         }
 		
 

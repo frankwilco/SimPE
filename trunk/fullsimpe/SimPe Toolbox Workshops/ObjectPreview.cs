@@ -469,7 +469,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			if (oci.Tag!=null)
 			if (oci.Tag is SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem) 
 			{
-				objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+				objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
 				objd.ProcessData((SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem)oci.Tag);
 			} 			
 		
@@ -494,7 +494,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFile(Data.MetaData.OBJD_FILE, 0, 0x41A7);
 			if (pfds.Length>0) 
 			{
-				objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+				objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
 				objd.ProcessData(pfds[0], pkg);				
 			} 
 			int fct = 0; int vct = 0;

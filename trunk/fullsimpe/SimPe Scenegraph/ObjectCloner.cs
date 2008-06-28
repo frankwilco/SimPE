@@ -277,7 +277,7 @@ namespace SimPe.Plugin
 			if (pfds.Length==0) pfds = package.FindFiles(Data.MetaData.OBJD_FILE);
 			if (pfds.Length>0) 
 			{
-				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
 				objd.ProcessData(pfds[0], package);
 				guid = objd.Guid;
 			}
@@ -295,7 +295,7 @@ namespace SimPe.Plugin
 			
 			foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
 			{
-				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
 				objd.ProcessData(pfd, package);
 				list.Add(objd.Guid);
 			}

@@ -271,7 +271,7 @@
       <string name="RegKey">Software\\EA Games\\The Sims 2 Teen Style Stuff</string>
       <int name="Flag">34</int><!-- 00100010 -->
       <string name="ExeName">Sims2SP6.exe</string>
-      <string name="Censor">quaxi_ofb_censor_v1.package</string>
+      <string name="Censor">quaxi_pets_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string>
       <int name="Group">1</int>
       <string name="namelistnr">5</string>
@@ -321,7 +321,7 @@
       <string name="RegKey">Software\EA Games\The Sims 2 Kitchen &amp; Bath Interior Design Stuff</string>
       <int name="Flag">34</int><!-- 00100010 -->
       <string name="ExeName">Sims2SP7.exe</string>
-      <string name="Censor">quaxi_ofb_censor_v1.package</string>
+      <string name="Censor">quaxi_pets_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\Res\StuffPack\Objects</string>
       <int name="Group">1</int>
       <string name="namelistnr">6</string>
@@ -334,6 +334,29 @@
         <string name="short">Kitchen</string>
         <string name="name">Kitchen &amp; Bath Interior Design Stuff</string>
         <string name="long">Die Sims 2 - Kitchen &amp; Bath Interior Design Stuff</string>
+      </key>
+    </key>
+
+    <!-- Information about The Sims 2 IKEA Home Stuff (provided by Deedee) -->
+    <key name="IKEA">
+      <int name="Version">15</int>
+      <int name="PreferedRuntimeVersion">13</int>
+      <string name="RegKey">Software\EA Games\The Sims 2 IKEA Home Stuff</string>
+      <int name="Flag">34</int><!-- 00100010 -->
+      <string name="ExeName">Sims2SP8.exe</string>
+      <string name="Censor">quaxi_pets_censor_v1.package</string>
+      <string name="ObjectsFolder">TSData\Res\StuffPack\Objects</string>
+      <int name="Group">1</int>
+      <string name="namelistnr">7</string>
+      <key name="en">
+        <string name="short">IKEA</string>
+        <string name="name">IKEA Home Stuff</string>
+        <string name="long">The Sims 2 - IKEA Home Stuff</string>
+      </key>
+      <key name="de">
+        <string name="short">IKEA</string>
+        <string name="name">IKEA Home Stuff</string>
+        <string name="long">Die Sims 2 - IKEA Home Stuff</string>
       </key>
     </key>
 

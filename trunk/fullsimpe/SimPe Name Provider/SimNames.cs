@@ -117,7 +117,7 @@ namespace SimPe.Providers
 
 		protected Alias AddSim(SimPe.Interfaces.Files.IPackageFile fl, IPackedFileDescriptor objdpfd, ref int ct, int step)
 		{
-			SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+			SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
 			objd.ProcessData(objdpfd, fl);
 
 			return AddSim(objd, ref ct, step, false);
@@ -263,7 +263,7 @@ namespace SimPe.Providers
 			{
 				if (this.HaveToStop) break;
 
-				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
 				objd.ProcessData(item);
 
 				if (objd.Type==Data.ObjectTypes.Person || objd.Type==Data.ObjectTypes.Template) 

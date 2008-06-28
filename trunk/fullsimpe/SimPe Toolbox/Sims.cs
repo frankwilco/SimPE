@@ -420,6 +420,8 @@ namespace SimPe.Plugin
 				System.IO.Stream s = System.IO.File.OpenRead(sdesc.CharacterFileName);
 				double sz = s.Length / 1024.0;				
 				s.Close();
+				s.Dispose();
+				s = null;
 				lvi.SubItems.Add(System.IO.Path.GetFileNameWithoutExtension(sdesc.CharacterFileName));
 				lvi.SubItems.Add(sz.ToString("N2")+"kb");
 			} 

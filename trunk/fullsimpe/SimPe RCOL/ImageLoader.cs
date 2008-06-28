@@ -166,6 +166,8 @@ namespace SimPe.Plugin
 			finally 
 			{
 				fs.Close();
+				fs.Dispose();
+				fs = null;
 			}
 
 			return maps;

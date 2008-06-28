@@ -219,6 +219,9 @@
     <Compile Include="ISDesc.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ISettings.cs" />
+    <Compile Include="ISettingsFactory.cs" />
+    <Compile Include="ISettingsRegistry.cs" />
     <Compile Include="ISimDescriptionProvider.cs">
       <SubType>Code</SubType>
     </Compile>

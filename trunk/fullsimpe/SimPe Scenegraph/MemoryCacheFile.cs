@@ -83,7 +83,7 @@ namespace SimPe.Cache
 				if (citems.Length==0) 
 				{
 					
-					SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+					SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
 					objd.ProcessData(item);
 
 					this.AddItem(objd);					

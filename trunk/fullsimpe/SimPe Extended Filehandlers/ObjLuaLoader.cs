@@ -76,15 +76,20 @@ namespace SimPe
 					bw.Write((int)name.Length);
 					bw.Write(Helper.ToBytes(name, name.Length));
 
-					System.IO.BinaryReader br = new System.IO.BinaryReader(System.IO.File.Open(fl, System.IO.FileMode.Open));
+                    System.IO.FileStream fs = System.IO.File.Open(fl, System.IO.FileMode.Open);
+					System.IO.BinaryReader br = new System.IO.BinaryReader(fs);
 					try 
 					{
 						bw.Write(br.ReadBytes((int)br.BaseStream.Length));
 					} 
 					finally 
 					{
-						br.Close();
-					}
+                        br.Close();
+                        br = null;
+                        fs.Close();
+                        fs.Dispose();
+                        fs = null;
+                    }
 
 					br = new System.IO.BinaryReader(bw.BaseStream);
 					br.BaseStream.Seek(0, System.IO.SeekOrigin.Begin);

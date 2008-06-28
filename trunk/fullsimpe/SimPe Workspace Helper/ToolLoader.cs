@@ -120,17 +120,21 @@ namespace SimPe
 		/// <param name="dscfile"></param>
 		public static void SavePackedFile(string filename, bool dscfile, SimPe.Packages.PackedFileDescriptor pfd, SimPe.Packages.GeneratableFile package)
 		{
+#if !DEBUG
 			try 
+#endif
 			{
 				pfd.Path = System.IO.Path.GetDirectoryName(filename);
 				pfd.Path = ".\\";
 				pfd.Filename = System.IO.Path.GetFileName(filename);
 				package.SavePackedFile(filename, null, pfd, dscfile);
 			}
+#if !DEBUG
 			catch (Exception ex) 
 			{
 				Helper.ExceptionMessage(Localization.Manager.GetString("errwritingfile")+filename, ex);
 			} 
+#endif
 		}
 
 		/// <summary>
@@ -211,6 +215,8 @@ namespace SimPe
 				finally 
 				{
 					fs.Close();
+					fs.Dispose();
+					fs = null;
 				}
 			}
 			catch (Exception ex) 

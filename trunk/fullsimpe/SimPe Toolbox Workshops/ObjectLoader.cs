@@ -358,7 +358,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			//this item is new to the cache, so load the Data
 			if ((!oci.Useable || oci.ObjectVersion!=SimPe.Cache.ObjectCacheItemVersions.DockableOW) && nrefitem.FileDescriptor.Type == Data.MetaData.OBJD_FILE)
 			{
-				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
 				nrefitem.FileDescriptor.UserData = nrefitem.Package.Read(nrefitem.FileDescriptor).UncompressedData;
 				objd.ProcessData(nrefitem);
 

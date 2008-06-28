@@ -681,6 +681,8 @@ namespace SimPe.Plugin
 					System.IO.Stream s = System.IO.File.OpenRead(ofd.FileName);
 					Image img = Image.FromStream(s);
 					s.Close();
+					s.Dispose();
+					s = null;
 
 					img = this.CropImage(id, img);
 					if (img==null) return;
@@ -1094,6 +1096,8 @@ namespace SimPe.Plugin
 					System.IO.Stream s = System.IO.File.OpenRead(ofd.FileName);
 					Image img = Image.FromStream(s);
 					s.Close();
+					s.Dispose();
+					s = null;
 
 					img = this.CropImage(id, img);
 					if (img==null) return;

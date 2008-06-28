@@ -142,7 +142,7 @@ namespace SimPe.Packages
 		/// </summary>
 		public void Close()
 		{
-			if (this.StreamState==StreamState.Opened) fs.Close();
+			if (fs != null) { fs.Close(); fs.Dispose(); fs = null; }
 		}
 	}
 

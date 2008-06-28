@@ -553,6 +553,64 @@ de.C_SimpeScenegrapher=Scenegrapher
 C_PLJones_objkey=PLJones ObjKey (3idr) Tool
 it.C_PLJones_objkey=PLJones ObjKey (3idr) Tool
 de.C_PLJones_objkey=PLJones ObjKey (3idr) Tool
+fr.NameAndVersion=%1 version %2
+fr.AdditionalIcons=Autres raccourcis
+fr.CreateDesktopIcon=Placer un raccourcis sur le &bureau
+fr.CreateQuickLaunchIcon=Placer un raccourcis dans la zone de &Lancement rapide
+fr.ProgramOnTheWeb=%1 sur internet
+fr.UninstallProgram=Désinstaller %1
+fr.LaunchProgram=Lancer %1
+fr.AssocFileExtension=&Associer l'extension de fichier %2 à %1
+fr.AssocingFileExtension=Association de l'extension de fichier %2 à %1...
+fr.NoDotNet=Le .NET Framework v2.0 ne semble pas être installé, SimPE ne pourra donc pas fonctionner correctement.%n%nVous pouvez en télécharger une version pour votre système sur le site de Windows Update.%n%nAppuyer sur OK pour tout de même procéder à l'installation de SimPE, ou Annuler pour quitter l'installation.
+fr.ViewReadme=Afficher le fichier LisezMoi
+fr.C_Core=Composantes principales
+fr.C_Main=SimPE et plugins de base
+fr.C_Classic=SimPE (Interface classique)
+fr.C_Wos=Assistant de SimPE
+fr.C_LangEN=(Option non disponible pour ce système)
+fr.C_LangDE=Allemand
+fr.C_LangIT=Italien (par Sims2Cri)
+fr.C_Theme=Thème
+fr.C_modern_look=Apparence moderne
+fr.C_classic_look=Apparence classique
+fr.C_Doc=Documentation
+fr.C_Debug=Composantes de diagnostique
+fr.C_PsTemplate=Modèles pour Photo Studio
+fr.UninstallPrevious=Désinstallation de la version précédente de SimPE...
+fr.UninstallPreviousFailed=Une erreur est survenue lors de la désinstallation de la précédente version de SimPE.%n%nDésirez-vous ignorer cette erreur et poursuivre l'installation de SimPE?
+fr.C_ThirdParty=Plugins SimPE de tiers parties
+fr.C_CareerEditor=Éditeur de carrière de Bidou
+fr.C_PLJones=Éditeur SimAntics de PLJones
+fr.C_doc_en=Documentation Anglaise
+fr.C_doc_de=Documentation Allemande
+fr.C_Lang=Fichiers de langue (Traductions)
+fr.C_Complete=Complète
+fr.C_Custom=Personnalisée
+fr.C_Min=Minimale
+fr.C_PLJones_obj=PLJones Object Finder
+fr.C_PLJones_body=PLJones Body Mesh Tool
+fr.C_SkankyBoy=SkankyBoys Mesh Importer/Exporter (3DS, SMD)
+fr.C_Plugins=Autres plugins (optionnel)
+fr.C_3D_Plugins=Aperçu 3D pour les fichiers ANIM
+fr.C_LangES=Espagnole (par Malakun)
+fr.C_LangPL=Polonais (par Wlodi)
+fr.C_LangRU=Russe (par Necromante)
+fr.C_LangFR=Français (par DeeVo)
+fr.C_LangTask=Installer une traduction d'interface OPTIONELLE :
+fr.C_TheoScanner=Theo's Mesh Scanner
+fr.C_TheoBinningTool=Theo's Binning Tool
+fr.C_TheoClothingEditor=Theo's Clothing Editor
+fr.C_Includes=Listes optionnelles de TRCN, TPRP et GUID pour l'Éditeur de SimAntics
+fr.C_SimDeleter=Outil de suppression de Sim (par Quaxi)
+fr.C_Extra=Extras
+fr.C_SimpeBHAV=Éditeur BHAV intégré à SimPE
+fr.C_SimpeDockBox=Support des fenêtres détachables
+fr.C_SimpeDownloads=Support de téléchargements externes
+fr.C_SimpeGMDC=Support de mesh aux formats OBJ, TXT, X, XSI
+fr.C_SimpeNHscanner=Explorateur de Quartier
+fr.C_SimpeScenegrapher=Scenegrapher
+fr.C_PLJones_objkey=PLJones ObjKey (3idr) Tool
 
 [Languages]
 ; Note: When adding a new language here, please include also a translation of all the 'Custom Messages'
@@ -560,7 +618,7 @@ Name: en; MessagesFile: compiler:Default.isl; LicenseFile: ..\__Installer\embedd
 Name: de; MessagesFile: compiler:Languages\German.isl; LicenseFile: ..\__Installer\embedded\deLicense.txt; InfoBeforeFile: ..\__Installer\embedded\deInfoBefore.txt
 Name: pl; MessagesFile: compiler:Languages\Polish.isl; LicenseFile: ..\__Installer\embedded\plLicense.txt; InfoBeforeFile: ..\__Installer\embedded\plInfoBefore.txt
 Name: it; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: ..\__Installer\embedded\itLicense.txt; InfoBeforeFile: ..\__Installer\embedded\itInfoBefore.txt
-
+Name: fr; MessagesFile: compiler:Languages\French.isl; LicenseFile: ..\__Installer\embedded\frLicense.txt; InfoBeforeFile: ..\__Installer\embedded\frInfoBefore.txt
 
 [InstallDelete]
 Name: {app}\Plugins\theo*.dll; Type: files

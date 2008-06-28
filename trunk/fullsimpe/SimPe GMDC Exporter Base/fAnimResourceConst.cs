@@ -429,6 +429,8 @@ namespace SimPe.Plugin.Anim
 				finally
 				{
 					sw.Close();
+					sw.Dispose();
+					sw = null;
 				}
 			
 			}

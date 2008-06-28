@@ -447,6 +447,8 @@ namespace SimPe.Plugin.TabPage
 			finally 
 			{
 				sw.Close();
+				sw.Dispose();
+				sw = null;
 			}
 #endif
 		}

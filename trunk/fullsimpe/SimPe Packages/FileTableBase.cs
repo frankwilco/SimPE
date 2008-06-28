@@ -133,6 +133,7 @@ namespace SimPe
                 finally
                 {
                     xr.Close();
+                    xr = null;
                 }
             }
 		}
@@ -202,6 +203,7 @@ namespace SimPe
                 finally
                 {
                     xw.Close();
+                    xw = null;
                 }
             }
             catch (Exception ex)

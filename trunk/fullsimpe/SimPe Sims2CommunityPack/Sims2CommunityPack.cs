@@ -522,6 +522,8 @@ namespace SimPe.Packages
 				finally 
 				{
 					fs.Close();
+					fs.Dispose();
+					fs = null;
 				}
 				return true;
 			}
@@ -553,6 +555,8 @@ namespace SimPe.Packages
 				finally 
 				{
 					fs.Close();
+					fs.Dispose();
+					fs = null;
 				}
 				return true;
 			}

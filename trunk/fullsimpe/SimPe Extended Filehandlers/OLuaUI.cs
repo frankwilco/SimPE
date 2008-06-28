@@ -331,6 +331,8 @@ namespace SimPe.PackedFiles.UserInterface
 				finally 
 				{
 					sw.Close();
+					sw.Dispose();
+					sw = null;
 				}
 			}
 		}

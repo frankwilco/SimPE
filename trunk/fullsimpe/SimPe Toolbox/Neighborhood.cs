@@ -242,6 +242,8 @@ namespace SimPe.Plugin
 				System.IO.Stream st = System.IO.File.OpenRead(name);
 				Image img = Image.FromStream(st);
 				st.Close();
+				st.Dispose();
+				st = null;
 				WaitingScreen.UpdateImage(ImageLoader.Preview(img, WaitingScreen.ImageSize));	
 				this.ilist.Images.Add(img);
 			} 

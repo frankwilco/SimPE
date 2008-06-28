@@ -203,7 +203,7 @@ namespace SimPe.Plugin.Downloads
 			if (oci.Tag!=null)
 				if (oci.Tag is SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem) 
 				{
-					objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+					objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
 					objd.ProcessData((SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem)oci.Tag);
 				} 			
 		
@@ -237,7 +237,7 @@ namespace SimPe.Plugin.Downloads
             {
                 foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
                 {
-                    SimPe.PackedFiles.Wrapper.ExtObjd mobjd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+                    SimPe.PackedFiles.Wrapper.ExtObjd mobjd = new SimPe.PackedFiles.Wrapper.ExtObjd();
                     mobjd.ProcessData(pfd, pkg);
 
 					nfo.AddGuid(mobjd.Guid);

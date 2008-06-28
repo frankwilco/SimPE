@@ -93,14 +93,15 @@ namespace SimPe
 		/// </summary>
 		void LoadStaticWrappers()
 		{
-			FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.SimFactory());
+            FileTable.WrapperRegistry.Register(new SimPe.Custom.SettingsFactory());
+            FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.SimFactory());
 			FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.ExtendedWrapperFactory());
 			FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.DefaultWrapperFactory());
 			//FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.GenericWrapperFactory());
 			FileTable.WrapperRegistry.Register(new SimPe.Plugin.ScenegraphWrapperFactory());
 			FileTable.WrapperRegistry.Register(new SimPe.Plugin.RefFileFactory());
-			FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.ClstWrapperFactory());
-		}
+            FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.ClstWrapperFactory());
+        }
 
 		/// <summary>
 		/// Load all Wrappers found in the Plugins Folder

@@ -173,6 +173,8 @@ namespace SimPe.Packages
 				finally 
 				{
 					fs.Close();
+					fs.Dispose();
+					fs = null;
 				}
 
 				if (System.IO.File.Exists(bakfile)) System.IO.File.Delete(bakfile);
@@ -204,22 +206,14 @@ namespace SimPe.Packages
 		/// <param name="ms">The Memory Stream you want to write</param>
 		/// <param name="fs">The Filestream you want to write the File to</param>
 		protected void Save(MemoryStream ms, FileStream fs)
-		{			
-			try 
-			{
-				fs.Seek(0, SeekOrigin.Begin);
-				fs.SetLength(0);
-				byte[] b = ms.ToArray();
-				//fs.Lock(0, reader.BaseStream.Length);
-				fs.Write(b, 0, b.Length);
-				//fs.Unlock(0, reader.BaseStream.Length);
-				
-			} 
-			finally 
-			{
-				fs.Close();
-			}
-		}
+		{
+            fs.Seek(0, SeekOrigin.Begin);
+            fs.SetLength(0);
+            byte[] b = ms.ToArray();
+            //fs.Lock(0, reader.BaseStream.Length);
+            fs.Write(b, 0, b.Length);
+            //fs.Unlock(0, reader.BaseStream.Length);
+        }
 
 		/// <summary>
 		/// This is used to enable SimPe to add compressed Resources

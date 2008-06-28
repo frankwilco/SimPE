@@ -1201,7 +1201,6 @@ This means, that SimPE is unable to build the Joint Hirarchy.</value>
   <data name="SimPe.ResourceListFormats.JustLongType" xml:space="preserve">
     <value>long type</value>
   </data>
-
   <data name="SimPe.ResourceListFormats.JustShortType" xml:space="preserve">
     <value>short type</value>
   </data>
@@ -1350,11 +1349,10 @@ In order for SimPE to run correct, you need to install .NET 2.0.</value>
   </data>
   <data name="PetService" xml:space="preserve">
     <value>Pet - Service</value>
-  </data>s
+  </data>
   <data name="PetShowBiz" xml:space="preserve">
     <value>Pet - Show Biz</value>
   </data>
-
   <data name="TeenElderConstruction" xml:space="preserve">
     <value>Teen/Elder - Construction</value>
   </data>
@@ -1370,8 +1368,6 @@ In order for SimPE to run correct, you need to install .NET 2.0.</value>
   <data name="TeenElderOcenography" xml:space="preserve">
     <value>Teen/Elder - Ocenography</value>
   </data>
-
-
   <data name="Construction" xml:space="preserve">
     <value>Construction</value>
   </data>
@@ -1402,7 +1398,6 @@ In order for SimPE to run correct, you need to install .NET 2.0.</value>
   <data name="URLKnowledgeBase" xml:space="preserve">
     <value>http://sims.ambertation.de/en/kb/</value>
   </data>
-  
   <data name="SimPe.PackedFiles.Wrapper.Hobbies.Cuisine" xml:space="preserve">
     <value>Cuisine</value>
   </data>
@@ -1436,7 +1431,6 @@ In order for SimPE to run correct, you need to install .NET 2.0.</value>
   <data name="SimPe.PackedFiles.Wrapper.Hobbies.Secret" xml:space="preserve">
     <value>Secret ???</value>
   </data>
-
   <data name="SimPe.Plugin.LotOrientation.Below" xml:space="preserve">
     <value>Below</value>
   </data>
@@ -1448,5 +1442,14 @@ In order for SimPE to run correct, you need to install .NET 2.0.</value>
   </data>
   <data name="SimPe.Plugin.LotOrientation.Right" xml:space="preserve">
     <value>Right</value>
+  </data>
+  <data name="[Category:SimPe]" xml:space="preserve">
+    <value>SimPe Global Preferences</value>
+  </data>
+  <data name="[Description:KeepFilesOpen]" xml:space="preserve">
+    <value>When true, this improves performance by keeping "in use" files open.  When false, files are closed at the earliest opportunity, releasing resources and allowing the files to be used by other programs.</value>
+  </data>
+  <data name="[Property:KeepFilesOpen]" xml:space="preserve">
+    <value>Keep files open</value>
   </data>
 </root>

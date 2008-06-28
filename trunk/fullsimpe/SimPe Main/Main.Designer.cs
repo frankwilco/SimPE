@@ -206,6 +206,7 @@ namespace SimPe
             this.sfd = new System.Windows.Forms.SaveFileDialog();
             this.waitControl1 = new SimPe.WaitControl();
             this.resourceViewManager1 = new SimPe.Windows.Forms.ResourceViewManager();
+            this.miShowName = new System.Windows.Forms.ToolStripMenuItem();
             this.tbContainer.ContentPanel.SuspendLayout();
             this.tbContainer.TopToolStripPanel.SuspendLayout();
             this.tbContainer.SuspendLayout();
@@ -785,6 +786,7 @@ namespace SimPe
             this.miNew,
             this.miOpen,
             this.miOpenIn,
+            this.miShowName,
             this.miSave,
             this.miSaveAs,
             this.miSaveCopyAs,
@@ -973,6 +975,12 @@ namespace SimPe
             this.resourceViewManager1.Package = null;
             this.resourceViewManager1.TreeView = this.tv;
             // 
+            // miShowName
+            // 
+            this.miShowName.Name = "miShowName";
+            resources.ApplyResources(this.miShowName, "miShowName");
+            this.miShowName.Click += new System.EventHandler(this.miShowName_Click);
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1026,6 +1034,7 @@ namespace SimPe
         private Label label2;
         private Label label1;
         private Label label5;
+        private ToolStripMenuItem miShowName;
 
     }
 }

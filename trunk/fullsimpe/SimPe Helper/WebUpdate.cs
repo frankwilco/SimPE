@@ -51,7 +51,7 @@ namespace SimPe.Updates
 				if (Helper.StartedGui==Executable.Classic) WaitingScreen.Stop();
 				else Wait.SubStop();
 				if (fDnld!=null) fDnld.Close();
-				if (fOut!=null) fOut.Close();				
+				if (fOut!=null) { fOut.Close(); fOut.Dispose(); fOut = null; }
 			}
 		}
 

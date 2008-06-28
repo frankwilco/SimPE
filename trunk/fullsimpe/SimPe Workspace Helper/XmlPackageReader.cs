@@ -179,7 +179,8 @@ namespace SimPe
 
 			if (File.Exists(flname.ToString())) 
 			{
-				System.IO.BinaryReader mbr = new System.IO.BinaryReader(System.IO.File.OpenRead(flname.ToString()));
+                FileStream fs = System.IO.File.OpenRead(flname.ToString());
+				System.IO.BinaryReader mbr = new System.IO.BinaryReader(fs);
 				try 
 				{
 					byte[] data = new byte[mbr.BaseStream.Length];
@@ -189,6 +190,10 @@ namespace SimPe
 				finally 
 				{
 					mbr.Close();
+                    mbr = null;
+                    fs.Close();
+                    fs.Dispose();
+                    fs = null;
 				}
 			}
 

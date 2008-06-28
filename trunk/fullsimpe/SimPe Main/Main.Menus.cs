@@ -178,6 +178,7 @@ namespace SimPe
             this.miSaveCopyAs.Enabled = this.miSave.Enabled;
             this.miSaveAs.Enabled = package.Loaded;
             this.miClose.Enabled = package.Loaded;
+            this.miShowName.Enabled = package.Loaded;
 
             if (!createdmenus)
             {

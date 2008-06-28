@@ -234,15 +234,20 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			try 
 			{
-				System.IO.BinaryWriter writer = new System.IO.BinaryWriter(System.IO.File.Create(flname));
+                System.IO.FileStream fs = System.IO.File.Create(flname);
+				System.IO.BinaryWriter writer = new System.IO.BinaryWriter(fs);
 				try 
 				{
 					SerializeLua(writer);
 				} 
 				finally 
 				{
-					writer.Close();
-				}
+                    writer.Close();
+                    writer = null;
+                    fs.Close();
+                    fs.Dispose();
+                    fs = null;
+                }
 			} 
 			catch (Exception ex)
 			{
@@ -254,15 +259,20 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			try 
 			{
-				System.IO.BinaryReader reader = new System.IO.BinaryReader(System.IO.File.OpenRead(flname));
+                System.IO.FileStream fs = System.IO.File.OpenRead(flname);
+				System.IO.BinaryReader reader = new System.IO.BinaryReader(fs);
 				try 
 				{
 					UnserializeLua(reader);
 				} 
 				finally 
 				{
-					reader.Close();
-				}
+                    reader.Close();
+                    reader = null;
+                    fs.Close();
+                    fs.Dispose();
+                    fs = null;
+                }
 			} 
 			catch (Exception ex)
 			{
