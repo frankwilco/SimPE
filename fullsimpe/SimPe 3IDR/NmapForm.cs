@@ -857,6 +857,8 @@ namespace SimPe.Plugin
 					finally 
 					{
 						tw.Close();
+						tw.Dispose();
+						tw = null;
 					}
 				} 
 				catch (Exception ex) 

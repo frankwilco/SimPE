@@ -65,6 +65,12 @@ namespace SimPe.Plugin.Tool
 				}
 			}
 			base.Dispose( disposing );
+			if (csv != null)
+			{
+				csv.Close();
+				csv.Dispose();
+				csv = null;
+			}
 		}
 
 		#region Vom Windows Form-Designer generierter Code
@@ -225,6 +231,9 @@ namespace SimPe.Plugin.Tool
 				finally 
 				{
 					sw.Close();
+					sw.Dispose();
+					sw = null;
+					sr = null;
 				}
 			}
 		}

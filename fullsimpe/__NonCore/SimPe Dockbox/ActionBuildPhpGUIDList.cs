@@ -55,7 +55,7 @@ namespace SimPe.Plugin.Tool.Action
 					
 					
 					
-					SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+					SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
 					objd.ProcessData(item);
 
 					if (guids.Contains(objd.Guid)) continue;

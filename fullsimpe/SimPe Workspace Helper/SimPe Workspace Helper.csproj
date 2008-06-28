@@ -236,15 +236,6 @@
     <Compile Include="IListener.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ISettings.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ISettingsFactory.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ISettingsRegistry.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="ITool.cs">
       <SubType>Code</SubType>
     </Compile>

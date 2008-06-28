@@ -601,7 +601,7 @@ namespace SimPe.Plugin.Scanner
 			ArrayList mylist = new ArrayList();
 			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
 			{
-				SimPe.PackedFiles.Wrapper.ExtObjd objd = new ExtObjd(null);
+				SimPe.PackedFiles.Wrapper.ExtObjd objd = new ExtObjd();
 				objd.ProcessData(pfd, si.Package, false);				
 
 				mylist.Add(objd.Guid);

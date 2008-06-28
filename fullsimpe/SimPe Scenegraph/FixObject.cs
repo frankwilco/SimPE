@@ -646,7 +646,7 @@ namespace SimPe.Plugin
 			bool updaterugs = false;
 			foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
 			{
-				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
 				objd.ProcessData(pfd, package);
 
 				//is one of the objd's a rug?
@@ -662,7 +662,7 @@ namespace SimPe.Plugin
 			{
 				foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
 				{
-					SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+					SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
 					objd.ProcessData(pfd, package);
 
 					//make sure the Type of a Rug is not a Tile, but Normal

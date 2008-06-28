@@ -1,0 +1,11 @@
+SimPE est un outil qui peut être utilisé pour altérer les données internes du jeu "Les Sims 2". 
+
+Beaucoup d'utilisateurs ont utilisé SimPE sans problèmes. Toutefois, si vous ne faites pas attention, cet outil peut aussi nuire à votre jeu ou même votre système. Ne pas utiliser SimPE si vous ne voulez pas prendre ce risque! Rappelez-vous: SimPE est dans sa phase alpha! 
+
+Nous conseillons vivement de faire une sauvegarde fonctionnelle du dossier "Mes documents\EA Games\Les Sims 2" avant de débuter avec SimPE. 
+
+Pour exécuter SimPE vous avez besoin de Microsoft .NET Framework 2.0 (http://www.microsoft.com/downloads/details.aspx?familyid=0856eacb-4362-4b0d-8edd-aab15c5e04f5&displaylang=en) 
+
+Pour que l'«Assistant de SimPE» et «Photo Studio» fonctionnent, vous devez installer l'emballage "Colour Options Enabler" ( "CEP", http://cep.modthesims2.com). Les modèles par défaut pour PhotoStudio ne sont plus livrés avec les récentes versions de SimPE, comme c'était le cas pour les précédentes versions. C'est pourquoi, lors du premier démarrage, SimPE offrira d'installer les modèles via Internet. 
+
+Pour obtenir de meilleurs résultats lors de la compression de texture, vous devez installer "Nvidia DDS Utilities" (http://developer.nvidia.com/object/dds_utilities_legacy.html).

@@ -202,6 +202,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			lbft.Items.Add(" 3: "+ct[2].ToString());
 
 			sw.Close();
+			sw.Dispose();
+			sw = null;
 		}
 
 		#region IToolExt Member

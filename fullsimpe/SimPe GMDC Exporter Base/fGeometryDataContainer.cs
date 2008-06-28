@@ -2854,6 +2854,8 @@ namespace SimPe.Plugin
 				finally 
 				{
 					meshreader.Close();
+					meshreader.Dispose();
+					meshreader = null;
 				}
 			}
 		}
@@ -2904,6 +2906,8 @@ namespace SimPe.Plugin
 					//System.IO.StreamWriter meshwriter = File.CreateText(sfd.FileName);						
 					//meshwriter.Write(sr.ReadToEnd());
 					meshwriter.Close();
+					meshwriter.Dispose();
+					meshwriter = null;
 				}
 			}
 			catch (Exception exception1)

@@ -97,7 +97,7 @@ namespace SimPe.Providers
 			ArrayList list = new ArrayList();
 			Interfaces.Files.IPackedFileDescriptor pfd;					
 			
-			SimPe.PackedFiles.Wrapper.ExtObjd objd= new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+			SimPe.PackedFiles.Wrapper.ExtObjd objd= new SimPe.PackedFiles.Wrapper.ExtObjd();
 			SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
 			
 			FileTable.FileIndex.Load();

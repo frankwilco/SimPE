@@ -20,7 +20,6 @@
 using System;
 using System.Windows.Forms;
 using System.Drawing;
-using SimPe.Events;
 
 namespace SimPe.Interfaces
 {

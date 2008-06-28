@@ -214,6 +214,7 @@
     <Compile Include="PackedFileDescriptors.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="StreamMaintainer.cs">
       <SubType>Code</SubType>
     </Compile>

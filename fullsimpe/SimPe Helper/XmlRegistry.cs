@@ -522,6 +522,8 @@ namespace SimPe
 				{
 					sw.Flush();
 					sw.Close();
+					sw.Dispose();
+					sw = null;
 				}
 			} 
 			catch (Exception ex)

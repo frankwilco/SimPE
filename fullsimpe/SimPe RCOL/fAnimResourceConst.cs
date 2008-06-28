@@ -265,6 +265,8 @@ namespace SimPe.Plugin
 				finally
 				{
 					sw.Close();
+					sw.Dispose();
+					sw = null;
 				}
 				#endif
 			}

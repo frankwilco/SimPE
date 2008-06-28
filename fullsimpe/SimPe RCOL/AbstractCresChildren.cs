@@ -222,6 +222,8 @@ namespace SimPe.Plugin
 			{
 #if DEBUG
 				sw.Close();
+				sw.Dispose();
+				sw = null;
 #endif
 			}
 

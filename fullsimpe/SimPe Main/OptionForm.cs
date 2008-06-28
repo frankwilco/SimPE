@@ -464,6 +464,7 @@ namespace SimPe
                 finally
                 {
                     xw.Close();
+                    xw = null;
                 }
             }
             catch (Exception ex)

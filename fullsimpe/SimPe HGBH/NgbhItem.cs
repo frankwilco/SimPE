@@ -227,7 +227,7 @@ namespace SimPe.Plugin
 			{
 				if (objd!=null) return objd;
 
-				this.objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+				this.objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
 
 				SimPe.Cache.MemoryCacheItem mci = SimPe.PackedFiles.Wrapper.ObjectComboBox.ObjectCache.FindItem(guid);
 				if (mci!=null) 

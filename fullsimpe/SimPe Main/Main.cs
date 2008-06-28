@@ -732,6 +732,22 @@ namespace SimPe
         {
             Ambertation.Windows.Forms.Debug.StructureTreeView.Execute(manager);
         }
+
+        private void miShowName_Click(object sender, EventArgs e)
+        {
+            if (package == null) return;
+
+            string[] sa = package.FileName.Split(new char[] { '\\' });
+            string s = sa[0];
+            for (int i = 1; i < sa.Length; i++)
+            {
+                s += "\\\r\n";
+                for (int j = 0; j < i; j++) s += "  ";
+                s += sa[i];
+            }
+
+            MessageBox.Show(s, "SimPe", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 	}
 			
 }

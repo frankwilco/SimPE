@@ -1,0 +1,7 @@
+Cet outil est dans sa phase alpha. 
+
+L'utilisation de SimPE pourrait causer des problèmes à votre jeu "Les Sims 2" ou l'ensemble du système. Si vous installez ce logiciel vous acceptez ce risque et prenez pour acquis que les développeurs de ce logiciel et ses plugins ne peuvent être tenues responsable pour tout dommage. 
+
+SimPE utilise l'utilitaire de ligne de commande de 7-Zip pour gérer les archives (comme .7z, .Rar...). Le logiciel est distribué sous licence GPL. Pour de plus amples informations, visitez le site: http://www.7-zip.org. 
+
+Certains contrôles d'interface graphique ont été créés par SteepValley (http://www.steepvalley.net/).

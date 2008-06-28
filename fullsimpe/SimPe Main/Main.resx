@@ -1869,6 +1869,15 @@
   <data name="miOpen.Text" xml:space="preserve">
     <value>&amp;Open...</value>
   </data>
+  <data name="miShowName.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="miShowName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 22</value>
+  </data>
+  <data name="miShowName.Text" xml:space="preserve">
+    <value>Sho&amp;w name...</value>
+  </data>
   <data name="miSave.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

@@ -180,6 +180,8 @@ namespace SimPe
 					finally 
 					{
 						sw.Close();
+						sw.Dispose();
+						sw = null;
 					}
 				} 
 				catch (Exception ex) 
@@ -194,7 +196,8 @@ namespace SimPe
             {
                 try
                 {
-                    System.IO.BinaryWriter sw = new System.IO.BinaryWriter(System.IO.File.OpenWrite(Helper.LayoutFileName));
+                    System.IO.FileStream fs = System.IO.File.OpenWrite(Helper.LayoutFileName);
+                    System.IO.BinaryWriter sw = new System.IO.BinaryWriter(fs);
                     sw.BaseStream.SetLength(0);
                     try
                     {
@@ -205,6 +208,13 @@ namespace SimPe
                     finally
                     {
                         sw.Close();
+                        sw = null;
+                        fs.Close();
+                        fs.Dispose();
+                        fs = null;
+                        s.Close();
+                        s.Dispose();
+                        s = null;
                     }
 
                     Helper.WindowsRegistry.ReloadLayout();
@@ -629,9 +639,14 @@ namespace SimPe
 			rcol.Blocks[0] = id;
 
 			rcol.SynchronizeUserData();
-			System.IO.BinaryWriter bw = new System.IO.BinaryWriter(System.IO.File.Create(output));
+            System.IO.FileStream fs = System.IO.File.Create(output);
+			System.IO.BinaryWriter bw = new System.IO.BinaryWriter(fs);
 			bw.Write(rcol.FileDescriptor.UserData);
-			bw.Close();
+            bw.Close();
+            bw = null;
+            fs.Close();
+            fs.Dispose();
+            fs = null;
 
 			return true;
 		}
@@ -840,6 +855,8 @@ namespace SimPe
             sw.WriteLine("</semiglobals>");
             Console.WriteLine("Finished writing to "+fl);
             sw.Close();
+            sw.Dispose();
+            sw = null;
             Console.WriteLine("Closed File");
             Console.WriteLine("DONE!");
 

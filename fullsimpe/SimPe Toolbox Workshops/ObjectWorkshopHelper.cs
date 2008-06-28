@@ -686,7 +686,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		protected static void UpdateDescription(OWCloneSettings cs, SimPe.Packages.GeneratableFile package)
 		{
 			//change the price in the OBJd
-			SimPe.PackedFiles.Wrapper.ExtObjd obj = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+			SimPe.PackedFiles.Wrapper.ExtObjd obj = new SimPe.PackedFiles.Wrapper.ExtObjd();
 			SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
 			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(Data.MetaData.OBJD_FILE);
 			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)

@@ -217,7 +217,8 @@ namespace SimPe.Packages
 		/// <param name="filename"></param>
 		internal void ReloadFromFile(string filename) 
 		{
-			persistent = true;
+            // Not sure exactly what this does...
+			persistent = SimPe.Custom.Settings.Persistent;
 			StreamItem si = StreamFactory.UseStream(filename, System.IO.FileAccess.Read);
 			
 			if (si.StreamState!=StreamState.Removed) 

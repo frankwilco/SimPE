@@ -98,7 +98,7 @@ namespace SimPe.Plugin.Scanner
 
 							if (pfd.Type == Data.MetaData.OBJD_FILE) 
 							{
-								SimPe.PackedFiles.Wrapper.ExtObjd obj = new ExtObjd(null);
+								SimPe.PackedFiles.Wrapper.ExtObjd obj = new ExtObjd();
 								obj.ProcessData(pfd, si.Package);
 
 								if (obj.Ok!=SimPe.PackedFiles.Wrapper.ObjdHealth.Ok) ps.Data[0] = (uint)HealthState.NonDefaultObjd;
@@ -237,7 +237,7 @@ namespace SimPe.Plugin.Scanner
 
 								if (pfd.Type==Data.MetaData.OBJD_FILE) 
 								{
-									SimPe.PackedFiles.Wrapper.ExtObjd objd = new ExtObjd(null);
+									SimPe.PackedFiles.Wrapper.ExtObjd objd = new ExtObjd();
 									objd.ProcessData(pfd, si.Package);
 
 									if (objd.Ok!=SimPe.PackedFiles.Wrapper.ObjdHealth.Ok) 

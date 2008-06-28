@@ -122,14 +122,13 @@ namespace SimPe.PackedFiles.Wrapper
 			try 
 			{
 				if (!loaded) return;
-				System.Collections.ArrayList names = new ArrayList();
-				if (this.DesignMode) return;
-				
+                if (this.DesignMode) return;
+
 				cb.Items.Clear();
 				cb.Sorted = false;
 				foreach (SimPe.Cache.MemoryCacheItem mci in ObjectCache.List)
 				{
-					bool use = false;
+                    bool use = false;
 					if (this.ShowInventory && mci.IsInventory && !mci.IsToken && !mci.IsMemory && !mci.IsJobData) use = true;
 					if (this.ShowTokens && mci.IsToken) use = true;
 					if (this.ShowMemories && !mci.IsToken && mci.IsMemory) use = true;
@@ -139,12 +138,11 @@ namespace SimPe.PackedFiles.Wrapper
 					if (this.ShowSkill && mci.IsSkill) use = true;
 
 					if (!use) continue;
-				
 
-					SimPe.Interfaces.IAlias a = new SimPe.Data.StaticAlias(mci.Guid, mci.Name, new object[] {mci});
+                    SimPe.Interfaces.IAlias a = new SimPe.Data.StaticAlias(mci.Guid,
+                        mci.Name + " {" + mci.ObjdName + "}",
+                        new object[] { mci });
 
-					if (names.Contains(a.ToString())) continue;
-					names.Add(a.ToString());
 					cb.Items.Add(a);
 				}		
 				cb.Sorted = true;			
@@ -154,7 +152,10 @@ namespace SimPe.PackedFiles.Wrapper
 			{
 				Console.WriteLine(ex.Message);
 			}
-			cb.EndUpdate();
+			finally
+			{
+			    cb.EndUpdate();
+			}
 		}
 
 		bool si, st, sm, sjd, sa, sb, sk;

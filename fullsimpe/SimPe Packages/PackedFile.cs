@@ -658,6 +658,8 @@ namespace SimPe.Packages
 			{
 				#if LOG
 					sw.Close();
+					sw.Dispose();
+					sw = null;
 				#endif
 			}
 
