@@ -363,6 +363,12 @@
 			<default>0</default>
 			<index>7</index>
 		</property>
+		<property type="short">
+			<name>Was: object model guid 1 - Read Only</name>
+			<help>Was: object model guid 1 - Read Only</help>
+			<default>0</default>
+			<index>72</index>
+		</property>
 	</category>
 	<!-- ****************************************************************************** -->
 	<category name="08. GUIDs">
@@ -434,18 +440,6 @@
 			<default>0</default>
 			<readonly/>
 			<index>15</index>
-		</property>
-		<property type="short">
-			<name>object model guid 2 - Read Only</name>
-			<help>object model guid 2 - Read Only</help>
-			<default>0</default>
-			<index>73</index>
-		</property>
-		<property type="short">
-			<name>object model guid 1 - Read Only</name>
-			<help>object model guid 1 - Read Only</help>
-			<default>0</default>
-			<index>72</index>
 		</property>
 		<property type="short">
 			<name>original guid 1 - Read Only</name>
@@ -647,6 +641,18 @@
 			<help>Thumbnail flags</help>
 			<default>0</default>
 			<index>102</index>
+		</property>
+		<property type="short">
+			<name>Was: object model guid 2 - Read Only</name>
+			<help>object model guid 2 - Read Only</help>
+			<default>0</default>
+			<index>73</index>
+		</property>
+		<property type="short">
+			<name>Requirements</name>
+			<help>Requirements</help>
+			<default>0</default>
+			<index>107</index>
 		</property>
 	</category>
 	<!-- ****************************************************************************** -->
