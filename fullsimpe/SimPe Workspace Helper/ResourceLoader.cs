@@ -197,8 +197,10 @@ namespace SimPe
 				wrapper.FileDescriptor.Deleted += new EventHandler(DeletedDescriptor);
 				wrapper.FileDescriptor.ChangedUserData += new SimPe.Events.PackedFileChanged(FileDescriptor_ChangedUserData);
 
+#if !DEBUG
 				try 
-				{					
+#endif
+				{
 					doc.Text = wrapper.ResourceName;
 					
 
@@ -240,12 +242,14 @@ namespace SimPe
 					}
 					
 					return true;
-				} 
+                }
+#if !DEBUG
 				catch(Exception ex) 
 				{
 					Helper.ExceptionMessage(ex);
 				}
-			}
+#endif
+            }
 
 			return false;
 		}
