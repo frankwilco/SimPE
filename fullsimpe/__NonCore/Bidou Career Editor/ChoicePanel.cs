@@ -1,5 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2007 Peter L Jones                                      *
+ *   pljones@users.sf.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -47,7 +48,7 @@ namespace SimPe.Plugin
         private const byte JOB = 9;
 #endif
         #endregion
-        private const int mm = 1;
+        private const int mm = 100;
         public void setValues(bool labels, string label, string value, SimPe.PackedFiles.Wrapper.Bcon[] bcon, ushort level)
         {
             Labels = labels;

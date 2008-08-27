@@ -16,42 +16,53 @@ namespace SimPe
 		/// </summary>
 		/// <param name="args">Commandline Arguments</param>
 		/// <returns>true if simpe should stop now</returns>
-		public static bool Start(string[] args)
+		public static bool Start(ref string[] args)
 		{
             SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Checking commandline parameters"));
 			if (args.Length<1) return false;
 
             
-            if (Help(args)) return true;
-            if (MakeClassic(args)) return true;
-            if (MakeModern(args)) return true;
-			if (BuildPackage(args)) return true;
-			if (BuildTxtr(args)) return true;
-			if (FixPackage(args)) return true;
-            if (EnableFlags(args)) return true;
+            if (Help(ref args)) return true;
+            if (MakeClassic(ref args)) return true;
+            if (MakeModern(ref args)) return true;
+			if (BuildPackage(ref args)) return true;
+			if (BuildTxtr(ref args)) return true;
+			if (FixPackage(ref args)) return true;
+            if (EnableFlags(ref args)) return true;
 			return false;
 		}
+
+        public static bool Splash(ref string[] args, string opt)
+        {
+            List<string> argv = new List<string>(args);
+            bool res = argv.Contains(opt);
+            if (res) argv.RemoveAt(argv.IndexOf(opt));
+            args = argv.ToArray();
+            return res;
+        }
 
         /// <summary>
         /// Loaded just befor the GUI is started
         /// </summary>
         /// <param name="args"></param>
         /// <returns>true if the GUI should <b>NOT</b> show up</returns>
-        public static bool FullEnvStart(string[] args)
+        public static bool FullEnvStart(ref string[] args)
         {
             if (args.Length < 1) return false;
-            if (GenerateSemiGlobals(args)) return true;
+            if (GenerateSemiGlobals(ref args)) return true;
             return false;
         }
 
-		static bool Help(string[] args) 
+		static bool Help(ref string[] args) 
 		{
 			if (args[0]!="-help") return false;
 
 			Console.WriteLine("SimPE Commandline Parameters:");
 			Console.WriteLine("-----------------------------");
 			Console.WriteLine();
-			Console.WriteLine("  -classicpreset");
+            Console.WriteLine("  --splash");
+            Console.WriteLine("  --nosplash");
+            Console.WriteLine("  -classicpreset");
 			Console.WriteLine("  -modernpreset");
 			Console.WriteLine("  -build -desc [packag.xml] -out [output].package");
 			Console.WriteLine("  -txtr -image [imgfile] -out [output].package -name [textureNam] -format [dxt1|dxt3|dxt5|raw8|raw24|raw32] -levels [nr] -width [max. Width] -height [max. Height]");
@@ -59,11 +70,12 @@ namespace SimPe
             Console.WriteLine("  -enable localmode");
             Console.WriteLine("  -enable noplugins");
             Console.WriteLine("  -enable fileformat");
+
             return true;
         }
 
         #region Enable flags
-        static bool EnableFlags(string[] args)
+        static bool EnableFlags(ref string[] args)
         {
             List<string> argv = new List<string>(args);
 
@@ -97,14 +109,16 @@ namespace SimPe
                 Message.Show(s, "Notice", System.Windows.Forms.MessageBoxButtons.OK);
                 SimPe.Splash.Screen.Start();
             }
+
+            args = argv.ToArray();
             return false; // Don't exit SimPE!
         }
         #endregion
 
         #region Theme Presets
-        static bool MakeClassic(string[] args) 
+        static bool MakeClassic(ref string[] args) 
 		{
-			if (args[0]!="-classicpreset") return false;			
+			if (args[0]!="-classicpreset") return false;
 			
 			Overridelayout("classic_layout.xreg");
 
@@ -124,7 +138,11 @@ namespace SimPe
 
 
             SimPe.Splash.Screen.Stop();
-			if (Message.Show(SimPe.Localization.GetString("PresetChanged").Replace("{name}", SimPe.Localization.GetString("PresetClassic")), SimPe.Localization.GetString("Information"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+
+            List<string> argv = new List<string>(args);
+            argv.RemoveAt(0);
+            args = argv.ToArray();
+            if (Message.Show(SimPe.Localization.GetString("PresetChanged").Replace("{name}", SimPe.Localization.GetString("PresetClassic")), SimPe.Localization.GetString("Information"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
 				return false;
 			return true;
 		}
@@ -134,11 +152,20 @@ namespace SimPe
 			Overridelayout("modern_layout.xreg");
 		}
 
-		static bool MakeModern(string[] args) 
+		static bool MakeModern(ref string[] args) 
 		{
 			if (args!=null)
-				if (args[0]!="-modernpreset") return false;			
-			
+				if (args[0]!="-modernpreset") return false;
+
+            List<string> argv = new List<string>(args);
+            argv.RemoveAt(0);
+            args = argv.ToArray();
+
+            return !MakeModern();
+        }
+
+        static bool MakeModern()
+        {
 			Overridelayout("modern_layout.xreg");
 
 			Helper.WindowsRegistry.Layout.SelectedTheme = 3;
@@ -156,10 +183,11 @@ namespace SimPe
             Helper.WindowsRegistry.Flush();
 
             SimPe.Splash.Screen.Stop();
-			if (Message.Show(SimPe.Localization.GetString("PresetChanged").Replace("{name}", SimPe.Localization.GetString("PresetModern")), SimPe.Localization.GetString("Information"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-				return false;
-			return true;
-		}
+
+            return (Message.Show(SimPe.Localization.GetString("PresetChanged").Replace("{name}",
+                SimPe.Localization.GetString("PresetModern")), SimPe.Localization.GetString("Information"),
+                System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes);
+        }
 
 		static void Overridelayout(string name)
 		{
@@ -244,7 +272,7 @@ namespace SimPe
 			}
 		}
 
-		static bool FixPackage(string[] args) 
+		static bool FixPackage(ref string[] args) 
 		{
 			if (args[0]!="-fix") return false;
 
@@ -301,7 +329,7 @@ namespace SimPe
 		#endregion
 
 		#region Build Package
-		static bool BuildPackage(string[] args) 
+		static bool BuildPackage(ref string[] args) 
 		{
 			if (args[0]!="-build") return false;
 
@@ -496,7 +524,7 @@ namespace SimPe
 		/// </summary>
 		/// <param name="args"></param>
 		/// <returns></returns>
-		public static bool BuildTxtr(string[] args)
+		public static bool BuildTxtr(ref string[] args)
 		{
 			if (args[0]!="-txtr") return false;
 
@@ -657,7 +685,7 @@ namespace SimPe
 		{
 			string layoutname = LayoutRegistry.LayoutFile;
 			if (!System.IO.File.Exists(layoutname)) 
-				Commandline.MakeModern(null);
+				Commandline.MakeModern();
 
 
             if (Helper.WindowsRegistry.PreviousEpCount < 3) 
@@ -814,7 +842,7 @@ namespace SimPe
 		#endregion
 
         #region Semiglobals
-        static bool GenerateSemiGlobals(string[] args)
+        static bool GenerateSemiGlobals(ref string[] args)
         {
             if (args[0] != "-gensemiglob") return false;
 

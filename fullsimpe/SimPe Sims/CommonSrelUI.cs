@@ -162,12 +162,14 @@ namespace SimPe.PackedFiles.UserInterface
             resources.ApplyResources(this.cbfamtype, "cbfamtype");
             this.cbfamtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbfamtype.Name = "cbfamtype";
+            this.cbfamtype.SelectedIndexChanged += new System.EventHandler(this.ChangedRelation);
             // 
             // tbRel
             // 
             this.tbRel.BorderStyle = System.Windows.Forms.BorderStyle.None;
             resources.ApplyResources(this.tbRel, "tbRel");
             this.tbRel.Name = "tbRel";
+            this.tbRel.TextChanged += new System.EventHandler(this.ChangedRelationText);
             // 
             // pbDay
             // 
@@ -184,6 +186,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.pbDay.TokenCount = 30;
             this.pbDay.UnselectedColor = System.Drawing.Color.Black;
             this.pbDay.Value = 100;
+            this.pbDay.ChangedValue += new System.EventHandler(this.ChangedDay);
             // 
             // pbLife
             // 
@@ -200,6 +203,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.pbLife.TokenCount = 30;
             this.pbLife.UnselectedColor = System.Drawing.Color.Black;
             this.pbLife.Value = 100;
+            this.pbLife.ChangedValue += new System.EventHandler(this.ChangedLife);
             // 
             // tableLayoutPanel1
             // 

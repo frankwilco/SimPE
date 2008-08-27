@@ -1263,6 +1263,13 @@ namespace SimPe
             None
         }
 
+        public enum ResourceListInstanceFormats : int
+        {
+            HexOnly,
+            DecOnly,
+            HexDec,
+        }
+
         /// <summary>
         /// How do we display the name column?
         /// </summary>
@@ -1298,6 +1305,27 @@ namespace SimPe
                 rkf.SetValue("ResourceListUnknownDescriptionFormat", (int)value);
             }
         }
+
+        /// <summary>
+        /// How do we display the instance column?
+        /// </summary>
+        public ResourceListInstanceFormats ResourceListInstanceFormat
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                object o = rkf.GetValue("ResourceListInstanceFormat", (int)ResourceListInstanceFormats.HexDec);
+                return (ResourceListInstanceFormats)Convert.ToInt32(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                rkf.SetValue("ResourceListInstanceFormat", (int)value);
+            }
+        }
+        public bool ResourceListInstanceFormatHexOnly { get { return ResourceListInstanceFormat == ResourceListInstanceFormats.HexOnly; } }
+        public bool ResourceListInstanceFormatDecOnly { get { return ResourceListInstanceFormat == ResourceListInstanceFormats.DecOnly; } }
+        public bool ResourceListInstanceFormatHexDec { get { return ResourceListInstanceFormat == ResourceListInstanceFormats.HexDec; } }
 
         /// <summary>
         /// How do we display the name column?

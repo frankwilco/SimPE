@@ -126,8 +126,8 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			ClearScreen();
 			if (cpf==null) return;
+            this.lbEPs.Visible = this.lbEPList.Visible = false;
 
-			this.lbExpansion.Text = SimPe.Localization.GetString(FileFrom(cpf.FileDescriptor).ToString());
 			SetupCategories(SimPe.Cache.ObjectCacheItem.GetCategory(SimPe.Cache.ObjectCacheItemVersions.DockableOW, (SimPe.Data.ObjFunctionSubSort)GetFunctionSort(cpf), Data.ObjectTypes.Normal, SimPe.Cache.ObjectClass.XObject));
 
 			pb.Image = null;

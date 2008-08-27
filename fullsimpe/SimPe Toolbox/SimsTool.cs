@@ -49,17 +49,26 @@ namespace SimPe.Plugin
 
 		#region ITool Member
 
-		public bool IsEnabled(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package)
+        public bool IsEnabled(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package)
+        {
+            return true;
+        }
+
+		private bool IsReallyEnabled(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package)
 		{
 			if (package==null) return false;
 			if (prov.SimNameProvider == null) return false;
 			return Helper.IsNeighborhoodFile(package.FileName);
-			
 		}
 
 		public Interfaces.Plugin.IToolResult ShowDialog(ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd, ref SimPe.Interfaces.Files.IPackageFile package)
 		{
-			if (package==null) return new Plugin.ToolResult(false, false);
+            if (!IsReallyEnabled(pfd, package))
+            {
+                System.Windows.Forms.MessageBox.Show(SimPe.Localization.GetString("This is not an appropriate context in which to use this tool"),
+                    Localization.Manager.GetString("simsbrowser"));
+                return new Plugin.ToolResult(false, false);
+            }
 			Sims sims = new Sims();
 			sims.Text = Localization.Manager.GetString("simsbrowser");
 

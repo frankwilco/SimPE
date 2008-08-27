@@ -21,6 +21,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Xml;
 using System.Windows.Forms;
 
 namespace SimPe
@@ -1044,39 +1045,69 @@ namespace SimPe
 		/// </summary>
 		/// <param name="flname"></param>
 		/// <returns></returns>
+        static string neighborhood_package = "_neighborhood.package";
 		public static string GetMainNeighborhoodFile(string filename) 
 		{
 			if (filename==null) return "";
 			string flname = System.IO.Path.GetFileName(filename);
 			flname = flname.Trim().ToLower();
 
-			if (flname.EndsWith("neighborhood.package")) return filename;	
+            if (flname.EndsWith(neighborhood_package)) return filename;	
 			flname = System.IO.Path.GetFileNameWithoutExtension(flname);
 			string[] parts = flname.Split(new char[] {'_'}, 2);
 			if (parts.Length==0) return filename;
-			return System.IO.Path.Combine(System.IO.Path.GetDirectoryName(filename), parts[0]+"_Neighborhood.package");
+            return System.IO.Path.Combine(System.IO.Path.GetDirectoryName(filename), parts[0] + neighborhood_package);
 		}
 
+        static string HoodsFile { get { return System.IO.Path.Combine(Helper.SimPeDataPath, "hoods.xml"); ; } }
+        static System.Collections.Generic.List<string> knownHoods = null;
+        static System.Collections.Generic.List<string> KnownHoods { get { if (knownHoods == null) LoadKnownHoods(); return knownHoods; } }
+
+        static void LoadKnownHoods()
+        {
+            knownHoods = new System.Collections.Generic.List<string>();
+            System.Xml.XmlReaderSettings xrs = new XmlReaderSettings();
+            xrs.CloseInput = true;
+            xrs.IgnoreComments = true;
+            xrs.IgnoreProcessingInstructions = true;
+            xrs.IgnoreWhitespace = true;
+            System.Xml.XmlReader xr = System.Xml.XmlReader.Create(HoodsFile, xrs);
+            try
+            {
+                xr.ReadStartElement("hoods");
+                while (xr.IsStartElement())
+                {
+                    if (xr.Name != "hood") { xr.Skip(); continue; }
+                    while (xr.MoveToNextAttribute())
+                        if (xr.Name == "name") KnownHoods.Add(xr.Value);
+                    xr.MoveToElement();
+                    xr.Skip();
+                }
+                xr.ReadEndElement();
+            }
+            finally
+            {
+                xr.Close();
+                xr = null;
+            }
+        }
 		
 		/// <summary>
 		/// Returns true if this is a Neighborhood File
 		/// </summary>
 		/// <param name="flname"></param>
 		/// <returns></returns>
-		public static bool IsNeighborhoodFile(string filename) 
-		{
-			if (filename==null) return false;
-			filename = System.IO.Path.GetFileName(filename);
-			filename = filename.Trim().ToLower();
+        public static bool IsNeighborhoodFile(string filename)
+        {
+            if (filename == null) return false;
+            filename = System.IO.Path.GetFileName(filename);
+            filename = filename.Trim().ToLower();
 
-			if (filename.EndsWith("neighborhood.package")) return true;
-			if ((filename.IndexOf("_university")!=-1) && filename.EndsWith(".package") && filename.StartsWith("n")) return true;
-			if ((filename.IndexOf("_downtown")!=-1) && filename.EndsWith(".package") && filename.StartsWith("n")) return true;
-            if ((filename.IndexOf("_suburb") != -1) && filename.EndsWith(".package") && filename.StartsWith("n")) return true;
-            if ((filename.IndexOf("_vacation") != -1) && filename.EndsWith(".package") && filename.StartsWith("n")) return true;
+            if (filename.IndexOf(neighborhood_package) == 4 && filename.Length == 4 + neighborhood_package.Length) return true;
+            foreach (string hood in KnownHoods) if (filename.IndexOf("_" + hood) == 4 && filename.IndexOf(".package") == 4 + 1 + hood.Length + 3) return true;
 
-			return false;
-		}
+            return false;
+        }
 
 		/// <summary>
 		/// Returns either the Game Path or the installation Path of the EP if found

@@ -31,14 +31,24 @@ namespace SimPe.Plugin.Tool.Action
 
 		public virtual bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
 		{
-			if (!es.Loaded) return false;
-						
-			return es.LoadedPackage.Package.FindFiles(Data.MetaData.SIM_DESCRIPTION_FILE).Length>0;
+			return true;
 		}
+
+        private bool RealChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
+        {
+            if (!es.Loaded) return false;
+
+            return es.LoadedPackage.Package.FindFiles(Data.MetaData.SIM_DESCRIPTION_FILE).Length > 0;
+        }
 
 		public void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs e)
 		{
-			if (!ChangeEnabledStateEventHandler(null, e)) return;
+            if (!RealChangeEnabledStateEventHandler(null, e))
+            {
+                System.Windows.Forms.MessageBox.Show(SimPe.Localization.GetString("This is not an appropriate context in which to use this tool"),
+                    this.ToString());
+                return;
+            }
 
 			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = e.LoadedPackage.Package.FindFiles(Data.MetaData.SIM_DESCRIPTION_FILE);
 

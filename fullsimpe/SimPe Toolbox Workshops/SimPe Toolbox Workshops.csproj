@@ -167,6 +167,16 @@
       <HintPath>..\xpcommoncontrols.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <ProjectReference Include="..\..\pjseCoderPlugin-cvs\pjse System Classes\SimPe pjse System Classes.csproj">
+      <Project>{0B9D2E1D-30F3-4718-B66B-791BFBAC3DB7}</Project>
+      <Name>SimPe pjse System Classes</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\pjseCoderPlugin-cvs\SimPe BHAV\SimPe pjse coder plugin.csproj">
+      <Project>{19BF4C91-3A16-41D2-A7F0-2DE5BD7E13CF}</Project>
+      <Name>SimPe pjse coder plugin</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\GraphControl\GraphControl.csproj">
       <Project>{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}</Project>
       <Name>GraphControl</Name>
@@ -259,14 +269,17 @@
     <Compile Include="NeighborhoodPreview.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="NewObjectPreview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewObjectPreview.Designer.cs">
+      <DependentUpon>NewObjectPreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="ObjectCacheFile.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ObjectLoader.cs">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ObjectPreview.cs">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Objects.cs">
       <SubType>Code</SubType>
@@ -336,35 +349,11 @@
       <DependentUpon>NeighborhoodPreview.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewObjectPreview.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NewObjectPreview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="nothumb.png" />
-    <EmbeddedResource Include="ObjectPreview.de.resx">
-      <DependentUpon>ObjectPreview.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ObjectPreview.es.resx">
-      <DependentUpon>ObjectPreview.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ObjectPreview.fr.resx">
-      <DependentUpon>ObjectPreview.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ObjectPreview.it.resx">
-      <DependentUpon>ObjectPreview.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ObjectPreview.pl.resx">
-      <DependentUpon>ObjectPreview.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ObjectPreview.resx">
-      <DependentUpon>ObjectPreview.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ObjectPreview.ru.resx">
-      <DependentUpon>ObjectPreview.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="ObjectsDock.de.resx">
       <DependentUpon>ObjectsDock.cs</DependentUpon>
       <SubType>Designer</SubType>

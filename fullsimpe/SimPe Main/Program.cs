@@ -48,9 +48,9 @@ namespace SimPe
                     Message.Show(SimPe.Localization.GetString("NoDotNet").Replace("{VERSION}",System.Environment.Version.ToString()));
                     return;
                 }
-                foreach (string arg in args)
-                    if (arg == "--nosplash") Helper.WindowsRegistry.ShowStartupSplash = false;
-                    else if (arg == "--splash") Helper.WindowsRegistry.ShowStartupSplash = true;
+
+                if (Commandline.Splash(ref args, "--nosplash")) Helper.WindowsRegistry.ShowStartupSplash = false;
+                if (Commandline.Splash(ref args, "--splash")) Helper.WindowsRegistry.ShowStartupSplash = true;
 
                 SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Starting SimPE..."));
                 SimPe.Splash.Screen.Start();
@@ -60,7 +60,6 @@ namespace SimPe
                 Commandline.CheckFiles();
 
                 //do the real Startup
-                pargs = args;
                 //Application.EnableVisualStyles();
                 Application.DoEvents();
                 Application.Idle += new EventHandler(Application_Idle);
@@ -71,11 +70,15 @@ namespace SimPe
                     return;
                 }
 
-                if (!Commandline.Start(args))
+                if (!Commandline.Start(ref args))
                 {
                     Helper.WindowsRegistry.UpdateSimPEDirectory();
                     Global = new MainForm();
-                    if (!Commandline.FullEnvStart(args)) Application.Run(Global);
+                    if (!Commandline.FullEnvStart(ref args))
+                    {
+                        pargs = args;
+                        Application.Run(Global);
+                    }
                     
 
                     Helper.WindowsRegistry.Flush();

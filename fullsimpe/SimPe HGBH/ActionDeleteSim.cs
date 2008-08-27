@@ -30,7 +30,12 @@ namespace SimPe.Plugin.Tool.Action
 		
 		#region IToolAction Member
 
-		public virtual bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
+        public virtual bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
+        {
+            return true;
+        }
+
+		private bool RealChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
 		{
 			if (es.Loaded)
 				if (Helper.IsNeighborhoodFile(es.LoadedPackage.FileName))
@@ -42,9 +47,14 @@ namespace SimPe.Plugin.Tool.Action
 		}
 		public void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs e)
 		{
-			if (!ChangeEnabledStateEventHandler(null, e)) return;
-			
-			SimPe.PackedFiles.Wrapper.ExtSDesc victim = new SimPe.PackedFiles.Wrapper.ExtSDesc();
+            if (!RealChangeEnabledStateEventHandler(null, e))
+            {
+                System.Windows.Forms.MessageBox.Show(SimPe.Localization.GetString("This is not an appropriate context in which to use this tool"),
+                    this.ToString());
+                return;
+            }
+
+            SimPe.PackedFiles.Wrapper.ExtSDesc victim = new SimPe.PackedFiles.Wrapper.ExtSDesc();
 			victim.ProcessData(e.Items[0].Resource);
 
 			if (Message.Show("Are you sure you want to remove \""+victim.SimName+" "+victim.SimFamilyName+"\" from your Neighborhood? You can not undo this, so make sure you have created a Backup!\n\nDelete the Sim?", "Warning", System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.No) return;
