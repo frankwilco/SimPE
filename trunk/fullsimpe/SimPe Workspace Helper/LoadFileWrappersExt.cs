@@ -198,6 +198,7 @@ namespace SimPe
 				string[] parts = name.Split("\\".ToCharArray());
 				name = SimPe.Localization.GetString(parts[parts.Length-1]);
 				ToolMenuItemExt item = new ToolMenuItemExt(name, tool, chghandler);
+                Splash.Screen.SetMessage(SimPe.Localization.GetString("Loading")+" " + name);
 
                 AddMenuItem(ref ev, mi.DropDownItems, item, parts);
 			}

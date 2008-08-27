@@ -32,7 +32,12 @@ namespace SimPe.Windows.Forms
             if (Helper.WindowsRegistry.ResourceListShowExtensions) this.SubItems.Add(GetExtText());
             this.SubItems.Add("0x" + Helper.HexString(pfd.Descriptor.Group));
             this.SubItems.Add("0x" + Helper.HexString(pfd.Descriptor.SubType));
-            this.SubItems.Add("0x" + Helper.HexString(pfd.Descriptor.Instance));
+            if (Helper.WindowsRegistry.ResourceListInstanceFormatHexOnly)
+                this.SubItems.Add("0x" + Helper.HexString(pfd.Descriptor.Instance));
+            else if (Helper.WindowsRegistry.ResourceListInstanceFormatDecOnly)
+                this.SubItems.Add(((int)pfd.Descriptor.Instance).ToString());
+            else
+                this.SubItems.Add("0x" + Helper.HexString(pfd.Descriptor.Instance) + " (" + ((int)pfd.Descriptor.Instance).ToString() + ")");
             this.SubItems.Add("0x" + Helper.HexString(pfd.Descriptor.Offset));
             this.SubItems.Add("0x" + Helper.HexString(pfd.Descriptor.Size));
 
@@ -111,7 +116,12 @@ namespace SimPe.Windows.Forms
                 if (Helper.WindowsRegistry.ResourceListShowExtensions) this.SubItems[1].Text = GetExtText();
                 this.SubItems[2].Text = "0x" + Helper.HexString(pfd.Descriptor.Group);
                 this.SubItems[3].Text = "0x" + Helper.HexString(pfd.Descriptor.SubType);
-                this.SubItems[4].Text = "0x" + Helper.HexString(pfd.Descriptor.Instance);
+	            if (Helper.WindowsRegistry.ResourceListInstanceFormatHexOnly)
+	                this.SubItems[4].Text = "0x" + Helper.HexString(pfd.Descriptor.Instance);
+	            else if (Helper.WindowsRegistry.ResourceListInstanceFormatDecOnly)
+	                this.SubItems[4].Text = ((int)pfd.Descriptor.Instance).ToString();
+	            else
+	                this.SubItems[4].Text = "0x" + Helper.HexString(pfd.Descriptor.Instance) + " (" + ((int)pfd.Descriptor.Instance).ToString() + ")";
                 this.SubItems[5].Text = "0x" + Helper.HexString(pfd.Descriptor.Offset);
                 this.SubItems[6].Text = "0x" + Helper.HexString(pfd.Descriptor.Size);
             }

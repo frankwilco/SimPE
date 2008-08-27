@@ -29,19 +29,29 @@ namespace SimPe.Plugin.Tool.Action
 		
 		#region IToolAction Member
 
-		public virtual bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
-		{
-			if  (!es.Loaded) return false;								
+        public virtual bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
+        {
+            return true;
+        }
 
-			if (es.LoadedPackage.Package.FindFiles(Data.MetaData.XFNC).Length>0) return true;
+        private bool RealChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
+        {
+            if (!es.Loaded) return false;
 
-			return false;
-		}
+            if (es.LoadedPackage.Package.FindFiles(Data.MetaData.XFNC).Length > 0) return true;
+
+            return false;
+        }
 		
 
 		public void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs e)
 		{
-			if (!ChangeEnabledStateEventHandler(null, e)) return;
+            if (!RealChangeEnabledStateEventHandler(null, e))
+            {
+                System.Windows.Forms.MessageBox.Show(Localization.GetString("This is not an appropriate context in which to use this tool"),
+                    Localization.GetString(this.ToString()));
+                return;
+            }
 			
 			if (Message.Show(SimPe.Localization.GetString("Fix_Fence_Warning"), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.No) return;
 		

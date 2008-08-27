@@ -394,6 +394,7 @@ namespace SimPe.Interfaces.Plugin
 		{
 			if (pfd==null) return;
 			if (package==null) return;
+#if !DEBUG
 			if (catchex) 
 			{
 				try 
@@ -413,8 +414,9 @@ namespace SimPe.Interfaces.Plugin
 					
 				}
 			} 
-			else 
-			{
+			else
+#endif
+            {
 				this.pfd = pfd;
 				this.package = package;	
 				if (StoredData.BaseStream.Length>0) 

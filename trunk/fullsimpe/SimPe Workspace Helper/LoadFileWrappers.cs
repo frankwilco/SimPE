@@ -199,35 +199,39 @@ namespace SimPe
 				//this is a manua List of Wrappers that are know to cause Problems
 				if (ignore.Contains(flname)) continue;
 
+#if !DEBUG
 				try 
-				{
+#endif
+                {
 					IWrapperFactory factory = LoadWrapperFactory(file);
 					if (factory!=null) reg.Register(factory);
-				
-				} 
+
+                }
+#if !DEBUG
 				catch (Exception ex) 
 				{
 					Exception e = new Exception("Unable to load WrapperFactory", new Exception("Invalid Interface in "+file, ex));
 					reg.Register(new SimPe.PackedFiles.Wrapper.ErrorWrapper(file, ex));
-#if DEBUG
 					Helper.ExceptionMessage(ex);
-#endif
 				}
+#endif
 
-				try 
+#if !DEBUG
+                try 
+#endif
 				{
 					IToolFactory tfactory = LoadToolFactory(file);
 					if (tfactory!=null) treg.Register(tfactory);
-				} 
+                }
+#if !DEBUG
 				catch (Exception ex) 
 				{
 					Exception e = new Exception("Unable to load ToolFactory", new Exception("Invalid Interface in "+file, ex));
-#if DEBUG
 					Helper.ExceptionMessage(e);
-#endif
 
 				}
-			}
+#endif
+            }
 		}
 
 		/// <summary>
@@ -287,8 +291,10 @@ namespace SimPe
 				foreach(Type t in mytypes)
 				{
 					Type mit = t.GetInterface(interfaceType.FullName);
-					if (mit != null) 
-					{
+					if (mit != null)
+
+                    {
+                        Splash.Screen.SetMessage(SimPe.Localization.GetString("Loading")+" " + t.Name);
 					
 						object obj = Activator.CreateInstance(t);
 						return obj;

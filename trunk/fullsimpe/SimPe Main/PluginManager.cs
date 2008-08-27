@@ -51,23 +51,33 @@ namespace SimPe
 			FileTable.SettingsRegistry = tr;
 
 			wloader = new LoadFileWrappersExt();
-			
-			this.LoadDynamicWrappers();
+
+            Splash.Screen.SetMessage("Loading Dynamic Wrappers");
+            this.LoadDynamicWrappers();
+            Splash.Screen.SetMessage("Loading Static Wrappers");
 			this.LoadStaticWrappers();
 
+            Splash.Screen.SetMessage("Loading Menu Items");
 			wloader.AddMenuItems(ref ChangedGuiResourceEvent, toolmenu, tootoolbar, new ToolMenuItemExt.ExternalToolNotify(ClosedToolPluginHandler));
+            Splash.Screen.SetMessage("Loading Listeners");
 			wloader.AddListeners(ref ChangedGuiResourceEvent);
 			//dc.ActiveDocumentChanged += new TD.SandDock.ActiveDocumentEventHandler(wloader.ActiveDocumentChanged);
 			//lp.AfterFileLoad += new SimPe.Events.PackageFileLoadedEvent(wloader.ChangedPackage);
 
-			
-			LoadActionTools(defaultactiontaskbox, actiontoolbar, defaultactionmenu, GetDefaultActions());
-			LoadActionTools(toolactiontaskbox, actiontoolbar, defaultactionmenu, LoadExternalTools());
-			LoadActionTools(extactiontaskbox, actiontoolbar, null, null);
-			
-			LoadDocks(docktooldc, lp);
 
+            Splash.Screen.SetMessage("Loading Default Actions");
+            LoadActionTools(defaultactiontaskbox, actiontoolbar, defaultactionmenu, GetDefaultActions());
+            Splash.Screen.SetMessage("Loading External Tools");
+			LoadActionTools(toolactiontaskbox, actiontoolbar, defaultactionmenu, LoadExternalTools());
+            Splash.Screen.SetMessage("Loading ...");
+			LoadActionTools(extactiontaskbox, actiontoolbar, null, null);
+
+            Splash.Screen.SetMessage("Loading Docks");
+			LoadDocks(docktooldc, lp);
+            Splash.Screen.SetMessage("Loading Help Topics");
 			lht = new LoadHelpTopics(helpmenu);
+
+            Splash.Screen.SetMessage("");
 		}
 
 		/// <summary>
@@ -93,13 +103,20 @@ namespace SimPe
 		/// </summary>
 		void LoadStaticWrappers()
 		{
+            Splash.Screen.SetMessage("Loading SettingsFactory");
             FileTable.WrapperRegistry.Register(new SimPe.Custom.SettingsFactory());
+            Splash.Screen.SetMessage("Loading SimFactory");
             FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.SimFactory());
-			FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.ExtendedWrapperFactory());
-			FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.DefaultWrapperFactory());
-			//FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.GenericWrapperFactory());
-			FileTable.WrapperRegistry.Register(new SimPe.Plugin.ScenegraphWrapperFactory());
-			FileTable.WrapperRegistry.Register(new SimPe.Plugin.RefFileFactory());
+            Splash.Screen.SetMessage("Loading ExtendedWrapperFactory");
+            FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.ExtendedWrapperFactory());
+            Splash.Screen.SetMessage("Loading DefaultWrapperFactory");
+            FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.DefaultWrapperFactory());
+            //FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.GenericWrapperFactory());
+            Splash.Screen.SetMessage("Loading ScenegraphWrapperFactory");
+            FileTable.WrapperRegistry.Register(new SimPe.Plugin.ScenegraphWrapperFactory());
+            Splash.Screen.SetMessage("Loading RefFileFactory");
+            FileTable.WrapperRegistry.Register(new SimPe.Plugin.RefFileFactory());
+            Splash.Screen.SetMessage("Loading ClstWrapperFactory");
             FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.ClstWrapperFactory());
         }
 

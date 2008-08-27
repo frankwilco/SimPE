@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hoods>
+  <hood name="university"/>
+  <hood name="downtown"/>
+  <hood name="suburb"/>
+  <hood name="vacation"/>
+</hoods>

@@ -51,18 +51,27 @@ namespace SimPe.Plugin
 
 		public bool IsEnabled(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package)
 		{
-			if (package==null) return false;
-			if (prov.SimNameProvider == null) return false;
-			return Helper.IsNeighborhoodFile(package.FileName);
-			
-		}
+            return true;
+        }
+
+        private bool IsReallyEnabled(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package)
+        {
+            if (package == null) return false;
+            if (prov.SimNameProvider == null) return false;
+            return Helper.IsNeighborhoodFile(package.FileName);
+        }
 
 		Surgery surg;
 		public Interfaces.Plugin.IToolResult ShowDialog(ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd, ref SimPe.Interfaces.Files.IPackageFile package)
 		{
-			if (package==null) return new Plugin.ToolResult(false, false);
-			if (surg==null) surg = new Surgery();
-			surg.Text = "Sims Surgery Tool";
+            if (!IsReallyEnabled(pfd, package))
+            {
+                System.Windows.Forms.MessageBox.Show(SimPe.Localization.GetString("This is not an appropriate context in which to use this tool"),
+                    Localization.Manager.GetString("Sims Surgery Tool"));
+                return new Plugin.ToolResult(false, false);
+            }
+            if (surg == null) surg = new Surgery();
+            surg.Text = Localization.Manager.GetString("Sims Surgery Tool");
 
 			return surg.Execute(ref pfd, ref package, prov);
 		}

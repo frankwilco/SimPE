@@ -29,14 +29,24 @@ namespace SimPe.Plugin.Tool.Action
 		
 		#region IToolAction Member
 
-		public virtual bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
-		{
-			return es.HasFileDescriptor && es.Loaded;								
-		}
+        public virtual bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
+        {
+            return true;
+        }
+
+        private bool RealChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
+        {
+            return es.HasFileDescriptor && es.Loaded;
+        }
 
 		public void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
 		{
-			if (!ChangeEnabledStateEventHandler(null, es)) return;
+            if (!RealChangeEnabledStateEventHandler(null, es))
+            {
+                System.Windows.Forms.MessageBox.Show(Localization.GetString("This is not an appropriate context in which to use this tool"),
+                    Localization.GetString(this.ToString()));
+                return;
+            }
 			
 			SimPe.Interfaces.Files.IPackedFileDescriptor pfd = null;
 			for (int i=0; i<es.Count; i++) if (es[i].HasFileDescriptor) { pfd = es[i].Resource.FileDescriptor; break; }

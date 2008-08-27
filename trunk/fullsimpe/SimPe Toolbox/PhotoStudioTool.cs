@@ -53,13 +53,19 @@ namespace SimPe.Plugin
 
 		public bool IsEnabled(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package)
 		{
-			if (!System.IO.File.Exists(ScenegraphHelper.GMND_PACKAGE)) return false;
-			if (!System.IO.File.Exists(ScenegraphHelper.MMAT_PACKAGE)) return false;
 			return true;
 		}
 
+        public bool IsReallyEnabled(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package)
+        {
+            if (System.IO.File.Exists(ScenegraphHelper.GMND_PACKAGE) && System.IO.File.Exists(ScenegraphHelper.MMAT_PACKAGE)) return true;
+            System.Windows.Forms.MessageBox.Show("The CEP must be installed and has not been found.");
+            return false;
+        }
+
 		public Interfaces.Plugin.IToolResult ShowDialog(ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd, ref SimPe.Interfaces.Files.IPackageFile package)
 		{
+            if (!IsReallyEnabled(pfd, package)) return new SimPe.Plugin.ToolResult(false, false);
 			if (ps==null) ps = new PhotoStudio();
 			return ps.Execute(ref pfd, ref package, prov);
 		}

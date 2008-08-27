@@ -23,6 +23,7 @@ using Ambertation.Windows.Forms;
 using Ambertation.Windows.Forms.Graph;
 using Ambertation.Drawing;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace SimPe.PackedFiles.Wrapper
 {
@@ -85,30 +86,29 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 		}
 
-		protected void UpdateContent()
-		{
-			this.cbhousehold.Items.Clear();
-			this.cbhousehold.Items.Add(SimPe.Localization.GetString("[All Households]"));						
-			gp.Items.Clear();
-			lastsel = null;
+        protected void UpdateContent()
+        {
+            SimPe.PackedFiles.Wrapper.ExtSDesc selectedSim = this.SelectedSim;
+            string house = selectedSim == null ? "" : selectedSim.HouseholdName;
 
-			if (pkg==null) 
-			{
-				cbhousehold.SelectedIndex = 0;		
-				return;
-			}
+            this.cbhousehold.Items.Clear();
+            this.cbhousehold.Items.Add(SimPe.Localization.GetString("[All Households]"));
 
-			string chouse;
-			ArrayList names = FileTable.ProviderRegistry.SimDescriptionProvider.GetHouseholdNames(out chouse);
-			int index = 0;
-			foreach (string name in names) 
-			{
-				if (name==chouse) index = cbhousehold.Items.Count;
-				this.cbhousehold.Items.Add(name);				
-			}
-			
-			cbhousehold.SelectedIndex = index;
-		}
+            if (pkg == null)
+            {
+                cbhousehold.SelectedIndex = 0;
+                return;
+            }
+
+            string chouse;
+            List<string> names = new List<string>((string[])FileTable.ProviderRegistry.SimDescriptionProvider.GetHouseholdNames(out chouse).ToArray(typeof(String)));
+            this.cbhousehold.Items.AddRange(names.ToArray());
+
+            int index = names.IndexOf(house);
+            if (index < 0) index = names.IndexOf(chouse);
+            cbhousehold.SelectedIndex = index + 1;
+            this.SelectedSim = selectedSim;
+        }
 
         bool details;
         public bool SimDetails
@@ -204,9 +204,14 @@ namespace SimPe.PackedFiles.Wrapper
 
 		void UpdateSimList(string household)
 		{
-			gp.BeginUpdate();
+            SimPe.PackedFiles.Wrapper.ExtSDesc selectedSim = this.SelectedSim;
+            if (household != null && selectedSim != null && selectedSim.HouseholdName != household) selectedSim = null;
+            
+            gp.BeginUpdate();
 			gp.Clear();
-			Hashtable ht = FileTable.ProviderRegistry.SimDescriptionProvider.SimInstance;
+            lastsel = null;
+
+            Hashtable ht = FileTable.ProviderRegistry.SimDescriptionProvider.SimInstance;
 			Wait.SubStart(ht.Count);						
 			int ct=0;
 
@@ -243,7 +248,8 @@ namespace SimPe.PackedFiles.Wrapper
 
 			if (gp.Items.Count>0) 
 			{
-				gp.Items[0].Selected=true;
+                if (selectedSim != null) SelectedSim = selectedSim;
+                else gp.Items[0].Selected=true;
                 try
                 {
                     if (SelectedSimChanged!=null)

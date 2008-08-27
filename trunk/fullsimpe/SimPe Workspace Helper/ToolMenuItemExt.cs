@@ -112,7 +112,9 @@ namespace SimPe
         private void ClickItem(object sender, System.EventArgs e)
         {
             if (Tool == null) return;
+#if !DEBUG
             try
+#endif
             {
                 if (Tool.IsEnabled(pfd, package))
                 {
@@ -128,10 +130,12 @@ namespace SimPe
                     }
                 }
             }
+#if !DEBUG
             catch (Exception ex)
             {
                 Helper.ExceptionMessage("Unable to Start ToolPlugin.", ex);
             }
+#endif
         }
 
         #region Event Handler

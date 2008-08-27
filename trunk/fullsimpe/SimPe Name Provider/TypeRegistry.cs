@@ -130,7 +130,6 @@ namespace SimPe.PackedFiles
 
             if (wrapper != null)
             {
-                Splash.Screen.SetMessage(SimPe.Localization.GetString("Loading")+" " + wrapper.WrapperDescription.Name);
                 if (!handlers.Contains(wrapper))
                 {
                     ((SimPe.Interfaces.IWrapper)wrapper).Priority = reg.GetWrapperPriority(((SimPe.Interfaces.IWrapper)wrapper).WrapperDescription.UID);
@@ -424,15 +423,19 @@ namespace SimPe.PackedFiles
 			factory.LinkedRegistry = this;
 			factory.LinkedProvider = this;
 			string s = SimPe.Localization.GetString("Unknown");
+#if !DEBUG
 			try 
+#endif
 			{
 				s = factory.FileName;
 				Register(factory.KnownTools);
-			} 
+            }
+#if !DEBUG
 			catch (Exception ex)
 			{
 				Helper.ExceptionMessage("Unable to load Tool \""+s+"\". You Probaly have a Plugin/Tool installed, that is not compatible with the current SimPE Release.", ex);
 			}
+#endif
 
             AddUpdatablePlugin(factory);
 		}

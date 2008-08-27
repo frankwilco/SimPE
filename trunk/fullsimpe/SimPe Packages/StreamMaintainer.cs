@@ -200,10 +200,7 @@ namespace SimPe.Packages
 		public static bool IsLocked(string filename, bool checkfiletable)
 		{
 			filename = filename.Trim().ToLower();
-			bool res = locked.Contains(filename);
-			if (res || !checkfiletable) return res;
-
-			return SimPe.FileTableBase.FileIndex.Contains(filename);			
+            return locked.Contains(filename) || (checkfiletable && SimPe.FileTableBase.FileIndex.Contains(filename));
 		}
 
 		/// <summary>
@@ -211,7 +208,6 @@ namespace SimPe.Packages
 		/// </summary>
 		public static void UnlockAll()
 		{
-			InitTable();
 			InitTable();
 			foreach (string k in streams.Keys) 			
 				UnlockStream(k);			
@@ -354,39 +350,29 @@ namespace SimPe.Packages
 		/// <param name="fa">The Acces Attributes</param>
 		/// <param name="create">true if the file should be created if not available</param>
 		/// <returns>a StreamItem (StreamState is Removed if the File did not exits!</returns>
-		public static StreamItem UseStream(string filename, FileAccess fa, bool create) 
-		{
-			StreamItem si = GetStreamItem(filename);
-			//File does not exists, so set State to removed
-			if (!System.IO.File.Exists(filename)) 
-			{
-				if (si.StreamState == StreamState.Opened) si.FileStream.Close();
+        public static StreamItem UseStream(string filename, FileAccess fa, bool create)
+        {
+            StreamItem si = GetStreamItem(filename);
 
-				if (create) 
-				{
-					si.SetFileStream(new FileStream(filename, System.IO.FileMode.OpenOrCreate, fa));
-				} else si.SetFileStream(null);
+            //File does not exists, so set State to removed
+            if (!System.IO.File.Exists(filename))
+            {
+                si.Close();
+                si.SetFileStream(create ? new FileStream(filename, System.IO.FileMode.OpenOrCreate, fa) : null);
+                return si;
+            }
 
-				return si;
-			}
+            // Files does exist -- Removed means never opened here
+            if (si.StreamState == StreamState.Removed)
+                si.SetFileStream(new FileStream(filename, FileMode.Open, fa));
+            else if (!si.SetFileAccess(fa))
+                si.Close();
 
-			if (si.StreamState==StreamState.Removed) 
-			{
-				FileStream fs = new FileStream(filename, FileMode.Open, fa);
-				si.SetFileStream(fs);
-			} 
-			else 
-			{
-                if (si.FileStream == null)
-                    Helper.ExceptionMessage("filestream is null unexpectedly", new Exception());
-				if (!si.SetFileAccess(fa))
-					si.Close();				
-			}
+            if (si.StreamState == StreamState.Opened)
+                si.FileStream.Seek(0, SeekOrigin.Begin);
 
-			if (si.StreamState==StreamState.Opened)
-				si.FileStream.Seek(0, SeekOrigin.Begin);
-			return si;
-		}
+            return si;
+        }
 
 		/// <summary>
 		/// Returns null or a StreamItem that was already created
@@ -405,24 +391,21 @@ namespace SimPe.Packages
 		/// </summary>
 		/// <param name="filename">The name of the File</param>
 		/// <returns>true if the File is closed now</returns>
-		public static bool CloseStream(string filename)
-		{
-			if (IsLocked(filename, false))  return false;
+        public static bool CloseStream(string filename)
+        {
+            if (IsLocked(filename, false))
+                return false;
 
-			StreamItem si = GetStreamItem(filename, false);
-			if (si!=null) 
-			{
-				try 
-				{
-					si.Close();
-					if (!IsLocked(filename, true)) 
-						PackageMaintainer.Maintainer.RemovePackage(filename);
-					return (si.StreamState!=StreamState.Opened);
-				}
-				catch {}
-			}
-			return false;
-		}
+            StreamItem si = GetStreamItem(filename, false);
+            if (si != null)
+            {
+                si.Close();
+                if (!IsLocked(filename, true))
+                    PackageMaintainer.Maintainer.RemovePackage(filename);
+                return (si.StreamState != StreamState.Opened);
+            }
+            return false;
+        }
 
 		/// <summary>
 		/// Closes all opened Streams (that are not locked and not referenced in the FileTable)

@@ -54,7 +54,12 @@ namespace SimPe.Plugin
 
 		#region ITool Member
 
-		public bool IsEnabled(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package)
+        public bool IsEnabled(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package)
+        {
+            return true;
+        }
+
+		private bool IsReallyEnabled(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package)
 		{
 			if (package==null || package.FileName==null) 
 			{
@@ -68,6 +73,12 @@ namespace SimPe.Plugin
 
 		public Interfaces.Plugin.IToolResult ShowDialog(ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd, ref SimPe.Interfaces.Files.IPackageFile package)
 		{
+            if (!IsReallyEnabled(pfd, package))
+            {
+                System.Windows.Forms.MessageBox.Show(Localization.GetString("This is not an appropriate context in which to use this tool"),
+                    this.ToString());
+                return new ToolResult(false, false);
+            }
 			if (flname.ToLower().Trim()!=package.FileName.ToLower().Trim()) sc.Reset();
 			SimPe.Interfaces.Files.IPackedFileDescriptor selpfd = sc.Execute(package);
 
@@ -84,7 +95,7 @@ namespace SimPe.Plugin
 
 		public override string ToString()
 		{
-			return "Search Packed Files...";
+			return Localization.GetString("Search Packed Files...");
 		}
 
 		#endregion
