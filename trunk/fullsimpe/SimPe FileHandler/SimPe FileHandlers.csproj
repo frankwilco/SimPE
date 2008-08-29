@@ -219,6 +219,7 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SdscApartment.cs" />
     <Compile Include="CpfItem.cs">
       <SubType>Code</SubType>
     </Compile>

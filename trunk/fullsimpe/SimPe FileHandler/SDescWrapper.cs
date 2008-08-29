@@ -41,7 +41,8 @@ namespace SimPe.PackedFiles.Wrapper
         Castaway = 0x2d,
         Voyage = 0x2e,
         VoyageB = 0x2f,
-        Freetime = 0x33 
+        Freetime = 0x33,
+        Apartment =  0x36,
 	}
 
 	/// <summary>
@@ -1386,7 +1387,12 @@ namespace SimPe.PackedFiles.Wrapper
     }
     #endregion
 
-	/// <summary>
+    #region SdscApartment
+    #endregion
+
+
+
+    /// <summary>
 	/// Represents a PackedFile in SDsc Format
 	/// </summary>
 	public class SDesc : AbstractWrapper, SimPe.Interfaces.Plugin.IFileWrapper, SimPe.Interfaces.Plugin.IFileWrapperSaveExtension, SimPe.Interfaces.Wrapper.ISDesc
@@ -1565,6 +1571,16 @@ namespace SimPe.PackedFiles.Wrapper
         public SdscFreetime Freetime
         {
             get { return freetime; }
+        }
+
+        SdscApartment apartment;
+        /// <summary>
+        /// Returns Apartment Life-specific data
+        /// </summary>
+        /// <remarks>Only valid if Version >= SDescVersions.Apartment</remarks>
+        public SdscApartment Apartment
+        {
+            get { return apartment; }
         }
 
 
@@ -1998,6 +2014,7 @@ namespace SimPe.PackedFiles.Wrapper
             pets = new SdscPets();
             voyage = new SdscVoyage();
             freetime = new SdscFreetime(this);
+            apartment = new SdscApartment(this);
 
 			description.Aspiration = MetaData.AspirationTypes.Romance;
 			description.ZodiacSign = MetaData.ZodiacSignes.Virgo;
@@ -2033,6 +2050,8 @@ namespace SimPe.PackedFiles.Wrapper
 			get 
 			{
                 if (version == (int)SDescVersions.Castaway) return 0x19E + 0XA;
+
+                if (version >= (int)SDescVersions.Apartment) return 0x1DA + 0xA;
                 if (version >= (int)SDescVersions.Freetime) return 0x1D4 + 0xA;
                 if (version >= (int)SDescVersions.VoyageB) return 0x1A4 + 0xA; //0x19e + 0xa?
                 if (version >= (int)SDescVersions.Voyage) return 0x1A4 + 0xA; //0x19e + 0xa?
@@ -2237,6 +2256,10 @@ namespace SimPe.PackedFiles.Wrapper
             if (version >= (int)SDescVersions.Freetime)
                 freetime.Unserialize(reader);
 
+            //apartment only Items
+            if (version >= (int)SDescVersions.Apartment)
+                apartment.Unserialize(reader);
+
 			reader.BaseStream.Seek(endpos, System.IO.SeekOrigin.Begin);
 		}
 
@@ -2410,7 +2433,9 @@ namespace SimPe.PackedFiles.Wrapper
             if (version >= (int)SDescVersions.Voyage)
                 voyage.Serialize(writer);
 
-            
+            //apartment only Items
+            if (version >= (int)SDescVersions.Apartment)
+                apartment.Serialize(writer);
 			
 
 			writer.BaseStream.Seek(endpos, System.IO.SeekOrigin.Begin);

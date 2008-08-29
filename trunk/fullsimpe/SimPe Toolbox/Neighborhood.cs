@@ -350,15 +350,7 @@ namespace SimPe.Plugin
             foreach (ExpansionItem.NeighborhoodPath path in paths)
             {
                 string sourcepath = path.Path;
-                string[] dirs = System.IO.Directory.GetDirectories(sourcepath, "N*");
-                foreach (string dir in dirs)
-                    AddNeighborhood(path, dir);
-
-                dirs = System.IO.Directory.GetDirectories(sourcepath, "G*");
-                foreach (string dir in dirs)
-                    AddNeighborhood(path, dir);
-
-                dirs = System.IO.Directory.GetDirectories(sourcepath, "F*");
+                string[] dirs = System.IO.Directory.GetDirectories(sourcepath, "????");
                 foreach (string dir in dirs)
                     AddNeighborhood(path, dir);
             }
