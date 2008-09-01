@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="tbu4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>646, 32</value>
+    <value>695, 32</value>
   </data>
   <data name="tbu4.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 21</value>
@@ -154,10 +154,10 @@
     <value>Courier New, 9.75pt</value>
   </data>
   <data name="tbu5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>506, 56</value>
+    <value>550, 56</value>
   </data>
   <data name="tbu5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>378, 22</value>
+    <value>334, 22</value>
   </data>
   <data name="tbu5.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -190,7 +190,7 @@
     <value>104, 13</value>
   </data>
   <data name="label19.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
+    <value>45</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
     <value>Unknown Data:</value>
@@ -217,13 +217,13 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="label25.Location" type="System.Drawing.Point, System.Drawing">
-    <value>653, 264</value>
+    <value>661, 264</value>
   </data>
   <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 13</value>
   </data>
   <data name="label25.TabIndex" type="System.Int32, mscorlib">
-    <value>51</value>
+    <value>43</value>
   </data>
   <data name="label25.Text" xml:space="preserve">
     <value>Owner Instance:</value>
@@ -253,7 +253,7 @@
     <value>728, 22</value>
   </data>
   <data name="tbData.TabIndex" type="System.Int32, mscorlib">
-    <value>54</value>
+    <value>46</value>
   </data>
   <data name="&gt;&gt;tbData.Name" xml:space="preserve">
     <value>tbData</value>
@@ -274,7 +274,7 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 59</value>
+    <value>516, 60</value>
   </data>
   <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
     <value>28, 13</value>
@@ -307,7 +307,7 @@
     <value>104, 21</value>
   </data>
   <data name="tbowner.TabIndex" type="System.Int32, mscorlib">
-    <value>52</value>
+    <value>44</value>
   </data>
   <data name="tbowner.Text" xml:space="preserve">
     <value>0x00000000</value>
@@ -331,7 +331,7 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 35</value>
+    <value>516, 35</value>
   </data>
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
     <value>28, 13</value>
@@ -355,7 +355,7 @@
     <value>7</value>
   </data>
   <data name="tbu3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>506, 32</value>
+    <value>550, 32</value>
   </data>
   <data name="tbu3.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 21</value>
@@ -385,7 +385,7 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
-    <value>612, 35</value>
+    <value>661, 35</value>
   </data>
   <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
     <value>28, 13</value>
@@ -409,7 +409,7 @@
     <value>9</value>
   </data>
   <data name="tbu0.Location" type="System.Drawing.Point, System.Drawing">
-    <value>366, 32</value>
+    <value>386, 32</value>
   </data>
   <data name="tbu0.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 21</value>
@@ -436,13 +436,13 @@
     <value>Bottom, Right</value>
   </data>
   <data name="tbu2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>599, 261</value>
+    <value>607, 261</value>
   </data>
   <data name="tbu2.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 21</value>
   </data>
   <data name="tbu2.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
+    <value>42</value>
   </data>
   <data name="tbu2.Text" xml:space="preserve">
     <value>0x00</value>
@@ -466,7 +466,7 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
-    <value>332, 35</value>
+    <value>352, 35</value>
   </data>
   <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
     <value>28, 13</value>
@@ -499,13 +499,13 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>565, 264</value>
+    <value>573, 264</value>
   </data>
   <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
     <value>28, 13</value>
   </data>
   <data name="label18.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
+    <value>41</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
     <value>U2:</value>
@@ -523,7 +523,7 @@
     <value>13</value>
   </data>
   <data name="tbz.Location" type="System.Drawing.Point, System.Drawing">
-    <value>260, 136</value>
+    <value>280, 160</value>
   </data>
   <data name="tbz.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 21</value>
@@ -553,7 +553,7 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
-    <value>234, 139</value>
+    <value>254, 163</value>
   </data>
   <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
     <value>19, 13</value>
@@ -583,13 +583,13 @@
     <value>100</value>
   </data>
   <data name="lb.Location" type="System.Drawing.Point, System.Drawing">
-    <value>368, 84</value>
+    <value>386, 84</value>
   </data>
   <data name="lb.Size" type="System.Drawing.Size, System.Drawing">
-    <value>516, 121</value>
+    <value>498, 121</value>
   </data>
   <data name="lb.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
+    <value>18</value>
   </data>
   <data name="&gt;&gt;lb.Name" xml:space="preserve">
     <value>lb</value>
@@ -607,10 +607,10 @@
     <value>192, 80</value>
   </data>
   <data name="cbtype.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 21</value>
+    <value>132, 21</value>
   </data>
   <data name="cbtype.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
+    <value>15</value>
   </data>
   <data name="&gt;&gt;cbtype.Name" xml:space="preserve">
     <value>cbtype</value>
@@ -625,7 +625,7 @@
     <value>17</value>
   </data>
   <data name="tbinst.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 56</value>
+    <value>192, 57</value>
   </data>
   <data name="tbinst.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 21</value>
@@ -655,7 +655,7 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>122, 59</value>
+    <value>118, 60</value>
   </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 13</value>
@@ -679,19 +679,19 @@
     <value>19</value>
   </data>
   <data name="cborient.Location" type="System.Drawing.Point, System.Drawing">
-    <value>104, 185</value>
+    <value>112, 185</value>
   </data>
   <data name="cborient.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 21</value>
   </data>
   <data name="cborient.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
+    <value>34</value>
   </data>
   <data name="&gt;&gt;cborient.Name" xml:space="preserve">
     <value>cborient</value>
   </data>
   <data name="&gt;&gt;cborient.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.EnumComboBox, EnumComboBox, Version=1.0.3166.32334, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.EnumComboBox, EnumComboBox, Version=1.0.3166.33435, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cborient.Parent" xml:space="preserve">
     <value>ltxtPanel</value>
@@ -706,13 +706,13 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 188</value>
+    <value>22, 188</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 13</value>
   </data>
   <data name="label14.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
+    <value>33</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Orientation:</value>
@@ -730,13 +730,13 @@
     <value>21</value>
   </data>
   <data name="tbtop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>176, 160</value>
+    <value>184, 160</value>
   </data>
   <data name="tbtop.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 21</value>
   </data>
   <data name="tbtop.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
+    <value>30</value>
   </data>
   <data name="tbtop.Text" xml:space="preserve">
     <value>0x00</value>
@@ -754,13 +754,13 @@
     <value>22</value>
   </data>
   <data name="tbleft.Location" type="System.Drawing.Point, System.Drawing">
-    <value>176, 136</value>
+    <value>184, 136</value>
   </data>
   <data name="tbleft.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 21</value>
   </data>
   <data name="tbleft.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
+    <value>24</value>
   </data>
   <data name="tbleft.Text" xml:space="preserve">
     <value>0x00</value>
@@ -784,13 +784,13 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>135, 163</value>
+    <value>143, 163</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 13</value>
   </data>
   <data name="label12.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
+    <value>29</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
     <value>Top:</value>
@@ -814,13 +814,13 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>134, 139</value>
+    <value>142, 139</value>
   </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 13</value>
   </data>
   <data name="label13.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
+    <value>23</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Left:</value>
@@ -838,13 +838,13 @@
     <value>25</value>
   </data>
   <data name="tbhg.Location" type="System.Drawing.Point, System.Drawing">
-    <value>72, 160</value>
+    <value>80, 160</value>
   </data>
   <data name="tbhg.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 21</value>
   </data>
   <data name="tbhg.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
+    <value>28</value>
   </data>
   <data name="tbhg.Text" xml:space="preserve">
     <value>0x00</value>
@@ -862,13 +862,13 @@
     <value>26</value>
   </data>
   <data name="tbwd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>72, 136</value>
+    <value>80, 136</value>
   </data>
   <data name="tbwd.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 21</value>
   </data>
   <data name="tbwd.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
+    <value>22</value>
   </data>
   <data name="tbwd.Text" xml:space="preserve">
     <value>0x00</value>
@@ -892,13 +892,13 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 163</value>
+    <value>21, 163</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>
   </data>
   <data name="label9.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
+    <value>27</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Height:</value>
@@ -922,13 +922,13 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 139</value>
+    <value>26, 139</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 13</value>
   </data>
   <data name="label8.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
+    <value>21</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Width:</value>
@@ -1051,13 +1051,13 @@
     <value>33</value>
   </data>
   <data name="tbtype.Location" type="System.Drawing.Point, System.Drawing">
-    <value>312, 80</value>
+    <value>332, 81</value>
   </data>
   <data name="tbtype.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 21</value>
   </data>
   <data name="tbtype.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>16</value>
   </data>
   <data name="tbtype.Text" xml:space="preserve">
     <value>0x00</value>
@@ -1075,7 +1075,7 @@
     <value>34</value>
   </data>
   <data name="tbrotation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>312, 107</value>
+    <value>332, 136</value>
   </data>
   <data name="tbrotation.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 21</value>
@@ -1099,13 +1099,13 @@
     <value>35</value>
   </data>
   <data name="tbRoads.Location" type="System.Drawing.Point, System.Drawing">
-    <value>176, 107</value>
+    <value>332, 107</value>
   </data>
   <data name="tbRoads.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 21</value>
   </data>
   <data name="tbRoads.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>20</value>
   </data>
   <data name="tbRoads.Text" xml:space="preserve">
     <value>0x00</value>
@@ -1129,10 +1129,10 @@
     <value>156, 261</value>
   </data>
   <data name="tbTexture.Size" type="System.Drawing.Size, System.Drawing">
-    <value>403, 21</value>
+    <value>411, 21</value>
   </data>
   <data name="tbTexture.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
+    <value>40</value>
   </data>
   <data name="&gt;&gt;tbTexture.Name" xml:space="preserve">
     <value>tbTexture</value>
@@ -1156,7 +1156,7 @@
     <value>728, 21</value>
   </data>
   <data name="tbdesc.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
+    <value>38</value>
   </data>
   <data name="&gt;&gt;tbdesc.Name" xml:space="preserve">
     <value>tbdesc</value>
@@ -1180,7 +1180,7 @@
     <value>728, 21</value>
   </data>
   <data name="tblotname.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
+    <value>36</value>
   </data>
   <data name="&gt;&gt;tblotname.Name" xml:space="preserve">
     <value>tblotname</value>
@@ -1201,16 +1201,16 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>369, 68</value>
+    <value>383, 68</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 13</value>
+    <value>121, 13</value>
   </data>
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+    <value>17</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Tile centers:</value>
+    <value>Elevation offsets:</value>
   </data>
   <data name="&gt;&gt;label7.Name" xml:space="preserve">
     <value>label7</value>
@@ -1240,7 +1240,7 @@
     <value>62, 13</value>
   </data>
   <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
+    <value>39</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Texture:</value>
@@ -1273,7 +1273,7 @@
     <value>85, 13</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>37</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Description:</value>
@@ -1306,7 +1306,7 @@
     <value>72, 13</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
+    <value>35</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Lot Name:</value>
@@ -1330,16 +1330,16 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>242, 110</value>
+    <value>236, 139</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
+    <value>90, 13</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Rotation:</value>
+    <value>U11:Rotation</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -1360,16 +1360,16 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>122, 110</value>
+    <value>251, 110</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 13</value>
+    <value>75, 13</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>19</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Roads:</value>
+    <value>U10:Roads</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -1396,7 +1396,7 @@
     <value>67, 13</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>14</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Lot Type:</value>
@@ -1426,7 +1426,7 @@
     <value>75, 23</value>
   </data>
   <data name="button1.TabIndex" type="System.Int32, mscorlib">
-    <value>55</value>
+    <value>99</value>
   </data>
   <data name="button1.Text" xml:space="preserve">
     <value>Commit</value>
