@@ -70,8 +70,11 @@ namespace SimPe.Plugin
 			Greek = 0x03,
 			Secret = 0x04,
             Hotel = 0x05,
-            Appartements = 0x06,
-			Unknown = 0xff
+            Unknown6 = 0x06,
+            Unknown7 = 0x07,
+            Condo = 0x08,
+            Apartment = 0x09,
+            Unknown = 0xff
 		}
         public class Roads { public static byte noRoads = 0x00, atLeft = 0x01, atTop = 0x02, atRight = 0x04, atBottom = 0x08; }
         public enum Rotation { toLeft = 0x00, toTop, toRight, toBottom, };
@@ -117,8 +120,16 @@ namespace SimPe.Plugin
         internal List<float> Unknown1 { get { return unknown_1; } }
         internal Single Unknown3 { get { return unknown_3; } set { unknown_3 = value; } }
         internal uint Unknown4 { get { return unknown_4; } set { unknown_4 = value; } }
-        internal byte[] Unknown5 { get { return unknown_5; } set { unknown_5 = value; } }
-        public Point LotPosition { get { return loc; } set { loc = value; } }
+        internal byte[] Unknown5
+        {
+            get { return unknown_5; }
+            set
+            {
+                unknown_5 = new byte[14];
+                for (int i = 0; i < value.Length && i < unknown_5.Length; i++) unknown_5[i] = value[i];
+            }
+        }
+            public Point LotPosition { get { return loc; } set { loc = value; } }
         public float LotElevation { get { return elevation; } set { elevation = value; } }
         public uint LotInstance { get { return lotInstance; } set { lotInstance = value; } }
         public LotOrientation Orientation { get { return orient; } set { orient = value; } }
