@@ -1452,4 +1452,8 @@ In order for SimPE to run correct, you need to install .NET 2.0.</value>
   <data name="[Property:KeepFilesOpen]" xml:space="preserve">
     <value>Keep files open</value>
   </data>
+  <data name="NoErrors" xml:space="preserve">
+    <value>SimPe will not display serious internal errors when they occur.  You are strongly
+advised to make no changes and certainly not to save any packages.</value>
+  </data>
 </root>
