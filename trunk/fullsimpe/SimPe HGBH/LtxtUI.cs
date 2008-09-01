@@ -1,6 +1,8 @@
 /***************************************************************************
  *   Copyright (C) 2005 by Ambertation                                     *
  *   quaxi@ambertation.de                                                  *
+ *   Copyright (C) 2008 Peter L Jones                                      *
+ *   pljones@users.sf.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -71,51 +73,62 @@ namespace SimPe.Plugin
 		/// <param name="wrapper">The Attributes of this Wrapper have to be displayed</param>
 		public void UpdateGUI(IFileWrapper wrapper)
 		{
-			Ltxt wrp = (Ltxt) wrapper;
-			form.wrapper = null;
+            Ltxt wrp = (Ltxt)wrapper;
+            form.wrapper = null;
+            //form.ltxtPanel.Enabled = !(wrp.Version >= LtxtVersion.Apartment || wrp.SubVersion >= LtxtSubVersion.Apartment);
 
-			form.tbData.Text = Helper.BytesToHexList(wrp.Followup);
-			form.tbhouseinst.Text = "0x"+Helper.HexString(wrp.HouseInstance);
-			form.tbhousename.Text = wrp.HouseName;
-			form.tblotinst.Text = "0x"+Helper.HexString(wrp.LotID);
-			form.tblotname.Text = wrp.LotName;
-			form.tbname.Text = wrp.Name;
+            form.pb.Image = wrp.LotDescription.Image;
 
-			form.tbwd.Text = wrp.LotSize.Width.ToString();
-			form.tbhg.Text = wrp.LotSize.Height.ToString();
-			form.tbleft.Text = wrp.LotPosition.X.ToString();
-			form.tbtop.Text = wrp.LotPosition.Y.ToString();
-			form.tbz.Text = wrp.GroundLevel.ToString();
-			form.tbver.Text = wrp.Version.ToString();
-			form.tbunk1.Text = wrp.SubVersion.ToString();
-			form.tbu0.Text = "0x"+Helper.HexString(wrp.Unknown0);			
-			form.tbu4.Text = "0x"+Helper.HexString(wrp.Unknown4);
-            form.tbu5.Text = wrp.Unknown5.ToString();
-            form.tbu6.Text = "0x"+Helper.HexString(wrp.Unknown6);
-			form.tbowner.Text = "0x"+Helper.HexString(wrp.OwnerInstance);
-			form.tbowner.ReadOnly = (int)wrp.Version<(int)LtxtVersion.Business;
+            form.tbver.Text = wrp.Version.ToString();
+            form.tbsubver.Text = wrp.SubVersion.ToString();
+            
+			form.tbu0.Text = "0x"+Helper.HexString(wrp.Unknown0);
+            form.tbu3.Text = wrp.Unknown3.ToString();
+            form.tbu4.Text = "0x"+Helper.HexString(wrp.Unknown4);
 
-			form.cborient.SelectedValue = wrp.Orientation;
 			form.tbinst.Text = "0x"+Helper.HexString(wrp.LotInstance);
+            form.tbu5.Text = Helper.BytesToHexList(wrp.Unknown5);
 
-			form.pb.Image = wrp.LotDescription.Image;
+			form.cbtype.SelectedIndex = -1;
+            if ((byte)wrp.Type < form.cbtype.Items.Count) form.cbtype.SelectedIndex = (byte)wrp.Type;
+            form.tbtype.Text = "0x" + Helper.HexString((byte)wrp.Type);
 
 			form.lb.Items.Clear();
-			foreach (int i in wrp.Unknown3)
-				form.lb.Items.Add("0x"+Helper.HexString(i));
-			
+            int x = 0, y = 0;
+            foreach (float i in wrp.Unknown1)// form.lb.Items.Add("0x" + Helper.HexString(i));
+            {
+                form.lb.Items.Add("(" + x + "," + y + ") " + i);
+                x++;
+                if ((y + 1) * (wrp.LotSize.Width + 1) == form.lb.Items.Count)
+                {
+                    y++;
+                    x = 0;
+                }
+            }
 
-			form.cbtype.SelectedIndex = 0;
-			for(int i=0; i<form.cbtype.Items.Count; i++)
-			{
-				Ltxt.LotType lt = (Ltxt.LotType)form.cbtype.Items[i];
-				if (lt==wrp.Type) 
-				{
-					form.cbtype.SelectedIndex = i;
-					break;
-				}
-			}
-			form.tbtype.Text = "0x"+Helper.HexString((byte)wrp.Type);
+			form.tbRoads.Text = "0x"+Helper.HexString(wrp.LotRoads);
+			form.tbrotation.Text = "0x"+Helper.HexString(wrp.LotRotation);
+
+            form.tbwd.Text = wrp.LotSize.Width.ToString();
+			form.tbleft.Text = wrp.LotPosition.X.ToString();
+			form.tbz.Text = wrp.LotElevation.ToString();
+
+            form.tbhg.Text = wrp.LotSize.Height.ToString();
+			form.tbtop.Text = wrp.LotPosition.Y.ToString();
+
+			form.cborient.SelectedValue = wrp.Orientation;
+            form.tbData.Text = Helper.BytesToHexList(wrp.Followup);
+
+			form.tblotname.Text = wrp.LotName;
+			form.tbdesc.Text = wrp.LotDesc;
+            form.tbTexture.Text = wrp.Texture;
+            form.tbu2.Text = "0x" + Helper.HexString(wrp.Unknown2);
+            form.tbowner.Text = "0x" + Helper.HexString(wrp.OwnerInstance);
+
+            form.tbowner.ReadOnly = !(wrp.Version >= LtxtVersion.Business);
+            form.tbu3.ReadOnly = !(wrp.SubVersion >= LtxtSubVersion.Voyage);
+            form.tbu4.ReadOnly = !(wrp.SubVersion >= LtxtSubVersion.Freetime);
+            form.tbu5.ReadOnly = !(wrp.Version >= LtxtVersion.Apartment || wrp.SubVersion >= LtxtSubVersion.Apartment);
 
 			form.wrapper = wrp;
 		}		
