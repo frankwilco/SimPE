@@ -1,6 +1,8 @@
 /***************************************************************************
  *   Copyright (C) 2005 by Ambertation                                     *
  *   quaxi@ambertation.de                                                  *
+ *   Copyright (C) 2008 Peter L Jones                                      *
+ *   pljones@users.sf.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -19,6 +21,7 @@
  ***************************************************************************/
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using SimPe.Interfaces.Plugin;
 
@@ -27,14 +30,16 @@ namespace SimPe.Plugin
 	public enum LtxtVersion: ushort 
 	{		
 		Original = 0x000D,
-		Business = 0x000E
+		Business = 0x000E,
+        Apartment = 0x0012
 	}
 
     public enum LtxtSubVersion : ushort
     {
         Original = 0x0006,
         Voyage = 0x0007,
-        Freetime = 0x0008
+        Freetime = 0x0008,
+        Apartment = 0x000B
     }
 
 	public enum LotOrientation : byte
@@ -68,21 +73,62 @@ namespace SimPe.Plugin
             Appartements = 0x06,
 			Unknown = 0xff
 		}
+        public class Roads { public static byte noRoads = 0x00, atLeft = 0x01, atTop = 0x02, atRight = 0x04, atBottom = 0x08; }
+        public enum Rotation { toLeft = 0x00, toTop, toRight, toBottom, };
 
 		#region Attributes
-		LotType type;
-		Size sz;
-		Point loc;
-		byte orient;
-		ushort subver;
-		byte unknown_4;
 		ushort ver;
-		float groundlevel;
-		uint inst, owner;
-        Single unknown_5;
-        uint unknown_6;
+		ushort subver;
+		Size sz;
+		LotType type;
+        Boolset roads = Roads.noRoads;
+        Rotation rotation;
+        uint unknown_0;
+        // DWORD length
+        string lotname;
+        // DWORD length
+        string description;
+        // DWORD length
+        List<float> unknown_1;
+        Single unknown_3;   //If subver >= Voyage 
+        uint unknown_4;     //If subver >= Freetime 
+        byte[] unknown_5;   //if subver >= Apartment Life
+        Point loc;
+		float elevation;
+		uint lotInstance; // "DWORD unk"
+        LotOrientation orient;
+        // DWORD length
+        string texture;
+        byte unknown_2;
+        uint owner;
+        byte[] followup;
+		#endregion
 
-		public SimPe.Interfaces.Providers.ILotItem LotDescription
+        #region Accessor methods
+        public LtxtVersion Version { get { return (LtxtVersion)ver; } set { ver = (ushort)value; } }
+        internal LtxtSubVersion SubVersion { get { return (LtxtSubVersion)subver; } set { subver = (ushort)value; } }
+        public Size LotSize { get { return sz; } set { sz = value; } }
+        public LotType Type { get { return type; } set { type = value; } }
+        public Boolset LotRoads { get { return roads; } set { roads = value; } }
+        public byte LotRotation { get { return (byte)rotation; } set { rotation = (Rotation)value; } }
+        internal uint Unknown0 { get { return unknown_0; } set { unknown_0 = value; } }
+        public string LotName { get { return lotname; } set { lotname = value; } }
+        public string LotDesc { get { return description; } set { description = value; } }
+        internal List<float> Unknown1 { get { return unknown_1; } }
+        internal Single Unknown3 { get { return unknown_3; } set { unknown_3 = value; } }
+        internal uint Unknown4 { get { return unknown_4; } set { unknown_4 = value; } }
+        internal byte[] Unknown5 { get { return unknown_5; } set { unknown_5 = value; } }
+        public Point LotPosition { get { return loc; } set { loc = value; } }
+        public float LotElevation { get { return elevation; } set { elevation = value; } }
+        public uint LotInstance { get { return lotInstance; } set { lotInstance = value; } }
+        public LotOrientation Orientation { get { return orient; } set { orient = value; } }
+        public string Texture { get { return texture; } set { texture = value; } }
+        internal byte Unknown2 { get { return unknown_2; } set { unknown_2 = value; } }
+        public uint OwnerInstance { get { return owner; } set { owner = value; } }
+        internal byte[] Followup { get { return followup; } set { followup = value; } }
+        #endregion
+
+        public SimPe.Interfaces.Providers.ILotItem LotDescription
 		{
 			get 
 			{
@@ -90,137 +136,7 @@ namespace SimPe.Plugin
 			}
 		}
 
-        internal LtxtSubVersion SubVersion 
-		{
-			get {return  (LtxtSubVersion)subver;}
-			set {subver = (ushort)value;}
-		}
-
-		internal byte Unknown4 
-		{
-			get {return  unknown_4;}
-			set {unknown_4 = value;}
-		}
-
-        internal Single Unknown5
-        {
-            get { return unknown_5; }
-            set { unknown_5 = value; }
-        }
-
-        internal uint Unknown6
-        {
-            get { return unknown_6; }
-            set { unknown_6 = value; }
-        }
-
-		internal uint Unknown0
-		{
-			get {return  unknown_0;}
-			set {unknown_0 = value;}
-		}
-
-		public uint OwnerInstance
-		{
-			get {return owner;}
-			set {owner = value;}
-		}
-
-		public LtxtVersion Version 
-		{
-			get {return (LtxtVersion)ver;}
-			set { ver = (ushort)value;}
-		}
-
-		public LotOrientation Orientation 
-		{
-			get {return (LotOrientation)orient;}
-			set { orient = (byte)value;}
-		}
-
-		public Size LotSize
-		{
-			get {return sz;}
-			set {sz = value;}
-		}
-
-		public Point LotPosition
-		{
-			get {return loc;}
-			set {loc = value;}
-		}
-
-		public float GroundLevel
-		{
-			get {return groundlevel;}
-			set {groundlevel = value;}
-		}
-
-		public LotType Type 
-		{
-			get { return type; }
-			set { type = value; }
-		}
-
-		byte lotinst;
-		public byte LotID 
-		{
-			get { return lotinst; }
-			set { lotinst = value; }
-		}
-
-		public uint LotInstance 
-		{
-			get { return inst; }
-			set { inst = value; }
-		}
-
-		byte houseinst;
-		public byte HouseInstance 
-		{
-			get { return houseinst; }
-			set { houseinst = value; }
-		}
-
-		uint unknown_0;
-		string lotname;
-		public string LotName 
-		{
-			get { return lotname; }
-			set { lotname = value; }
-		}
-
-		string housename;
-		public string HouseName 
-		{
-			get { return housename; }
-			set { housename = value; }
-		}
-		
-		
-		public byte[] Followup 
-		{
-			get { return followup; }
-			set { followup = value; }
-		}
-
-		string name;
-		public string Name 
-		{
-			get { return name; }
-			set { name = value; }
-		}
-
-		byte[] followup;
-
-		SimPe.IntArrayList unknown_3;
-		internal SimPe.IntArrayList Unknown3
-		{
-			get {return unknown_3;}
-		}
-		#endregion
-
-		Interfaces.IProviderRegistry provider;
+        Interfaces.IProviderRegistry provider;
 		public Interfaces.IProviderRegistry Provider 
 		{
 			get { return provider; }
@@ -234,19 +150,11 @@ namespace SimPe.Plugin
 		{
 			this.provider = provider;
 
-			unknown_3 = new IntArrayList();
-			subver = 0;
-            unknown_5 = 0;
-            unknown_6 = 0;
-			this.ver = (ushort)LtxtVersion.Original;
-			orient = (byte)LotOrientation.Below;
+			unknown_1 = new List<float>();
 			sz = new Size(1, 1);
-			lotname = "";
-			housename = "";
-			groundlevel = 0x439D;
+			elevation = 0x439D;
 			
-			name = "";
-			this.followup = new byte[1];
+			this.followup = new byte[0];
 		}
 
 		#region IWrapper member
@@ -289,36 +197,43 @@ namespace SimPe.Plugin
 			sz.Width = reader.ReadInt32();
 			sz.Height = reader.ReadInt32();			
 			type = (LotType)reader.ReadByte();
-			
 
-			lotinst = reader.ReadByte();
-			houseinst = reader.ReadByte();			
+			roads = reader.ReadByte();
+			rotation = (Rotation)reader.ReadByte();			
 			unknown_0 = reader.ReadUInt32();
 
-						
 			lotname = StreamHelper.ReadString(reader);			
-			housename = StreamHelper.ReadString(reader);		
+			description = StreamHelper.ReadString(reader);
 
-			this.unknown_3.Clear();
-			int len = reader.ReadInt32();			
-			for (int i=0; i<len; i++) 			
-				this.unknown_3.Add(reader.ReadInt32());
+            unknown_1 = new List<float>();
+			int len = reader.ReadInt32();
+            for (int i = 0; i < len; i++) this.unknown_1.Add(reader.ReadSingle());
 
-            if (subver >= (UInt16)LtxtSubVersion.Voyage) unknown_5 = reader.ReadSingle();
-            if (subver >= (UInt16)LtxtSubVersion.Freetime) unknown_6 = reader.ReadUInt32();
+            if (subver >= (UInt16)LtxtSubVersion.Voyage) unknown_3 = reader.ReadSingle(); else unknown_3 = 0;
+            if (subver >= (UInt16)LtxtSubVersion.Freetime) unknown_4 = reader.ReadUInt32(); else unknown_4 = 0;
+
+            if (ver >= (UInt16)LtxtVersion.Apartment || subver >= (UInt16)LtxtSubVersion.Apartment)
+            {
+                unknown_5 = reader.ReadBytes(14);
+            }
+            else
+            {
+                unknown_5 = new byte[0];
+            }
 
 			int y = reader.ReadInt32();
 			int x = reader.ReadInt32();
 			loc = new Point(x, y);
             
-			groundlevel = reader.ReadSingle();
-			inst = reader.ReadUInt32();
-			orient = reader.ReadByte();
+			elevation = reader.ReadSingle();
+			lotInstance = reader.ReadUInt32();
+            orient = (LotOrientation)reader.ReadByte();
 
-			name = StreamHelper.ReadString(reader);		
+            texture = StreamHelper.ReadString(reader);
 
-			unknown_4 = reader.ReadByte();
-			if (ver>=(int)LtxtVersion.Business) owner = reader.ReadUInt32();
+			unknown_2 = reader.ReadByte();
+
+            if (ver>=(int)LtxtVersion.Business) owner = reader.ReadUInt32();
 			else owner = 0;
 
 			followup = reader.ReadBytes((int)(reader.BaseStream.Length - reader.BaseStream.Position));			
@@ -334,38 +249,44 @@ namespace SimPe.Plugin
 		/// </remarks>
 		protected override void Serialize(System.IO.BinaryWriter writer)
 		{			
-			writer.Write((ushort)ver);
-			writer.Write((ushort)this.subver);
-			writer.Write((int)sz.Width);
-			writer.Write((int)sz.Height);			
+			writer.Write(ver);
+			writer.Write(this.subver);
+			writer.Write(sz.Width);
+			writer.Write(sz.Height);			
 			writer.Write((byte)type);
 			
-			writer.Write(lotinst);
-			writer.Write(houseinst);			
+			writer.Write((byte)roads);
+			writer.Write((byte)rotation);			
 			writer.Write(unknown_0);
 
 			StreamHelper.WriteString(writer, lotname);
-			StreamHelper.WriteString(writer, housename);			
+			StreamHelper.WriteString(writer, description);			
 
-			writer.Write((int)unknown_3.Count);
-			foreach (int i in unknown_3)
-				writer.Write(i);
+			writer.Write(unknown_1.Count);
+			foreach (int i in unknown_1) writer.Write(i);
 
-            if (subver >= (UInt16)LtxtSubVersion.Voyage) writer.Write(unknown_5);
-            if (subver >= (UInt16)LtxtSubVersion.Freetime) writer.Write(unknown_6);
-			writer.Write((int)loc.Y);
-			writer.Write((int)loc.X);
+            if (subver >= (UInt16)LtxtSubVersion.Voyage) writer.Write(unknown_3);
+            if (subver >= (UInt16)LtxtSubVersion.Freetime) writer.Write(unknown_4);
+            if (ver >= (UInt16)LtxtVersion.Apartment || subver >= (UInt16)LtxtSubVersion.Apartment)
+            {
+                writer.Write(unknown_5);
+            }
 
             
-			writer.Write(groundlevel);
-			writer.Write(inst);
+            writer.Write((int)loc.Y);
+			writer.Write((int)loc.X);
+            
+			writer.Write(elevation);
+			writer.Write(lotInstance);
 			writer.Write((byte)orient);
 
-			StreamHelper.WriteString(writer, name);		
+			StreamHelper.WriteString(writer, texture);	
 
-			writer.Write(unknown_4);
-			if (ver>=(int)LtxtVersion.Business) writer.Write(owner);
-			writer.Write(followup);
+			writer.Write(unknown_2);
+
+            if (ver>=(int)LtxtVersion.Business) writer.Write(owner);
+
+            writer.Write(followup);
 		}
 		#endregion
 

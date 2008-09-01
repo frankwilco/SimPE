@@ -132,6 +132,11 @@
       <HintPath>..\xpcommoncontrols.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <ProjectReference Include="..\..\pjseCoderPlugin-cvs\pjse System Classes\SimPe pjse System Classes.csproj">
+      <Project>{0B9D2E1D-30F3-4718-B66B-791BFBAC3DB7}</Project>
+      <Name>SimPe pjse System Classes</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\EnumComboBox\EnumComboBox.csproj">
       <Project>{5C663721-B4E3-43F7-A39F-9E6060FA5433}</Project>
       <Name>EnumComboBox</Name>
