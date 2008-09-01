@@ -70,6 +70,7 @@ namespace SimPe
             Console.WriteLine("  -enable localmode");
             Console.WriteLine("  -enable noplugins");
             Console.WriteLine("  -enable fileformat");
+            Console.WriteLine("  -enable noerrors");
 
             return true;
         }
@@ -98,14 +99,16 @@ namespace SimPe
                 if (argv[0].ToLower() == "localmode") { Helper.LocalMode = true; argv.RemoveAt(0); continue; }
                 if (argv[0].ToLower() == "noplugins") { Helper.NoPlugins = true; argv.RemoveAt(0); continue; }
                 if (argv[0].ToLower() == "fileformat") { Helper.FileFormat = true; argv.RemoveAt(0); continue; }
+                if (argv[0].ToLower() == "noerrors") { Helper.NoErrors = true; argv.RemoveAt(0); continue; }
                 break; // hit an unrecognised "enable" option
             }
-            if (Helper.LocalMode || Helper.NoPlugins)
+            if (Helper.LocalMode || Helper.NoPlugins || Helper.NoErrors)
             {
                 SimPe.Splash.Screen.Stop();
                 string s = "";
                 if (Helper.LocalMode) s += Localization.GetString("InLocalMode") + "\r\n";
-                if (Helper.NoPlugins) s += "\r\n" + Localization.GetString("NoPlugins");
+                if (Helper.NoPlugins) s += "\r\n" + Localization.GetString("NoPlugins") + "\r\n";
+                if (Helper.NoErrors) s += "\r\n" + Localization.GetString("NoErrors");
                 Message.Show(s, "Notice", System.Windows.Forms.MessageBoxButtons.OK);
                 SimPe.Splash.Screen.Start();
             }

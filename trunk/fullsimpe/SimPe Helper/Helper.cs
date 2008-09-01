@@ -308,6 +308,23 @@ namespace SimPe
 			}
 		}
 
+        /// <summary>
+        /// Returns the Value represented by the HexString
+        /// </summary>
+        /// <param name="txt">The hex String</param>
+        /// <returns>the represented value</returns>
+        public static byte StringToByte(string txt, byte def, byte bbase)
+        {
+            try
+            {
+                return Convert.ToByte(txt, bbase);
+            }
+            catch
+            {
+                return def;
+            }
+        }
+
 		/// <summary>
 		/// Removes all Characters that are not present in the allowd String
 		/// </summary>
@@ -523,7 +540,7 @@ namespace SimPe
         /// <summary>
         /// Bit number identifying what's been "enabled" on the commandline
         /// </summary>
-        private enum RunModeFlags : int { localmode = 0, noplugins, fileformat, }; // bit number
+        private enum RunModeFlags : int { localmode = 0, noplugins, fileformat, noerrors, }; // bit number
         private static Boolset RunModeFlag = (int)0;
         /// <summary>
         /// "localmode": when true, do not load the file table
@@ -537,6 +554,10 @@ namespace SimPe
         /// "fileformat": when true, prefix filenames with their format, when known (for PJSE wrappers at this stage)
         /// </summary>
         public static bool FileFormat { get { return RunModeFlag[(int)RunModeFlags.fileformat]; } set { RunModeFlag[(int)RunModeFlags.fileformat] = value; } }
+        /// <summary>
+        /// "noerrors": when true, suppress ExceptionMessage dialog
+        /// </summary>
+        public static bool NoErrors { get { return RunModeFlag[(int)RunModeFlags.noerrors]; } set { RunModeFlag[(int)RunModeFlags.noerrors] = value; } }
 
         /// <summary>
         /// Indicates whether a given plugin should load, based on "noplugins" command line option
