@@ -392,7 +392,7 @@
     <key name="LifeStories">
       <int name="Version">20</int>
       <string name="RegKey">SOFTWARE\\Electronic Arts\\The Sims Life Stories</string>
-      <int name="Flag">20</int><!-- 00100000 -->
+      <int name="Flag">20</int><!-- 00010100 -->
       <string name="ExeName">SimsLS.exe</string>
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <int name="Group">2</int>
@@ -410,7 +410,7 @@
     <key name="PetStories">
       <int name="Version">21</int>
       <string name="RegKey">SOFTWARE\Electronic Arts\The Sims Pet Stories</string>
-      <int name="Flag">20</int><!-- 00100000 -->
+      <int name="Flag">20</int><!-- 00010100 -->
       <string name="ExeName">SimsPS.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <int name="Group">4</int>
