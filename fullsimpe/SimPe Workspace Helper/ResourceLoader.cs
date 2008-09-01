@@ -86,15 +86,19 @@ namespace SimPe
 		{
 			if (wrapper!=null) 
 			{
+#if !DEBUG
 				try 
+#endif
 				{
 					wrapper = wrapper.Activate();
 					wrapper.ProcessData(fii.Package.FindExactFile(fii.FileDescriptor), fii.Package);			
 				} 
+#if !DEBUG
 				catch(Exception ex) 
 				{
 					Helper.ExceptionMessage(ex);
 				}
+#endif
 			}
 		}
 
