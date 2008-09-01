@@ -300,10 +300,12 @@ namespace SimPe.Providers
 
 				}//foreach				
 			}  
+#if !DEBUG
 			catch (Exception ex)
 			{
 				Helper.ExceptionMessage(ex);
 			} 
+#endif
 			finally 
 			{
 				Wait.SubStop();
