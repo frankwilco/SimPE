@@ -374,7 +374,7 @@
       <cilist name="AdditionalFileTableFolders">
         <string name="0">!TSData\Res\Overrides\</string>
       </cilist>
-      <string name="namelistnr">7</string>
+      <string name="namelistnr">8</string>
       <key name="en">
         <string name="short">Apartment</string>
         <string name="name">Apartment</string>
