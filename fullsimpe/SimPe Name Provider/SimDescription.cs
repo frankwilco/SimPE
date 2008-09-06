@@ -221,7 +221,7 @@ namespace SimPe.Providers
 			{
 				string s = turnons[k];
 				int e = k;
-				if (e>0xD) e+=2;
+				if (e>0xD) e+=2; // only 14 bits in traits1 (etc)
 				a[ct++] = new TraitAlias((ulong)Math.Pow(2, e), s);
             }
 
@@ -230,15 +230,19 @@ namespace SimPe.Providers
 
 		public ulong BuildTurnOnIndex(ushort val1, ushort val2, ushort val3)
 		{
-			return (ulong)( ((uint)(val3 << 16)) | ((uint)(val2 << 16)) | ((uint)(val1 & 0x3FFF)) ); //14
+            ulong res = val1;
+            res |= ((ulong)val2 << 16);
+            res |= ((ulong)val3 << 32); // BonVoyage
+
+            return res;
 		}
 
 		public ushort[] GetFromTurnOnIndex(ulong index)
 		{
 			ushort[] ret = new ushort[3];
-            ret[2] = (ushort)((index >> 32) & 0x0007);
-			ret[1] = (ushort)((index >> 16) & 0xFFFF); //14
-			ret[0] = (ushort)(index & 0x3FFF); //0x3FFF
+            ret[2] = (ushort)((index >> 32) & 0xFFFF); // BonVoyage
+			ret[1] = (ushort)((index >> 16) & 0xFFFF);
+			ret[0] = (ushort)(index & 0xFFFF);
 			
 			return ret;
 		}

@@ -1579,16 +1579,6 @@ namespace SimPe.PackedFiles.UserInterface
 			}
 		}
 
-		ulong SumSelection(System.Windows.Forms.CheckedListBox clb)
-		{
-			ulong val = 0;
-			for (int i=0; i<clb.Items.Count; i++)
-				if (clb.GetItemChecked(i))
-					val += ((SimPe.Providers.TraitAlias)clb.Items[i]).Id;
-
-			return val;
-		}
-
 		void RefreshEP2(Wrapper.ExtSDesc sdesc)
 		{
 			SelectNightlifeItems(this.lbTraits, sdesc.Nightlife.AttractionTraits1, sdesc.Nightlife.AttractionTraits2, sdesc.Nightlife.AttractionTraits3);
@@ -1600,31 +1590,46 @@ namespace SimPe.PackedFiles.UserInterface
             cbSpecies.SelectedValue = sdesc.Nightlife.Species;
 
         }
-        private void lbTraits_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            if (intern) return;
-            ushort[] v = FileTable.ProviderRegistry.SimDescriptionProvider.GetFromTurnOnIndex(SumSelection(this.lbTraits));
-            Sdesc.Nightlife.AttractionTraits1 = v[0];
-            Sdesc.Nightlife.AttractionTraits2 = v[1];
-            Sdesc.Nightlife.AttractionTraits3 = v[2];
-        }
 
-        private void lbTurnOn_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            if (intern) return;
-            ushort[] v = FileTable.ProviderRegistry.SimDescriptionProvider.GetFromTurnOnIndex(SumSelection(this.lbTurnOn));
-            Sdesc.Nightlife.AttractionTurnOns1 = v[0];
-            Sdesc.Nightlife.AttractionTurnOns2 = v[1];
-            Sdesc.Nightlife.AttractionTurnOns3 = v[2];
-        }
+        ulong SumSelection(System.Windows.Forms.CheckedListBox clb, ItemCheckEventArgs e)
+		{
+			ulong val = 0;
+            foreach (int i in clb.CheckedIndices)
+                val += ((SimPe.Providers.TraitAlias)clb.Items[i]).Id;
+            if (e.NewValue == CheckState.Checked)
+                val += ((SimPe.Providers.TraitAlias)clb.Items[e.Index]).Id;
+            else
+                val -= ((SimPe.Providers.TraitAlias)clb.Items[e.Index]).Id;
 
-        private void lbTurnOff_SelectedIndexChanged(object sender, System.EventArgs e)
+			return val;
+		}
+
+        void cklb_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             if (intern) return;
-            ushort[] v = FileTable.ProviderRegistry.SimDescriptionProvider.GetFromTurnOnIndex(SumSelection(this.lbTurnOff));
-            Sdesc.Nightlife.AttractionTurnOffs1 = v[0];
-            Sdesc.Nightlife.AttractionTurnOffs2 = v[1];
-            Sdesc.Nightlife.AttractionTurnOffs3 = v[2];
+            if (e.CurrentValue == e.NewValue) return;
+
+            int which = (new System.Collections.Generic.List<CheckedListBox>(new CheckedListBox[] { lbTraits, lbTurnOn, lbTurnOff })).IndexOf((CheckedListBox)sender);
+
+            ushort[] v = FileTable.ProviderRegistry.SimDescriptionProvider.GetFromTurnOnIndex(SumSelection((CheckedListBox)sender, e));
+            switch (which)
+            {
+                case 0:
+                    Sdesc.Nightlife.AttractionTraits1 = v[0];
+                    Sdesc.Nightlife.AttractionTraits2 = v[1];
+                    Sdesc.Nightlife.AttractionTraits3 = v[2];
+                    break;
+                case 1:
+                    Sdesc.Nightlife.AttractionTurnOns1 = v[0];
+                    Sdesc.Nightlife.AttractionTurnOns2 = v[1];
+                    Sdesc.Nightlife.AttractionTurnOns3 = v[2];
+                    break;
+                case 2:
+                    Sdesc.Nightlife.AttractionTurnOffs1 = v[0];
+                    Sdesc.Nightlife.AttractionTurnOffs2 = v[1];
+                    Sdesc.Nightlife.AttractionTurnOffs3 = v[2];
+                    break;
+            }
         }
 
         private void ChangedEP2(object sender, System.EventArgs e)
