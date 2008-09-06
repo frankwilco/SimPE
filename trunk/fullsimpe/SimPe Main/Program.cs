@@ -28,7 +28,7 @@ using Ambertation.Windows.Forms;
 
 namespace SimPe
 {
-    partial class MainForm 
+    partial class MainForm
     {
         static string[] pargs;
         public static MainForm Global;
@@ -38,24 +38,16 @@ namespace SimPe
         [STAThread]
         static void Main(string[] args)
         {
-            
-#if !DEBUG
             try
             {
-#endif
                 if (System.Environment.Version.Major < 2)
                 {
-                    Message.Show(SimPe.Localization.GetString("NoDotNet").Replace("{VERSION}",System.Environment.Version.ToString()));
+                    Message.Show(SimPe.Localization.GetString("NoDotNet").Replace("{VERSION}", System.Environment.Version.ToString()));
                     return;
                 }
 
                 if (Commandline.Splash(ref args, "--nosplash")) Helper.WindowsRegistry.ShowStartupSplash = false;
                 if (Commandline.Splash(ref args, "--splash")) Helper.WindowsRegistry.ShowStartupSplash = true;
-
-                SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Starting SimPE..."));
-                SimPe.Splash.Screen.Start();
-                /*Console.WriteLine(ExpansionLoader.Global.EPInstalled+" "+ExpansionLoader.Global.SPInstalled+" "+ExpansionLoader.Global.GameVersion);
-                 return;*/
 
                 Commandline.CheckFiles();
 
@@ -63,6 +55,40 @@ namespace SimPe
                 //Application.EnableVisualStyles();
                 Application.DoEvents();
                 Application.Idle += new EventHandler(Application_Idle);
+
+                bool stop = false;
+                System.IO.FileStream fs = null;
+                while (!stop)
+                {
+                    try
+                    {
+                        string exe = SimPe.PathProvider.Global.Latest.ApplicationPath;
+                        fs = new System.IO.FileStream(exe, System.IO.FileMode.Append, System.IO.FileAccess.Write);
+                        stop = true;
+                    }
+                    catch (System.IO.IOException)
+                    {
+                        DialogResult dr = MessageBox.Show("SimPe cannot start yet as The Sims2(tm) is still running.",
+                            "SimPe", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Stop);
+                        switch (dr)
+                        {
+                            case DialogResult.Abort: return;
+                            case DialogResult.Retry: break;
+                            case DialogResult.Ignore: stop = true; break;
+                        }
+                    }
+                    finally
+                    {
+                        if (fs != null)
+                            fs.Close();
+                        fs = null;
+                    }
+                }
+
+                SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Starting SimPE..."));
+                SimPe.Splash.Screen.Start();
+                /*Console.WriteLine(ExpansionLoader.Global.EPInstalled+" "+ExpansionLoader.Global.SPInstalled+" "+ExpansionLoader.Global.GameVersion);
+                 return;*/
 
                 if (!Commandline.ImportOldData())
                 {
@@ -79,7 +105,7 @@ namespace SimPe
                         pargs = args;
                         Application.Run(Global);
                     }
-                    
+
 
                     Helper.WindowsRegistry.Flush();
                     Helper.WindowsRegistry.Layout.Flush();
@@ -87,8 +113,8 @@ namespace SimPe
 
                 }
 
-#if !DEBUG
             }
+#if !DEBUG
             catch (Exception ex)
             {
                 try
@@ -102,13 +128,11 @@ namespace SimPe
                     MessageBox.Show("SimPE will shutdown due to an unhandled Exception.\n\nMessage: " + ex2.Message);
                 }
             }
+#endif
             finally
             {
-#endif
                 SimPe.Splash.Screen.ShutDown();
-#if !DEBUG
             }
-#endif
 
             try
             {
