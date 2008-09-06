@@ -1456,4 +1456,7 @@ In order for SimPE to run correct, you need to install .NET 2.0.</value>
     <value>SimPe will not display serious internal errors when they occur.  You are strongly
 advised to make no changes and certainly not to save any packages.</value>
   </data>
+  <data name="cbautobak_CheckedChanged" xml:space="preserve">
+    <value>Warning: Do not try to restore live game data such as sims, lots or neighborhoods from .bak files.</value>
+  </data>
 </root>
