@@ -2630,7 +2630,8 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             resources.ApplyResources(this.lbTurnOff, "lbTurnOff");
             this.lbTurnOff.Name = "lbTurnOff";
-            this.lbTurnOff.SelectedIndexChanged += new System.EventHandler(this.lbTurnOff_SelectedIndexChanged);
+            this.lbTurnOff.CheckOnClick = true;
+            this.lbTurnOff.ItemCheck += new ItemCheckEventHandler(cklb_ItemCheck);
             // 
             // label6
             // 
@@ -2641,7 +2642,8 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             resources.ApplyResources(this.lbTurnOn, "lbTurnOn");
             this.lbTurnOn.Name = "lbTurnOn";
-            this.lbTurnOn.SelectedIndexChanged += new System.EventHandler(this.lbTurnOn_SelectedIndexChanged);
+            this.lbTurnOn.CheckOnClick = true;
+            this.lbTurnOn.ItemCheck += new ItemCheckEventHandler(cklb_ItemCheck);
             // 
             // label5
             // 
@@ -2652,7 +2654,8 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             resources.ApplyResources(this.lbTraits, "lbTraits");
             this.lbTraits.Name = "lbTraits";
-            this.lbTraits.SelectedIndexChanged += new System.EventHandler(this.lbTraits_SelectedIndexChanged);
+            this.lbTraits.CheckOnClick = true;
+            this.lbTraits.ItemCheck += new ItemCheckEventHandler(cklb_ItemCheck);
             // 
             // label4
             // 
