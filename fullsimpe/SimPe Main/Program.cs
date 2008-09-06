@@ -28,7 +28,7 @@ using Ambertation.Windows.Forms;
 
 namespace SimPe
 {
-    partial class MainForm
+    partial class MainForm 
     {
         static string[] pargs;
         public static MainForm Global;
@@ -38,23 +38,14 @@ namespace SimPe
         [STAThread]
         static void Main(string[] args)
         {
+            
             try
             {
                 if (System.Environment.Version.Major < 2)
                 {
-                    Message.Show(SimPe.Localization.GetString("NoDotNet").Replace("{VERSION}", System.Environment.Version.ToString()));
+                    Message.Show(SimPe.Localization.GetString("NoDotNet").Replace("{VERSION}",System.Environment.Version.ToString()));
                     return;
                 }
-
-                if (Commandline.Splash(ref args, "--nosplash")) Helper.WindowsRegistry.ShowStartupSplash = false;
-                if (Commandline.Splash(ref args, "--splash")) Helper.WindowsRegistry.ShowStartupSplash = true;
-
-                Commandline.CheckFiles();
-
-                //do the real Startup
-                //Application.EnableVisualStyles();
-                Application.DoEvents();
-                Application.Idle += new EventHandler(Application_Idle);
 
                 bool stop = false;
                 System.IO.FileStream fs = null;
@@ -85,10 +76,20 @@ namespace SimPe
                     }
                 }
 
+                if (Commandline.Splash(ref args, "--nosplash")) Helper.WindowsRegistry.ShowStartupSplash = false;
+                if (Commandline.Splash(ref args, "--splash")) Helper.WindowsRegistry.ShowStartupSplash = true;
+
                 SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Starting SimPE..."));
                 SimPe.Splash.Screen.Start();
                 /*Console.WriteLine(ExpansionLoader.Global.EPInstalled+" "+ExpansionLoader.Global.SPInstalled+" "+ExpansionLoader.Global.GameVersion);
                  return;*/
+
+                Commandline.CheckFiles();
+
+                //do the real Startup
+                //Application.EnableVisualStyles();
+                Application.DoEvents();
+                Application.Idle += new EventHandler(Application_Idle);
 
                 if (!Commandline.ImportOldData())
                 {
@@ -105,7 +106,7 @@ namespace SimPe
                         pargs = args;
                         Application.Run(Global);
                     }
-
+                    
 
                     Helper.WindowsRegistry.Flush();
                     Helper.WindowsRegistry.Layout.Flush();
