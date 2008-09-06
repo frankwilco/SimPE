@@ -1379,6 +1379,12 @@ namespace SimPe
 
         }
 
+        void cbautobak_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbautobak.CheckState == CheckState.Checked && Helper.WindowsRegistry.AutoBackup == false)
+                MessageBox.Show(Localization.GetString("cbautobak_CheckedChanged"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
         class MyPropertyGrid : PropertyGrid
         {
 

@@ -795,7 +795,7 @@ namespace SimPe
 			get 
 			{
 				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
-				object o = rkf.GetValue("AutoBackup", true);
+				object o = rkf.GetValue("AutoBackup", false);
 				return Convert.ToBoolean(o);
 			}
 			set

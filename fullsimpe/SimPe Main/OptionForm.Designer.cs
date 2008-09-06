@@ -632,6 +632,7 @@ namespace SimPe
             // 
             resources.ApplyResources(this.cbautobak, "cbautobak");
             this.cbautobak.Name = "cbautobak";
+            this.cbautobak.CheckedChanged += new EventHandler(cbautobak_CheckedChanged);
             // 
             // cbcache
             // 
