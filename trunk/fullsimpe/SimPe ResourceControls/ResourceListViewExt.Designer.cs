@@ -66,6 +66,7 @@
             // lv
             // 
             this.lv.AccessibleDescription = null;
+            this.lv.AllowColumnReorder = true;
             this.lv.AccessibleName = null;
             resources.ApplyResources(this.lv, "lv");
             this.lv.BackgroundImage = null;

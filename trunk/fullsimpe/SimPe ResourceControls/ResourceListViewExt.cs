@@ -366,6 +366,7 @@ namespace SimPe.Windows.Forms
             set { lv.ContextMenuStrip = value; }
         }
 
+        static string[] colNames = new string[] { "Name", "Type", "Group", "InstHi", "Inst", "Offset", "Size" };
         public void StoreLayout()
         {
             Helper.WindowsRegistry.Layout.TypeColumnWidth = clType.Width;
@@ -375,6 +376,14 @@ namespace SimPe.Windows.Forms
 
             Helper.WindowsRegistry.Layout.OffsetColumnWidth = clOffset.Width;
             Helper.WindowsRegistry.Layout.SizeColumnWidth = clSize.Width;
+
+            ColumnHeader[] ach = new ColumnHeader[] { clType, clTName, clGroup, clInstHi, clInst, clOffset, clSize };
+            List<string> order = new List<string>();
+            foreach (ColumnHeader ch in ach)
+                order.Add(lv.Columns.Contains(ch) ? colNames[ch.DisplayIndex] : "");
+            foreach (string cn in colNames)
+                if (!order.Contains(cn)) order.Add(cn);
+            Helper.WindowsRegistry.Layout.ColumnOrder = order;
         }
 
         public void RestoreLayout()
@@ -383,13 +392,21 @@ namespace SimPe.Windows.Forms
             clGroup.Width = Helper.WindowsRegistry.Layout.GroupColumnWidth;
             clInstHi.Width = Helper.WindowsRegistry.Layout.InstanceHighColumnWidth;
             clInst.Width = Helper.WindowsRegistry.Layout.InstanceColumnWidth;
-
             clOffset.Width = Helper.WindowsRegistry.Layout.OffsetColumnWidth;
             clSize.Width = Helper.WindowsRegistry.Layout.SizeColumnWidth;
+
+            ColumnHeader[] ach = new ColumnHeader[] { clType, clTName, clGroup, clInstHi, clInst, clOffset, clSize };
+            List<string> order = Helper.WindowsRegistry.Layout.ColumnOrder;
+            List<string> lcn = new List<string>(colNames);
+            lv.Columns.Clear();
+            foreach (string s in order)
+                lv.Columns.Add(ach[lcn.IndexOf(s)]);
+            if (!Helper.WindowsRegistry.ResourceListShowExtensions) lv.Columns.Remove(clTName);
+            if (!Helper.WindowsRegistry.HiddenMode)
+            {
+                lv.Columns.Remove(clSize);
+                lv.Columns.Remove(clOffset);
+            }
         }
-
-        
-
-        
     }
 }
