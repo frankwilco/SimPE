@@ -177,6 +177,30 @@ namespace SimPe
 			}
 		}
 
+
+        static string[] colNames = new string[] { "Name", "Type", "Group", "InstHi", "Inst", "Offset", "Size" };
+        public System.Collections.Generic.List<string> ColumnOrder
+        {
+            get
+            {
+                string[] s = xrk.GetValue("ColumnOrder", String.Join(",", colNames)).ToString().Split(',');
+                System.Collections.Generic.List<string> ls = new System.Collections.Generic.List<string>(s);
+                System.Collections.Generic.List<string> lc = new System.Collections.Generic.List<string>(colNames);
+                foreach (string v in s) if (!lc.Contains(v)) ls.Remove(v);
+                foreach (string v in colNames) if (!ls.Contains(v)) ls.Add(v);
+                return ls;
+            }
+            set
+            {
+                string[] s = value.ToArray();
+                System.Collections.Generic.List<string> ls = new System.Collections.Generic.List<string>(s);
+                System.Collections.Generic.List<string> lc = new System.Collections.Generic.List<string>(colNames);
+                foreach (string v in s) if (!lc.Contains(v)) ls.Remove(v);
+                foreach (string v in colNames) if (!ls.Contains(v)) ls.Add(v);
+                xrk.SetValue("ColumnOrder", String.Join(",", ls.ToArray()));
+            }
+        }
+
 		/// <summary>
 		/// Width of the Column in the main Window
 		/// </summary>

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace SimPe.Windows.Forms
 {
@@ -24,22 +25,33 @@ namespace SimPe.Windows.Forms
 
             this.manager = manager;
             this.pfd = pfd;
-            if (visible)
-                this.Text = pfd.GetRealName();
-            else
-                this.Text = pfd.Descriptor.ToResListString();
 
-            if (Helper.WindowsRegistry.ResourceListShowExtensions) this.SubItems.Add(GetExtText());
-            this.SubItems.Add("0x" + Helper.HexString(pfd.Descriptor.Group));
-            this.SubItems.Add("0x" + Helper.HexString(pfd.Descriptor.SubType));
+
+            object[] subitems = new object[7];
+            subitems[0] = visible ? pfd.GetRealName() : pfd.Descriptor.ToResListString(); // Name
+            subitems[1] = GetExtText(); // Type
+            subitems[2] = "0x" + Helper.HexString(pfd.Descriptor.Group); // Group
+            subitems[3] = "0x" + Helper.HexString(pfd.Descriptor.SubType); // InstHi
+
+            // Inst
             if (Helper.WindowsRegistry.ResourceListInstanceFormatHexOnly)
-                this.SubItems.Add("0x" + Helper.HexString(pfd.Descriptor.Instance));
+                subitems[4] = "0x" + Helper.HexString(pfd.Descriptor.Instance);
             else if (Helper.WindowsRegistry.ResourceListInstanceFormatDecOnly)
-                this.SubItems.Add(((int)pfd.Descriptor.Instance).ToString());
+                subitems[4] = ((int)pfd.Descriptor.Instance).ToString();
             else
-                this.SubItems.Add("0x" + Helper.HexString(pfd.Descriptor.Instance) + " (" + ((int)pfd.Descriptor.Instance).ToString() + ")");
-            this.SubItems.Add("0x" + Helper.HexString(pfd.Descriptor.Offset));
-            this.SubItems.Add("0x" + Helper.HexString(pfd.Descriptor.Size));
+                subitems[4] = "0x" + Helper.HexString(pfd.Descriptor.Instance) + " (" + ((int)pfd.Descriptor.Instance).ToString() + ")";
+
+            subitems[5] = "0x" + Helper.HexString(pfd.Descriptor.Offset);
+            subitems[6] = "0x" + Helper.HexString(pfd.Descriptor.Size);
+
+
+            List<string> order = Helper.WindowsRegistry.Layout.ColumnOrder;
+            List<string> cn = new List<string>(colNames);
+            this.SubItems.Clear();
+            this.Text = (string)subitems[cn.IndexOf(order[0])];
+            for (int i = 1; i < order.Count; i++)
+                SubItems.Add((string)subitems[cn.IndexOf(order[i])]);
+
 
             this.ImageIndex = ResourceViewManager.GetIndexForResourceType(pfd.Descriptor.Type);
 
@@ -49,6 +61,7 @@ namespace SimPe.Windows.Forms
 
             ChangeDescription(true);
         }
+        static string[] colNames = new string[] { "Name", "Type", "Group", "InstHi", "Inst", "Offset", "Size" };
 
         string GetExtText()
         {
