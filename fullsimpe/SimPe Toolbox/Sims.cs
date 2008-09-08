@@ -481,19 +481,19 @@ namespace SimPe.Plugin
 
         private bool realIsTownie(PackedFiles.Wrapper.ExtSDesc sdesc)
         {
-            return sdesc.FamilyInstance < 0x7fff && sdesc.FamilyInstance >= 0x7fe0;
+            return sdesc.FamilyInstance < 0x7fff && sdesc.FamilyInstance >= 0x7f00;
             /*return sdesc.IsTownie;*/
         }
 
         private bool realIsPlayable(PackedFiles.Wrapper.ExtSDesc sdesc)
         {
-            return sdesc.FamilyInstance < 0x7fe0 && sdesc.FamilyInstance > 0;
+            return sdesc.FamilyInstance < 0x7f00 && sdesc.FamilyInstance > 0;
             /*return !realIsNPC(sdesc) && !realIsTownie(sdesc);*/
         }
 
         private bool realIsUneditable(PackedFiles.Wrapper.ExtSDesc sdesc)
         {
-            return sdesc.FamilyInstance == 0;
+            return sdesc.FamilyInstance == 0 || sdesc.FamilyInstance > 0x7fff;
         }
 
 		SimPe.Interfaces.Files.IPackedFileDescriptor pfd;
