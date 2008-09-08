@@ -671,7 +671,7 @@ namespace SimPe.Plugin
 
 		protected void AddSim(SimPe.PackedFiles.Wrapper.SDesc sdesc) 
 		{
-			if (!sdesc.HasImage) return;
+			//if (!sdesc.HasImage) return;
 			if (!sdesc.AvailableCharacterData) return;
 
 			AddImage(sdesc);
