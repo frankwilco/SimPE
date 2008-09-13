@@ -64,27 +64,49 @@ namespace SimPe.Plugin
 	{
 		public enum LotType:byte 
 		{
-			Residential = 0x00,
-			Community = 0x01,
+            Residential = 0x00,
+            Community = 0x01,
 			Dorm = 0x02,
-			Greek = 0x03,
-			Secret = 0x04,
+			GreekHouse = 0x03,
+			SecretSociety = 0x04,
             Hotel = 0x05,
-            Unknown6 = 0x06,
-            Unknown7 = 0x07,
-            Condo = 0x08,
-            Apartment = 0x09,
+            VacationHidden = 0x06,
+            HobbyHidden = 0x07,
+            ApartmentBase = 0x08,
+            ApartmentSublot = 0x09,
+            WitchesHidden = 0x0a,
             Unknown = 0xff
 		}
-        public class Roads { public static byte noRoads = 0x00, atLeft = 0x01, atTop = 0x02, atRight = 0x04, atBottom = 0x08; }
         public enum Rotation { toLeft = 0x00, toTop, toRight, toBottom, };
+        public class SubLot
+        {
+            uint apartmentSublot; public uint ApartmentSublot { get { return apartmentSublot; } set { apartmentSublot = value; } }
+            uint unknown_1; internal uint Unknown1 { get { return unknown_1; } set { unknown_1 = value; } }
+            uint unknown_2; internal uint Unknown2 { get { return unknown_2; } set { unknown_2 = value; } }
+            uint unknown_3; internal uint Unknown3 { get { return unknown_3; } set { unknown_3 = value; } }
+            internal SubLot(System.IO.BinaryReader reader) { this.Unserialize(reader); }
+            private void Unserialize(System.IO.BinaryReader reader)
+            {
+                apartmentSublot = reader.ReadUInt32();
+                unknown_1 = reader.ReadUInt32();
+                unknown_2 = reader.ReadUInt32();
+                unknown_3 = reader.ReadUInt32();
+            }
+            internal void Serialize(System.IO.BinaryWriter writer)
+            {
+                writer.Write(apartmentSublot);
+                writer.Write(unknown_1);
+                writer.Write(unknown_2);
+                writer.Write(unknown_3);
+            }
+        }
 
 		#region Attributes
 		ushort ver;
 		ushort subver;
 		Size sz;
 		LotType type;
-        Boolset roads = Roads.noRoads;
+        Boolset roads = (byte)0x00; //noRoads = 0x00, atLeft = 0x01, atTop = 0x02, atRight = 0x04, atBottom = 0x08
         Rotation rotation;
         uint unknown_0;
         // DWORD length
@@ -103,7 +125,13 @@ namespace SimPe.Plugin
         // DWORD length
         string texture;
         byte unknown_2;
-        uint owner;
+        uint owner;         //If ver >= Business
+        uint apartmentBase; //if subver >= Apartment Life (zero if ApartmentBase; lot instance if ApartmentSublot)
+        byte[] unknown_6;   //if subver >= Apartment Life (9 bytes)
+        // DWORD count      //if subver >= Apartment Life
+        List<SubLot> subLots;   //if subver >= Apartment Life
+        // DWORD count      //if subver >= Apartment Life
+        List<uint> unknown_7;   //if subver >= Apartment Life
         byte[] followup;
 		#endregion
 
@@ -129,13 +157,25 @@ namespace SimPe.Plugin
                 for (int i = 0; i < value.Length && i < unknown_5.Length; i++) unknown_5[i] = value[i];
             }
         }
-            public Point LotPosition { get { return loc; } set { loc = value; } }
+        public Point LotPosition { get { return loc; } set { loc = value; } }
         public float LotElevation { get { return elevation; } set { elevation = value; } }
         public uint LotInstance { get { return lotInstance; } set { lotInstance = value; } }
         public LotOrientation Orientation { get { return orient; } set { orient = value; } }
         public string Texture { get { return texture; } set { texture = value; } }
         internal byte Unknown2 { get { return unknown_2; } set { unknown_2 = value; } }
         public uint OwnerInstance { get { return owner; } set { owner = value; } }
+        public uint ApartmentBase { get { return apartmentBase; } set { apartmentBase = value; } }
+        internal byte[] Unknown6
+        {
+            get { return unknown_6; }
+            set
+            {
+                unknown_6 = new byte[9];
+                for (int i = 0; i < value.Length && i < unknown_6.Length; i++) unknown_6[i] = value[i];
+            }
+        }
+        public List<SubLot> SubLots { get { return subLots; } }
+        public List<uint> Unknown7 { get { return unknown_7; } }
         internal byte[] Followup { get { return followup; } set { followup = value; } }
         #endregion
 
@@ -247,6 +287,29 @@ namespace SimPe.Plugin
             if (ver>=(int)LtxtVersion.Business) owner = reader.ReadUInt32();
 			else owner = 0;
 
+            if (ver >= (UInt16)LtxtVersion.Apartment || subver >= (UInt16)LtxtSubVersion.Apartment)
+            {
+                int count;
+
+                apartmentBase = reader.ReadUInt32();
+                unknown_6 = reader.ReadBytes(9);
+
+                subLots = new List<SubLot>();
+                count = reader.ReadInt32();
+                for (int i = 0; i < count; i++) subLots.Add(new SubLot(reader));
+
+                unknown_7 = new List<uint>();
+                count = reader.ReadInt32();
+                for (int i = 0; i < count; i++) unknown_7.Add(reader.ReadUInt32());
+            }
+            else
+            {
+                apartmentBase = 0;
+                unknown_6 = new byte[0];
+                subLots = new List<SubLot>();
+                unknown_7 = new List<uint>();
+            }
+
 			followup = reader.ReadBytes((int)(reader.BaseStream.Length - reader.BaseStream.Position));			
 		}
 
@@ -258,23 +321,23 @@ namespace SimPe.Plugin
 		/// Be sure that the Position of the stream is Proper on 
 		/// return (i.e. must point to the first Byte after your actual File)
 		/// </remarks>
-		protected override void Serialize(System.IO.BinaryWriter writer)
-		{			
-			writer.Write(ver);
-			writer.Write(this.subver);
-			writer.Write(sz.Width);
-			writer.Write(sz.Height);			
-			writer.Write((byte)type);
-			
-			writer.Write((byte)roads);
-			writer.Write((byte)rotation);			
-			writer.Write(unknown_0);
+        protected override void Serialize(System.IO.BinaryWriter writer)
+        {
+            writer.Write(ver);
+            writer.Write(this.subver);
+            writer.Write(sz.Width);
+            writer.Write(sz.Height);
+            writer.Write((byte)type);
 
-			StreamHelper.WriteString(writer, lotname);
-			StreamHelper.WriteString(writer, description);			
+            writer.Write((byte)roads);
+            writer.Write((byte)rotation);
+            writer.Write(unknown_0);
 
-			writer.Write(unknown_1.Count);
-			foreach (int i in unknown_1) writer.Write(i);
+            StreamHelper.WriteString(writer, lotname);
+            StreamHelper.WriteString(writer, description);
+
+            writer.Write(unknown_1.Count);
+            foreach (int i in unknown_1) writer.Write(i);
 
             if (subver >= (UInt16)LtxtSubVersion.Voyage) writer.Write(unknown_3);
             if (subver >= (UInt16)LtxtSubVersion.Freetime) writer.Write(unknown_4);
@@ -283,22 +346,34 @@ namespace SimPe.Plugin
                 writer.Write(unknown_5);
             }
 
-            
+
             writer.Write((int)loc.Y);
-			writer.Write((int)loc.X);
-            
-			writer.Write(elevation);
-			writer.Write(lotInstance);
-			writer.Write((byte)orient);
+            writer.Write((int)loc.X);
 
-			StreamHelper.WriteString(writer, texture);	
+            writer.Write(elevation);
+            writer.Write(lotInstance);
+            writer.Write((byte)orient);
 
-			writer.Write(unknown_2);
+            StreamHelper.WriteString(writer, texture);
 
-            if (ver>=(int)LtxtVersion.Business) writer.Write(owner);
+            writer.Write(unknown_2);
+
+            if (ver >= (int)LtxtVersion.Business) writer.Write(owner);
+
+            if (ver >= (UInt16)LtxtVersion.Apartment || subver >= (UInt16)LtxtSubVersion.Apartment)
+            {
+                writer.Write(apartmentBase);
+                writer.Write(unknown_6);
+
+                writer.Write(subLots.Count);
+                for (int i = 0; i < subLots.Count; i++) subLots[i].Serialize(writer);
+
+                writer.Write(unknown_7.Count);
+                for (int i = 0; i < unknown_7.Count; i++) writer.Write(unknown_7[i]);
+            }
 
             writer.Write(followup);
-		}
+        }
 		#endregion
 
 		#region IFileWrapperSaveExtension Member		

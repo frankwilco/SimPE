@@ -75,23 +75,43 @@ namespace SimPe.Plugin
 		{
             Ltxt wrp = (Ltxt)wrapper;
             form.wrapper = null;
-            //form.ltxtPanel.Enabled = !(wrp.Version >= LtxtVersion.Apartment || wrp.SubVersion >= LtxtSubVersion.Apartment);
+
 
             form.pb.Image = wrp.LotDescription.Image;
 
+
             form.tbver.Text = wrp.Version.ToString();
             form.tbsubver.Text = wrp.SubVersion.ToString();
-            
-			form.tbu0.Text = "0x"+Helper.HexString(wrp.Unknown0);
+
+            if (form.cbtype.Items.Contains(wrp.Type))
+                form.cbtype.SelectedIndex = form.cbtype.Items.IndexOf(wrp.Type);
+            else
+                form.cbtype.SelectedIndex = 0;
+            form.tbtype.Text = "0x" + Helper.HexString((byte)wrp.Type);
+
+            form.tbRoads.Text = "0x" + Helper.HexString(wrp.LotRoads);
+
+            form.tbwd.Text = wrp.LotSize.Width.ToString();
+            form.tbhg.Text = wrp.LotSize.Height.ToString();
+            form.tbtop.Text = wrp.LotPosition.Y.ToString();
+            form.tbleft.Text = wrp.LotPosition.X.ToString();
+            form.tbz.Text = wrp.LotElevation.ToString();
+
+            form.cborient.SelectedValue = wrp.Orientation;
+            form.tbrotation.Text = "0x" + Helper.HexString(wrp.LotRotation);
+            form.tbu0.Text = "0x" + Helper.HexString(wrp.Unknown0);
+
+
+            form.tblotname.Text = wrp.LotName;
+            form.tbTexture.Text = wrp.Texture;
+            form.tbdesc.Text = wrp.LotDesc;
+
+
+            form.tbinst.Text = "0x" + Helper.HexString(wrp.LotInstance);
             form.tbu3.Text = wrp.Unknown3.ToString();
             form.tbu4.Text = "0x"+Helper.HexString(wrp.Unknown4);
-
-			form.tbinst.Text = "0x"+Helper.HexString(wrp.LotInstance);
             form.tbu5.Text = Helper.BytesToHexList(wrp.Unknown5);
 
-			form.cbtype.SelectedIndex = -1;
-            if ((byte)wrp.Type < form.cbtype.Items.Count) form.cbtype.SelectedIndex = (byte)wrp.Type;
-            form.tbtype.Text = "0x" + Helper.HexString((byte)wrp.Type);
 
 			form.lb.Items.Clear();
             int x = 0, y = 0;
@@ -105,30 +125,41 @@ namespace SimPe.Plugin
                     x = 0;
                 }
             }
+            form.tbElevationAt.Text = "";
 
-			form.tbRoads.Text = "0x"+Helper.HexString(wrp.LotRoads);
-			form.tbrotation.Text = "0x"+Helper.HexString(wrp.LotRotation);
 
-            form.tbwd.Text = wrp.LotSize.Width.ToString();
-			form.tbleft.Text = wrp.LotPosition.X.ToString();
-			form.tbz.Text = wrp.LotElevation.ToString();
-
-            form.tbhg.Text = wrp.LotSize.Height.ToString();
-			form.tbtop.Text = wrp.LotPosition.Y.ToString();
-
-			form.cborient.SelectedValue = wrp.Orientation;
-            form.tbData.Text = Helper.BytesToHexList(wrp.Followup);
-
-			form.tblotname.Text = wrp.LotName;
-			form.tbdesc.Text = wrp.LotDesc;
-            form.tbTexture.Text = wrp.Texture;
             form.tbu2.Text = "0x" + Helper.HexString(wrp.Unknown2);
             form.tbowner.Text = "0x" + Helper.HexString(wrp.OwnerInstance);
+            form.tbApBase.Text = "0x" + Helper.HexString(wrp.ApartmentBase);
+            form.tbu6.Text = Helper.BytesToHexList(wrp.Unknown6);
+
+
+            form.lbApts.Items.Clear();
+            foreach (Ltxt.SubLot sl in wrp.SubLots)
+                form.lbApts.Items.Add("0x" + Helper.HexString(sl.ApartmentSublot));
+            form.tbApartment.Text = form.tbSAu1.Text = form.tbSAu2.Text = form.tbSAu3.Text = "";
+
+
+            form.lbu7.Items.Clear();
+            foreach (uint i in wrp.Unknown7)
+                form.lbu7.Items.Add("0x" + Helper.HexString(i));
+            form.tbu7.Text = "";
+
+
+            form.tbData.Text = Helper.BytesToHexList(wrp.Followup);
+
 
             form.tbowner.ReadOnly = !(wrp.Version >= LtxtVersion.Business);
             form.tbu3.ReadOnly = !(wrp.SubVersion >= LtxtSubVersion.Voyage);
             form.tbu4.ReadOnly = !(wrp.SubVersion >= LtxtSubVersion.Freetime);
-            form.tbu5.ReadOnly = !(wrp.Version >= LtxtVersion.Apartment || wrp.SubVersion >= LtxtSubVersion.Apartment);
+
+            form.lbApts.Enabled = form.gbApartment.Enabled = form.lbu7.Enabled =
+                (wrp.Version >= LtxtVersion.Apartment || wrp.SubVersion >= LtxtSubVersion.Apartment);
+            form.tbu5.ReadOnly = form.tbApBase.ReadOnly = form.tbu6.ReadOnly = form.tbu7.ReadOnly =
+                !form.lbApts.Enabled;
+
+            form.llAptBase.Enabled = (wrp.ApartmentBase != 0);
+            form.llFamily.Enabled = form.llSubLot.Enabled = false;
 
 			form.wrapper = wrp;
 		}		
