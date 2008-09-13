@@ -47,6 +47,7 @@ namespace SimPe
                     return;
                 }
 
+                /*
                 bool stop = false;
                 System.IO.FileStream fs = null;
                 while (!stop)
@@ -75,6 +76,7 @@ namespace SimPe
                         fs = null;
                     }
                 }
+                */
 
                 if (Commandline.Splash(ref args, "--nosplash")) Helper.WindowsRegistry.ShowStartupSplash = false;
                 if (Commandline.Splash(ref args, "--splash")) Helper.WindowsRegistry.ShowStartupSplash = true;
