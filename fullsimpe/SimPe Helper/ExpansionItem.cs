@@ -6,64 +6,30 @@ namespace SimPe
 {
     public class ExpansionItem : IComparable
     {
-        public enum Classes {
-            BaseGame, ExpansionPack, StuffPack, Story
-        }
+        public enum Classes { BaseGame, ExpansionPack, StuffPack, Story, }
        
         public class Flags : FlagBase
         {
-            internal Flags(int val)
-                : base((ushort)val)
-            {
-            }
+            internal Flags(int val) : base((ushort)val) { }
 
-            protected bool BaseGame
-            {
-                get { return !StuffPack && !RegularExpansion; }
-            }
-
-            protected bool StuffPack
-            {
-                get { return this.GetBit(1);  }
-            }
-
-            protected bool RegularExpansion
-            {
-                get { return this.GetBit(0);; }
-            }
+            protected bool RegularExpansion { get { return this.GetBit(0); } }
+            protected bool StuffPack { get { return this.GetBit(1); } }
+            public bool LuaFolders { get { return this.GetBit(2); } }
+            public bool LoadWantText { get { return this.GetBit(3); } }
+            protected bool SimStory { get { return this.GetBit(4); } }
+            public bool FullObjectsPackage { get { return !this.GetBit(5); } }
+            public bool HasNgbhProfiles { get { return this.GetBit(6); } }
 
             public Classes Class
             {
                 get
                 {
-                    if (SimStory) return Classes.Story;
                     if (RegularExpansion) return Classes.ExpansionPack;
-                    if (BaseGame) return Classes.BaseGame;
-                    return Classes.StuffPack;
+                    if (StuffPack) return Classes.StuffPack;
+                    if (SimStory) return Classes.Story;
+                    return Classes.BaseGame;
                 }
             }
-
-            public bool LuaFolders
-            {
-                get { return this.GetBit(2); }
-            }
-
-            public bool LoadWantText
-            {
-                get { return this.GetBit(3); }
-            }
-
-            public bool SimStory
-            {
-                get { return this.GetBit(4); }
-            }
-
-            public bool FullObjectsPackage
-            {
-                get { return !this.GetBit(5); }
-            }
-
-            public bool HasNgbhProfiles { get { return this.GetBit(6); } }
         }
 
         string name;
@@ -567,8 +533,12 @@ namespace SimPe
                 try
                 {
                     object o = rk.GetValue("Install Dir");
-                    if (o == null) return "";
-                    else return Helper.ToLongPathName(o.ToString());
+                    if (o == null)
+                        return "";
+                    else if (installsuffix != null && installsuffix.Length > 0)
+                        return System.IO.Path.Combine(Helper.ToLongPathName(o.ToString()), installsuffix);
+                    else
+                        return Helper.ToLongPathName(o.ToString());
                 }
                 catch (Exception)
                 {
