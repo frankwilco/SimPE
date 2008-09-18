@@ -8,27 +8,32 @@ namespace SimPe
     public enum Expansions : uint
     {
         None =              0x0,
-        BaseGame =          0x1,
-        University =        0x2,
-        Nightlife =         0x4,
-        Business =          0x8,
-        FamilyFun =         0x10,
-        Glamour =           0x20,
-        Pets =              0x40,
-        HappyHoliday =      0x80,
-        Seasons =           0x100,
-        Celebrations =      0x200,
-        Fashion =           0x400,
-        Voyage =            0x800,
-        Teen =              0x1000,
-        FreeTime =          0x2000,
-        Kitchens =          0x4000,
-        IKEA =              0x8000,
-        Apartments =        0x10000,
-        LifeStories =       0x00100000,
-        PetStories =        0x00200000,
-        IslandStories =     0x00400000,
-        Custom =            0x80000000
+        BaseGame =          0x1,//0
+        University =        0x2,//1
+        Nightlife =         0x4,//2
+        // Non-SP XMas stuff
+        Business =          0x8,//3
+        FamilyFun =         0x10,//4
+        Glamour =           0x20,//5
+        Pets =              0x40,//6
+        // Non-SP Happy Holidays
+        Seasons =           0x80,//7
+        Celebrations =      0x100,//8
+        Fashion =           0x200,//9
+        Voyage =            0x400,//10
+        Teen =              0x800,//11
+        Store =             0x1000,//12
+        FreeTime =          0x2000,//13
+        Kitchens =          0x4000,//14
+        IKEA =              0x8000,//15
+        Apartments =        0x00010000,//16 --Flags2--
+        Mansions =          0x00020000,//17
+        XP18 =              0x00040000,//18
+        XP19 =              0x00080000,//19
+        IslandStories =     0x10000000,//28 -- SimPE stolen: beware!!
+        PetStories =        0x20000000,//29 -- SimPE stolen: beware!!
+        LifeStories =       0x40000000,//30 -- SimPE stolen: beware!!
+        Custom =            0x80000000 //31
     }
 
 
@@ -99,7 +104,7 @@ namespace SimPe
                 exps.Add(i);
                 map[i.Expansion] = i;
 
-                if (i.Flag.SimStory) continue;
+                if (i.Flag.Class == ExpansionItem.Classes.Story) continue;
 
                 if (i.CensorFile != ""){
                     string fl = System.IO.Path.Combine(SimSavegameFolder, @"Downloads\" + i.CensorFileName);

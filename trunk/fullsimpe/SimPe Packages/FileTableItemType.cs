@@ -98,7 +98,7 @@ namespace SimPe
         {
             if (val > 0x80000000) return -1;
             ExpansionItem ei = PathProvider.Global[AsExpansions];
-            if (ei.Flag.SimStory) return -1;
+            if (ei.Flag.Class == ExpansionItem.Classes.Story) return -1;
             return ei.Version;
 
             //return -1;

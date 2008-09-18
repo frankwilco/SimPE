@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <registry>
   <key name="Expansions">
+
     <!-- Information about the base Game -->
     <key name="BaseGame">
       <int name="Version">0</int>
@@ -20,7 +21,7 @@
       <cilist name="SaveGameLocationsForGroup">
         <string name="0">{UserSaveGame}</string>
       </cilist>
-      <string name="namelistnr">1</string>
+      <string name="namelistnr">0</string>
       <key name="en">
           <string name="short">Original</string>
       	  <string name="long">The Sims 2</string>
@@ -83,6 +84,8 @@
       </key>
     </key>
 
+    <!-- Non-SP XMas Stuff -->
+
     <!-- Information about Business -->
     <key name="Business">
       <int name="Version">3</int>
@@ -111,7 +114,7 @@
       <string name="ExeName">Sims2SP1.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <int name="Group">1</int>
-      <string name="namelistnr">1</string>
+      <string name="namelistnr">4</string>
       <key name="en">
 	  <string name="short">Family Fun</string>
           <string name="name">Family Fun Stuff</string>
@@ -132,7 +135,7 @@
       <string name="ExeName">Sims2SP2.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <int name="Group">1</int>
-      <string name="namelistnr">2</string>
+      <string name="namelistnr">5</string>
       <key name="en">
           <string name="name">Glamour Stuff</string>
       	  <string name="long">The Sims 2 - Glamour Stuff</string>
@@ -154,7 +157,7 @@
         <string name="0">TSData\Res\NeighborhoodTemplate\P001\Characters\</string>
       </cilist>
       <int name="Group">1</int>
-      <string name="namelistnr">4</string>
+      <string name="namelistnr">6</string>
       <key name="en">
       	  <string name="long">The Sims 2 - Pets</string>
       </key>
@@ -164,11 +167,11 @@
       </key>
     </key>
 
-    <!-- Version 7 is internally used for the Happy Holidays SP, which is not a real SP -->
+    <!-- Non-SP Happy Holidays -->
 
     <!-- Information about Seasons -->
     <key name="Seasons">
-      <int name="Version">8</int>
+      <int name="Version">7</int>
       <string name="RegKey">Software\\EA Games\\The Sims 2 Seasons</string>
       <int name="Flag">13</int><!-- 00001101 -->
       <string name="ExeName">Sims2EP5.exe</string>
@@ -177,7 +180,7 @@
       <cilist name="SimNameDeepSearch">
         <string name="0">TSData\Res\NeighborhoodTemplate\G002\Characters\</string>
       </cilist>
-      <string name="namelistnr">5</string>
+      <string name="namelistnr">7</string>
       <key name="en">
       	  <string name="long">The Sims 2 - Seasons</string>
       </key>
@@ -190,7 +193,7 @@
 
     <!-- Information about Celebration! Stuff  (provided by Numenor) -->
     <key name="Celebration">
-      <int name="Version">9</int>
+      <int name="Version">8</int>
       <int name="PreferedRuntimeVersion">8</int>
       <string name="RegKey">Software\\EA Games\\The Sims 2 Celebration Stuff</string>
       <int name="Flag">34</int><!-- 00100010 -->
@@ -198,7 +201,7 @@
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string> <!-- Provided by Carrigon -->
       <int name="Group">1</int>
-      <string name="namelistnr">3</string>
+      <string name="namelistnr">8</string>
       <key name="en">
 	  <string name="short">Celebration!</string>
           <string name="name">Celebration! Stuff</string>
@@ -213,7 +216,7 @@
 
     <!-- Information about H&M Fashion Stuff  (provided by Numenor) -->
     <key name="Fashion">
-      <int name="Version">10</int>
+      <int name="Version">9</int>
       <int name="PreferedRuntimeVersion">8</int>
       <string name="RegKey">Software\\EA Games\\The Sims 2 H M Fashion Stuff</string>
       <int name="Flag">34</int><!-- 00100010 -->
@@ -221,7 +224,7 @@
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string>
       <int name="Group">1</int>
-      <string name="namelistnr">4</string>
+      <string name="namelistnr">9</string>
       <key name="en">
 	  <string name="short">Fashion</string>
           <string name="name">H&amp;M Fashion Stuff</string>
@@ -236,7 +239,7 @@
   
     <!-- Information about Bon Voyage -->
     <key name="Voyage">
-      <int name="Version">11</int>
+      <int name="Version">10</int>
       <string name="RegKey">Software\\EA Games\\The Sims 2 Bon Voyage</string>
       <int name="Flag">13</int><!-- 00001101 -->
       <string name="ExeName">Sims2EP6.exe</string>
@@ -252,7 +255,7 @@
       <cilist name="AdditionalFileTableFolders">
         <string name="0">!TSData\Res\Overrides\</string>
       </cilist>
-      <string name="namelistnr">6</string>
+      <string name="namelistnr">10</string>
       <key name="en">
             <string name="name">Bon Voyage</string>
 	    <string name="long">The Sims 2 - Bon Voyage</string>
@@ -266,7 +269,7 @@
 
     <!-- Information about The Sims 2 Teen Style Stuff -->
     <key name="Teen">
-      <int name="Version">12</int>
+      <int name="Version">11</int>
       <int name="PreferedRuntimeVersion">11</int>
       <string name="RegKey">Software\\EA Games\\The Sims 2 Teen Style Stuff</string>
       <int name="Flag">34</int><!-- 00100010 -->
@@ -274,7 +277,7 @@
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string>
       <int name="Group">1</int>
-      <string name="namelistnr">5</string>
+      <string name="namelistnr">11</string>
       <key name="en">
 	  <string name="short">Teen</string>
           <string name="name">Teen Style Stuff</string>
@@ -284,6 +287,28 @@
           <string name="short">Teen</string>
           <string name="name">Teen Style Stuff</string>
       	  <string name="long">Die Sims 2 - Teen Style Stuff</string>
+      </key>
+    </key>
+
+    <!-- Information about The Sims 2 SE -->
+    <key name="Store">
+      <int name="Version">12</int>
+      <int name="PreferedRuntimeVersion">11</int>
+      <string name="RegKey">Software\\EA Games\\The Sims 2 SE</string>
+      <int name="Flag">2</int><!-- 00000010 -->
+      <string name="ExeName">Sims2SC.exe</string>
+      <string name="Censor">quaxi_pets_censor_v1.package</string>
+      <int name="Group">1</int>
+      <string name="namelistnr">12</string>
+      <key name="en">
+	  <string name="short">Store</string>
+          <string name="name">Store Edition</string>
+      	  <string name="long">The Sims 2 - Store Edition</string>
+      </key>
+      <key name="de">
+          <string name="short">Store</string>
+          <string name="name">Store Edition</string>
+      	  <string name="long">Die Sims 2 - Store Edition</string>
       </key>
     </key>
 
@@ -301,7 +326,7 @@
       <cilist name="AdditionalFileTableFolders">
         <string name="0">!TSData\Res\Overrides\</string>
       </cilist>
-      <string name="namelistnr">7</string>
+      <string name="namelistnr">13</string>
       <key name="en">
         <string name="short">FreeTime</string>
         <string name="name">FreeTime</string>
@@ -324,7 +349,7 @@
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\Res\StuffPack\Objects</string>
       <int name="Group">1</int>
-      <string name="namelistnr">6</string>
+      <string name="namelistnr">14</string>
       <key name="en">
         <string name="short">Kitchens</string>
         <string name="name">Kitchen &amp; Bath Interior Design Stuff</string>
@@ -347,7 +372,7 @@
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\Res\StuffPack\Objects</string>
       <int name="Group">1</int>
-      <string name="namelistnr">7</string>
+      <string name="namelistnr">15</string>
       <key name="en">
         <string name="short">IKEA</string>
         <string name="name">IKEA Home Stuff</string>
@@ -374,7 +399,7 @@
       <cilist name="AdditionalFileTableFolders">
         <string name="0">!TSData\Res\Overrides\</string>
       </cilist>
-      <string name="namelistnr">8</string>
+      <string name="namelistnr">16</string>
       <key name="en">
         <string name="short">Apartment</string>
         <string name="name">Apartment</string>
@@ -387,10 +412,33 @@
       </key>
     </key>
 
+    <!-- Information about The Sims 2 Mansions and Gardens -->
+    <key name="Mansions">
+      <int name="Version">17</int>
+      <int name="PreferedRuntimeVersion">16</int>
+      <string name="RegKey">Software\EA Games\The Sims 2 Mansions and Gardens Stuff</string>
+      <int name="Flag">34</int><!-- 00100010 -->
+      <string name="ExeName">Sims2SP9.exe</string>
+      <string name="Censor">quaxi_pets_censor_v1.package</string>
+      <string name="ObjectsFolder">TSData\Res\StuffPack\Objects</string>
+      <int name="Group">1</int>
+      <string name="namelistnr">17</string>
+      <key name="en">
+        <string name="short">Mansions</string>
+        <string name="name">Mansions and Gardens Stuff</string>
+        <string name="long">The Sims 2 - Mansions and Gardens Stuff</string>
+      </key>
+      <key name="de">
+        <string name="short">Mansions</string>
+        <string name="name">Mansions and Gardens Stuff</string>
+        <string name="long">Die Sims 2 - Mansions and Gardens Stuff</string>
+      </key>
+    </key>
+
  
     <!-- Information about Life Stories (provided by Numenor) -->
     <key name="LifeStories">
-      <int name="Version">20</int>
+      <int name="Version">30</int>
       <string name="RegKey">SOFTWARE\\Electronic Arts\\The Sims Life Stories</string>
       <int name="Flag">20</int><!-- 00010100 -->
       <string name="ExeName">SimsLS.exe</string>
@@ -399,7 +447,7 @@
       <cilist name="SaveGameLocationsForGroup">
         <string name="0">{MyDocuments}\\Electronic Arts\\{DisplayName}</string>
       </cilist>
-      <string name="namelistnr">1</string>
+      <string name="namelistnr">30</string>
       <key name="en">
 	  <string name="short">Life Stories</string>
       	  <string name="long">The Sims 2 - Life Stories</string>
@@ -408,7 +456,7 @@
 
     <!-- Information about Pet Stories (provided by Numenor) -->
     <key name="PetStories">
-      <int name="Version">21</int>
+      <int name="Version">29</int>
       <string name="RegKey">SOFTWARE\Electronic Arts\The Sims Pet Stories</string>
       <int name="Flag">20</int><!-- 00010100 -->
       <string name="ExeName">SimsPS.exe</string>
@@ -417,7 +465,7 @@
       <cilist name="SaveGameLocationsForGroup">
         <string name="0">{MyDocuments}\Electronic Arts\{DisplayName}</string>
       </cilist>	
-      <string name="namelistnr">2</string>
+      <string name="namelistnr">29</string>
       <key name="en">
 	  <string name="short">Pet Stories</string>
       	  <string name="long">The Sims 2 - Pet Stories</string>
@@ -430,7 +478,7 @@
 
     <!-- Information about Castaway Stories (provided by Numenor) -->
     <key name="CastawayStories">
-      <int name="Version">22</int>
+      <int name="Version">28</int>
       <string name="RegKey">SOFTWARE\\Electronic Arts\\The Sims Castaway Stories</string>
       <int name="Flag">84</int><!-- 01010100 -->
       <string name="ExeName">SimsCS.exe</string>
@@ -439,7 +487,7 @@
       <cilist name="SaveGameLocationsForGroup">
         <string name="0">{MyDocuments}\\Electronic Arts\\{DisplayName}</string>
       </cilist>
-      <string name="namelistnr">3</string>
+      <string name="namelistnr">28</string>
       <key name="en">
 	  <string name="short">Castaway Stories</string>
       	  <string name="long">The Sims 2 - Castaway Stories</string>
