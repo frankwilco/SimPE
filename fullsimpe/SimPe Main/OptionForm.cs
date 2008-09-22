@@ -1140,7 +1140,7 @@ namespace SimPe
             if (lbfolder.SelectedItem == null) return;
 
             //((FileTableItem)lbfolder.SelectedItem).Ignore = !((FileTableItem)lbfolder.SelectedItem).Ignore;
-            ((FileTableItem)lbfolder.SelectedItem).Ignore = lbfolder.CheckedItems.Contains(lbfolder.SelectedItem);
+            ((FileTableItem)lbfolder.SelectedItem).Ignore = e.NewValue != CheckState.Checked;
             btReload.Enabled = true;
             SetupFileTableCheckboxes();
         }
@@ -1327,6 +1327,8 @@ namespace SimPe
             CheckBox cb = (CheckBox)sender;
             if (this.cbIncCep.Tag != null) return;
 
+            this.Tag = true;
+
             btReload.Enabled = true;
             if (cb == this.cbIncCep) ChangeFileTable(cb, FileTablePaths.Absolute, true);
             else
@@ -1346,7 +1348,9 @@ namespace SimPe
                     } //foreach
                 }
                 ChangeFileTable(cb, ei.Expansion, false);
-            } 
+            }
+
+            this.Tag = null;
         }
 
         #endregion
@@ -1367,16 +1371,6 @@ namespace SimPe
         private void cbCustom_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             this.pgcustom.SelectedObject = cbCustom.SelectedItem;
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         void cbautobak_CheckedChanged(object sender, EventArgs e)
