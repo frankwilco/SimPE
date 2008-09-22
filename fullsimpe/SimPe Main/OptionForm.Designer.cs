@@ -891,6 +891,7 @@ namespace SimPe
             // 
             resources.ApplyResources(this.lbfolder, "lbfolder");
             this.lbfolder.Name = "lbfolder";
+            this.lbfolder.CheckOnClick = true;
             this.lbfolder.SelectedIndexChanged += new System.EventHandler(this.lbfolder_SelectedIndexChanged);
             this.lbfolder.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lbfolder_ItemCheck);
             // 
