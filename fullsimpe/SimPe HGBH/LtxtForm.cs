@@ -180,6 +180,7 @@ namespace SimPe.Plugin
             this.label30 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label18 = new System.Windows.Forms.Label();
+            this.llAptBase = new System.Windows.Forms.LinkLabel();
             this.tbu2 = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.tbowner = new System.Windows.Forms.TextBox();
@@ -237,7 +238,6 @@ namespace SimPe.Plugin
             this.panel2 = new System.Windows.Forms.Panel();
             this.label27 = new System.Windows.Forms.Label();
             this.pb = new System.Windows.Forms.PictureBox();
-            this.llAptBase = new System.Windows.Forms.LinkLabel();
             this.ltxtPanel.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
@@ -445,6 +445,13 @@ namespace SimPe.Plugin
             // 
             resources.ApplyResources(this.label18, "label18");
             this.label18.Name = "label18";
+            // 
+            // llAptBase
+            // 
+            resources.ApplyResources(this.llAptBase, "llAptBase");
+            this.llAptBase.Name = "llAptBase";
+            this.llAptBase.TabStop = true;
+            this.llAptBase.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ll_Click);
             // 
             // tbu2
             // 
@@ -780,7 +787,6 @@ namespace SimPe.Plugin
             // 
             resources.ApplyResources(this.tbinst, "tbinst");
             this.tbinst.Name = "tbinst";
-            this.tbinst.ReadOnly = true;
             this.tbinst.TextChanged += new System.EventHandler(this.CommonChange);
             // 
             // label15
@@ -862,13 +868,6 @@ namespace SimPe.Plugin
             resources.ApplyResources(this.pb, "pb");
             this.pb.Name = "pb";
             this.pb.TabStop = false;
-            // 
-            // llAptBase
-            // 
-            resources.ApplyResources(this.llAptBase, "llAptBase");
-            this.llAptBase.Name = "llAptBase";
-            this.llAptBase.TabStop = true;
-            this.llAptBase.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ll_Click);
             // 
             // LtxtForm
             // 
