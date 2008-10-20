@@ -957,6 +957,7 @@ namespace SimPe.Plugin
                 wrapper.Texture = tbTexture.Text;
 				wrapper.LotDesc = tbdesc.Text;
 
+                wrapper.LotInstance = Helper.StringToUInt32(tbinst.Text, wrapper.LotInstance, 16);
                 wrapper.Unknown3 = Helper.StringToFloat(tbu3.Text, wrapper.Unknown3);
                 wrapper.Unknown4 = Helper.StringToUInt32(tbu4.Text, wrapper.Unknown4, 16);
 
