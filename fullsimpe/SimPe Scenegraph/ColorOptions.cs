@@ -211,13 +211,13 @@ namespace SimPe.Plugin
 						string name = Hashes.StripHashFromName(mdp.Value).Trim();
 						if (!name.EndsWith("_txtr")) name+="_txtr";
 
-						Console.Write("loading second txtr "+mdp.Name+" = "+mdp.Value);
+						//Console.Write("loading second txtr "+mdp.Name+" = "+mdp.Value);
 						IPackageFile pkg = txmt.Package;
 						SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFile(name, Data.MetaData.TXTR);
 						if (pfds.Length>0) 
 						{
 							SimPe.Interfaces.Files.IPackedFileDescriptor pfd = pfds[0];
-							Console.Write(" [found in local Package]");	
+							//Console.Write(" [found in local Package]");	
 	
 							GenericRcol txtr = new GenericRcol();
 							txtr.ProcessData(pfd, pkg);
@@ -248,7 +248,7 @@ namespace SimPe.Plugin
 		/// <param name="fullmap">Contains a List of all available MMATs</param>
 		public void ProcessMmatMap(IPackageFile newpkg, Hashtable map, Hashtable fullmap) 
 		{
-			WaitingScreen.UpdateMessage("Loading Slave Subsets");
+			if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Loading Slave Subsets");
 			AddSlavesSubsets(map, fullmap);
 			Hashtable slaves = Scenegraph.GetSlaveSubsets(package);
 

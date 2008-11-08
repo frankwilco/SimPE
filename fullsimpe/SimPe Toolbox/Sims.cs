@@ -441,33 +441,39 @@ namespace SimPe.Plugin
 		protected void FillList()
 		{
             this.Cursor = Cursors.WaitCursor;
+            WaitingScreen.Wait();
             ilist.Images.Clear();
 			this.iListSmall.Images.Clear();
 			lv.BeginUpdate();
 			lv.Items.Clear();
 			Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(Data.MetaData.SIM_DESCRIPTION_FILE);
-			foreach(Interfaces.Files.IPackedFileDescriptor spfd in pfds) 
-			{
-				WaitingScreen.Wait();
-				PackedFiles.Wrapper.ExtSDesc sdesc = new SimPe.PackedFiles.Wrapper.ExtSDesc();
-				sdesc.ProcessData(spfd, package);
+            try
+            {
+                foreach (Interfaces.Files.IPackedFileDescriptor spfd in pfds)
+                {
+                    PackedFiles.Wrapper.ExtSDesc sdesc = new SimPe.PackedFiles.Wrapper.ExtSDesc();
+                    sdesc.ProcessData(spfd, package);
 
-                bool doAdd = false;
-                doAdd |= (this.cbNpc.Checked && realIsNPC(sdesc));
-                doAdd |= (this.cbTownie.Checked && realIsTownie(sdesc));
-                doAdd |= (this.ckbPlayable.Checked && realIsPlayable(sdesc));
-                doAdd |= (this.ckbUnEditable.Checked && realIsUneditable(sdesc));
-                
-                //WaitingScreen.UpdateImage(ImageLoader.Preview(sdesc.Image, new Size(64, 64)));
-				if (doAdd) AddSim(sdesc);
-			}
+                    bool doAdd = false;
+                    doAdd |= (this.cbNpc.Checked && realIsNPC(sdesc));
+                    doAdd |= (this.cbTownie.Checked && realIsTownie(sdesc));
+                    doAdd |= (this.ckbPlayable.Checked && realIsPlayable(sdesc));
+                    doAdd |= (this.ckbUnEditable.Checked && realIsUneditable(sdesc));
 
-			sorter.Sorting = lv.Sorting;
-			lv.Sort();
+                    //WaitingScreen.UpdateImage(ImageLoader.Preview(sdesc.Image, new Size(64, 64)));
+                    if (doAdd) AddSim(sdesc);
+                }
 
-			lv.EndUpdate();
-			WaitingScreen.Stop(this);
-            this.Cursor = Cursors.Default;
+                sorter.Sorting = lv.Sorting;
+                lv.Sort();
+
+            }
+            finally
+            {
+                lv.EndUpdate();
+                WaitingScreen.Stop(this);
+                this.Cursor = Cursors.Default;
+            }
         }
 
         private bool realIsNPC(PackedFiles.Wrapper.ExtSDesc sdesc)

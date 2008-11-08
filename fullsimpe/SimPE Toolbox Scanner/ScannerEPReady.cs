@@ -180,7 +180,7 @@ namespace SimPe.Plugin.Scanner
 					ps.State = TriState.Null;
 					try 
 					{
-						SimPe.Commandline.FixPackage(si.FileName, mname, FixVersion.UniversityReady);
+                        SimPe.Plugin.FixPackage.Fix(si.FileName, mname, FixVersion.UniversityReady);
 					} 
 					catch (Exception ex)
 					{

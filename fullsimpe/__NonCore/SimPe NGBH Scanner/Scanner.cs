@@ -96,7 +96,7 @@ namespace SimPe.Plugin
 				}
 			}
 
-			if (si.PackageCacheItem.Thumbnail!=null) WaitingScreen.UpdateImage(si.PackageCacheItem.Thumbnail);
+            if (si.PackageCacheItem.Thumbnail != null && WaitingScreen.Running) WaitingScreen.UpdateImage(si.PackageCacheItem.Thumbnail);
 			UpdateState(si, ps, lvi);
 		}
 
@@ -166,55 +166,51 @@ namespace SimPe.Plugin
 			return "Neighborhood Scanner";
 		}
 
-		private void MakeUnique(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-		{
-			if (selection==null) return;
+        private void MakeUnique(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+        {
+            if (selection == null) return;
 
-			WaitingScreen.Wait();
-			bool chg = false;
-			try 
-			{
+            WaitingScreen.Wait();
+            bool chg = false;
+            try
+            {
                 Hashtable ids = Idno.FindUids(PathProvider.SimSavegameFolder, true);
-				foreach (ScannerItem si in selection) 
-				{					
-					if (si.PackageCacheItem.Thumbnail!=null) WaitingScreen.Update(si.PackageCacheItem.Thumbnail, si.FileName);
-					else WaitingScreen.UpdateMessage(si.FileName);
+                foreach (ScannerItem si in selection)
+                {
+                    if (si.PackageCacheItem.Thumbnail != null) WaitingScreen.Update(si.PackageCacheItem.Thumbnail, si.FileName);
+                    else WaitingScreen.UpdateMessage(si.FileName);
 
-					SimPe.Cache.PackageState ps = si.PackageCacheItem.FindState(this.Uid, true);
-					if (si.PackageCacheItem.Type == PackageType.Neighborhood)
-					{
-						Interfaces.Files.IPackedFileDescriptor[] pfds = si.Package.FindFiles(Data.MetaData.IDNO);
-						if (pfds.Length>0) 
-						{
-							Idno idno = new Idno();
-							idno.ProcessData(pfds[0], si.Package);
-							idno.MakeUnique(ids);
-							
+                    SimPe.Cache.PackageState ps = si.PackageCacheItem.FindState(this.Uid, true);
+                    if (si.PackageCacheItem.Type == PackageType.Neighborhood)
+                    {
+                        Interfaces.Files.IPackedFileDescriptor[] pfds = si.Package.FindFiles(Data.MetaData.IDNO);
+                        if (pfds.Length > 0)
+                        {
+                            Idno idno = new Idno();
+                            idno.ProcessData(pfds[0], si.Package);
+                            idno.MakeUnique(ids);
 
-							if (ps.Data.Length<2) ps.Data = new uint[2];
-							if (idno.Uid!=ps.Data[1]) 
-							{
-								idno.SynchronizeUserData();
-								si.Package.Save();
-								chg = true;
 
-								ps.Data[1] = idno.Uid;
-								ps.State = TriState.True;
-							}
-						}
-					}
-				}
+                            if (ps.Data.Length < 2) ps.Data = new uint[2];
+                            if (idno.Uid != ps.Data[1])
+                            {
+                                idno.SynchronizeUserData();
+                                si.Package.Save();
+                                chg = true;
 
-				if (chg && this.CallbackFinish!=null) this.CallbackFinish(false, false);
-			} 
-			catch (Exception ex) 
-			{
-				Helper.ExceptionMessage("", ex);
-			}
-			finally 
-			{
-				WaitingScreen.Stop();
-			}
-		}
+                                ps.Data[1] = idno.Uid;
+                                ps.State = TriState.True;
+                            }
+                        }
+                    }
+                }
+
+                if (chg && this.CallbackFinish != null) this.CallbackFinish(false, false);
+            }
+#if !DEBUG
+            catch (Exception ex) { Helper.ExceptionMessage("", ex); }
+#endif
+            finally { WaitingScreen.Stop(); }
+        }
 	}
 }

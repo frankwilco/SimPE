@@ -299,7 +299,7 @@ namespace SimPe.Plugin
 			cachefile = new SimPe.Cache.ObjectCacheFile();
 		
 			if (!Helper.WindowsRegistry.UseCache) return;
-			WaitingScreen.UpdateMessage("Loading Cache");
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Loading Cache");
 			try 
 			{
 				cachefile.Load(CacheFileName);
@@ -319,163 +319,166 @@ namespace SimPe.Plugin
 		{
 			if (!Helper.WindowsRegistry.UseCache) return;
 			if (!cachechg) return;
-			WaitingScreen.UpdateMessage("Saving Cache");
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Saving Cache");
 
 			cachefile.Save(CacheFileName);
 		}		
 		#endregion
 
-		void BuildListing(uint type)
-		{
-			//build Object List
-			if (lbobj.Items.Count==0) 
-			{								
-				DateTime start = DateTime.Now;						
-				WaitingScreen.Wait();
-				this.ilist.ImageSize = new Size(Helper.WindowsRegistry.OWThumbSize,Helper.WindowsRegistry.OWThumbSize);
-				LoadCachIndex();
-				lbobj.BeginUpdate();
-				tv.BeginUpdate();
-				lbobj.Items.Clear();
-				this.CleanTree();		
-				lbobj.Sorted = false;
-				tv.Sorted = false;
+        void BuildListing(uint type)
+        {
+            //build Object List
+            if (lbobj.Items.Count == 0)
+            {
+                DateTime start = DateTime.Now;
+                WaitingScreen.Wait();
+                try
+                {
+                    this.ilist.ImageSize = new Size(Helper.WindowsRegistry.OWThumbSize, Helper.WindowsRegistry.OWThumbSize);
+                    LoadCachIndex();
+                    lbobj.BeginUpdate();
+                    tv.BeginUpdate();
+                    lbobj.Items.Clear();
+                    this.CleanTree();
+                    lbobj.Sorted = false;
+                    tv.Sorted = false;
 
-				FileTable.FileIndex.Load();
-				ArrayList pitems = new ArrayList();
-				ArrayList groups = new ArrayList();
-				int ct = 0;				
-				Interfaces.Scenegraph.IScenegraphFileIndexItem[] nrefitems = FileTable.FileIndex.Sort(FileTable.FileIndex.FindFile(type, true));
-				string len = " / " + nrefitems.Length.ToString();
+                    FileTable.FileIndex.Load();
+                    ArrayList pitems = new ArrayList();
+                    ArrayList groups = new ArrayList();
+                    int ct = 0;
+                    Interfaces.Scenegraph.IScenegraphFileIndexItem[] nrefitems = FileTable.FileIndex.Sort(FileTable.FileIndex.FindFile(type, true));
+                    string len = " / " + nrefitems.Length.ToString();
 
-				SimPe.Data.MetaData.Languages deflang = Helper.WindowsRegistry.LanguageCode;
-				foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem nrefitem in nrefitems)
-				{
-					if (ct>1000) break;
-					ct++;
-					if (ct%134==1) WaitingScreen.UpdateMessage(ct.ToString() + len);
-					
+                    SimPe.Data.MetaData.Languages deflang = Helper.WindowsRegistry.LanguageCode;
+                    foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem nrefitem in nrefitems)
+                    {
+                        if (ct > 1000) break;
+                        ct++;
+                        if (ct % 134 == 1) WaitingScreen.UpdateMessage(ct.ToString() + len);
 
-					if (nrefitem.LocalGroup == Data.MetaData.LOCAL_GROUP) continue;
-					if (pitems.Contains(nrefitem)) continue;
-					if (groups.Contains(nrefitem.LocalGroup)) continue;					
 
-					Interfaces.Scenegraph.IScenegraphFileIndexItem[] cacheitems = cachefile.FileIndex.FindFile(nrefitem.FileDescriptor, nrefitem.Package);
+                        if (nrefitem.LocalGroup == Data.MetaData.LOCAL_GROUP) continue;
+                        if (pitems.Contains(nrefitem)) continue;
+                        if (groups.Contains(nrefitem.LocalGroup)) continue;
 
-					//find the correct File
-					int cindex = -1;
-					string pname = nrefitem.Package.FileName.Trim().ToLower();
-					for (int i=0; i<cacheitems.Length; i++)
-					{
-						Interfaces.Scenegraph.IScenegraphFileIndexItem citem = cacheitems[i];
-						
-						if (citem.FileDescriptor.Filename.Trim().ToLower() == pname) 
-						{
-							cindex=i;
-							break;
-						}
-					}
+                        Interfaces.Scenegraph.IScenegraphFileIndexItem[] cacheitems = cachefile.FileIndex.FindFile(nrefitem.FileDescriptor, nrefitem.Package);
 
-					if (cindex!=-1) //found in the cache
-					{
-						SimPe.Cache.ObjectCacheItem oci = (SimPe.Cache.ObjectCacheItem)cacheitems[cindex].FileDescriptor.Tag;
+                        //find the correct File
+                        int cindex = -1;
+                        string pname = nrefitem.Package.FileName.Trim().ToLower();
+                        for (int i = 0; i < cacheitems.Length; i++)
+                        {
+                            Interfaces.Scenegraph.IScenegraphFileIndexItem citem = cacheitems[i];
 
-						if (!oci.Useable) continue;
-						pitems.Add(nrefitem);
-						groups.Add(nrefitem.FileDescriptor.Instance);
+                            if (citem.FileDescriptor.Filename.Trim().ToLower() == pname)
+                            {
+                                cindex = i;
+                                break;
+                            }
+                        }
+
+                        if (cindex != -1) //found in the cache
+                        {
+                            SimPe.Cache.ObjectCacheItem oci = (SimPe.Cache.ObjectCacheItem)cacheitems[cindex].FileDescriptor.Tag;
+
+                            if (!oci.Useable) continue;
+                            pitems.Add(nrefitem);
+                            groups.Add(nrefitem.FileDescriptor.Instance);
 
 #if DEBUG
-						Data.Alias a = new Data.Alias(oci.FileDescriptor.Instance, "---");//, "{name} ({id}: {1}, {2}) ");
+                            Data.Alias a = new Data.Alias(oci.FileDescriptor.Instance, "---");//, "{name} ({id}: {1}, {2}) ");
 #else
 					Data.Alias a = new Data.Alias(oci.FileDescriptor.Instance, "---");//, "{name} ({id}: {1}) ");
 #endif
-						object[] o = new object[3];
-						o[0] = nrefitem.FileDescriptor;
-						o[1] = nrefitem.LocalGroup;
-						o[2] = oci.ModelName;
+                            object[] o = new object[3];
+                            o[0] = nrefitem.FileDescriptor;
+                            o[1] = nrefitem.LocalGroup;
+                            o[2] = oci.ModelName;
 
-						a.Tag = o;
+                            a.Tag = o;
 
-						if (Helper.WindowsRegistry.ShowObjdNames) a.Name = oci.ObjectFileName;	
-						else a.Name = oci.Name;
-						a.Name +=  " (cached)";
-						Image img = oci.Thumbnail;
-						//if (img!=null) WaitingScreen.UpdateImage(img);
+                            if (Helper.WindowsRegistry.ShowObjdNames) a.Name = oci.ObjectFileName;
+                            else a.Name = oci.Name;
+                            a.Name += " (cached)";
+                            Image img = oci.Thumbnail;
+                            //if (img!=null) WaitingScreen.UpdateImage(img);
 
-						PutItemToTree(a, img, (SimPe.Data.ObjectTypes)oci.ObjectType, new SimPe.PackedFiles.Wrapper.ObjFunctionSort(oci.ObjectFunctionSort), cacheitems[0].FileDescriptor.Filename, cacheitems[0].FileDescriptor.Instance);
+                            PutItemToTree(a, img, (SimPe.Data.ObjectTypes)oci.ObjectType, new SimPe.PackedFiles.Wrapper.ObjFunctionSort(oci.ObjectFunctionSort), cacheitems[0].FileDescriptor.Filename, cacheitems[0].FileDescriptor.Instance);
 
-						if (img!=null) a.Name = "* "+a.Name;
-						lbobj.Items.Add(a);
-					} 
-					else //not found in chache 
-					{								
-		
-						SimPe.PackedFiles.Wrapper.Cpf cpf = new SimPe.PackedFiles.Wrapper.Cpf();
-						nrefitem.FileDescriptor.UserData = nrefitem.Package.Read(nrefitem.FileDescriptor).UncompressedData;
-						cpf.ProcessData(nrefitem);
+                            if (img != null) a.Name = "* " + a.Name;
+                            lbobj.Items.Add(a);
+                        }
+                        else //not found in chache 
+                        {
 
-						SimPe.Cache.ObjectCacheItem oci = new SimPe.Cache.ObjectCacheItem();
-						oci.FileDescriptor = nrefitem.FileDescriptor;
-						oci.LocalGroup = nrefitem.LocalGroup;							
-						oci.ObjectType = ObjectTypes.Outfit;
-						SimPe.PackedFiles.Wrapper.ObjFunctionSort ofs = new SimPe.PackedFiles.Wrapper.ObjFunctionSort(0);
-						ofs.InGeneral = true;
-						oci.ObjectFunctionSort = (uint)ofs.Value;
-						oci.ObjectFileName = cpf.GetItem("name").StringValue;
-						oci.Useable = true;
-						oci.Class = SimPe.Cache.ObjectClass.Skin;
-						//this is needed, so that objects get sorted into the right categories
-						
-						pitems.Add(nrefitem);
-						groups.Add(nrefitem.FileDescriptor.Instance);
-										
+                            SimPe.PackedFiles.Wrapper.Cpf cpf = new SimPe.PackedFiles.Wrapper.Cpf();
+                            nrefitem.FileDescriptor.UserData = nrefitem.Package.Read(nrefitem.FileDescriptor).UncompressedData;
+                            cpf.ProcessData(nrefitem);
+
+                            SimPe.Cache.ObjectCacheItem oci = new SimPe.Cache.ObjectCacheItem();
+                            oci.FileDescriptor = nrefitem.FileDescriptor;
+                            oci.LocalGroup = nrefitem.LocalGroup;
+                            oci.ObjectType = ObjectTypes.Outfit;
+                            SimPe.PackedFiles.Wrapper.ObjFunctionSort ofs = new SimPe.PackedFiles.Wrapper.ObjFunctionSort(0);
+                            ofs.InGeneral = true;
+                            oci.ObjectFunctionSort = (uint)ofs.Value;
+                            oci.ObjectFileName = cpf.GetItem("name").StringValue;
+                            oci.Useable = true;
+                            oci.Class = SimPe.Cache.ObjectClass.Skin;
+                            //this is needed, so that objects get sorted into the right categories
+
+                            pitems.Add(nrefitem);
+                            groups.Add(nrefitem.FileDescriptor.Instance);
+
 #if DEBUG
-						Data.Alias a = new Data.Alias(nrefitem.FileDescriptor.Instance, "---");//, "{name} ({id}: {1}, {2}) ");
+                            Data.Alias a = new Data.Alias(nrefitem.FileDescriptor.Instance, "---");//, "{name} ({id}: {1}, {2}) ");
 #else
 					Data.Alias a = new Data.Alias(nrefitem.FileDescriptor.Instance, "---");//, "{name} ({id}: {1}) ");
 #endif
-						object[] o = new object[3];
-						o[0] = nrefitem.FileDescriptor;
-						o[1] = nrefitem.LocalGroup;
-						o[2] = "";											
+                            object[] o = new object[3];
+                            o[0] = nrefitem.FileDescriptor;
+                            o[1] = nrefitem.LocalGroup;
+                            o[2] = "";
 
-						a.Name = "";								
-						
+                            a.Name = "";
 
-						a.Tag = o;
-						Image img = GetThumbnail(nrefitem.FileDescriptor.Group, (string)a.Tag[2], ct.ToString() + len);										
-											
-						if (a.Name.Trim()=="") a.Name = cpf.GetItem("name").StringValue;												
 
-						//create a cache Item
-						cachechg = true;
-						oci.Name = a.Name;						
-						oci.ModelName = (string)o[2];
-						oci.Thumbnail = img;
+                            a.Tag = o;
+                            Image img = GetThumbnail(nrefitem.FileDescriptor.Group, (string)a.Tag[2], ct.ToString() + len);
 
-						cachefile.AddItem(oci, nrefitem.Package.FileName);
-																						 
-						if (img!=null) a.Name = "* "+a.Name;
+                            if (a.Name.Trim() == "") a.Name = cpf.GetItem("name").StringValue;
 
-						PutItemToTree(a, img, oci.ObjectType, new SimPe.PackedFiles.Wrapper.ObjFunctionSort(oci.ObjectFunctionSort), cpf.Package.FileName, cpf.FileDescriptor.Instance);
-						lbobj.Items.Add(a);
-					} // if not in cache
-				} //foreach txt
- 
-				this.SaveCacheIndex();
-				lbobj.Sorted = true;
-				tv.Sorted = true;
-				tv.EndUpdate();
-				lbobj.EndUpdate();				
-				WaitingScreen.Stop(this);
-				TimeSpan dur = DateTime.Now.Subtract(start);
-				if ((Helper.WindowsRegistry.HiddenMode) || (Helper.DebugMode)) 
-				{
-					Text = "sek="+dur.Seconds.ToString()+", min="+dur.Minutes.ToString();
-					Text += " ("+lbobj.Items.Count.ToString()+" Skins)";
-				}
-			}
-		}
+                            //create a cache Item
+                            cachechg = true;
+                            oci.Name = a.Name;
+                            oci.ModelName = (string)o[2];
+                            oci.Thumbnail = img;
+
+                            cachefile.AddItem(oci, nrefitem.Package.FileName);
+
+                            if (img != null) a.Name = "* " + a.Name;
+
+                            PutItemToTree(a, img, oci.ObjectType, new SimPe.PackedFiles.Wrapper.ObjFunctionSort(oci.ObjectFunctionSort), cpf.Package.FileName, cpf.FileDescriptor.Instance);
+                            lbobj.Items.Add(a);
+                        } // if not in cache
+                    } //foreach txt
+
+                    this.SaveCacheIndex();
+                    lbobj.Sorted = true;
+                    tv.Sorted = true;
+                    tv.EndUpdate();
+                    lbobj.EndUpdate();
+                }
+                finally { WaitingScreen.Stop(this); }
+                TimeSpan dur = DateTime.Now.Subtract(start);
+                if ((Helper.WindowsRegistry.HiddenMode) || (Helper.DebugMode))
+                {
+                    Text = "sek=" + dur.Seconds.ToString() + ", min=" + dur.Minutes.ToString();
+                    Text += " (" + lbobj.Items.Count.ToString() + " Skins)";
+                }
+            }
+        }
 
 		/// <summary>
 		/// Die verwendeten Ressourcen bereinigen.
@@ -940,77 +943,85 @@ namespace SimPe.Plugin
 					} else return;
 				}
 
-				if (this.rbClone.Checked) 
-				{					
-					if (tabControl2.SelectedIndex<2) 
-					{
-						WaitingScreen.Wait();
-						this.RecolorClone(pfd, localgroup, this.cbdefault.Checked, false, this.cbanim.Checked);						
-						WaitingScreen.Stop(this);
-					} 
-					
+                if (this.rbClone.Checked)
+                {
+                    if (tabControl2.SelectedIndex < 2)
+                    {
+                        WaitingScreen.Wait();
+                        try { this.RecolorClone(pfd, localgroup, this.cbdefault.Checked, false, this.cbanim.Checked); }
+                        finally { WaitingScreen.Stop(this); }
+                    }
 
-					FixObject fo = new FixObject(package, FixVersion.UniversityReady, true);
-					System.Collections.Hashtable map = null;
-					
-					if (this.cbfix.Checked) 
-					{
-						map = fo.GetNameMap(true);
-						if (map==null) return;
-					}
 
-					
-					if (this.cbfix.Checked) 
-					{
-						if (sfd.ShowDialog()==DialogResult.OK) 
-						{
-							WaitingScreen.Wait();
-							package.FileName = sfd.FileName;
-							fo.Fix(map, true);
+                    FixObject fo = new FixObject(package, FixVersion.UniversityReady, true);
+                    System.Collections.Hashtable map = null;
 
-							//if (cbclean.Checked) fo.CleanUp();
-							package.Save();
-							
-						} 
-						else 
-						{
-							package = null;
-						}
-					}
+                    if (this.cbfix.Checked)
+                    {
+                        map = fo.GetNameMap(true);
+                        if (map == null) return;
+                    }
 
-					if ((this.cbgid.Checked) && (package!=null))
-					{
-						WaitingScreen.Wait();
-						fo.FixGroup();
-						if (this.cbfix.Checked) package.Save();
-					}
 
-					WaitingScreen.Stop(this);
-				}
-				else //if Recolor
-				{
-					if (this.cbColor.Checked) cbColorExt.Checked = false;
+                    if (this.cbfix.Checked)
+                    {
+                        if (sfd.ShowDialog() == DialogResult.OK)
+                        {
+                            WaitingScreen.Wait();
+                            try
+                            {
+                                package.FileName = sfd.FileName;
+                                fo.Fix(map, true);
 
-					if (tabControl2.SelectedIndex==0) 
-					{
-						foreach (IAlias ia in lbobj.SelectedItems) 
-						{
-							pfd = (Interfaces.Files.IPackedFileDescriptor)ia.Tag[0];
-							localgroup = (uint)ia.Tag[1];
-							package = null;
-							ReColor(pfd, localgroup);
-						}
-					} 
-					else if (tabControl2.SelectedIndex==1) 
-					{
-						package = null;
-						ReColor(pfd, localgroup);
-					}
-					else 
-					{
-						ReColor(null, Data.MetaData.LOCAL_GROUP);
-					}
-				}
+                                //if (cbclean.Checked) fo.CleanUp();
+                                package.Save();
+
+                            }
+                            finally { WaitingScreen.Stop(this); }
+
+                        }
+                        else
+                        {
+                            package = null;
+                        }
+                    }
+
+                    if ((this.cbgid.Checked) && (package != null))
+                    {
+                        WaitingScreen.Wait();
+                        try
+                        {
+                            fo.FixGroup();
+                            if (this.cbfix.Checked) package.Save();
+
+                        }
+                        finally { WaitingScreen.Stop(this); }
+                    }
+                }
+                else //if Recolor
+                {
+                    if (this.cbColor.Checked) cbColorExt.Checked = false;
+
+                    if (tabControl2.SelectedIndex == 0)
+                    {
+                        foreach (IAlias ia in lbobj.SelectedItems)
+                        {
+                            pfd = (Interfaces.Files.IPackedFileDescriptor)ia.Tag[0];
+                            localgroup = (uint)ia.Tag[1];
+                            package = null;
+                            ReColor(pfd, localgroup);
+                        }
+                    }
+                    else if (tabControl2.SelectedIndex == 1)
+                    {
+                        package = null;
+                        ReColor(pfd, localgroup);
+                    }
+                    else
+                    {
+                        ReColor(null, Data.MetaData.LOCAL_GROUP);
+                    }
+                }
 
 				Close();
 			} 
@@ -1077,7 +1088,7 @@ namespace SimPe.Plugin
 					SimPe.PackedFiles.Wrapper.Picture pic = new SimPe.PackedFiles.Wrapper.Picture();
 					pic.ProcessData(pfd, thumbs);
 					Bitmap bm = (Bitmap)ImageLoader.Preview(pic.Image, WaitingScreen.ImageSize);
-					WaitingScreen.Update(bm, message);
+					if (WaitingScreen.Running) WaitingScreen.Update(bm, message);
 					return pic.Image;
 				}
 				catch(Exception){}
@@ -1234,9 +1245,12 @@ namespace SimPe.Plugin
 			bool old = cbgid.Checked;
 			cbgid.Checked = false;
 			WaitingScreen.Wait();
-			WaitingScreen.UpdateMessage("Collecting needed Files");
-			if ((package==null) && (pfd!=null)) RecolorClone(pfd, localgroup, false, false, false);
-			WaitingScreen.Stop(this);
+            try
+            {
+                WaitingScreen.UpdateMessage("Collecting needed Files");
+                if ((package == null) && (pfd != null)) RecolorClone(pfd, localgroup, false, false, false);
+            }
+            finally { WaitingScreen.Stop(this); }
 
 			cbgid.Checked = old;
 			

@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2008 by Peter L Jones                                   *
- *   peter@drealm.info                                                     *
+ *   peter@users.sf.net                                                    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -34,6 +34,7 @@ namespace SimPe.Custom
         private static Settings settings;
         static Settings() { settings = new Settings(); }
         public static bool Persistent { get { return settings.KeepFilesOpen; } }
+        //public static bool SimNames { get { return !settings.HackerMode && settings.AddSimNames; } }
 
 
         public Settings() : base(rm) { }
@@ -58,6 +59,41 @@ namespace SimPe.Custom
             }
         }
 
+        /*
+        [System.ComponentModel.Category("SimPe")]
+        public bool AddSimNames
+        {
+            get
+            {
+                SimPe.XmlRegistryKey rkf = xrk.CreateSubKey(BASENAME);
+                object o = rkf.GetValue("addSimNames", false);
+                return Convert.ToBoolean(o);
+            }
+
+            set
+            {
+                SimPe.XmlRegistryKey rkf = xrk.CreateSubKey(BASENAME);
+                rkf.SetValue("addSimNames", value);
+            }
+        }
+
+        [System.ComponentModel.Category("SimPe")]
+        public bool HackerMode
+        {
+            get
+            {
+                SimPe.XmlRegistryKey rkf = xrk.CreateSubKey(BASENAME);
+                object o = rkf.GetValue("hackerMode", false);
+                return Convert.ToBoolean(o);
+            }
+
+            set
+            {
+                SimPe.XmlRegistryKey rkf = xrk.CreateSubKey(BASENAME);
+                rkf.SetValue("hackerMode", value);
+            }
+        }
+        */
 
         #region ISettings Members
 

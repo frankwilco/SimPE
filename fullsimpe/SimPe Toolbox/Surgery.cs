@@ -928,26 +928,29 @@ namespace SimPe.Plugin
 
 			Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(Data.MetaData.SIM_DESCRIPTION_FILE);
 			WaitingScreen.Wait();
-			foreach(Interfaces.Files.IPackedFileDescriptor spfd in pfds) 
-			{
-				
-				PackedFiles.Wrapper.ExtSDesc sdesc = new SimPe.PackedFiles.Wrapper.ExtSDesc();
-				sdesc.ProcessData(spfd, package);
-				
-				//WaitingScreen.UpdateImage(ImageLoader.Preview(sdesc.Image, new Size(64, 64)));
-				AddSim(sdesc);
-			}
+            try
+            {
+                foreach (Interfaces.Files.IPackedFileDescriptor spfd in pfds)
+                {
 
-			this.Cursor = Cursors.Default;
-			this.llusearche.Enabled = false;
-			this.llusepatient.Enabled = false;
-			this.llexport.Enabled = false;
-			button1.Enabled = false;
-			if (lv.Items.Count>0) lv.Items[0].Selected = true;
+                    PackedFiles.Wrapper.ExtSDesc sdesc = new SimPe.PackedFiles.Wrapper.ExtSDesc();
+                    sdesc.ProcessData(spfd, package);
 
-					
-			
-			WaitingScreen.Stop(this);
+                    //WaitingScreen.UpdateImage(ImageLoader.Preview(sdesc.Image, new Size(64, 64)));
+                    AddSim(sdesc);
+                }
+
+                this.Cursor = Cursors.Default;
+                this.llusearche.Enabled = false;
+                this.llusepatient.Enabled = false;
+                this.llexport.Enabled = false;
+                button1.Enabled = false;
+                if (lv.Items.Count > 0) lv.Items[0].Selected = true;
+
+
+
+            }
+            finally { WaitingScreen.Stop(this); }
 			RemoteControl.ShowSubForm(this);
 
 			if (this.pfd!=null) pfd = this.pfd;

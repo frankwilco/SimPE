@@ -63,74 +63,77 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 			bool run = WaitingScreen.Running;
 			WaitingScreen.Wait();
-			this.SaveBounds = false;
-			this.AutoSize = true;
-			this.Clear();
-			baseip = null;
+            try
+            {
+                this.SaveBounds = false;
+                this.AutoSize = true;
+                this.Clear();
+                baseip = null;
 
-			if (famt==null || sdsc==null) 
-			{
-				this.EndUpdate();
-				if (!run) WaitingScreen.Stop();
-				return;
-			}
-			
-			FamilyTieSim tie = famt.FindTies(sdsc);			
-			Wrapper.SDesc[] parents = famt.ParentSims(sdsc);
-			Wrapper.SDesc[] siblings = famt.SiblingSims(sdsc);
-			Wrapper.SDesc[] childs = famt.ChildSims(sdsc);
+                if (famt == null || sdsc == null)
+                {
+                    this.EndUpdate();
+                    if (!run) WaitingScreen.Stop();
+                    return;
+                }
 
-			int maxct = parents.Length+siblings.Length+childs.Length;
-			if (maxct<4) 
-			{
-				this.LinearUpdateGraph(sdsc, famt);
-				if (!run) WaitingScreen.Stop();
-				return;
-			}
+                FamilyTieSim tie = famt.FindTies(sdsc);
+                Wrapper.SDesc[] parents = famt.ParentSims(sdsc);
+                Wrapper.SDesc[] siblings = famt.SiblingSims(sdsc);
+                Wrapper.SDesc[] childs = famt.ChildSims(sdsc);
 
-			double r = GraphPanel.GetPinCircleRadius(this.ItemSize, this.ItemSize, maxct);
-			Point center = new Point(
-				Math.Max(Width/2, (int)r+16+ItemSize.Width/2), 
-				Math.Max(Height/2, (int)r+ItemSize.Height/2)
-				);
+                int maxct = parents.Length + siblings.Length + childs.Length;
+                if (maxct < 4)
+                {
+                    this.LinearUpdateGraph(sdsc, famt);
+                    if (!run) WaitingScreen.Stop();
+                    return;
+                }
 
-			baseip = CreateItem(sdsc, 0, 0);
-			baseip.Location = GraphPanel.GetCenterLocationOnPinCircle(center, r, ItemSize);
-			baseip.Parent = this;
-			this.SelectedElement = baseip;
-			baseip.PanelColor = Color.Black;
-			baseip.ForeColor = Color.White;
-			baseip.EndUpdate();
+                double r = GraphPanel.GetPinCircleRadius(this.ItemSize, this.ItemSize, maxct);
+                Point center = new Point(
+                    Math.Max(Width / 2, (int)r + 16 + ItemSize.Width / 2),
+                    Math.Max(Height / 2, (int)r + ItemSize.Height / 2)
+                    );
 
-			int ct = 0;	
-		
-			if (tie!=null) 
-			{
-				foreach (SDesc s in childs) 
-				{
-					ImagePanel ip = AddTieToGraph(s, 0, 0, tie.FindTie(s).Type, false);
-					ip.Location = GraphPanel.GetItemLocationOnPinCricle(center,r, ct++, maxct, ItemSize);
-					ip.EndUpdate();
-				}
+                baseip = CreateItem(sdsc, 0, 0);
+                baseip.Location = GraphPanel.GetCenterLocationOnPinCircle(center, r, ItemSize);
+                baseip.Parent = this;
+                this.SelectedElement = baseip;
+                baseip.PanelColor = Color.Black;
+                baseip.ForeColor = Color.White;
+                baseip.EndUpdate();
 
-				foreach (SDesc s in siblings) 
-				{
-					ImagePanel ip = AddTieToGraph(s, 0, 0, tie.FindTie(s).Type, false);
-					ip.Location = GraphPanel.GetItemLocationOnPinCricle(center,r, ct++, maxct, ItemSize);
-					ip.EndUpdate();
-				}
-			
-				foreach (SDesc s in parents) 
-				{
-					ImagePanel ip = AddTieToGraph(s, 0, 0, tie.FindTie(s).Type, false);
-					ip.Location = GraphPanel.GetItemLocationOnPinCricle(center,r, ct++, maxct, ItemSize);
-					ip.EndUpdate();
-				}
-			}
+                int ct = 0;
 
-			
-			this.EndUpdate();
-			if (!run) WaitingScreen.Stop();
+                if (tie != null)
+                {
+                    foreach (SDesc s in childs)
+                    {
+                        ImagePanel ip = AddTieToGraph(s, 0, 0, tie.FindTie(s).Type, false);
+                        ip.Location = GraphPanel.GetItemLocationOnPinCricle(center, r, ct++, maxct, ItemSize);
+                        ip.EndUpdate();
+                    }
+
+                    foreach (SDesc s in siblings)
+                    {
+                        ImagePanel ip = AddTieToGraph(s, 0, 0, tie.FindTie(s).Type, false);
+                        ip.Location = GraphPanel.GetItemLocationOnPinCricle(center, r, ct++, maxct, ItemSize);
+                        ip.EndUpdate();
+                    }
+
+                    foreach (SDesc s in parents)
+                    {
+                        ImagePanel ip = AddTieToGraph(s, 0, 0, tie.FindTie(s).Type, false);
+                        ip.Location = GraphPanel.GetItemLocationOnPinCricle(center, r, ct++, maxct, ItemSize);
+                        ip.EndUpdate();
+                    }
+                }
+
+
+                this.EndUpdate();
+            }
+            finally { if (!run) WaitingScreen.Stop(); }
 		}
 
 		public void LinearUpdateGraph(Wrapper.SDesc sdsc, Wrapper.ExtFamilyTies famt)

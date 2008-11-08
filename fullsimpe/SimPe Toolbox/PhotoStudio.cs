@@ -54,63 +54,62 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.CheckBox cbflip;
 		private System.ComponentModel.IContainer components;
 
-		public PhotoStudio()
-		{
-			//
-			// Erforderlich für die Windows Form-Designerunterstützung
-			//
-			InitializeComponent();
+        public PhotoStudio()
+        {
+            //
+            // Erforderlich für die Windows Form-Designerunterstützung
+            //
+            InitializeComponent();
 
-			
-			//load all additional Package Templates
-			string[] files = System.IO.Directory.GetFiles(Helper.SimPeDataPath, "*.template");
 
-			if (files.Length==0) 
-			{
-				SimPe.WaitingScreen.Stop();
-				if (MessageBox.Show("SimPE didn't find a PhotoStudio Template in the Data Folder. It can download and install the needed Files from the SimPE Homepage (1.9MB).\n\nDo you want SimPE to download and install the Templates?", "Information", MessageBoxButtons.YesNo)==DialogResult.Yes)
-				{
-					WebUpdate.InstallTemplates();
-					files = System.IO.Directory.GetFiles(Helper.SimPeDataPath, "*.template");
-					SimPe.WaitingScreen.Wait();
-				}
-			} 
-			else 
-			{
-				SimPe.WaitingScreen.Wait();
-			}
+            //load all additional Package Templates
+            string[] files = System.IO.Directory.GetFiles(Helper.SimPeDataPath, "*.template");
 
-			//cbbase.Items.Clear();
-			
-			foreach (string file in files)
-			{
-				SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(file);
-				PhotoStudioTemplate pst = new PhotoStudioTemplate(pkg);
+            if (files.Length == 0)
+            {
+                SimPe.WaitingScreen.Stop();
+                if (MessageBox.Show("SimPE didn't find a PhotoStudio Template in the Data Folder. It can download and install the needed Files from the SimPE Homepage (1.9MB).\n\nDo you want SimPE to download and install the Templates?", "Information", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    WebUpdate.InstallTemplates();
+                    files = System.IO.Directory.GetFiles(Helper.SimPeDataPath, "*.template");
+                }
+            }
 
-				ListViewItem lvi = new ListViewItem(pst.ToString());
-				lvi.ImageIndex = ibase.Images.Count;
-				lvi.Tag = pst;
+            try
+            {
+                SimPe.WaitingScreen.Wait();
+                //cbbase.Items.Clear();
 
-				Image img = new Bitmap(ibase.ImageSize.Width, ibase.ImageSize.Height);
-				img = ImageLoader.Preview(pst.Texture, img.Size);
-				SimPe.WaitingScreen.UpdateImage(img);
-				ibase.Images.Add(img);
-				lvbase.Items.Add(lvi);
+                foreach (string file in files)
+                {
+                    SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(file);
+                    PhotoStudioTemplate pst = new PhotoStudioTemplate(pkg);
 
-				//cbbase.Items.Add(pst);
-			}
-			if (lvbase.Items.Count>0) lvbase.Items[0].Selected = true;
+                    ListViewItem lvi = new ListViewItem(pst.ToString());
+                    lvi.ImageIndex = ibase.Images.Count;
+                    lvi.Tag = pst;
 
-            sfd.InitialDirectory = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Downloads");
+                    Image img = new Bitmap(ibase.ImageSize.Width, ibase.ImageSize.Height);
+                    img = ImageLoader.Preview(pst.Texture, img.Size);
+                    SimPe.WaitingScreen.UpdateImage(img);
+                    ibase.Images.Add(img);
+                    lvbase.Items.Add(lvi);
 
-			cbquality.SelectedIndex = 0;
-            if (System.IO.File.Exists(PathProvider.Global.NvidiaDDSTool)) 
-			{
-				cbquality.Items.Add("Use Nvidia DDS Tools");
-				cbquality.SelectedIndex = cbquality.Items.Count-1;
-			}
-			SimPe.WaitingScreen.Stop();
-		}
+                    //cbbase.Items.Add(pst);
+                }
+                if (lvbase.Items.Count > 0) lvbase.Items[0].Selected = true;
+
+                sfd.InitialDirectory = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Downloads");
+
+                cbquality.SelectedIndex = 0;
+                if (System.IO.File.Exists(PathProvider.Global.NvidiaDDSTool))
+                {
+                    cbquality.Items.Add("Use Nvidia DDS Tools");
+                    cbquality.SelectedIndex = cbquality.Items.Count - 1;
+                }
+            }
+            finally { SimPe.WaitingScreen.Stop(); }
+        }
 
 		/// <summary>
 		/// Die verwendeten Ressourcen bereinigen.
@@ -700,15 +699,18 @@ namespace SimPe.Plugin
 			{
 				Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(Data.MetaData.SIM_DESCRIPTION_FILE);
 				if (pfds.Length>0) WaitingScreen.Wait();
-				foreach(Interfaces.Files.IPackedFileDescriptor spfd in pfds) 
-				{
-					PackedFiles.Wrapper.SDesc sdesc = new SimPe.PackedFiles.Wrapper.SDesc(prov.SimNameProvider, prov.SimFamilynameProvider, null);
-					sdesc.ProcessData(spfd, package);
-				
-					WaitingScreen.UpdateImage(SimPe.Plugin.ImageLoader.Preview(sdesc.Image, new Size(64, 64)));
-					AddSim(sdesc);
-				} //foreach
-				WaitingScreen.Stop(this);
+                try
+                {
+                    foreach (Interfaces.Files.IPackedFileDescriptor spfd in pfds)
+                    {
+                        PackedFiles.Wrapper.SDesc sdesc = new SimPe.PackedFiles.Wrapper.SDesc(prov.SimNameProvider, prov.SimFamilynameProvider, null);
+                        sdesc.ProcessData(spfd, package);
+
+                        WaitingScreen.UpdateImage(SimPe.Plugin.ImageLoader.Preview(sdesc.Image, new Size(64, 64)));
+                        AddSim(sdesc);
+                    } //foreach
+                }
+                finally { WaitingScreen.Stop(this); }
 			}
 
 			this.Cursor = Cursors.Default;
@@ -808,105 +810,108 @@ namespace SimPe.Plugin
 		protected static SimPe.Packages.GeneratableFile BuildPicture(string filename, Image img, PhotoStudioTemplate template, ImageLoader.TxtrFormats format, bool ddstool, bool rename, bool flip) 
 		{
 			WaitingScreen.Wait();
-			SimPe.Plugin.Txtr txtr = new Txtr(null, false);
-			SimPe.Plugin.Rcol matd = new GenericRcol(null, false);
-			SimPe.PackedFiles.Wrapper.Cpf mmat = new SimPe.PackedFiles.Wrapper.Cpf();
+            try
+            {
+                SimPe.Plugin.Txtr txtr = new Txtr(null, false);
+                SimPe.Plugin.Rcol matd = new GenericRcol(null, false);
+                SimPe.PackedFiles.Wrapper.Cpf mmat = new SimPe.PackedFiles.Wrapper.Cpf();
 
-			SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
-			pkg.FileName = filename;
+                SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
+                pkg.FileName = filename;
 
-			string family = System.Guid.NewGuid().ToString();
-			string unique = RenameForm.GetUniqueName();
+                string family = System.Guid.NewGuid().ToString();
+                string unique = RenameForm.GetUniqueName();
 
-			SimPe.Packages.GeneratableFile tpkg = SimPe.Packages.GeneratableFile.LoadFromFile(template.Package.FileName);
+                SimPe.Packages.GeneratableFile tpkg = SimPe.Packages.GeneratableFile.LoadFromFile(template.Package.FileName);
 
-			//load MMAT
-			WaitingScreen.UpdateMessage("Loading Material Override");
-			Interfaces.Files.IPackedFileDescriptor pfd = tpkg.FindFile(0x4C697E5A, 0x0, 0xffffffff, template.MmatInstance);
-			if (pfd!=null) 
-			{
-				mmat.ProcessData(pfd, tpkg);
-				mmat.GetSaveItem("family").StringValue = family;
-				if (rename) mmat.GetSaveItem("name").StringValue = "##0x1c050000!"+BuildName(template.MatdFile, unique);
+                //load MMAT
+                WaitingScreen.UpdateMessage("Loading Material Override");
+                Interfaces.Files.IPackedFileDescriptor pfd = tpkg.FindFile(0x4C697E5A, 0x0, 0xffffffff, template.MmatInstance);
+                if (pfd != null)
+                {
+                    mmat.ProcessData(pfd, tpkg);
+                    mmat.GetSaveItem("family").StringValue = family;
+                    if (rename) mmat.GetSaveItem("name").StringValue = "##0x1c050000!" + BuildName(template.MatdFile, unique);
 
-				mmat.SynchronizeUserData();
-				pkg.Add(mmat.FileDescriptor);
-			}
+                    mmat.SynchronizeUserData();
+                    pkg.Add(mmat.FileDescriptor);
+                }
 
-			//load MATD
-			WaitingScreen.UpdateMessage("Loading Material Definition");
-			pfd = tpkg.FindFile(0x49596978, Hashes.SubTypeHash(Hashes.StripHashFromName(template.MatdFile+"_txmt")), 0x1c050000, Hashes.InstanceHash(Hashes.StripHashFromName(template.MatdFile+"_txmt")));
-			if (pfd==null) pfd = tpkg.FindFile(0x49596978, Hashes.SubTypeHash(Hashes.StripHashFromName(template.MatdFile+"_txmt")), 0xffffffff, Hashes.InstanceHash(Hashes.StripHashFromName(template.MatdFile+"_txmt")));
-			if (pfd!=null) 
-			{
-				matd.ProcessData(pfd, tpkg);
-				if (rename) matd.FileName = "##0x1c050000!"+BuildName(template.MatdFile, unique)+"_txmt";
-				SimPe.Plugin.MaterialDefinition md = (SimPe.Plugin.MaterialDefinition)matd.Blocks[0];
-				if (rename) md.GetProperty("stdMatBaseTextureName").Value = "##0x1c050000!"+BuildName(template.TxtrFile, unique);
-				if (rename) md.Listing[0] = md.GetProperty("stdMatBaseTextureName").Value;
+                //load MATD
+                WaitingScreen.UpdateMessage("Loading Material Definition");
+                pfd = tpkg.FindFile(0x49596978, Hashes.SubTypeHash(Hashes.StripHashFromName(template.MatdFile + "_txmt")), 0x1c050000, Hashes.InstanceHash(Hashes.StripHashFromName(template.MatdFile + "_txmt")));
+                if (pfd == null) pfd = tpkg.FindFile(0x49596978, Hashes.SubTypeHash(Hashes.StripHashFromName(template.MatdFile + "_txmt")), 0xffffffff, Hashes.InstanceHash(Hashes.StripHashFromName(template.MatdFile + "_txmt")));
+                if (pfd != null)
+                {
+                    matd.ProcessData(pfd, tpkg);
+                    if (rename) matd.FileName = "##0x1c050000!" + BuildName(template.MatdFile, unique) + "_txmt";
+                    SimPe.Plugin.MaterialDefinition md = (SimPe.Plugin.MaterialDefinition)matd.Blocks[0];
+                    if (rename) md.GetProperty("stdMatBaseTextureName").Value = "##0x1c050000!" + BuildName(template.TxtrFile, unique);
+                    if (rename) md.Listing[0] = md.GetProperty("stdMatBaseTextureName").Value;
 
-				matd.FileDescriptor = new Packages.PackedFileDescriptor();
-				matd.FileDescriptor.Type = 0x49596978; //TXMT
-				matd.FileDescriptor.SubType = Hashes.SubTypeHash(Hashes.StripHashFromName(matd.FileName));
-				matd.FileDescriptor.Instance = Hashes.InstanceHash(Hashes.StripHashFromName(matd.FileName));
-				matd.FileDescriptor.Group = 0x1c050000;
-				matd.SynchronizeUserData();
-				pkg.Add(matd.FileDescriptor);
-			}
+                    matd.FileDescriptor = new Packages.PackedFileDescriptor();
+                    matd.FileDescriptor.Type = 0x49596978; //TXMT
+                    matd.FileDescriptor.SubType = Hashes.SubTypeHash(Hashes.StripHashFromName(matd.FileName));
+                    matd.FileDescriptor.Instance = Hashes.InstanceHash(Hashes.StripHashFromName(matd.FileName));
+                    matd.FileDescriptor.Group = 0x1c050000;
+                    matd.SynchronizeUserData();
+                    pkg.Add(matd.FileDescriptor);
+                }
 
-			//load TXTR
-			WaitingScreen.UpdateMessage("Loading Texture Image");
-			pfd = tpkg.FindFile(0x1C4A276C, Hashes.SubTypeHash(Hashes.StripHashFromName(template.TxtrFile+"_txtr")), 0x1c050000, Hashes.InstanceHash(Hashes.StripHashFromName(template.TxtrFile+"_txtr")));
-			if (pfd==null) pfd = tpkg.FindFile(0x1C4A276C, Hashes.SubTypeHash(Hashes.StripHashFromName(template.TxtrFile+"_txtr")), 0xffffffff, Hashes.InstanceHash(Hashes.StripHashFromName(template.TxtrFile+"_txtr")));
-			if (pfd!=null) 
-			{
-				txtr.ProcessData(pfd, tpkg);
-				if (rename) txtr.FileName = "##0x1c050000!"+BuildName(template.TxtrFile, unique)+"_txtr";
+                //load TXTR
+                WaitingScreen.UpdateMessage("Loading Texture Image");
+                pfd = tpkg.FindFile(0x1C4A276C, Hashes.SubTypeHash(Hashes.StripHashFromName(template.TxtrFile + "_txtr")), 0x1c050000, Hashes.InstanceHash(Hashes.StripHashFromName(template.TxtrFile + "_txtr")));
+                if (pfd == null) pfd = tpkg.FindFile(0x1C4A276C, Hashes.SubTypeHash(Hashes.StripHashFromName(template.TxtrFile + "_txtr")), 0xffffffff, Hashes.InstanceHash(Hashes.StripHashFromName(template.TxtrFile + "_txtr")));
+                if (pfd != null)
+                {
+                    txtr.ProcessData(pfd, tpkg);
+                    if (rename) txtr.FileName = "##0x1c050000!" + BuildName(template.TxtrFile, unique) + "_txtr";
 
-				SimPe.Plugin.ImageData id = (SimPe.Plugin.ImageData)txtr.Blocks[0];
-				SimPe.Plugin.MipMapBlock mmp = id.MipMapBlocks[0];
-				SimPe.Plugin.MipMap mm = mmp.MipMaps[mmp.MipMaps.Length-1];
-				//mm.Data = null;
+                    SimPe.Plugin.ImageData id = (SimPe.Plugin.ImageData)txtr.Blocks[0];
+                    SimPe.Plugin.MipMapBlock mmp = id.MipMapBlocks[0];
+                    SimPe.Plugin.MipMap mm = mmp.MipMaps[mmp.MipMaps.Length - 1];
+                    //mm.Data = null;
 
-				WaitingScreen.UpdateMessage("Updating Image");
-				Rectangle rect = new Rectangle(0, 0, img.Width, img.Height);
-				Image mmimg = (Image)img.Clone();
-				if (flip) mmimg.RotateFlip(System.Drawing.RotateFlipType.RotateNoneFlipX);
-				System.Drawing.Graphics g = Graphics.FromImage(mm.Texture);
-				g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-				g.DrawImage(mmimg, template.TargetRectangle, rect, System.Drawing.GraphicsUnit.Pixel);
+                    WaitingScreen.UpdateMessage("Updating Image");
+                    Rectangle rect = new Rectangle(0, 0, img.Width, img.Height);
+                    Image mmimg = (Image)img.Clone();
+                    if (flip) mmimg.RotateFlip(System.Drawing.RotateFlipType.RotateNoneFlipX);
+                    System.Drawing.Graphics g = Graphics.FromImage(mm.Texture);
+                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    g.DrawImage(mmimg, template.TargetRectangle, rect, System.Drawing.GraphicsUnit.Pixel);
 
 
-                if ((System.IO.File.Exists(PathProvider.Global.NvidiaDDSTool)) && (ddstool) && ((format == ImageLoader.TxtrFormats.DXT1Format) || (format == ImageLoader.TxtrFormats.DXT3Format) || (format == ImageLoader.TxtrFormats.DXT5Format)))
-				{
-					DDSTool.AddDDsData(id, DDSTool.BuildDDS(mm.Texture, (int)id.MipMapLevels, format, "-sharpenMethod Smoothen"));
-				} 
-				else 
-				{
-					for (int i=mmp.MipMaps.Length-2; i>=0; i--) 
-					{
-						SimPe.Plugin.MipMap newmm = mmp.MipMaps[i];
-						Image newimg = new Bitmap(newmm.Texture.Width, newmm.Texture.Height);
-						g = Graphics.FromImage(newimg);
-						g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-						g.DrawImage(mm.Texture, new Rectangle(0, 0, newimg.Width, newimg.Height), new Rectangle(0, 0, mm.Texture.Width, mm.Texture.Height), System.Drawing.GraphicsUnit.Pixel);
-						
-						newmm.Texture = newimg;
-					}
-					id.Format = format;
-				}
-				
-				txtr.FileDescriptor = new Packages.PackedFileDescriptor();
-				txtr.FileDescriptor.Type = 0x1C4A276C; //TXTR
-				txtr.FileDescriptor.SubType = Hashes.SubTypeHash(Hashes.StripHashFromName(txtr.FileName));
-				txtr.FileDescriptor.Instance = Hashes.InstanceHash(Hashes.StripHashFromName(txtr.FileName));
-				txtr.FileDescriptor.Group = 0x1c050000;
-				txtr.SynchronizeUserData();
-				pkg.Add(txtr.FileDescriptor);
-			}
+                    if ((System.IO.File.Exists(PathProvider.Global.NvidiaDDSTool)) && (ddstool) && ((format == ImageLoader.TxtrFormats.DXT1Format) || (format == ImageLoader.TxtrFormats.DXT3Format) || (format == ImageLoader.TxtrFormats.DXT5Format)))
+                    {
+                        DDSTool.AddDDsData(id, DDSTool.BuildDDS(mm.Texture, (int)id.MipMapLevels, format, "-sharpenMethod Smoothen"));
+                    }
+                    else
+                    {
+                        for (int i = mmp.MipMaps.Length - 2; i >= 0; i--)
+                        {
+                            SimPe.Plugin.MipMap newmm = mmp.MipMaps[i];
+                            Image newimg = new Bitmap(newmm.Texture.Width, newmm.Texture.Height);
+                            g = Graphics.FromImage(newimg);
+                            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                            g.DrawImage(mm.Texture, new Rectangle(0, 0, newimg.Width, newimg.Height), new Rectangle(0, 0, mm.Texture.Width, mm.Texture.Height), System.Drawing.GraphicsUnit.Pixel);
 
-			WaitingScreen.Stop();
-			return pkg;
+                            newmm.Texture = newimg;
+                        }
+                        id.Format = format;
+                    }
+
+                    txtr.FileDescriptor = new Packages.PackedFileDescriptor();
+                    txtr.FileDescriptor.Type = 0x1C4A276C; //TXTR
+                    txtr.FileDescriptor.SubType = Hashes.SubTypeHash(Hashes.StripHashFromName(txtr.FileName));
+                    txtr.FileDescriptor.Instance = Hashes.InstanceHash(Hashes.StripHashFromName(txtr.FileName));
+                    txtr.FileDescriptor.Group = 0x1c050000;
+                    txtr.SynchronizeUserData();
+                    pkg.Add(txtr.FileDescriptor);
+                }
+
+                return pkg;
+            }
+            finally { WaitingScreen.Stop(); }
 		}
 
 		private void CreateImage(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)

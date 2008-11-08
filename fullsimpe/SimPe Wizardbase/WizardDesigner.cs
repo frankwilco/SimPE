@@ -170,10 +170,10 @@ namespace SimPe.Wizards
 			dt.Commit();
 		}		
 
-		public override void OnSetComponentDefaults()
+		/*public override void OnSetComponentDefaults()
 		{
 			base.OnSetComponentDefaults ();
-		}
+		}*/
 
 	}
 }

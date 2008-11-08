@@ -405,7 +405,7 @@ namespace SimPe
 		{
 			get
 			{
-				return System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath);
+				return Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath);
 			}
 		}
 
@@ -416,7 +416,7 @@ namespace SimPe
 		{
 			get
 			{
-				return System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath), "Plugins");
+				return Path.Combine(Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath), "Plugins");
 			}
 		}
 
@@ -427,11 +427,11 @@ namespace SimPe
 		{
 			get
 			{
-				string dir = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath), "Teleport");
+				string dir = Path.Combine(Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath), "Teleport");
 				try 
 				{
-					if (!System.IO.Directory.Exists(dir))
-						System.IO.Directory.CreateDirectory(dir);
+					if (!Directory.Exists(dir))
+						Directory.CreateDirectory(dir);
 				} 
 				catch {}
 				return dir;
@@ -445,7 +445,7 @@ namespace SimPe
 		/// <returns></returns>
 		public static string GetSimPeLanguageCache(string prefix) 
 		{
-			return System.IO.Path.Combine(Helper.SimPeDataPath, prefix+Helper.HexString((byte)Helper.WindowsRegistry.LanguageCode)+".simpepkg");
+			return Path.Combine(Helper.SimPeDataPath, prefix+Helper.HexString((byte)Helper.WindowsRegistry.LanguageCode)+".simpepkg");
 		}
 
 		/// <summary>
@@ -463,7 +463,7 @@ namespace SimPe
 		/// <returns></returns>
 		public static string GetSimPeCache(string prefix) 
 		{
-			return System.IO.Path.Combine(Helper.SimPeDataPath, prefix+".simpepkg");
+			return Path.Combine(Helper.SimPeDataPath, prefix+".simpepkg");
 		}
 
 		/// <summary>
@@ -474,6 +474,9 @@ namespace SimPe
 			get { return GetSimPeCache("objcache"); }
 		}
 
+        private static string profile = "";
+        public static string Profile { get { return profile; } set { profile = value; } }
+
 		/// <summary>
 		/// Returns the Path additional SimPe Files are located in
 		/// </summary>
@@ -481,23 +484,91 @@ namespace SimPe
 		{
 			get
 			{
-				string path = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath), "Data");
+				string path = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Data");
 				try 
 				{
-					if (!System.IO.Directory.Exists(path))
-						System.IO.Directory.CreateDirectory(path);
+					if (!Directory.Exists(path))
+						Directory.CreateDirectory(path);
 				} 
 				catch {}
 				return path;
 			}
 		}
 
-        /// <summary>
-        /// Returns the name of the file, that contains the Custom Layout
-        /// </summary>
-        public static string LayoutFileName
+        public class DataFolder
         {
-            get { return System.IO.Path.Combine(Helper.SimPeDataPath, "simpe.layout"); }
+            /// <summary>
+            /// The folder containing profiles
+            /// </summary>
+            public static string Profiles
+            {
+                get
+                {
+                    string path = Path.Combine(SimPeDataPath, "Profiles");
+                    try { if (!Directory.Exists(path)) Directory.CreateDirectory(path); }
+                    catch { }
+                    return path;
+                }
+            }
+
+            static string ProfilePath(string s) { return ProfilePath(s, false); }
+            static string ProfilePath(string s, bool readOnly)
+            {
+                    string path = SimPeDataPath;
+                    if (profile.Length > 0 && readOnly)
+                        path = Path.Combine(Path.Combine(path, "Profiles"), profile);
+                    return Path.Combine(path, s);
+            }
+
+            /// <summary>
+            /// The path of the main SimPE settings file (write)
+            /// </summary>
+            public static string SimPeXREGW { get { return ProfilePath("simpe.xreg"); } }
+
+            /// <summary>
+            /// The path of the main SimPE settings file (readonly)
+            /// </summary>
+            public static string SimPeXREG { get { return ProfilePath("simpe.xreg", true); } }
+
+            /// <summary>
+            /// The path of the current layout (write)
+            /// </summary>
+            public static string SimPeLayoutW { get { return ProfilePath("simpe.layout"); } }
+
+            /// <summary>
+            /// The path of the current layout (readonly)
+            /// </summary>
+            public static string SimPeLayout { get { return ProfilePath("simpe.layout", true); } }
+
+            /// <summary>
+            /// The path of the layout settings file (write)
+            /// </summary>
+            public static string Layout2XREGW { get { return ProfilePath("layout2.xreg"); } }
+
+            /// <summary>
+            /// The path of the layout settings file (readonly)
+            /// </summary>
+            public static string Layout2XREG { get { return ProfilePath("layout2.xreg", true); } }
+
+            /// <summary>
+            /// The path of the filetable folders file (write)
+            /// </summary>
+            public static string FoldersXREGW { get { return ProfilePath("folders.xreg"); } }
+
+            /// <summary>
+            /// The path of the filetable folders file (readonly)
+            /// </summary>
+            public static string FoldersXREG { get { return ProfilePath("folders.xreg", true); } }
+
+            /// <summary>
+            /// The path of the MRU registry file (write)
+            /// </summary>
+            public static string MRUXREGW { get { return ProfilePath("mru.xreg"); } }
+
+            /// <summary>
+            /// The path of the MRU registry file (readonly)
+            /// </summary>
+            public static string MRUXREG { get { return MRUXREGW; } } // Only one global MRU list, held in the Data folder
         }
 
 		/// <summary>
@@ -507,11 +578,11 @@ namespace SimPe
 		{
 			get
 			{
-				string path =  System.IO.Path.Combine(SimPeDataPath, "Plugins");
+				string path =  Path.Combine(SimPeDataPath, "Plugins");
 				try 
 				{
-					if (!System.IO.Directory.Exists(path))
-						System.IO.Directory.CreateDirectory(path);
+					if (!Directory.Exists(path))
+						Directory.CreateDirectory(path);
 				} 
 				catch {}
 				return path;
@@ -525,7 +596,7 @@ namespace SimPe
 		{
 			get
 			{
-				return System.IO.Path.Combine(SimPeDataPath, "vport.set");
+				return Path.Combine(SimPeDataPath, "vport.set");
 			}
 		}
 
@@ -533,7 +604,7 @@ namespace SimPe
         {
             get
             {
-                return System.IO.Path.Combine(SimPe.Helper.SimPeDataPath, "semiglobals.xml");
+                return Path.Combine(SimPe.Helper.SimPeDataPath, "semiglobals.xml");
             }
         }
 
@@ -713,7 +784,7 @@ namespace SimPe
 			if (data==null) return "";
 
 			string text = "";
-			System.IO.BinaryReader ms = new BinaryReader(new MemoryStream(data));
+			BinaryReader ms = new BinaryReader(new MemoryStream(data));
 			try 
 			{
 				while (ms.BaseStream.Position<ms.BaseStream.Length) 
@@ -1070,17 +1141,17 @@ namespace SimPe
 		public static string GetMainNeighborhoodFile(string filename) 
 		{
 			if (filename==null) return "";
-			string flname = System.IO.Path.GetFileName(filename);
+			string flname = Path.GetFileName(filename);
 			flname = flname.Trim().ToLower();
 
             if (flname.EndsWith(neighborhood_package)) return filename;	
-			flname = System.IO.Path.GetFileNameWithoutExtension(flname);
+			flname = Path.GetFileNameWithoutExtension(flname);
 			string[] parts = flname.Split(new char[] {'_'}, 2);
 			if (parts.Length==0) return filename;
-            return System.IO.Path.Combine(System.IO.Path.GetDirectoryName(filename), parts[0] + neighborhood_package);
+            return Path.Combine(Path.GetDirectoryName(filename), parts[0] + neighborhood_package);
 		}
 
-        static string HoodsFile { get { return System.IO.Path.Combine(Helper.SimPeDataPath, "hoods.xml"); ; } }
+        static string HoodsFile { get { return Path.Combine(Helper.SimPeDataPath, "hoods.xml"); ; } }
         static System.Collections.Generic.List<string> knownHoods = null;
         static System.Collections.Generic.List<string> KnownHoods { get { if (knownHoods == null) LoadKnownHoods(); return knownHoods; } }
 
@@ -1121,7 +1192,7 @@ namespace SimPe
         public static bool IsNeighborhoodFile(string filename)
         {
             if (filename == null) return false;
-            filename = System.IO.Path.GetFileName(filename);
+            filename = Path.GetFileName(filename);
             filename = filename.Trim().ToLower();
 
             if (filename.IndexOf(neighborhood_package) == 4 && filename.Length == 4 + neighborhood_package.Length) return true;
@@ -1232,7 +1303,7 @@ namespace SimPe
 		/// <returns>A long name path string</returns>
 		public static string ToLongPathName(string shortName)
 		{
-            if (!System.IO.Directory.Exists(shortName)) return shortName.Trim().ToLower();
+            if (!Directory.Exists(shortName)) return shortName.Trim().ToLower();
 			StringBuilder longNameBuffer = new StringBuilder(256);
 			uint bufferSize = (uint)longNameBuffer.Capacity;
 
@@ -1244,9 +1315,9 @@ namespace SimPe
 
 		public static string ToLongFileName(string shortName)
 		{			
-			return System.IO.Path.Combine(
-				ToLongPathName(System.IO.Path.GetDirectoryName(shortName)),
-				System.IO.Path.GetFileName(shortName));
+			return Path.Combine(
+				ToLongPathName(Path.GetDirectoryName(shortName)),
+				Path.GetFileName(shortName));
 		}
 
 		#endregion

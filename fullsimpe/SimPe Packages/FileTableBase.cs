@@ -23,21 +23,14 @@ namespace SimPe
 		}
 
 		/// <summary>
-		/// Returns the Filename for the Folder.xml File
-		/// </summary>
-		public static string FolderFile
-		{
-			get { return System.IO.Path.Combine(Helper.SimPeDataPath, "folders.xreg"); }
-		}		
-
-		/// <summary>
 		/// Returns a List of all Folders the User want's to scan for Content
 		/// </summary>
 		public static ArrayList DefaultFolders
 		{
             get
             {
-                if (!System.IO.File.Exists(FolderFile)) BuildFolderXml();
+                string filename = Helper.DataFolder.FoldersXREG;
+                if (!System.IO.File.Exists(filename)) { BuildFolderXml(); filename = Helper.DataFolder.FoldersXREGW; } // as that's what we just wrote
 
                 System.Collections.Generic.Dictionary<string, ExpansionItem> shortmap = new System.Collections.Generic.Dictionary<string, ExpansionItem>();
                 foreach (ExpansionItem ei in PathProvider.Global.Expansions)
@@ -50,7 +43,7 @@ namespace SimPe
                 xrs.IgnoreComments = true;
                 xrs.IgnoreProcessingInstructions = true;
                 xrs.IgnoreWhitespace = true;
-                System.Xml.XmlReader xr = System.Xml.XmlReader.Create(FolderFile, xrs);
+                System.Xml.XmlReader xr = System.Xml.XmlReader.Create(filename, xrs);
                 try
                 {
                     xr.ReadStartElement("folders");
@@ -149,7 +142,7 @@ namespace SimPe
                 xws.CloseOutput = true;
                 xws.Indent = true;
                 xws.Encoding = System.Text.Encoding.UTF8;
-                System.Xml.XmlWriter xw = System.Xml.XmlWriter.Create(FolderFile, xws);
+                System.Xml.XmlWriter xw = System.Xml.XmlWriter.Create(Helper.DataFolder.FoldersXREGW, xws);
 
                 try
                 {
@@ -184,7 +177,7 @@ namespace SimPe
                         ExpansionItem ei = PathProvider.Global.Expansions[i];
                         string s = ei.ShortId.ToLower();
 
-                        string ign = "";
+                        //string ign = "";
                         foreach (string folder in ei.PreObjectFileTableFolders)
                             writenode(xw, (ei.Group & 1) != 1, s, null, folder);
 
@@ -209,6 +202,92 @@ namespace SimPe
             catch (Exception ex)
             {
                 Helper.ExceptionMessage("Unable to create default Folder File!", ex);
+            }
+        }
+
+        /// <summary>
+        /// Write folders.xreg
+        /// </summary>
+        /// <param name="lfti">A <typeparamref name="List&lt;&gt;"/> of <typeparamref name="FileTableItem"/> entries</param>
+        public static void StoreFoldersXml(System.Collections.Generic.List<FileTableItem> lfti)
+        {
+            try
+            {
+                System.Xml.XmlWriterSettings xws = new System.Xml.XmlWriterSettings();
+                xws.CloseOutput = true;
+                xws.Indent = true;
+                xws.Encoding = System.Text.Encoding.UTF8;
+                System.Xml.XmlWriter xw = System.Xml.XmlWriter.Create(Helper.DataFolder.FoldersXREGW, xws);
+
+                try
+                {
+                    xw.WriteStartElement("folders");
+                    xw.WriteStartElement("filetable");
+                    foreach (FileTableItem fti in lfti)
+                    {
+                        xw.WriteStartElement(fti.IsFile ? "file" : "path");
+
+                        if (fti.Type != FileTablePaths.Absolute)
+                        {
+                            bool ok = false;
+                            foreach (ExpansionItem ei in PathProvider.Global.Expansions)
+                            {
+                                if (fti.Type == ei.Expansion)
+                                {
+                                    xw.WriteAttributeString("root", ei.ShortId.ToLower());
+                                    ok = true;
+                                    break;
+                                }
+                            }
+                            if (!ok)
+                            {
+                                switch (fti.Type.AsUint)
+                                {
+
+                                    case (uint)FileTablePaths.SaveGameFolder:
+                                        {
+                                            xw.WriteAttributeString("root", "save");
+                                            break;
+                                        }
+                                    case (uint)FileTablePaths.SimPEFolder:
+                                        {
+                                            xw.WriteAttributeString("root", "simpe");
+                                            break;
+                                        }
+                                    case (uint)FileTablePaths.SimPEDataFolder:
+                                        {
+                                            xw.WriteAttributeString("root", "simpeData");
+                                            break;
+                                        }
+                                    case (uint)FileTablePaths.SimPEPluginFolder:
+                                        {
+                                            xw.WriteAttributeString("root", "simpePlugin");
+                                            break;
+                                        }
+                                } //switch
+                            }
+                        }
+
+                        if (fti.IsRecursive) xw.WriteAttributeString("recursive", "1");
+                        if (fti.EpVersion >= 0) xw.WriteAttributeString("version", fti.EpVersion.ToString());
+                        if (fti.Ignore) xw.WriteAttributeString("ignore", "1");
+
+                        xw.WriteValue(fti.RelativePath);
+                        xw.WriteEndElement();
+
+                    }
+                    xw.WriteEndElement();
+                    xw.WriteEndElement();
+                }
+                finally
+                {
+                    xw.Close();
+                    xw = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Helper.ExceptionMessage("", ex);
             }
         }
 

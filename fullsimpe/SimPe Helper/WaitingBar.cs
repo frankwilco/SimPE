@@ -63,7 +63,8 @@ namespace SimPe
 			} 
 			set 
 			{
-				if (bar!=null) bar.Message = value;								
+                if (bar != null) bar.Message = value;								
+                Application.DoEvents();
 			}
 		}
 
@@ -97,6 +98,7 @@ namespace SimPe
 			set 
 			{
                 if (bar!=null) bar.Progress = value;								
+                Application.DoEvents();
 			}
 		}
 
@@ -199,6 +201,8 @@ namespace SimPe
         {
             //bar.Message = SimPe.Localization.GetString("Please wait");
             lock (mystack) { mystack.Push(BuildSessionData()); }
+            Message = "";
+            MaxProgress = Progress = 0;
         }
 
         class SessionData
@@ -214,7 +218,7 @@ namespace SimPe
             SessionData sd = new SessionData();
             sd.Message = Message;
             sd.Progress = Progress;
-            sd.MaxProgress = MaxProgress;
+            sd.MaxProgress = (bar == null || !bar.ShowProgress) ? 0 : MaxProgress;
             return sd;
         }
 		

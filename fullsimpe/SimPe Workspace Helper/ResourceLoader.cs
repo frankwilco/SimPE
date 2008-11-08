@@ -86,19 +86,8 @@ namespace SimPe
 		{
 			if (wrapper!=null) 
 			{
-#if !DEBUG
-				try 
-#endif
-				{
-					wrapper = wrapper.Activate();
-					wrapper.ProcessData(fii.Package.FindExactFile(fii.FileDescriptor), fii.Package);			
-				} 
-#if !DEBUG
-				catch(Exception ex) 
-				{
-					Helper.ExceptionMessage(ex);
-				}
-#endif
+                wrapper = wrapper.Activate();
+                wrapper.ProcessData(fii.Package.FindExactFile(fii.FileDescriptor), fii.Package);
 			}
 		}
 
@@ -201,58 +190,47 @@ namespace SimPe
 				wrapper.FileDescriptor.Deleted += new EventHandler(DeletedDescriptor);
 				wrapper.FileDescriptor.ChangedUserData += new SimPe.Events.PackedFileChanged(FileDescriptor_ChangedUserData);
 
-#if !DEBUG
-				try 
-#endif
-				{
-					doc.Text = wrapper.ResourceName;
-					
+                doc.Text = wrapper.ResourceName;
 
-					Control pan = wrapper.UIHandler.GUIHandle; 
-					if (pan!=null) 
-					{
-						
-						doc.FloatingSize = pan.Size;
-						doc.AllowFloat = true;	
-						doc.AllowDockBottom = true;
-						doc.AllowDockLeft = true;
-						doc.AllowDockRight = true;
-						doc.AllowDockTop = true;
-						doc.AllowDockCenter = true;
-						doc.AllowCollapse = true;
 
-						if (add) dc.TabPages.Add(doc);
-						pan.Parent = doc;
-						pan.Left = 0;
-						pan.Top = 0;
-						pan.Width = doc.ClientRectangle.Width;
-						pan.Height = doc.ClientRectangle.Height;
-						pan.Dock = System.Windows.Forms.DockStyle.Fill;
-						pan.Visible = true;
+                Control pan = wrapper.UIHandler.GUIHandle;
+                if (pan != null)
+                {
 
-						//pan.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+                    doc.FloatingSize = pan.Size;
+                    doc.AllowFloat = true;
+                    doc.AllowDockBottom = true;
+                    doc.AllowDockLeft = true;
+                    doc.AllowDockRight = true;
+                    doc.AllowDockTop = true;
+                    doc.AllowDockCenter = true;
+                    doc.AllowCollapse = true;
 
-						
-						if (add) doc.Closing += new TD.SandDock.DockControlClosingEventHandler(CloseResourceDocument);
-						dc.SelectedPage = (TD.SandDock.TabPage)doc;
-						doc.Manager = dc.Manager;												
-						doc.LayoutSystem.LockControls = false;						
-						
-						
-						loaded[fii] = doc;
+                    if (add) dc.TabPages.Add(doc);
+                    pan.Parent = doc;
+                    pan.Left = 0;
+                    pan.Top = 0;
+                    pan.Width = doc.ClientRectangle.Width;
+                    pan.Height = doc.ClientRectangle.Height;
+                    pan.Dock = System.Windows.Forms.DockStyle.Fill;
+                    pan.Visible = true;
 
-						if (!wrapper.AllowMultipleInstances) single[wrapper.GetType().ToString()] = fii;
-						wrapper.LoadUI();
-					}
-					
-					return true;
+                    //pan.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+
+
+                    if (add) doc.Closing += new TD.SandDock.DockControlClosingEventHandler(CloseResourceDocument);
+                    dc.SelectedPage = (TD.SandDock.TabPage)doc;
+                    doc.Manager = dc.Manager;
+                    doc.LayoutSystem.LockControls = false;
+
+
+                    loaded[fii] = doc;
+
+                    if (!wrapper.AllowMultipleInstances) single[wrapper.GetType().ToString()] = fii;
+                    wrapper.LoadUI();
                 }
-#if !DEBUG
-				catch(Exception ex) 
-				{
-					Helper.ExceptionMessage(ex);
-				}
-#endif
+
+                return true;
             }
 
 			return false;
@@ -268,29 +246,35 @@ namespace SimPe
 		/// </param>
 		/// <param name="overload">Replace the currently active Document Tab with the new one</param>
 		/// <returns>true, if the Plugin was loaded</returns>
-		public bool AddResource(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii, bool reload, bool overload)
-		{
-			
-			if (!pkg.Loaded) return false;
+        public bool AddResource(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii, bool reload, bool overload)
+        {
 
-			//already Loaded?
-			if (FocusResource(fii, reload)) return true;
+            if (!pkg.Loaded) return false;
 
-			//only one File at a Time?
-			if (!Helper.WindowsRegistry.MultipleFiles) this.Clear();
+            //already Loaded?
+            if (FocusResource(fii, reload)) return true;
 
-			//get the Wrapper
-			SimPe.Interfaces.Plugin.IFileWrapper wrapper = GetWrapper(fii);
+            //only one File at a Time?
+            if (!Helper.WindowsRegistry.MultipleFiles) this.Clear();
 
-			//unload if only one instance can be loaded
-			if (!UnloadSingleInstanceWrappers(wrapper, ref overload)) return false;
+            //get the Wrapper
+            SimPe.Interfaces.Plugin.IFileWrapper wrapper = GetWrapper(fii);
 
-			//load the new Data into the Wrapper
-			LoadWrapper(ref wrapper, fii);
+            //unload if only one instance can be loaded
+            if (!UnloadSingleInstanceWrappers(wrapper, ref overload)) return false;
 
-			//Present the passed Wrapper
-			return Present(fii, wrapper, overload);
-		}
+            try
+            {
+                //load the new Data into the Wrapper
+                LoadWrapper(ref wrapper, fii);
+
+                //Present the passed Wrapper
+                return Present(fii, wrapper, overload);
+            }
+            catch (Exception ex) { Helper.ExceptionMessage(ex); }
+            finally { }
+            return false;
+        }
 
 		/// <summary>
 		/// Selects the Document that shows the selected Resource

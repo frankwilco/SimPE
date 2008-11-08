@@ -73,66 +73,68 @@ namespace SimPe.Plugin.Tool
 			return error;
 		}
 
-		public static void Execute(SimPe.Events.ResourceContainers es)
-		{
-			WaitingScreen.Wait();
+        public static void Execute(SimPe.Events.ResourceContainers es)
+        {
+            //Select the Type
+            if (Helper.WindowsRegistry.ReportFormat == Registry.ReportFormats.CSV)
+                Serializer.Formater = new CsvSerializer();
 
-			//Select the Type
-			if (Helper.WindowsRegistry.ReportFormat == Registry.ReportFormats.CSV) 
-				Serializer.Formater = new CsvSerializer();
+            System.Collections.Hashtable map = new System.Collections.Hashtable();
 
-			System.Collections.Hashtable map = new System.Collections.Hashtable();
+            foreach (SimPe.Events.ResourceContainer e in es)
+            {
+                uint t = e.Resource.FileDescriptor.Type;
+                SimPe.Events.ResourceContainers o = map[t] as SimPe.Events.ResourceContainers;
+                if (o == null)
+                {
+                    o = new SimPe.Events.ResourceContainers();
+                    map[t] = o;
+                }
 
-			foreach (SimPe.Events.ResourceContainer e in es)
-			{
-				uint t = e.Resource.FileDescriptor.Type;
-				SimPe.Events.ResourceContainers o = map[t] as SimPe.Events.ResourceContainers;
-				if (o==null) 
-				{
-					o = new SimPe.Events.ResourceContainers();
-					map[t] = o;
-				}
+                o.Add(e);
+            }
 
-				o.Add(e);
-			}
+            System.IO.StreamWriter sw = new System.IO.StreamWriter(new System.IO.MemoryStream());
+            string error = "";
+            int ct = 0;
+            string max = "/ " + es.Count.ToString();
 
-			
 
-			System.IO.StreamWriter sw = new System.IO.StreamWriter(new System.IO.MemoryStream());
-			try 
-			{
-				string error = "";
-				int ct = 0;
-				string max = "/ "+es.Count.ToString();
-				foreach (uint type in map.Keys)
-				{
-					SimPe.Events.ResourceContainers rc = map[type] as SimPe.Events.ResourceContainers;
-					bool first = true;
+            WaitingScreen.Wait();
+            try
+            {
+                foreach (uint type in map.Keys)
+                {
+                    SimPe.Events.ResourceContainers rc = map[type] as SimPe.Events.ResourceContainers;
+                    bool first = true;
 
-					foreach (SimPe.Events.ResourceContainer e in rc)
-					{
-						error += ProcessItem(sw, e, first);
-						WaitingScreen.UpdateMessage((ct++).ToString()+" / "+max.ToString());
-						first = false;
-					}
-				}
-				WaitingScreen.Stop();
-		
-				if (error!="") throw new Warning("Not all Selected Files were processed.", error);
+                    foreach (SimPe.Events.ResourceContainer e in rc)
+                    {
+                        error += ProcessItem(sw, e, first);
+                        WaitingScreen.UpdateMessage((ct++).ToString() + " / " + max.ToString());
+                        first = false;
+                    }
+                }
+                WaitingScreen.Stop();
 
-				if (f==null) f= new Report();
-				f.Execute(sw);
-			}
-			catch (Exception ex)
-			{
-				Helper.ExceptionMessage(ex);
-			}
-			finally 
-			{
-				sw.Close();
-				Serializer.ResetFormater();
-			}
-		}
+                if (error != "") throw new Warning("Not all Selected Files were processed.", error);
+
+                if (f == null) f = new Report();
+                f.Execute(sw);
+            }
+#if !DEBUG
+            catch (Exception ex)
+            {
+                Helper.ExceptionMessage(ex);
+            }
+#endif
+            finally
+            {
+                sw.Close();
+                Serializer.ResetFormater();
+                WaitingScreen.Stop();
+            }
+        }
 
 		#region ITool Member
 

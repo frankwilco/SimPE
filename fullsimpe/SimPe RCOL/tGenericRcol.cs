@@ -36,7 +36,7 @@ namespace SimPe.Plugin.TabPage
 		internal System.Windows.Forms.TextBox tb_ver;
 		private System.Windows.Forms.Label label28;
 		internal System.Windows.Forms.PropertyGrid gen_pg;
-		private System.ComponentModel.IContainer components;
+		//private System.ComponentModel.IContainer components;
 
 		public GenericRcol()
 		{
@@ -66,10 +66,10 @@ namespace SimPe.Plugin.TabPage
 			if( disposing )
 			{				
 				Tag = null;				
-				if(components != null)
+				/*if(components != null)
 				{
 					components.Dispose();
-				}
+				}*/
 			}
 			base.Dispose( disposing );
 		}

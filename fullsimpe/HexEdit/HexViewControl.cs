@@ -598,7 +598,7 @@ namespace Ambertation.Windows.Forms
 		/// <summary>
 		/// Fires, when the USers Scrolls
 		/// </summary>
-		public event ScrollEventHandler Scroll;
+		public new event ScrollEventHandler Scroll;
 
 		/// <summary>
 		/// Fires, whenever the Selection get's changed

@@ -87,7 +87,7 @@ namespace SimPe
         }
 
         string name;
-        public string Name
+        public new string Name
         {
             get { return name; }
         }
@@ -118,16 +118,19 @@ namespace SimPe
             {
                 if (Tool.IsEnabled(pfd, package))
                 {
-                    SimPe.Interfaces.Plugin.IToolResult tr = Tool.ShowDialog(ref pfd, ref package);
-                    WaitingScreen.Stop();
-                    if (tr.ChangedAny)
+                    try
                     {
-                        PackageArg p = new PackageArg();
-                        p.Package = package;
-                        p.FileDescriptor = pfd;
-                        p.Result = tr;
-                        if (chghandler != null) chghandler(this, p);
+                        SimPe.Interfaces.Plugin.IToolResult tr = Tool.ShowDialog(ref pfd, ref package);
+                        if (tr.ChangedAny)
+                        {
+                            PackageArg p = new PackageArg();
+                            p.Package = package;
+                            p.FileDescriptor = pfd;
+                            p.Result = tr;
+                            if (chghandler != null) chghandler(this, p);
+                        }
                     }
+                    finally { WaitingScreen.Stop(); }
                 }
             }
 #if !DEBUG

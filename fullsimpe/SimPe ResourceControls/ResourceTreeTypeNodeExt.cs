@@ -28,7 +28,7 @@ namespace SimPe.Windows.Forms
 
         #region IComparable<ResResourceTreeNodeExt> Member
 
-        public int CompareTo(ResourceTreeNodeExt other)
+        public new int CompareTo(ResourceTreeNodeExt other)
         {
             return this.Text.CompareTo(other.Text);
         }

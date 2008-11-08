@@ -334,8 +334,8 @@ namespace SimPe.Plugin
                     ScannerItem si = cachefile.LoadItem(file);
                     si.PackageCacheItem.Enabled = enabled;
 
-                    if (si.PackageCacheItem.Thumbnail != null) WaitingScreen.Update(si.PackageCacheItem.Thumbnail, si.PackageCacheItem.Name);
-                    else WaitingScreen.UpdateMessage(si.PackageCacheItem.Name);
+                    if (si.PackageCacheItem.Thumbnail != null) { if (WaitingScreen.Running) WaitingScreen.Update(si.PackageCacheItem.Thumbnail, si.PackageCacheItem.Name); }
+                    else { if (WaitingScreen.Running) WaitingScreen.UpdateMessage(si.PackageCacheItem.Name); }
 
                     //determin Type
                     SimPe.Cache.PackageType pt = si.PackageCacheItem.Type;

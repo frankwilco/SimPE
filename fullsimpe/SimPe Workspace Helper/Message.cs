@@ -108,77 +108,79 @@ namespace SimPe
 			return Show(message, null, MessageBoxButtons.OK);
 		}
 
-		public static DialogResult Show(string message, string caption, MessageBoxButtons mbb)
-		{
-			try 
-			{
-				caption = SimPe.Localization.GetString(caption);
-				Message m = new Message();				
-				if (mbb==MessageBoxButtons.YesNoCancel) 
-				{
-					m.AddButton(SimPe.Localization.Manager.GetString("cancel"), DialogResult.Cancel);
-					m.AddButton(SimPe.Localization.Manager.GetString("no"), DialogResult.No);
-					m.AddButton(SimPe.Localization.Manager.GetString("yes"), DialogResult.Yes);
-				} 
-				else if (mbb==MessageBoxButtons.OKCancel) 
-				{
-					m.AddButton(SimPe.Localization.Manager.GetString("cancel"), DialogResult.Cancel);
-					m.AddButton(SimPe.Localization.Manager.GetString("ok"), DialogResult.OK);
-				}
-				else if (mbb==MessageBoxButtons.YesNo) 
-				{
-					m.AddButton(SimPe.Localization.Manager.GetString("no"), DialogResult.No);
-					m.AddButton(SimPe.Localization.Manager.GetString("yes"), DialogResult.Yes);
-				}
-				else 
-				{
-					m.AddButton(SimPe.Localization.Manager.GetString("ok"), DialogResult.OK);
-				}
+        public static DialogResult Show(string message, string caption, MessageBoxButtons mbb)
+        {
 
-				if (caption!=null) m.Text = caption;
-				m.label1.AutoSize = false;
-				m.panel1.Width = m.ClientRectangle.Width;
-				m.panel2.Width = m.panel1.Width;
-				m.label1.Width = m.panel2.Width - (2* m.label1.Left);
-				m.label1.Text = message;				
-				
-				string text = m.label1.Text;
-				Font textFont = m.label1.Font;
+            bool run = WaitingScreen.Running;
+            bool spl = Splash.Running;
+            if (run) WaitingScreen.Stop();
+            if (spl) Splash.Screen.Stop();
+            try
+            {
+                caption = SimPe.Localization.GetString(caption);
+                Message m = new Message();
+                if (mbb == MessageBoxButtons.YesNoCancel)
+                {
+                    m.AddButton(SimPe.Localization.Manager.GetString("cancel"), DialogResult.Cancel);
+                    m.AddButton(SimPe.Localization.Manager.GetString("no"), DialogResult.No);
+                    m.AddButton(SimPe.Localization.Manager.GetString("yes"), DialogResult.Yes);
+                }
+                else if (mbb == MessageBoxButtons.OKCancel)
+                {
+                    m.AddButton(SimPe.Localization.Manager.GetString("cancel"), DialogResult.Cancel);
+                    m.AddButton(SimPe.Localization.Manager.GetString("ok"), DialogResult.OK);
+                }
+                else if (mbb == MessageBoxButtons.YesNo)
+                {
+                    m.AddButton(SimPe.Localization.Manager.GetString("no"), DialogResult.No);
+                    m.AddButton(SimPe.Localization.Manager.GetString("yes"), DialogResult.Yes);
+                }
+                else
+                {
+                    m.AddButton(SimPe.Localization.Manager.GetString("ok"), DialogResult.OK);
+                }
 
-				//Specify a fixed width, but let the height be "unlimited"
-				SizeF layoutSize = new SizeF(m.label1.Width, 5000.0F);
-				Graphics g = Graphics.FromHwnd(m.label1.Handle);
-				SizeF stringSize = g.MeasureString(text, textFont, layoutSize);
-				g.Dispose();
-				m.label1.Height = (int)stringSize.Height;
-				int newsize =m.label1.Height + (2 * m.label1.Top);
-				
+                if (caption != null) m.Text = caption;
+                m.label1.AutoSize = false;
+                m.panel1.Width = m.ClientRectangle.Width;
+                m.panel2.Width = m.panel1.Width;
+                m.label1.Width = m.panel2.Width - (2 * m.label1.Left);
+                m.label1.Text = message;
 
-				m.panel2.Height = newsize;
-				m.panel1.Top = m.panel2.Height;
-				
-				m.Height = m.panel2.Height + m.panel1.Height + System.Windows.Forms.SystemInformation.CaptionHeight;
+                string text = m.label1.Text;
+                Font textFont = m.label1.Font;
 
-				ThemeManager.Global.Theme(m.panel2);
-				m.panel1.BackColor = ThemeManager.Global.ThemeColorDark;
+                //Specify a fixed width, but let the height be "unlimited"
+                SizeF layoutSize = new SizeF(m.label1.Width, 5000.0F);
+                Graphics g = Graphics.FromHwnd(m.label1.Handle);
+                SizeF stringSize = g.MeasureString(text, textFont, layoutSize);
+                g.Dispose();
+                m.label1.Height = (int)stringSize.Height;
+                int newsize = m.label1.Height + (2 * m.label1.Top);
 
-				bool run = WaitingScreen.Running;
-				if (run) WaitingScreen.Stop();
-				try 
-				{
-					m.ShowDialog();
-				} 
-				finally 
-				{
-					if (run) WaitingScreen.Wait();
-				}
 
-				return m.DialogResult;
-			} 
-			catch {
-				return MessageBox.Show(message, caption, mbb);
-			}
-		}
+                m.panel2.Height = newsize;
+                m.panel1.Top = m.panel2.Height;
+
+                m.Height = m.panel2.Height + m.panel1.Height + System.Windows.Forms.SystemInformation.CaptionHeight;
+
+                ThemeManager.Global.Theme(m.panel2);
+                m.panel1.BackColor = ThemeManager.Global.ThemeColorDark;
+
+                m.ShowDialog();
+
+                return m.DialogResult;
+            }
+            catch
+            {
+                return MessageBox.Show(message, caption, mbb);
+            }
+            finally
+            {
+                if (run) WaitingScreen.Wait();
+                if (spl) Splash.Screen.SetMessage("");
+            }
+        }
 
 		void AddButton(string caption, DialogResult dr)
 		{

@@ -164,6 +164,11 @@
       <Name>SimPe RCOL</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\..\SimPe Splash\SimPe Splash.csproj">
+      <Project>{6F0D2F45-62FD-4BF5-95C0-46D66C981034}</Project>
+      <Name>SimPe Splash</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\..\SimPe Workspace Helper\SimPe Workspace Helper.csproj">
       <Name>SimPe Workspace Helper</Name>
       <Project>{45021667-BAD2-4ECA-8423-F4734F914CBB}</Project>
@@ -179,6 +184,8 @@
     <Compile Include="BconWrapper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BuildPackage.cs" />
+    <Compile Include="GenSemiGlobals.cs" />
     <Compile Include="ImportSemi.cs">
       <SubType>Form</SubType>
     </Compile>

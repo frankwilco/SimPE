@@ -66,22 +66,24 @@ namespace SimPe.Updates
 			{
 				if (Helper.StartedGui==Executable.Classic) WaitingScreen.Wait();
 				else Wait.SubStart();
-				string tempname = System.IO.Path.GetTempFileName()+".msi";
-				DownloadFile("http://sims.ambertation.de/files/mdxredist.msi", tempname);
+                string tempname = System.IO.Path.GetTempFileName() + ".msi";
+                try
+                {
+                    DownloadFile("http://sims.ambertation.de/files/mdxredist.msi", tempname);
 
-				if (Helper.StartedGui==Executable.Classic) WaitingScreen.Stop();
-				else Wait.SubStop();
-				try 
-				{
-					System.Diagnostics.Process p = System.Diagnostics.Process.Start(tempname);
-					p.WaitForExit();
+                    if (Helper.StartedGui == Executable.Classic) WaitingScreen.Stop();
+                    else Wait.SubStop();
+                    System.Diagnostics.Process p = System.Diagnostics.Process.Start(tempname);
+                    p.WaitForExit();
 
-					return true;
-				} 
-				finally 
-				{
-					System.IO.File.Delete(tempname);
-				}
+                    return true;
+                }
+                finally
+                {
+                    System.IO.File.Delete(tempname);
+                    if (Helper.StartedGui == Executable.Classic) WaitingScreen.Stop();
+                    else Wait.SubStop();
+                }
 
 			} 
 			catch (Exception ex)
@@ -104,12 +106,12 @@ namespace SimPe.Updates
 		public static bool InstallTemplates()
 		{
 			WebClient Client = new WebClient ();
-			try 
+            if (Helper.StartedGui == Executable.Classic) WaitingScreen.Wait();
+            else Wait.SubStart();
+            try 
 			{
-				if (Helper.StartedGui==Executable.Classic) WaitingScreen.Wait();
-				else Wait.SubStart();
-				string tempname = System.IO.Path.GetTempFileName()+".exe";
-				DownloadFile("http://sims.ambertation.de/files/SimPE-Templates-Setup.exe", tempname);
+                string tempname = System.IO.Path.GetTempFileName() + ".exe";
+                DownloadFile("http://sims.ambertation.de/files/SimPE-Templates-Setup.exe", tempname);
 
 				if (Helper.StartedGui==Executable.Classic) WaitingScreen.Stop();
 				else Wait.SubStop();

@@ -326,7 +326,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		public void CleanUp() 
 		{
-			WaitingScreen.UpdateMessage("Cleaning up");
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Cleaning up");
 			Interfaces.Files.IPackedFileDescriptor[] mpfds = package.FindFiles(Data.MetaData.MMAT);	//MMAT
 			ArrayList mmats = new ArrayList();
 			foreach (Interfaces.Files.IPackedFileDescriptor pfd in mpfds) 
@@ -375,7 +375,7 @@ namespace SimPe.Plugin
 								0x1C4A276C  //TXTR
 							};
 
-			WaitingScreen.UpdateMessage("Fixing Groups");
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Fixing Groups");
 			foreach (Interfaces.Files.IPackedFileDescriptor pfd in package.Index) 
 			{
 				
@@ -458,7 +458,7 @@ namespace SimPe.Plugin
 			Hashtable refmap = new Hashtable();
 			Hashtable completerefmap = new Hashtable();
 
-			WaitingScreen.UpdateMessage("Fixing Names");
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Fixing Names");
 			FixNames(map);
 
 			foreach (uint type in Data.MetaData.RcolList) 
@@ -485,7 +485,7 @@ namespace SimPe.Plugin
 			}
 
 			//Updated TGI Values and update the refmap
-			WaitingScreen.UpdateMessage("Udating TGI Values");
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Updating TGI Values");
 			foreach (uint type in Data.MetaData.RcolList) 
 			{
 				Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(type);
@@ -506,7 +506,7 @@ namespace SimPe.Plugin
 			}
 
 			//Update the References			
-			WaitingScreen.UpdateMessage("Udating TGI References");
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Updating TGI References");
 			foreach (uint type in Data.MetaData.RcolList) 
 			{
 				Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(type);
@@ -559,7 +559,7 @@ namespace SimPe.Plugin
 			FixOBJd();
 
 			//And finally the Root String
-			WaitingScreen.UpdateMessage("Udating Root");
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Updating Root");
 			SimPe.Interfaces.Files.IPackedFileDescriptor[] mpfds = package.FindFiles(Data.MetaData.STRING_FILE);	
 			string modelname = null;
 			foreach (Interfaces.Files.IPackedFileDescriptor pfd in mpfds) 
@@ -640,7 +640,7 @@ namespace SimPe.Plugin
 		/// </remarks>
 		void FixOBJd()
 		{
-			WaitingScreen.UpdateMessage("Udating Object Descriuptions");
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Updating Object Descriuptions");
 			Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(Data.MetaData.OBJD_FILE);	//OBJd
 
 			bool updaterugs = false;
@@ -683,8 +683,8 @@ namespace SimPe.Plugin
 		/// <param name="grouphash"></param>
 		void FixMMAT(Hashtable map, bool uniquefamily, string grouphash)
 		{
-			
-			WaitingScreen.UpdateMessage("Udating Material Overrides");
+
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Updating Material Overrides");
 			Interfaces.Files.IPackedFileDescriptor[] mpfds = package.FindFiles(Data.MetaData.MMAT);	//MMAT
 			Hashtable familymap = new Hashtable();
 			uint mininst = 0x5000;

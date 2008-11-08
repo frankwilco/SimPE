@@ -200,11 +200,6 @@
       <Name>SimPe Clst</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe Commandline\SimPe Commandline.csproj">
-      <Project>{0D63B13E-F41B-456C-92D0-C0BB3FE8744F}</Project>
-      <Name>SimPe Commandline</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\SimPe Extended Filehandlers\SimPe Extended Filehandlers.csproj">
       <Project>{7EF7C30C-2968-46E8-AA74-79EDB0FE8F2A}</Project>
       <Name>SimPe Extended Filehandlers</Name>

@@ -1,6 +1,8 @@
 /***************************************************************************
  *   Copyright (C) 2005 by Ambertation                                     *
  *   quaxi@ambertation.de                                                  *
+ *   Copyright (C) 2008 by Peter L Jones                                   *
+ *   peter@users.sf.net                                                    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -36,7 +38,7 @@ namespace SimPe.PackedFiles
 	/// provide Infoformations from the Main Application to the Plugins, you have to use the 
 	/// TypeRegistry!
 	/// </remarks>	 
-	public sealed class TypeRegistry : IWrapperRegistry, IProviderRegistry, IToolRegistry, IHelpRegistry, ISettingsRegistry
+	public sealed class TypeRegistry : IWrapperRegistry, IProviderRegistry, IToolRegistry, IHelpRegistry, ISettingsRegistry, ICommandLineRegistry
 	{		
 		/// <summary>
 		/// Coontains all available handler Objects
@@ -58,6 +60,11 @@ namespace SimPe.PackedFiles
 		/// Contains all available action Tool Plugins
 		/// </summary>
 		ArrayList atools;
+
+        /// <summary>
+        /// Contains all known CommandLine tools
+        /// </summary>
+        ArrayList cmdlines;
 
 		/// <summary>
 		/// Contains all known Helptopics
@@ -113,6 +120,7 @@ namespace SimPe.PackedFiles
 			toolsp = new ArrayList();
 			dtools = new ArrayList();
 			atools = new ArrayList();
+            cmdlines = new ArrayList();
 			helptopics = new ArrayList();
 			settings = new ArrayList();
 			listeners = new SimPe.Collections.InternalListeners();
@@ -181,9 +189,12 @@ namespace SimPe.PackedFiles
 
 			if (factory.GetType().GetInterface("SimPe.Interfaces.Plugin.IHelpFactory", false) == typeof(SimPe.Interfaces.Plugin.IHelpFactory))			
 				Register((factory as SimPe.Interfaces.Plugin.IHelpFactory));
-			
-			if (factory.GetType().GetInterface("SimPe.Interfaces.Plugin.ISettingsFactory", false) == typeof(SimPe.Interfaces.Plugin.ISettingsFactory))			
-				Register((factory as SimPe.Interfaces.Plugin.ISettingsFactory));
+
+            if (factory.GetType().GetInterface("SimPe.Interfaces.Plugin.ISettingsFactory", false) == typeof(SimPe.Interfaces.Plugin.ISettingsFactory))
+                Register((factory as SimPe.Interfaces.Plugin.ISettingsFactory));
+
+            if (factory.GetType().GetInterface("SimPe.Interfaces.Plugin.ICommandLineFactory", false) == typeof(SimPe.Interfaces.Plugin.ICommandLineFactory))
+                Register((factory as SimPe.Interfaces.Plugin.ICommandLineFactory));
 
             AddUpdatablePlugin(factory);
 		}
@@ -381,7 +392,6 @@ namespace SimPe.PackedFiles
 
             if (tool != null)
             {
-                Splash.Screen.SetMessage(SimPe.Localization.GetString("Loading")+" " + tool.ToString());
                 if (tool.GetType().GetInterface("SimPe.Interfaces.IDockableTool", true) == typeof(SimPe.Interfaces.IDockableTool))
                 {
                     if (!dtools.Contains(tool))
@@ -561,9 +571,46 @@ namespace SimPe.PackedFiles
 
 		#endregion
 
+        #region ICommandLineRegistry Members
+
+        public void Register(ICommandLineFactory factory)
+        {
+            if (factory == null) return;
+            RegisterCommandLines(factory.KnownCommandLines);
+
+            AddUpdatablePlugin(factory);
+        }
+
+        public void RegisterCommandLines(ICommandLine[] CommandLines)
+        {
+            if (cmdlines == null) return;
+            foreach (ICommandLine c in CommandLines)
+                RegisterCommandLines(c as ICommandLine);
+        }
+
+        public void RegisterCommandLines(ICommandLine cmdline)
+        {
+            if (cmdline == null) return;
+            if (!cmdlines.Contains(cmdline))
+                cmdlines.Add(cmdline);
+        }
+
+        public ICommandLine[] CommandLines
+        {
+            get
+            {
+                ICommandLine[] ret = new ICommandLine[cmdlines.Count];
+                cmdlines.CopyTo(ret);
+                return ret;
+            }
+        }
+
+        #endregion
+
         /// <summary>
         /// This will perform some basic tasks, to bring the SimPE API into an useable state
         /// </summary>
+        /* unused ?? ?? ?? -> see SimPe Main\PluginManager.cs LoadStaticWrappers()
         public static void InitDefaultFileTable()
         {
             SimPe.PackedFiles.TypeRegistry tr = new SimPe.PackedFiles.TypeRegistry();
@@ -579,8 +626,11 @@ namespace SimPe.PackedFiles
             SimPe.FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.DefaultWrapperFactory());
             SimPe.FileTable.WrapperRegistry.Register(new SimPe.Plugin.ScenegraphWrapperFactory());
             SimPe.FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.ClstWrapperFactory());
+            SimPe.FileTable.WrapperRegistry.Register(new SimPe.Commandline.Help());
+
         }
-	}
+        */
+    }
 }
 
 namespace SimPe.Collections 

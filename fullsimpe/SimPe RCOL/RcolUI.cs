@@ -107,6 +107,8 @@ namespace SimPe.Plugin
 			form.tbResource.SelectedIndex = 0;
 
 			if (wrp.Blocks.Length>0) ((AbstractRcolBlock)wrp.Blocks[0]).AddToResourceTabControl(form.tbResource, form.cbitem);
+
+            form.Enabled = !wrp.Duff;
 			
 		}		
 

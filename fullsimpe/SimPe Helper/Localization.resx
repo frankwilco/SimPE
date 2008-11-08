@@ -1459,4 +1459,43 @@ advised to make no changes and certainly not to save any packages.</value>
   <data name="cbautobak_CheckedChanged" xml:space="preserve">
     <value>Warning: Do not try to restore live game data such as sims, lots or neighborhoods from .bak files.</value>
   </data>
+  <data name="GroupFilterSet" xml:space="preserve">
+    <value>Toggle group filter</value>
+  </data>
+  <data name="InvalidCRES" xml:space="preserve">
+    <value>[Invalid CRES: {0}]</value>
+    <comment>{0}: exception message</comment>
+  </data>
+  <data name="[Description:AddSimNames]" xml:space="preserve">
+    <value>When true, for resources that are associated with Sims, the Sim's name will be applied.  (This can have an adverse effect on performance.)</value>
+  </data>
+  <data name="[Description:HackerMode]" xml:space="preserve">
+    <value>When true, this attempts to improve performance by reducing the number of resources in use.</value>
+  </data>
+  <data name="[Property:AddSimNames]" xml:space="preserve">
+    <value>Add Sim Names</value>
+  </data>
+  <data name="[Property:HackerMode]" xml:space="preserve">
+    <value>Hackers Mode</value>
+  </data>
+  <data name="spExists" xml:space="preserve">
+    <value>Profile already exists</value>
+  </data>
+  <data name="spOKCancelExists" xml:space="preserve">
+    <value>OK to overwrite existing profile, Cancel to abort</value>
+  </data>
+  <data name="spCreate" xml:space="preserve">
+    <value>Creating new profile</value>
+  </data>
+  <data name="spOKCancelCreate" xml:space="preserve">
+    <value>OK to create new profile, Cancel to abort</value>
+  </data>
+  <data name="spWritten" xml:space="preserve">
+    <value>Profile written</value>
+  </data>
+  <data name="spWrittenDesc" xml:space="preserve">
+    <value>Your profile has been written.
+Use the "-profile savedprofilename" command line option
+to run SimPe with this profile.</value>
+  </data>
 </root>

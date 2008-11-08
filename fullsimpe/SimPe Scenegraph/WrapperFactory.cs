@@ -19,6 +19,7 @@
  ***************************************************************************/
 using System;
 using SimPe.Interfaces;
+using SimPe.Interfaces.Plugin;
 
 namespace SimPe.Plugin
 {
@@ -29,7 +30,7 @@ namespace SimPe.Plugin
 	/// GetWrappers() has to return a list of all Plugins provided by this Library. 
 	/// If a Plugin isn't returned, SimPe won't recognize it!
 	/// </remarks>
-	public class ScenegraphWrapperFactory : SimPe.Interfaces.Plugin.AbstractWrapperFactory
+	public class ScenegraphWrapperFactory : SimPe.Interfaces.Plugin.AbstractWrapperFactory, ICommandLineFactory
 	{
 		static bool inited = false;
 		/// <summary>
@@ -116,7 +117,7 @@ namespace SimPe.Plugin
 						                  new Plugin.GenericRcol(this.LinkedProvider, false),
 										  new Plugin.MmatWrapper(),					
 										  new SimPe.PackedFiles.Wrapper.GroupCache(),
-										  new SimPe.PackedFiles.Wrapper.Slot()
+										  new SimPe.PackedFiles.Wrapper.Slot(),
 									  };
 				return wrappers;
 			}
@@ -124,5 +125,17 @@ namespace SimPe.Plugin
 
 		#endregion
 
-	}
+
+        #region ICommandLineFactory Members
+
+        public ICommandLine[] KnownCommandLines
+        {
+            get { return new ICommandLine[] {
+                new BuildTxtr(),
+                new FixPackage(),
+            }; }
+        }
+
+        #endregion
+    }
 }

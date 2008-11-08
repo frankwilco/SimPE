@@ -224,7 +224,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			}
 		}	
 
-		public virtual bool Visible 
+		public new virtual bool Visible 
 		{
 			get { return this.IsDocked ||  this.IsFloating; }
 		}

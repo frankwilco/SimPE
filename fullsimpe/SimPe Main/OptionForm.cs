@@ -240,7 +240,9 @@ namespace SimPe
             Helper.WindowsRegistry.Password = tbPassword.Text;
             Helper.WindowsRegistry.CachedUserId = Helper.StringToUInt32(tbUserId.Text, 0, 16);
 
-            StoreFoldersXml();
+            System.Collections.Generic.List<FileTableItem> lfti = new System.Collections.Generic.List<FileTableItem>();
+            foreach (FileTableItem fti in lbfolder.Items) lfti.Add(fti);
+            FileTable.StoreFoldersXml(lfti);
             try
             {
                 Helper.WindowsRegistry.OWThumbSize = Convert.ToInt32(tbthumb.Text);
@@ -388,88 +390,6 @@ namespace SimPe
                 lbfolder.Items.Insert(0, fti);
                 this.btReload.Enabled = true;
                 SetupFileTableCheckboxes();
-            }
-        }
-
-        void StoreFoldersXml()
-        {
-            try
-            {
-                System.Xml.XmlWriterSettings xws = new System.Xml.XmlWriterSettings();
-                xws.CloseOutput = true;
-                xws.Indent = true;
-                xws.Encoding = System.Text.Encoding.UTF8;
-                System.Xml.XmlWriter xw = System.Xml.XmlWriter.Create(FileTable.FolderFile, xws);
-
-                try
-                {
-                    xw.WriteStartElement("folders");
-                    xw.WriteStartElement("filetable");
-                    foreach (FileTableItem fti in lbfolder.Items)
-                    {
-                        xw.WriteStartElement(fti.IsFile ? "file" : "path");
-
-                        if (fti.Type != FileTablePaths.Absolute)
-                        {
-                            bool ok = false;
-                            foreach (ExpansionItem ei in PathProvider.Global.Expansions)
-                            {
-                                if (fti.Type == ei.Expansion)
-                                {
-                                    xw.WriteAttributeString("root", ei.ShortId.ToLower());
-                                    ok = true;
-                                    break;
-                                }
-                            }
-                            if (!ok)
-                            {
-                                switch (fti.Type.AsUint)
-                                {
-
-                                    case (uint)FileTablePaths.SaveGameFolder:
-                                        {
-                                            xw.WriteAttributeString("root", "save");
-                                            break;
-                                        }
-                                    case (uint)FileTablePaths.SimPEFolder:
-                                        {
-                                            xw.WriteAttributeString("root", "simpe");
-                                            break;
-                                        }
-                                    case (uint)FileTablePaths.SimPEDataFolder:
-                                        {
-                                            xw.WriteAttributeString("root", "simpeData");
-                                            break;
-                                        }
-                                    case (uint)FileTablePaths.SimPEPluginFolder:
-                                        {
-                                            xw.WriteAttributeString("root", "simpePlugin");
-                                            break;
-                                        }
-                                } //switch
-                            }
-                        }
-
-                        if (fti.IsRecursive) xw.WriteAttributeString("recursive", "1");
-                        if (fti.EpVersion >= 0) xw.WriteAttributeString("version", fti.EpVersion.ToString());
-                        if (fti.Ignore) xw.WriteAttributeString("ignore", "1");
-
-                        xw.WriteValue(fti.RelativePath);
-                        xw.WriteEndElement();
-
-                    }
-                    xw.WriteEndElement();
-                    xw.WriteEndElement();
-                }
-                finally
-                {
-                    xw.Close();
-                    xw = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                Helper.ExceptionMessage("", ex);
             }
         }
 
@@ -1153,7 +1073,9 @@ namespace SimPe
 
         private void btReload_Click(object sender, System.EventArgs e)
         {
-            StoreFoldersXml();
+            System.Collections.Generic.List<FileTableItem> lfti = new System.Collections.Generic.List<FileTableItem>();
+            foreach (FileTableItem fti in lbfolder.Items) lfti.Add(fti);
+            FileTable.StoreFoldersXml(lfti);
             FileTable.Reload();
             btReload.Enabled = false;
         }

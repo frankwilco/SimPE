@@ -160,7 +160,7 @@ namespace SimPe.Plugin
 			for (int i=0; i<data.Length; i++)
 			{
 				writer.Write(data[i].BlockID);
-				Parent.WriteBlock(data[i].BlockID, data[i], writer);				
+				Parent.WriteBlock(data[i], writer);				
 			}
 		}
 

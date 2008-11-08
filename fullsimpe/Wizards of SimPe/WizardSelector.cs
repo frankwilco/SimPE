@@ -17,7 +17,7 @@ namespace SimPe.Wizards
 		public WizardSelector()
 		{
 			wizards = new ArrayList();
-			Console.WriteLine("Loading Plugins from : "+this.WizardFolder);
+			//Console.WriteLine("Loading Plugins from : "+this.WizardFolder);
 			LoadWizards();
 		}
 

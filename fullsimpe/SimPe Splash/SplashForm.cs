@@ -1,6 +1,8 @@
 /***************************************************************************
  *   Copyright (C) 2005 by Ambertation                                     *
  *   quaxi@ambertation.de                                                  *
+ *   Copyright (C) 2008 by Peter L Jones                                   *
+ *   peter@users.sf.net                                                    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -37,7 +39,7 @@ namespace SimPe.Windows.Forms
 
         public SplashForm()
         {
-            msg = "";            
+            msg = "";
             InitializeComponent();
             this.MinimumSize = new Size(461, 212);
             this.MaximumSize = new Size(461, 212);
@@ -46,11 +48,11 @@ namespace SimPe.Windows.Forms
             this.FormBorderStyle = FormBorderStyle.None;
             lbtxt.Text = msg;
             lbver.Text = Helper.VersionToString(Helper.SimPeVersion); //SimPe.Helper.SimPeVersion.FileMajorPart + "." + SimPe.Helper.SimPeVersion.FileMinorPart + "." + SimPe.Helper.SimPeVersion.FileBuildPart;
-            
-            if (Helper.DebugMode && Helper.QARelease) lbver.Text +=" [Debug, QA]";
-            else if (Helper.DebugMode) lbver.Text += " [Debug]";           
+
+            if (Helper.DebugMode && Helper.QARelease) lbver.Text += " [Debug, QA]";
+            else if (Helper.DebugMode) lbver.Text += " [Debug]";
             else if (Helper.QARelease) lbver.Text += " [QA]";
-            
+
         }
 
         protected override void OnCreateBitmap(Graphics g, Bitmap b)
@@ -59,10 +61,10 @@ namespace SimPe.Windows.Forms
 
             if (bg == null)
             {
-                bg = Image.FromStream(typeof(HelpForm).Assembly.GetManifestResourceStream("SimPe.Windows.Forms.img.splash.png"));                
+                bg = Image.FromStream(typeof(HelpForm).Assembly.GetManifestResourceStream("SimPe.Windows.Forms.img.splash.png"));
             }
 
-            g.DrawImage(bg, new Point(0, 0));            
+            g.DrawImage(bg, new Point(0, 0));
             g.Dispose();
         }
 
@@ -77,7 +79,7 @@ namespace SimPe.Windows.Forms
                     if (msg != value)
                     {
                         if (value == null) msg = "";
-                        else msg = value;                        
+                        else msg = value;
 
                         SendMessageChangeSignal();
                     }
@@ -101,7 +103,7 @@ namespace SimPe.Windows.Forms
                 else if (m.Msg == WM_SHOW_HIDE)
                 {
                     int i = m.WParam.ToInt32();
-                    if (i == 1) this.ShowDialog();
+                    if (i == 1) { if (!this.Visible) this.ShowDialog(); else Application.DoEvents(); }
                     else this.Close();
                 }
             }

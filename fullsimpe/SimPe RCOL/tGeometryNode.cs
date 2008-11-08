@@ -46,7 +46,7 @@ namespace SimPe.Plugin.TabPage
 		private System.Windows.Forms.GroupBox groupBox17;
 		internal System.Windows.Forms.ComboBox cb_gn_list;
 		internal System.Windows.Forms.TabControl tc_gn;
-		private System.ComponentModel.IContainer components;
+		//private System.ComponentModel.IContainer components;
 
 		public GeometryNode()
 		{
@@ -74,10 +74,10 @@ namespace SimPe.Plugin.TabPage
 			if( disposing )
 			{				
 				Tag = null;
-				if(components != null)
+				/*if(components != null)
 				{
 					components.Dispose();
-				}
+				}*/
 			}
 			base.Dispose( disposing );
 		}

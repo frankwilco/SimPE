@@ -175,36 +175,37 @@ namespace SimPe
 		/// <returns>true, if the file was loaded</returns>
 		public bool LoadFromFile(string flname, bool sync) 
 		{
-			try 
-			{
-				FileNameEventArg e = new FileNameEventArg(flname);		
-				if (BeforeFileLoad!=null) BeforeFileLoad(this, e);
-				if (e.Cancel) return false;
-				
-				Wait.SubStart();
-				Wait.Message = "Loading File";
+            bool res = false;
+            try
+            {
+                FileNameEventArg e = new FileNameEventArg(flname);
+                if (BeforeFileLoad != null) BeforeFileLoad(this, e);
+                if (e.Cancel) return false;
 
-				if (pkg!=null) this.SetupEvents(false);				
+                Wait.SubStart();
+                Wait.Message = "Loading File";
 
-				pkg = SimPe.Packages.File.LoadFromFile(e.FileName, sync);
-				if (pkg.Index.Length<Helper.WindowsRegistry.BigPackageResourceCount)
-					pkg.LoadCompressedState();
-				
-				this.SetupEvents(true);					
-				Helper.WindowsRegistry.AddRecentFile(flname);
+                if (pkg != null) this.SetupEvents(false);
 
-				Wait.SubStop();
+                pkg = SimPe.Packages.File.LoadFromFile(e.FileName, sync);
+                if (pkg.Index.Length < Helper.WindowsRegistry.BigPackageResourceCount)
+                    pkg.LoadCompressedState();
 
-				if (AfterFileLoad!=null) AfterFileLoad(this);
-				return true;
-			} 
-			catch (Exception ex)
-			{
-				SimPe.Helper.ExceptionMessage(ex);
-				pkg = null;
-				return false;
-			}
-		}
+                this.SetupEvents(true);
+                Helper.WindowsRegistry.AddRecentFile(flname);
+
+                Wait.SubStop();
+
+                if (AfterFileLoad != null) AfterFileLoad(this);
+                res = true;
+            }
+#if !DEBUG
+            catch (Exception ex) { SimPe.Helper.ExceptionMessage(ex); }
+#endif
+            finally { }
+            if (res != true) pkg = null;
+            return res;
+        }
 
 		/// <summary>
 		/// Save the current package

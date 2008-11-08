@@ -208,6 +208,7 @@
     <Compile Include="CheckItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ICommandLineRegistry.cs" />
     <Compile Include="ErrorWrapper.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -289,7 +290,6 @@
     <Compile Include="ShowHelpEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SplashScreen.cs" />
     <Compile Include="ThemeManager.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -152,6 +152,8 @@
     <Compile Include="Events.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ICommandLine.cs" />
+    <Compile Include="ICommandLineFactory.cs" />
     <Compile Include="ICommonPackageProvider.cs">
       <SubType>Code</SubType>
     </Compile>

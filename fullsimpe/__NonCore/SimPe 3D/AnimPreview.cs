@@ -206,16 +206,22 @@ namespace SimPe.Plugin
 			AnimPreview f = new AnimPreview();
 
 			WaitingScreen.Wait();
-			WaitingScreen.UpdateMessage(SimPe.Localization.GetString("Loading Meshes"));
-			int ct = 0;
-			Wait.SubStart(anim.MeshBlock.Length);
-			foreach (SimPe.Plugin.Anim.AnimationMeshBlock amb in anim.MeshBlock)
-			{
-				f.lb.Items.Add(new ListedMeshBlocks(amb));
-				Wait.Progress = ct++;
-			}
-			Wait.SubStop();
-			WaitingScreen.Stop();
+            Wait.SubStart(anim.MeshBlock.Length);
+            try
+            {
+                WaitingScreen.UpdateMessage(SimPe.Localization.GetString("Loading Meshes"));
+                int ct = 0;
+                foreach (SimPe.Plugin.Anim.AnimationMeshBlock amb in anim.MeshBlock)
+                {
+                    f.lb.Items.Add(new ListedMeshBlocks(amb));
+                    Wait.Progress = ct++;
+                }
+            }
+            finally
+            {
+                Wait.SubStop();
+                WaitingScreen.Stop();
+            }
 			
 			f.ShowDialog();
 

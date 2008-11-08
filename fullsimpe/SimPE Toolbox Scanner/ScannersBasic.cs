@@ -501,7 +501,7 @@ namespace SimPe.Plugin.Scanner
 				}
 			}
 
-			if (si.PackageCacheItem.Thumbnail!=null) WaitingScreen.UpdateImage(si.PackageCacheItem.Thumbnail);
+            if (si.PackageCacheItem.Thumbnail != null) if (WaitingScreen.Running) WaitingScreen.UpdateImage(si.PackageCacheItem.Thumbnail);
 			UpdateState(si, ps, lvi);
 		}
 

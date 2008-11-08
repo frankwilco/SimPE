@@ -782,8 +782,8 @@ namespace SimPe.Plugin
 			if (cbusefileindex.Checked) 
 			{
 				WaitingScreen.Wait();
-				SimPe.FileTable.FileIndex.Load();
-				WaitingScreen.Stop(this);
+                try { SimPe.FileTable.FileIndex.Load(); }
+                finally { WaitingScreen.Stop(this); }
 
 				lblist.Items.Clear();
 				SimPe.Packages.PackedFileDescriptor pfd = new SimPe.Packages.PackedFileDescriptor();

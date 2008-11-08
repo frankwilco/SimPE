@@ -265,7 +265,7 @@ namespace SimPe.Geometry
 		/// <summary>
 		/// Returns an Empty Quaternion
 		/// </summary>
-		public static Quaternion Zero 
+		public static new Quaternion Zero 
 		{
 			get { return new Quaternion(QuaternionParameterType.ImaginaryReal, 0, 0, 0, 0); }
 		}	

@@ -249,14 +249,14 @@ namespace SimPe.Plugin
 			gc.AutoSize = true;
 			this.coords.Clear();
 			this.names.Clear();
-			WaitingScreen.UpdateMessage("Scaning MMAT Tree");
+			if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Scaning MMAT Tree");
 			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFiles(Data.MetaData.MMAT);
 			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
 			{
 				AddItem(pfd, pkg, null, fileindex);
 			}
 
-			WaitingScreen.UpdateMessage("Scaning CRES Tree");
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Scaning CRES Tree");
 			pfds = pkg.FindFiles(Data.MetaData.CRES);
 			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
 			{

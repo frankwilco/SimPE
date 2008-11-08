@@ -162,7 +162,7 @@ namespace SimPe.Plugin.Downloads
 						SimPe.PackedFiles.Wrapper.Picture pic = new SimPe.PackedFiles.Wrapper.Picture();
 						pic.ProcessData(pfd, thumbs);
 						Bitmap bm = (Bitmap)ImageLoader.Preview(pic.Image, WaitingScreen.ImageSize);
-						WaitingScreen.Update(bm, message);
+						if (WaitingScreen.Running) WaitingScreen.Update(bm, message);
 						return pic.Image;
 					}
 					catch(Exception){}

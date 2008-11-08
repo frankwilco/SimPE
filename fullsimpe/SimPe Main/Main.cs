@@ -23,6 +23,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
+using System.IO;
 using SimPe.Events;
 using Ambertation.Windows.Forms;
 
@@ -476,7 +477,7 @@ namespace SimPe
 		private void Activate_miRunSims(object sender, System.EventArgs e)
 		{
 			
-			if (!System.IO.File.Exists(SimPe.PathProvider.Global.SimsApplication)) return;
+			if (!File.Exists(SimPe.PathProvider.Global.SimsApplication)) return;
 
 			System.Diagnostics.Process p = new System.Diagnostics.Process();
             p.StartInfo.FileName = SimPe.PathProvider.Global.SimsApplication;
@@ -541,7 +542,7 @@ namespace SimPe
                 ExpansionItem ei = mi.Tag as ExpansionItem;
                 if (ei != null)
                 {
-                    ofd.InitialDirectory = System.IO.Path.Combine(ei.InstallFolder, "TSData\\Res");
+                    ofd.InitialDirectory = Path.Combine(ei.InstallFolder, @"TSData\Res");
                     ofd.FileName = "";
                     this.Activate_miOpen(sender, e);
                 }
@@ -552,14 +553,14 @@ namespace SimPe
 
 		private void Activate_miOpenSimsRes(object sender, System.EventArgs e)
 		{
-			ofd.InitialDirectory = System.IO.Path.Combine(SimPe.PathProvider.Global[Expansions.BaseGame].InstallFolder, "TSData\\Res");
+			ofd.InitialDirectory = Path.Combine(SimPe.PathProvider.Global[Expansions.BaseGame].InstallFolder, @"TSData\Res");
 			ofd.FileName = "";
 			this.Activate_miOpen(sender, e);
 		}
 
 		private void Activate_miOpenDownloads(object sender, System.EventArgs e)
 		{
-            ofd.InitialDirectory = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Downloads");
+            ofd.InitialDirectory = Path.Combine(PathProvider.SimSavegameFolder, "Downloads");
 			ofd.FileName = "";
 			this.Activate_miOpen(sender, e);
 		}
@@ -748,6 +749,37 @@ namespace SimPe
 
             MessageBox.Show(s, "SimPe", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-	}
-			
+
+        private void tsmiSaveProfile_Click(object sender, EventArgs e)
+        {
+            ProfileChooser pc = new ProfileChooser();
+            if (pc.ShowDialog() != DialogResult.OK) return;
+            string path = Path.Combine(Helper.DataFolder.Profiles, pc.Value);
+
+            File.Copy(Helper.DataFolder.FoldersXREGW, Path.Combine(path, Path.GetFileName(Helper.DataFolder.FoldersXREG)), true);
+
+            Helper.WindowsRegistry.Flush();
+            File.Copy(Helper.DataFolder.Layout2XREGW, Path.Combine(path, Path.GetFileName(Helper.DataFolder.Layout2XREG)), true);
+            File.Copy(Helper.DataFolder.SimPeXREGW, Path.Combine(path, Path.GetFileName(Helper.DataFolder.SimPeXREG)), true);
+
+            StoreLayout();
+            File.Copy(Helper.DataFolder.SimPeLayoutW, Path.Combine(path, Path.GetFileName(Helper.DataFolder.SimPeLayout)), true);
+
+            MessageBox.Show(
+                Localization.GetString("spWrittenDesc")
+                , Localization.GetString("spWritten")
+                , MessageBoxButtons.OK);
+        }
+
+        private void tsmiSavePrefs_Click(object sender, EventArgs e)
+        {
+            Helper.WindowsRegistry.Flush();
+            StoreLayout();
+
+            MessageBox.Show(
+                Localization.GetString("Done!")
+                , tsmiSavePrefs.Text
+                , MessageBoxButtons.OK);
+        }
+    }
 }

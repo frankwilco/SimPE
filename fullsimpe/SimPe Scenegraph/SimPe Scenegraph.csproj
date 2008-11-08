@@ -238,6 +238,11 @@
       <Name>SimPe RCOL</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\SimPe Splash\SimPe Splash.csproj">
+      <Project>{6F0D2F45-62FD-4BF5-95C0-46D66C981034}</Project>
+      <Name>SimPe Splash</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\SimPe Workspace Helper\SimPe Workspace Helper.csproj">
       <Project>{45021667-BAD2-4ECA-8423-F4734F914CBB}</Project>
       <Name>SimPe Workspace Helper</Name>
@@ -317,6 +322,7 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BuildTxtr.cs" />
     <Compile Include="ColorOptions.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -332,6 +338,7 @@
     <Compile Include="FixObject.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FixPackage.cs" />
     <Compile Include="GroupCacheForm.cs">
       <SubType>Form</SubType>
     </Compile>

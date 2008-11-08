@@ -264,7 +264,7 @@ namespace SimPe
 		/// </summary>
 		/// <param name="xmlfilename">Name of the Registry</param>
 		/// <param name="create">true, if you want to create the File if it does not exist</param>
-		public XmlRegistry(string xmlfilename, bool create)
+		public XmlRegistry(string infilename, string outfilename, bool create)
 		{
 #if MAC
 			Console.WriteLine("Loading Settings from \""+xmlfilename+"\".");
@@ -272,17 +272,17 @@ namespace SimPe
 			root = new XmlRegistryKey();
 			if (create) 
 			{
-				if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(xmlfilename)))
-					System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(xmlfilename));
-				if (!System.IO.File.Exists(xmlfilename))				
-					Flush(xmlfilename);
+                if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(outfilename)))
+                    System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(outfilename));
+                if (!System.IO.File.Exists(outfilename))
+                    Flush(outfilename);
 			}
-				
-			this.filename = xmlfilename;
+
+            this.filename = outfilename;
 
 			//read XML File
 			System.Xml.XmlDocument xmlfile = new XmlDocument();
-			xmlfile.Load(xmlfilename);
+            xmlfile.Load(infilename);
 
 			//seek Root Node
 			XmlNodeList XMLData = xmlfile.GetElementsByTagName("registry");					

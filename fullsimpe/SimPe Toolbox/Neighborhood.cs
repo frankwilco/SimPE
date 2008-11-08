@@ -36,12 +36,13 @@ namespace SimPe.Plugin
         private Ambertation.Windows.Forms.XPTaskBoxSimple pnOptions;
 		private System.Windows.Forms.ListView lv;
 		private System.Windows.Forms.ImageList ilist;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnOpen;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Button button3;
         private ComboBox cbtypes;
         private Label label1;
 		private System.ComponentModel.IContainer components;
+        private Button btnClose;
         ThemeManager tm;
 
 		public NeighborhoodForm()
@@ -85,31 +86,28 @@ namespace SimPe.Plugin
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NeighborhoodForm));
             this.lv = new System.Windows.Forms.ListView();
             this.ilist = new System.Windows.Forms.ImageList(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnOpen = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.pnBackup = new Ambertation.Windows.Forms.XPTaskBoxSimple();
             this.pnOptions = new Ambertation.Windows.Forms.XPTaskBoxSimple();
             this.cbtypes = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
             this.pnBackup.SuspendLayout();
             this.pnOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // lv
             // 
-            this.lv.AccessibleDescription = null;
-            this.lv.AccessibleName = null;
             resources.ApplyResources(this.lv, "lv");
-            this.lv.BackgroundImage = null;
-            this.lv.Font = null;
             this.lv.HideSelection = false;
             this.lv.LargeImageList = this.ilist;
             this.lv.MultiSelect = false;
             this.lv.Name = "lv";
             this.lv.UseCompatibleStateImageBehavior = false;
-            this.lv.DoubleClick += new System.EventHandler(this.NgbOpen);
             this.lv.SelectedIndexChanged += new System.EventHandler(this.NgbSelect);
+            this.lv.DoubleClick += new System.EventHandler(this.NgbOpen);
             // 
             // ilist
             // 
@@ -117,48 +115,33 @@ namespace SimPe.Plugin
             resources.ApplyResources(this.ilist, "ilist");
             this.ilist.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // button1
+            // btnOpen
             // 
-            this.button1.AccessibleDescription = null;
-            this.button1.AccessibleName = null;
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.BackgroundImage = null;
-            this.button1.Font = null;
-            this.button1.Name = "button1";
-            this.button1.Click += new System.EventHandler(this.NgbOpen);
+            resources.ApplyResources(this.btnOpen, "btnOpen");
+            this.btnOpen.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOpen.Name = "btnOpen";
+            this.btnOpen.Click += new System.EventHandler(this.NgbOpen);
             // 
             // button2
             // 
-            this.button2.AccessibleDescription = null;
-            this.button2.AccessibleName = null;
             resources.ApplyResources(this.button2, "button2");
-            this.button2.BackgroundImage = null;
-            this.button2.Font = null;
             this.button2.Name = "button2";
             this.button2.Click += new System.EventHandler(this.NgbBackup);
             // 
             // button3
             // 
-            this.button3.AccessibleDescription = null;
-            this.button3.AccessibleName = null;
             resources.ApplyResources(this.button3, "button3");
-            this.button3.BackgroundImage = null;
-            this.button3.Font = null;
             this.button3.Name = "button3";
             this.button3.Click += new System.EventHandler(this.NgbRestoreBackup);
             // 
             // pnBackup
             // 
-            this.pnBackup.AccessibleDescription = null;
-            this.pnBackup.AccessibleName = null;
             resources.ApplyResources(this.pnBackup, "pnBackup");
             this.pnBackup.BackColor = System.Drawing.Color.Transparent;
-            this.pnBackup.BackgroundImage = null;
             this.pnBackup.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.pnBackup.BorderColor = System.Drawing.SystemColors.Window;
             this.pnBackup.Controls.Add(this.button3);
             this.pnBackup.Controls.Add(this.button2);
-            this.pnBackup.Font = null;
             this.pnBackup.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
             this.pnBackup.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.pnBackup.IconLocation = new System.Drawing.Point(4, 12);
@@ -169,16 +152,12 @@ namespace SimPe.Plugin
             // 
             // pnOptions
             // 
-            this.pnOptions.AccessibleDescription = null;
-            this.pnOptions.AccessibleName = null;
             resources.ApplyResources(this.pnOptions, "pnOptions");
             this.pnOptions.BackColor = System.Drawing.Color.Transparent;
-            this.pnOptions.BackgroundImage = null;
             this.pnOptions.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.pnOptions.BorderColor = System.Drawing.SystemColors.Window;
             this.pnOptions.Controls.Add(this.cbtypes);
             this.pnOptions.Controls.Add(this.label1);
-            this.pnOptions.Font = null;
             this.pnOptions.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
             this.pnOptions.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.pnOptions.IconLocation = new System.Drawing.Point(4, 12);
@@ -189,34 +168,34 @@ namespace SimPe.Plugin
             // 
             // cbtypes
             // 
-            this.cbtypes.AccessibleDescription = null;
-            this.cbtypes.AccessibleName = null;
-            resources.ApplyResources(this.cbtypes, "cbtypes");
-            this.cbtypes.BackgroundImage = null;
             this.cbtypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbtypes.Font = null;
             this.cbtypes.FormattingEnabled = true;
+            resources.ApplyResources(this.cbtypes, "cbtypes");
             this.cbtypes.Name = "cbtypes";
             this.cbtypes.SelectedIndexChanged += new System.EventHandler(this.cbtypes_SelectedIndexChanged);
             // 
             // label1
             // 
-            this.label1.AccessibleDescription = null;
-            this.label1.AccessibleName = null;
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
+            // btnClose
+            // 
+            resources.ApplyResources(this.btnClose, "btnClose");
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Name = "btnClose";
+            // 
             // NeighborhoodForm
             // 
-            this.AccessibleDescription = null;
-            this.AccessibleName = null;
+            this.AcceptButton = this.btnOpen;
             resources.ApplyResources(this, "$this");
-            this.BackgroundImage = null;
+            this.CancelButton = this.btnClose;
             this.Controls.Add(this.pnOptions);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.lv);
             this.Controls.Add(this.pnBackup);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "NeighborhoodForm";
@@ -227,6 +206,16 @@ namespace SimPe.Plugin
 
 		}
 		#endregion
+
+
+        bool ngbhBUMgr = true;
+        public bool ShowBackupManager { get { return ngbhBUMgr; } set { ngbhBUMgr = value; } }
+
+        bool loadNgbh = true;
+        public bool LoadNgbh { get { return loadNgbh; } set { loadNgbh = value; } }
+
+        NgbhType ngbh = null;
+        public string SelectedNgbh { get { return ngbh == null ? null : ngbh.FileName; } }
 
 		SimPe.Packages.GeneratableFile package;
 		SimPe.Packages.File source_package;
@@ -239,19 +228,21 @@ namespace SimPe.Plugin
 			//name = System.IO.Path.Combine(path, name);
 			if (System.IO.File.Exists(name)) 
 			{
-				System.IO.Stream st = System.IO.File.OpenRead(name);
-				Image img = Image.FromStream(st);
-				st.Close();
-				st.Dispose();
-				st = null;
-				WaitingScreen.UpdateImage(ImageLoader.Preview(img, WaitingScreen.ImageSize));	
-				this.ilist.Images.Add(img);
-			} 
-			else 
-			{
-				this.ilist.Images.Add(new Bitmap(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.Network.png")));
+                try
+                {
+                    System.IO.Stream st = System.IO.File.OpenRead(name);
+                    Image img = Image.FromStream(st);
+                    st.Close();
+                    st.Dispose();
+                    st = null;
+                    if (WaitingScreen.Running) WaitingScreen.UpdateImage(ImageLoader.Preview(img, WaitingScreen.ImageSize));
+                    this.ilist.Images.Add(img);
+                    return;
+                }
+                catch(System.ArgumentException) { }
 			}
-		}
+            this.ilist.Images.Add(new Bitmap(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.Network.png")));
+        }
 
 		protected void AddNeighborhood(ExpansionItem.NeighborhoodPath np, string path) 
 		{
@@ -341,20 +332,26 @@ namespace SimPe.Plugin
 
 		protected void UpdateList()
 		{
-			WaitingScreen.Wait();
-				
-			lv.Items.Clear();
-			ilist.Images.Clear();
+            WaitingScreen.Wait();
 
-            ExpansionItem.NeighborhoodPaths paths = PathProvider.Global.GetNeighborhoodsForGroup();
-            foreach (ExpansionItem.NeighborhoodPath path in paths)
+            try
             {
-                string sourcepath = path.Path;
-                string[] dirs = System.IO.Directory.GetDirectories(sourcepath, "????");
-                foreach (string dir in dirs)
-                    AddNeighborhood(path, dir);
+                lv.Items.Clear();
+                ilist.Images.Clear();
+
+                ExpansionItem.NeighborhoodPaths paths = PathProvider.Global.GetNeighborhoodsForGroup(PathProvider.Global.CurrentGroup);
+                foreach (ExpansionItem.NeighborhoodPath path in paths)
+                {
+                    string sourcepath = path.Path;
+                    string[] dirs = System.IO.Directory.GetDirectories(sourcepath, "????");
+                    foreach (string dir in dirs)
+                        AddNeighborhood(path, dir);
+                }
             }
-			WaitingScreen.Stop(this);				
+            finally
+            {
+                WaitingScreen.Stop(this);
+            }
 		}
 
 		
@@ -368,7 +365,7 @@ namespace SimPe.Plugin
 			UpdateList();
 			this.Cursor = Cursors.Default;
 
-			
+            pnBackup.Visible = ngbhBUMgr;
 			RemoteControl.ShowSubForm(this);
 			if (this.package!=null) package=this.package;
 			return new Plugin.ToolResult(false, ((this.package!=null) || (changed)));
@@ -427,10 +424,11 @@ namespace SimPe.Plugin
 		{
 			if (lv.SelectedItems.Count<=0) return;
 
-            NgbhType t = cbtypes.SelectedItem as NgbhType;
-            if (t != null)
+            ngbh = cbtypes.SelectedItem as NgbhType;
+            if (ngbh != null)
             {
-                package = SimPe.Packages.GeneratableFile.LoadFromFile(t.FileName);
+                if (loadNgbh) package = SimPe.Packages.GeneratableFile.LoadFromFile(ngbh.FileName);
+                this.DialogResult = DialogResult.OK;
                 Close();
             }
 		}
@@ -515,7 +513,7 @@ namespace SimPe.Plugin
 
         private void cbtypes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            button1.Enabled = cbtypes.SelectedItem != null;
+            btnOpen.Enabled = cbtypes.SelectedItem != null;
         }
 	}
 }
