@@ -156,9 +156,8 @@ namespace SimPe
             this.dockBottom = new Ambertation.Windows.Forms.DockContainer();
             this.dcPlugin = new Ambertation.Windows.Forms.DockPanel();
             this.dc = new TD.SandDock.TabControl();
-            this.tbAction = new System.Windows.Forms.ToolStrip();
-            this.tbWindow = new System.Windows.Forms.ToolStrip();
             this.tbTools = new System.Windows.Forms.ToolStrip();
+            this.tbAction = new System.Windows.Forms.ToolStrip();
             this.toolBar1 = new System.Windows.Forms.ToolStrip();
             this.biNew = new System.Windows.Forms.ToolStripButton();
             this.biOpen = new System.Windows.Forms.ToolStripButton();
@@ -168,6 +167,7 @@ namespace SimPe
             this.biNewDc = new System.Windows.Forms.ToolStripButton();
             this.biUpdate = new System.Windows.Forms.ToolStripButton();
             this.biReset = new System.Windows.Forms.ToolStripButton();
+            this.tbWindow = new System.Windows.Forms.ToolStrip();
             this.dockCenter = new Ambertation.Windows.Forms.DockContainer();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.xpCueBannerExtender1 = new SteepValley.Windows.Forms.XPCueBannerExtender(this.components);
@@ -183,6 +183,7 @@ namespace SimPe
             this.miOpenIn = new System.Windows.Forms.ToolStripMenuItem();
             this.miOpenSimsRes = new System.Windows.Forms.ToolStripMenuItem();
             this.miOpenDownloads = new System.Windows.Forms.ToolStripMenuItem();
+            this.miShowName = new System.Windows.Forms.ToolStripMenuItem();
             this.miSaveCopyAs = new System.Windows.Forms.ToolStripMenuItem();
             this.miRecent = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -194,6 +195,8 @@ namespace SimPe
             this.miRunSims = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.miPref = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSaveProfile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSavePrefs = new System.Windows.Forms.ToolStripMenuItem();
             this.miWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBarItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.miKBase = new System.Windows.Forms.ToolStripMenuItem();
@@ -206,7 +209,6 @@ namespace SimPe
             this.sfd = new System.Windows.Forms.SaveFileDialog();
             this.waitControl1 = new SimPe.WaitControl();
             this.resourceViewManager1 = new SimPe.Windows.Forms.ResourceViewManager();
-            this.miShowName = new System.Windows.Forms.ToolStripMenuItem();
             this.tbContainer.ContentPanel.SuspendLayout();
             this.tbContainer.TopToolStripPanel.SuspendLayout();
             this.tbContainer.SuspendLayout();
@@ -238,9 +240,9 @@ namespace SimPe
             // tbContainer.TopToolStripPanel
             // 
             this.tbContainer.TopToolStripPanel.Controls.Add(this.toolBar1);
+            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbTools);
             this.tbContainer.TopToolStripPanel.Controls.Add(this.tbWindow);
             this.tbContainer.TopToolStripPanel.Controls.Add(this.tbAction);
-            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbTools);
             // 
             // manager
             // 
@@ -293,12 +295,12 @@ namespace SimPe
             this.lv.Filter = null;
             this.lv.Name = "lv";
             this.lv.SortedColumn = SimPe.Windows.Forms.ResourceViewManager.SortColumn.Offset;
-            this.lv.ListViewKeyUp += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyUp);
             this.lv.SelectionChanged += new System.EventHandler(this.lv_SelectionChanged);
-            this.lv.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropFile);
-            this.lv.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnterFile);
-            this.lv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyUp);
+            this.lv.ListViewKeyUp += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyUp);
             this.lv.SelectedResource += new SimPe.Windows.Forms.ResourceListViewExt.SelectResourceHandler(this.lv_SelectResource);
+            this.lv.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropFile);
+            this.lv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyUp);
+            this.lv.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnterFile);
             // 
             // miAction
             // 
@@ -631,24 +633,19 @@ namespace SimPe
             // 
             resources.ApplyResources(this.dc, "dc");
             this.dc.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
-            ((TD.SandDock.LayoutSystemBase)(new TD.SandDock.DocumentLayoutSystem(903, 373, new TD.SandDock.DockControl[0], null)))});
+            ((TD.SandDock.LayoutSystemBase)(new TD.SandDock.DocumentLayoutSystem(904, 373, new TD.SandDock.DockControl[0], null)))});
             this.dc.Name = "dc";
             this.dc.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dc_MouseUp);
-            // 
-            // tbAction
-            // 
-            resources.ApplyResources(this.tbAction, "tbAction");
-            this.tbAction.Name = "tbAction";
-            // 
-            // tbWindow
-            // 
-            resources.ApplyResources(this.tbWindow, "tbWindow");
-            this.tbWindow.Name = "tbWindow";
             // 
             // tbTools
             // 
             resources.ApplyResources(this.tbTools, "tbTools");
             this.tbTools.Name = "tbTools";
+            // 
+            // tbAction
+            // 
+            resources.ApplyResources(this.tbAction, "tbAction");
+            this.tbAction.Name = "tbAction";
             // 
             // toolBar1
             // 
@@ -711,6 +708,11 @@ namespace SimPe
             resources.ApplyResources(this.biReset, "biReset");
             this.biReset.Name = "biReset";
             this.biReset.Click += new System.EventHandler(this.Activate_biReset);
+            // 
+            // tbWindow
+            // 
+            resources.ApplyResources(this.tbWindow, "tbWindow");
+            this.tbWindow.Name = "tbWindow";
             // 
             // dockCenter
             // 
@@ -817,6 +819,12 @@ namespace SimPe
             resources.ApplyResources(this.miOpenDownloads, "miOpenDownloads");
             this.miOpenDownloads.Click += new System.EventHandler(this.Activate_miOpenDownloads);
             // 
+            // miShowName
+            // 
+            resources.ApplyResources(this.miShowName, "miShowName");
+            this.miShowName.Name = "miShowName";
+            this.miShowName.Click += new System.EventHandler(this.miShowName_Click);
+            // 
             // miSaveCopyAs
             // 
             this.miSaveCopyAs.Name = "miSaveCopyAs";
@@ -851,7 +859,9 @@ namespace SimPe
             this.miFileNames,
             this.miRunSims,
             this.toolStripMenuItem2,
-            this.miPref});
+            this.miPref,
+            this.tsmiSaveProfile,
+            this.tsmiSavePrefs});
             this.miExtra.Name = "miExtra";
             resources.ApplyResources(this.miExtra, "miExtra");
             // 
@@ -885,6 +895,18 @@ namespace SimPe
             resources.ApplyResources(this.miPref, "miPref");
             this.miPref.Name = "miPref";
             this.miPref.Click += new System.EventHandler(this.ShowPreferences);
+            // 
+            // tsmiSaveProfile
+            // 
+            this.tsmiSaveProfile.Name = "tsmiSaveProfile";
+            resources.ApplyResources(this.tsmiSaveProfile, "tsmiSaveProfile");
+            this.tsmiSaveProfile.Click += new System.EventHandler(this.tsmiSaveProfile_Click);
+            // 
+            // tsmiSavePrefs
+            // 
+            this.tsmiSavePrefs.Name = "tsmiSavePrefs";
+            resources.ApplyResources(this.tsmiSavePrefs, "tsmiSavePrefs");
+            this.tsmiSavePrefs.Click += new System.EventHandler(this.tsmiSavePrefs_Click);
             // 
             // miWindow
             // 
@@ -975,12 +997,6 @@ namespace SimPe
             this.resourceViewManager1.Package = null;
             this.resourceViewManager1.TreeView = this.tv;
             // 
-            // miShowName
-            // 
-            this.miShowName.Name = "miShowName";
-            resources.ApplyResources(this.miShowName, "miShowName");
-            this.miShowName.Click += new System.EventHandler(this.miShowName_Click);
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -991,8 +1007,8 @@ namespace SimPe
             this.MainMenuStrip = this.menuBar1;
             this.Name = "MainForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Closing += new System.ComponentModel.CancelEventHandler(this.ClosingForm);
             this.Load += new System.EventHandler(this.LoadForm);
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.ClosingForm);
             this.tbContainer.ContentPanel.ResumeLayout(false);
             this.tbContainer.TopToolStripPanel.ResumeLayout(false);
             this.tbContainer.TopToolStripPanel.PerformLayout();
@@ -1035,6 +1051,8 @@ namespace SimPe
         private Label label1;
         private Label label5;
         private ToolStripMenuItem miShowName;
+        private ToolStripMenuItem tsmiSaveProfile;
+        private ToolStripMenuItem tsmiSavePrefs;
 
     }
 }

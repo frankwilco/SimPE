@@ -57,6 +57,16 @@ namespace SimPe
 		/// </summary>
 		XmlRegistryKey xrk;
 
+        /// <summary>
+        /// The registery for the MRU list
+        /// </summary>
+        XmlRegistry mru;
+
+        /// <summary>
+        /// The Root Registry Key for this Application
+        /// </summary>
+        XmlRegistryKey mrk;
+
 		LayoutRegistry lr;
 		/// <summary>
 		/// Returns the LayoutRegistry
@@ -90,11 +100,13 @@ namespace SimPe
 		/// Reload the SimPe Registry
 		/// </summary>
 		public void Reload()
-		{			
-			reg = new XmlRegistry(System.IO.Path.Combine(Helper.SimPeDataPath, "simpe.xreg"), true);
-			xrk = reg.CurrentUser.CreateSubKey("Software\\Ambertation\\SimPe");
+		{
+            reg = new XmlRegistry(Helper.DataFolder.SimPeXREG, Helper.DataFolder.SimPeXREGW, true);
+			xrk = reg.CurrentUser.CreateSubKey(@"Software\Ambertation\SimPe");
 			ReloadLayout();
-		}
+            mru = new XmlRegistry(Helper.DataFolder.MRUXREG, Helper.DataFolder.MRUXREGW, true);
+            mrk = mru.CurrentUser.CreateSubKey(@"Software\Ambertation\SimPe");
+        }
 
 		/// <summary>
 		/// Reload the SimPe Registry
@@ -122,6 +134,7 @@ namespace SimPe
 		{
 			if (lr!=null) lr.Flush();
 			if (reg!=null) reg.Flush();
+            if (mru != null) mru.Flush();
 		}
 
 		/// <summary>
@@ -831,7 +844,7 @@ namespace SimPe
 			get 
 			{
 				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
-				object o = rkf.GetValue("WaitingScreenTopMost", true);
+				object o = rkf.GetValue("WaitingScreenTopMost", false);
 				return Convert.ToBoolean(o);
 			}
 			set
@@ -1412,8 +1425,9 @@ namespace SimPe
 		#region recent Files
 		public void ClearRecentFileList()
 		{
-			XmlRegistryKey rkf = xrk.CreateSubKey("Listings");
+			XmlRegistryKey rkf = mrk.CreateSubKey("Listings");
 			rkf.SetValue("RecentFiles", new Ambertation.CaseInvariantArrayList());
+			mru.Flush();
 		}
 
 		/// <summary>
@@ -1422,7 +1436,7 @@ namespace SimPe
 		/// <returns>List of Filenames</returns>
 		public string[] GetRecentFiles() 
 		{
-			XmlRegistryKey  rkf = xrk.CreateSubKey("Listings");
+			XmlRegistryKey  rkf = mrk.CreateSubKey("Listings");
 			Ambertation.CaseInvariantArrayList al = (Ambertation.CaseInvariantArrayList)rkf.GetValue("RecentFiles", new Ambertation.CaseInvariantArrayList());
 			
 
@@ -1442,7 +1456,7 @@ namespace SimPe
 			if (!System.IO.File.Exists(filename)) return;
 			
 			filename = filename.Trim();
-			XmlRegistryKey rkf = xrk.CreateSubKey("Listings");
+			XmlRegistryKey rkf = mrk.CreateSubKey("Listings");
 			
 			Ambertation.CaseInvariantArrayList al = (Ambertation.CaseInvariantArrayList)rkf.GetValue("RecentFiles", new Ambertation.CaseInvariantArrayList());	
 			if (al.Contains(filename)) 
@@ -1451,6 +1465,7 @@ namespace SimPe
 			al.Insert(0, filename);			
 			while (al.Count>RECENT_COUNT) al.RemoveAt(al.Count-1);
 			rkf.SetValue("RecentFiles", al);
+			mru.Flush();
 		}
 		#endregion		
 

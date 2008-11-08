@@ -600,42 +600,48 @@ namespace SimPe.Plugin
 		/// Returns the RCOL which lists this Resource in it's ReferencedFiles Attribute
 		/// </summary>
 		/// <returns>null or the RCOl Ressource</returns>
-		public Rcol FindReferencingCRES()
-		{		
-			WaitingScreen.Wait();	
-			SimPe.Interfaces.Scenegraph.IScenegraphFileIndex nfi = FileTable.FileIndex.AddNewChild();
-			nfi.AddIndexFromPackage(this.Parent.Package);					
-			Rcol cres = FindReferencingCRES_Int();
-			FileTable.FileIndex.RemoveChild(nfi);
-			nfi.Clear();	
+        public Rcol FindReferencingCRES()
+        {
+            Wait.SubStart();
+            //WaitingScreen.Wait();
+            try
+            {
+                SimPe.Interfaces.Scenegraph.IScenegraphFileIndex nfi = FileTable.FileIndex.AddNewChild();
+                nfi.AddIndexFromPackage(this.Parent.Package);
+                Rcol cres = FindReferencingCRES_Int();
+                FileTable.FileIndex.RemoveChild(nfi);
+                nfi.Clear();
 
-			if (cres==null && !FileTable.FileIndex.Loaded) 
-			{
-				FileTable.FileIndex.Load();
-				cres = FindReferencingCRES_Int();
-			}
-			
+                if (cres == null && !FileTable.FileIndex.Loaded)
+                {
+                    FileTable.FileIndex.Load();
+                    cres = FindReferencingCRES_Int();
+                }
 
-			WaitingScreen.Stop();
-			return cres;
-		}
+
+                return cres;
+            }
+            finally { Wait.SubStop(); /*WaitingScreen.Stop();*/ }
+        }
 		/// <summary>
 		/// Returns the RCOL which lists this Resource in it's ReferencedFiles Attribute
 		/// </summary>
 		/// <returns>null or the RCOl Ressource</returns>
 		Rcol FindReferencingCRES_Int()
-		{		
-			WaitingScreen.UpdateMessage("Loading Geometry Node");
+		{
+            //WaitingScreen.UpdateMessage("Loading Geometry Node");
+            Wait.Message = "Loading Geometry Node";
 			Rcol step = FindReferencingParent_NoLoad(Data.MetaData.GMND);
 			if (step==null) return null;
-			
 
-			WaitingScreen.UpdateMessage("Loading Shape");
-			
+
+            //WaitingScreen.UpdateMessage("Loading Shape");
+            Wait.Message = "Loading Shape";
 			step = ((GeometryNode)step.Blocks[0]).FindReferencingSHPE_NoLoad();
-			if (step==null) return null;			
-			
-			WaitingScreen.UpdateMessage("Loading ResourceNode");
+			if (step==null) return null;
+
+            //WaitingScreen.UpdateMessage("Loading ResourceNode");
+            Wait.Message = "Loading ResourceNode";
 			step = ((AbstractRcolBlock)step.Blocks[0]).FindReferencingParent_NoLoad(Data.MetaData.CRES);
 			if (step==null) return null;									
 			

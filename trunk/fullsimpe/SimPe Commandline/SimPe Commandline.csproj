@@ -172,14 +172,9 @@
       <Name>SimPe Packages</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe RCOL\SimPe RCOL.csproj">
-      <Project>{74517907-2236-4C45-80ED-E188D5E5CE0E}</Project>
-      <Name>SimPe RCOL</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\SimPe Scenegraph\SimPe Scenegraph.csproj">
-      <Project>{1151A88B-47AF-41DA-BCDF-DEFED0CC326E}</Project>
-      <Name>SimPe Scenegraph</Name>
+    <ProjectReference Include="..\SimPe Splash\SimPe Splash.csproj">
+      <Project>{6F0D2F45-62FD-4BF5-95C0-46D66C981034}</Project>
+      <Name>SimPe Splash</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SimPe Workspace Helper\SimPe Workspace Helper.csproj">

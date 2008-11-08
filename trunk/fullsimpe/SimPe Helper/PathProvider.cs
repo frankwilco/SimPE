@@ -79,7 +79,7 @@ namespace SimPe
 
         private PathProvider()
         {
-            reg = new XmlRegistry(ExpansionFile, true);
+            reg = new XmlRegistry(ExpansionFile, ExpansionFile, true);
             xrk = reg.CurrentUser.CreateSubKey("Expansions");
             exps = new List<ExpansionItem>();
             map = new Dictionary<Expansions, ExpansionItem>();
@@ -98,6 +98,7 @@ namespace SimPe
             string[] names = xrk.GetSubKeyNames();
             int ver = -1;
             avlgrp = 0;
+            System.Diagnostics.Debug.WriteLine("\r\n----\r\nExpansionItems");
             foreach (string name in names)
             {
                 ExpansionItem i = new ExpansionItem(xrk.OpenSubKey(name, false));
@@ -120,6 +121,7 @@ namespace SimPe
 
                 avlgrp = avlgrp | (uint)i.Group;
             }
+            System.Diagnostics.Debug.WriteLine("----\r\n");
 
             
 
@@ -295,12 +297,17 @@ namespace SimPe
         }
 
         /// <summary>
-        /// Returns the number containing all available Game Groups
+        /// Bit-wise OR of the groups (from expansions.xreg) of all known games
         /// </summary>
         public long AvailableGroups
         {
             get { return avlgrp;}
         }
+
+        /// <summary>
+        /// The group (from expansions.xreg) for the current GameVersion
+        /// </summary>
+        public int CurrentGroup { get { return GetExpansion(GameVersion).Group; } }
 
         #region Censor Patch
         /// <summary>
@@ -531,10 +538,10 @@ namespace SimPe
         #endregion
 
         #region Paths 
-        public IList<string> GetSaveGamePathForGroup()
+        /*public IList<string> GetSaveGamePathForGroup()
         {
             return GetSaveGamePathForGroup(AvailableGroups);
-        }
+        }*/
 
         public IList<string> GetSaveGamePathForGroup(long grp)
         {
@@ -552,18 +559,22 @@ namespace SimPe
             return list.AsReadOnly();
         }
 
-        public ExpansionItem.NeighborhoodPaths GetNeighborhoodsForGroup()
+        /*public ExpansionItem.NeighborhoodPaths GetNeighborhoodsForGroup()
         {
             return GetNeighborhoodsForGroup(AvailableGroups);
-        }
+        }*/
 
         public ExpansionItem.NeighborhoodPaths GetNeighborhoodsForGroup(long grp)
         {
             ExpansionItem.NeighborhoodPaths hoods = new ExpansionItem.NeighborhoodPaths();
-            ExpansionItem.NeighborhoodPath def = new ExpansionItem.NeighborhoodPath("", NeighborhoodFolder, this[SimPe.Expansions.BaseGame], true);
-            hoods.Add(def);
+            if ((GetExpansion(SimPe.Expansions.BaseGame).Group & grp) != 0)
+            {
+                ExpansionItem.NeighborhoodPath def = new ExpansionItem.NeighborhoodPath("", NeighborhoodFolder, this[SimPe.Expansions.BaseGame], true);
+                hoods.Add(def);
+            }
             foreach (ExpansionItem ei in Expansions)
             {
+                if ((ei.Group & grp) == 0) continue;
                 ei.AddNeighborhoodPaths(hoods);
             }
 

@@ -44,22 +44,17 @@ namespace SimPe
 		XmlRegistryKey xrk;
 		#endregion
 
-        public static string LayoutFile
-        {
-            get { return System.IO.Path.Combine(Helper.SimPeDataPath, "layout2.xreg"); }
-        }
-
 		#region Management
 		XmlRegistry reg;
 		/// <summary>
 		/// Creates a new Instance
 		/// </summary>
 		/// <param name="layoutkey">Key to the Layout</param>
-		internal LayoutRegistry(XmlRegistryKey layoutkey)
-		{
-            reg = new XmlRegistry(LayoutFile, true);
-			xrk = reg.CurrentUser.CreateSubKey("Software\\Ambertation\\SimPe\\Layout");						
-		}	
+        internal LayoutRegistry(XmlRegistryKey layoutkey)
+        {
+            reg = new XmlRegistry(Helper.DataFolder.Layout2XREG, Helper.DataFolder.Layout2XREGW, true);
+            xrk = reg.CurrentUser.CreateSubKey(@"Software\Ambertation\SimPe\Layout");
+        }	
 
 		
 

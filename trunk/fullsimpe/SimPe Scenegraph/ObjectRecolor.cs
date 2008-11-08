@@ -430,7 +430,7 @@ namespace SimPe.Plugin
 		protected void LoadReferencedMATDs(Interfaces.Files.IPackedFileDescriptor[] pfds)
 		{
 			//WaitingScreen.Wait();
-			WaitingScreen.UpdateMessage("Loading Material Overrides");
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Loading Material Overrides");
 			foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
 			{
 				SimPe.PackedFiles.Wrapper.Cpf mmat = new SimPe.PackedFiles.Wrapper.Cpf();

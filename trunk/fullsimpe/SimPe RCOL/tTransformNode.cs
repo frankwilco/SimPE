@@ -77,7 +77,7 @@ namespace SimPe.Plugin.TabPage
 		private System.Windows.Forms.Label label61;
 		internal System.Windows.Forms.TextBox tb_tn_ey;
 		private System.Windows.Forms.Label label62;
-		private System.ComponentModel.IContainer components;
+		//private System.ComponentModel.IContainer components;
 
 		public TransformNode()
 		{
@@ -106,10 +106,10 @@ namespace SimPe.Plugin.TabPage
 			if( disposing )
 			{				
 				Tag = null;
-				if(components != null)
+				/*if(components != null)
 				{
 					components.Dispose();
-				}
+				}*/
 			}
 			base.Dispose( disposing );
 		}

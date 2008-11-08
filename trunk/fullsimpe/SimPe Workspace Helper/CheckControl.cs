@@ -461,7 +461,10 @@ namespace SimPe
 		{
 			isok = CheckItemState.Unknown;
             PathProvider.Global.SetDefaultPaths();
-			return isok;
+            if (Helper.Profile.Length > 0)
+                System.Windows.Forms.MessageBox.Show("You will need to re-save profile " + Helper.Profile, "Fix",
+                    System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
+            return isok;
 		}
 		#endregion
 
@@ -560,11 +563,20 @@ namespace SimPe
 			isok = CheckItemState.Unknown;
 			try 
 			{
-				System.IO.File.Delete(FileTable.FolderFile);
-				FileTable.Reload();
-
-				if (FixedFileTable!=null) FixedFileTable(this, new EventArgs());
-			} 
+                string msg = "your file table folder settings will be reset";
+                if (Helper.Profile.Length > 0) msg += " and you will need to re-save profile " + Helper.Profile;
+                if (System.Windows.Forms.MessageBox.Show("The File table settings file was not correct and you have asked to fix it.\n" +
+                    Helper.DataFolder.FoldersXREG + "\n" +
+                    "SimPE can generate a new one (" + msg + ").\n\n" +
+                    "Should SimPe delete the File table settings File?"
+                    , "Fix",
+                    System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    System.IO.File.Delete(Helper.DataFolder.FoldersXREG);
+                    FileTable.Reload();
+                    if (FixedFileTable != null) FixedFileTable(this, new EventArgs());
+                }
+            } 
 			catch 
 			{
 				isok = CheckItemState.Fail;

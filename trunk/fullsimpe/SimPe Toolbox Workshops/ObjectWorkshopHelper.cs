@@ -459,10 +459,13 @@ namespace SimPe.Plugin.Tool.Dockable
 
 			//create a Cloned Object to get all needed Files for the Process			
 			WaitingScreen.Wait();
-			WaitingScreen.UpdateMessage("Collecting needed Files");
-			
-			if ((package==null) && (pfd!=null)) package = RecolorClone(br, package, pfd, localgroup, settings, false);
-			WaitingScreen.Stop();
+            try
+            {
+                WaitingScreen.UpdateMessage("Collecting needed Files");
+
+                if ((package == null) && (pfd != null)) package = RecolorClone(br, package, pfd, localgroup, settings, false);
+            }
+            finally { WaitingScreen.Stop(); }
 					
 			package.FileName = sfd.FileName;		
 			package.Save();
@@ -491,11 +494,14 @@ namespace SimPe.Plugin.Tool.Dockable
 
 			//create a Cloned Object to get all needed Files for the Process			
 			WaitingScreen.Wait();
-			WaitingScreen.UpdateMessage("Collecting needed Files");
-			
-			if ((package==null) && (pfd!=null)) package = RecolorClone(br, package, pfd, localgroup, settings, pkgcontainsonlybase);
-			
-			WaitingScreen.Stop();
+            try
+            {
+                WaitingScreen.UpdateMessage("Collecting needed Files");
+
+                if ((package == null) && (pfd != null)) package = RecolorClone(br, package, pfd, localgroup, settings, pkgcontainsonlybase);
+
+            }
+            finally { WaitingScreen.Stop(); }
 			
 			
 			/*if (settings is OWRecolorSettings) 
@@ -542,97 +548,104 @@ namespace SimPe.Plugin.Tool.Dockable
 			return Start(pkg, a, ref pfd, localgroup, settings, false);
 		}
 
-		public static SimPe.Packages.GeneratableFile Start(SimPe.Packages.GeneratableFile pkg, SimPe.Interfaces.IAlias a, ref Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, ObjectWorkshopSettings settings, bool containsonlybaseclone)
-		{						
-			SimPe.Packages.GeneratableFile package = pkg;
-			SimPe.Plugin.CloneSettings.BaseResourceType br = SimPe.Plugin.CloneSettings.BaseResourceType.Objd;
-			if (pfd!=null) 
-				if (pfd.Type!=Data.MetaData.OBJD_FILE) 
-					br = SimPe.Plugin.CloneSettings.BaseResourceType.Xml;
-			if (settings is OWCloneSettings) 
-			{
-				OWCloneSettings cs = (OWCloneSettings)settings;				
-				
-				package = RecolorClone(br, package, pfd, localgroup, settings, containsonlybaseclone);						
-					
+        public static SimPe.Packages.GeneratableFile Start(SimPe.Packages.GeneratableFile pkg, SimPe.Interfaces.IAlias a, ref Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, ObjectWorkshopSettings settings, bool containsonlybaseclone)
+        {
+            SimPe.Packages.GeneratableFile package = pkg;
+            SimPe.Plugin.CloneSettings.BaseResourceType br = SimPe.Plugin.CloneSettings.BaseResourceType.Objd;
+            if (pfd != null)
+                if (pfd.Type != Data.MetaData.OBJD_FILE)
+                    br = SimPe.Plugin.CloneSettings.BaseResourceType.Xml;
+            if (settings is OWCloneSettings)
+            {
+                OWCloneSettings cs = (OWCloneSettings)settings;
 
-				FixObject fo = new FixObject(package, FixVersion.UniversityReady, settings.RemoveNonDefaultTextReferences);
-				System.Collections.Hashtable map = null;
-					
-				if (cs.FixResources) 
-				{
-					map = fo.GetNameMap(true);
-					if (map==null) return package;
-				
-					SaveFileDialog sfd = new SaveFileDialog();
-					sfd.Filter = ExtensionProvider.BuildFilterString(
-						new SimPe.ExtensionType[] {
+                package = RecolorClone(br, package, pfd, localgroup, settings, containsonlybaseclone);
+
+
+                FixObject fo = new FixObject(package, FixVersion.UniversityReady, settings.RemoveNonDefaultTextReferences);
+                System.Collections.Hashtable map = null;
+
+                if (cs.FixResources)
+                {
+                    map = fo.GetNameMap(true);
+                    if (map == null) return package;
+
+                    SaveFileDialog sfd = new SaveFileDialog();
+                    sfd.Filter = ExtensionProvider.BuildFilterString(
+                        new SimPe.ExtensionType[] {
 													  SimPe.ExtensionType.Package,
 													  SimPe.ExtensionType.AllFiles
 												  }
-						);
-					if (sfd.ShowDialog()==DialogResult.OK) 
-					{
-						WaitingScreen.Wait();
-						package.FileName = sfd.FileName;
-						fo.Fix(map, true);
+                        );
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        WaitingScreen.Wait();
+                        try
+                        {
+                            package.FileName = sfd.FileName;
+                            fo.Fix(map, true);
 
-						if (cs.RemoveUselessResource && br!=SimPe.Plugin.CloneSettings.BaseResourceType.Xml) 
-							fo.CleanUp();
-						package.Save();
-							
-					} 
-					else 
-					{
-						package = null;
-					}
-				}
+                            if (cs.RemoveUselessResource && br != SimPe.Plugin.CloneSettings.BaseResourceType.Xml)
+                                fo.CleanUp();
+                            package.Save();
+                        }
+                        finally { WaitingScreen.Stop(); }
 
-				if ((cs.CustomGroup) && (package!=null))
-				{
-					WaitingScreen.Wait();
-					fo.FixGroup();
-					if (cs.FixResources) package.Save();
-				}
+                    }
+                    else
+                    {
+                        package = null;
+                    }
+                }
 
-				if (cs.ChangeObjectDescription) UpdateDescription(cs, package);
+                if ((cs.CustomGroup) && (package != null))
+                {
+                    WaitingScreen.Wait();
+                    try
+                    {
+                        fo.FixGroup();
+                        if (cs.FixResources) package.Save();
+                    }
+                    finally { WaitingScreen.Stop(); }
+                }
 
-				//select a resource to display in SimPE
-				pfd=null;
-				if (package!=null) 
-				{
-					SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(Data.MetaData.OBJD_FILE);
-					if (pfds.Length>0) pfd = pfds[0];
-				} 
-			} 
-			else 
-			{
-				/*if (br == SimPe.Plugin.CloneSettings.BaseResourceType.Xml)
-					package = ReColorXObject(br, package, pfd, localgroup, new OWRecolorSettings());
-				else*/
-					package = ReColor(br, package, pfd, localgroup, new OWRecolorSettings(), containsonlybaseclone);
+                if (cs.ChangeObjectDescription) UpdateDescription(cs, package);
 
-				//select a resource for display in SimPE
-				pfd=null;
-				if (package!=null) 
-				{
-					SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(Data.MetaData.TXTR);
-					if (pfds.Length>0) pfd = pfds[0];
-				} 
-			}	
+                //select a resource to display in SimPE
+                pfd = null;
+                if (package != null)
+                {
+                    SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(Data.MetaData.OBJD_FILE);
+                    if (pfds.Length > 0) pfd = pfds[0];
+                }
+            }
+            else
+            {
+                /*if (br == SimPe.Plugin.CloneSettings.BaseResourceType.Xml)
+                    package = ReColorXObject(br, package, pfd, localgroup, new OWRecolorSettings());
+                else*/
+                package = ReColor(br, package, pfd, localgroup, new OWRecolorSettings(), containsonlybaseclone);
 
-			settings.SetRemoteResult(false);
-			if (settings.OpenWithRemoteControl)
-			{				
-				if (package!=null) 
-					if (SimPe.RemoteControl.OpenMemoryPackage(package) && pfd!=null)
-						settings.SetRemoteResult(SimPe.RemoteControl.OpenPackedFile(pfd, package));
-			}
+                //select a resource for display in SimPE
+                pfd = null;
+                if (package != null)
+                {
+                    SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(Data.MetaData.TXTR);
+                    if (pfds.Length > 0) pfd = pfds[0];
+                }
+            }
 
-			WaitingScreen.Stop();
-		
-			return package;
-		}
+            settings.SetRemoteResult(false);
+            if (settings.OpenWithRemoteControl)
+            {
+                if (package != null)
+                    if (SimPe.RemoteControl.OpenMemoryPackage(package) && pfd != null)
+                        settings.SetRemoteResult(SimPe.RemoteControl.OpenPackedFile(pfd, package));
+            }
+
+
+            return package;
+        }
 
 		#region Update Object Description
 		/// <summary>

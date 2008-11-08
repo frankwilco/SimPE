@@ -305,7 +305,8 @@ namespace SimPe.Plugin
 			return rcol;			
 		}
 
-		/// <summary>
+        delegate void WaitMessasge(string message);
+        /// <summary>
 		/// Returns the RCOL which lists this Resource in it's ReferencedFiles Attribute
 		/// </summary>
 		/// <param name="type">the Type of the ressource youar looking for</param>
@@ -313,30 +314,40 @@ namespace SimPe.Plugin
 		/// <remarks>This Version will not load the FileTable</remarks>
 		public Rcol FindReferencingParent_NoLoad(uint type)
 		{
-			Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(type, true);
-			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item  in items) 
-			{				
-				Rcol r = new GenericRcol(null, false);
+            WaitMessasge wm;
 
-				//try to open the File in the same package, not in the FileTable Package!
-				if (item.Package.SaveFileName.Trim().ToLower()==parent.Package.SaveFileName.Trim().ToLower()) 
-					r.ProcessData(parent.Package.FindFile(item.FileDescriptor), parent.Package);
-				else
-					r.ProcessData(item);				
+            Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(type, true);
+            try
+            {
+                if (Wait.Running) { wm = delegate(string message) { Wait.Message = message; Wait.Progress++; }; Wait.SubStart(items.Length); }
+                else wm = delegate(string message) { };
 
-				foreach (Interfaces.Files.IPackedFileDescriptor pfd in r.ReferencedFiles) 
-				{
-					if (
-						pfd.Type==this.Parent.FileDescriptor.Type && 
-						(pfd.Group==this.Parent.FileDescriptor.Group || (pfd.Group==Data.MetaData.GLOBAL_GROUP && Parent.FileDescriptor.Group==Data.MetaData.LOCAL_GROUP))&& 
-						pfd.SubType==this.Parent.FileDescriptor.SubType &&
-						pfd.Instance==this.Parent.FileDescriptor.Instance
-						) 
-					{
-						return r;
-					}
-				}
-			}
+                foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item in items)
+                {
+                    wm("");
+                    Rcol r = new GenericRcol(null, false);
+
+                    //try to open the File in the same package, not in the FileTable Package!
+                    if (item.Package.SaveFileName.Trim().ToLower() == parent.Package.SaveFileName.Trim().ToLower())
+                        r.ProcessData(parent.Package.FindFile(item.FileDescriptor), parent.Package);
+                    else
+                        r.ProcessData(item);
+
+                    foreach (Interfaces.Files.IPackedFileDescriptor pfd in r.ReferencedFiles)
+                    {
+                        if (
+                            pfd.Type == this.Parent.FileDescriptor.Type &&
+                            (pfd.Group == this.Parent.FileDescriptor.Group || (pfd.Group == Data.MetaData.GLOBAL_GROUP && Parent.FileDescriptor.Group == Data.MetaData.LOCAL_GROUP)) &&
+                            pfd.SubType == this.Parent.FileDescriptor.SubType &&
+                            pfd.Instance == this.Parent.FileDescriptor.Instance
+                            )
+                        {
+                            return r;
+                        }
+                    }
+                }
+            }
+            finally { if (Wait.Running) Wait.SubStop(); }
 
 			return null;
 		}

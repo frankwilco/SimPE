@@ -280,7 +280,7 @@ namespace SimPe.Providers
 			try 
 			{
 				bool breaked = false;			
-				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(opcodes);
+				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
 				SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
 				//ArrayList al = new ArrayList();
 				int ct = 0;

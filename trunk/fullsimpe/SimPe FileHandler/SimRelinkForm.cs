@@ -168,34 +168,37 @@ namespace SimPe.PackedFiles.UserInterface
 		/// <returns>The new SimID</returns>
 		public static uint Execute(SimPe.PackedFiles.Wrapper.SDesc wrp) 
 		{
-			WaitingScreen.Wait();
 			Hashtable ht = wrp.nameprovider.StoredData;
-			
 			SimRelinkForm srf = new SimRelinkForm();
-			foreach (SimPe.Data.Alias a in ht.Values){
-				ListViewItem lvi = new ListViewItem(a.Name + " "+(string)a.Tag[2]);
-				lvi.Tag = a;
+            WaitingScreen.Wait();
+            try
+            {
+                foreach (SimPe.Data.Alias a in ht.Values)
+                {
+                    ListViewItem lvi = new ListViewItem(a.Name + " " + (string)a.Tag[2]);
+                    lvi.Tag = a;
 
-				if (a.Tag[1]!=null) 
-				{
-					lvi.ImageIndex = srf.ilist.Images.Count;
-					Image img = SimPe.Plugin.ImageLoader.Preview((Image)a.Tag[1], srf.ilist.ImageSize);
+                    if (a.Tag[1] != null)
+                    {
+                        lvi.ImageIndex = srf.ilist.Images.Count;
+                        Image img = SimPe.Plugin.ImageLoader.Preview((Image)a.Tag[1], srf.ilist.ImageSize);
 
-					if (wrp.sdescprovider.FindSim(a.Id)!=null) 
-					{
-						Graphics gr = Graphics.FromImage(img);
-						gr.FillRectangle(new Pen(Color.FromArgb(0x60, Color.Red), 1).Brush, 0, 0, img.Width, img.Height);
-					}
+                        if (wrp.sdescprovider.FindSim(a.Id) != null)
+                        {
+                            Graphics gr = Graphics.FromImage(img);
+                            gr.FillRectangle(new Pen(Color.FromArgb(0x60, Color.Red), 1).Brush, 0, 0, img.Width, img.Height);
+                        }
 
-					srf.ilist.Images.Add(img);					
-				}
+                        srf.ilist.Images.Add(img);
+                    }
 
-				srf.lv.Items.Add(lvi);
-			}
-			srf.lv.Sort();
-			srf.btlink.Enabled = false;
-			srf.ok = false;
-			WaitingScreen.Stop(srf);
+                    srf.lv.Items.Add(lvi);
+                }
+                srf.lv.Sort();
+                srf.btlink.Enabled = false;
+                srf.ok = false;
+            }
+            finally { WaitingScreen.Stop(srf); }
 
 			srf.ShowDialog();
 

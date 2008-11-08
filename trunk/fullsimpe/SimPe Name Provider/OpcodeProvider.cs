@@ -109,64 +109,67 @@ namespace SimPe.Providers
 			{			
 				bool wasrunning = WaitingScreen.Running;
 				WaitingScreen.Wait();
-				foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item in items)
-				{					
-					ct++;
-					if (ct%137==1) WaitingScreen.UpdateMessage(ct.ToString()+max);
-					pfd = item.FileDescriptor;
+                try
+                {
+                    foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item in items)
+                    {
+                        ct++;
+                        if (ct % 137 == 1) WaitingScreen.UpdateMessage(ct.ToString() + max);
+                        pfd = item.FileDescriptor;
 
-					string name = "";
-					objd.ProcessData(item);
+                        string name = "";
+                        objd.ProcessData(item);
 
-					if (memories.Contains(objd.Guid)) continue;
-					try 
-					{
-						Interfaces.Scenegraph.IScenegraphFileIndexItem[] sitems = FileTable.FileIndex.FindFile(Data.MetaData.CTSS_FILE, pfd.Group, objd.CTSSInstance, null);
-						if (sitems.Length>0) 
-						{
-							str.ProcessData(sitems[0]);
-							SimPe.PackedFiles.Wrapper.StrItemList strs = str.LanguageItems(Helper.WindowsRegistry.LanguageCode);																
-							if (strs.Length>0) name = strs[0].Title;
-								
+                        if (memories.Contains(objd.Guid)) continue;
+                        try
+                        {
+                            Interfaces.Scenegraph.IScenegraphFileIndexItem[] sitems = FileTable.FileIndex.FindFile(Data.MetaData.CTSS_FILE, pfd.Group, objd.CTSSInstance, null);
+                            if (sitems.Length > 0)
+                            {
+                                str.ProcessData(sitems[0]);
+                                SimPe.PackedFiles.Wrapper.StrItemList strs = str.LanguageItems(Helper.WindowsRegistry.LanguageCode);
+                                if (strs.Length > 0) name = strs[0].Title;
 
-							//not found?
-							if (name== "") 
-							{
-								strs = str.LanguageItems(1);																
-								if (strs.Length>0) name = strs[0].Title;
-							}							
-						}
-					}
-					catch (Exception) {}
-					//still no name?
-					if (name== "") name = objd.FileName;
-					
+
+                                //not found?
+                                if (name == "")
+                                {
+                                    strs = str.LanguageItems(1);
+                                    if (strs.Length > 0) name = strs[0].Title;
+                                }
+                            }
+                        }
+                        catch (Exception) { }
+                        //still no name?
+                        if (name == "") name = objd.FileName;
+
 #if DEBUG
-					IAlias a = new Alias(objd.Guid, name, "{1}: {name} (0x{id})");
+                        IAlias a = new Alias(objd.Guid, name, "{1}: {name} (0x{id})");
 #else
 							IAlias a = new Alias(objd.Guid, name, "{1}: {name}");
 #endif
 
-					object[] o = new object[3];
-							
-					o[0] = pfd;
-					o[1] = (Data.ObjectTypes)objd.Type;
-					o[2] = null;
-					SimPe.PackedFiles.Wrapper.Picture pic = new SimPe.PackedFiles.Wrapper.Picture();
-					Interfaces.Scenegraph.IScenegraphFileIndexItem[] iitems = FileTable.FileIndex.FindFile(Data.MetaData.SIM_IMAGE_FILE, pfd.Group, 1, null);	
-					if (iitems.Length>0) 
-					{
-						pic.ProcessData(iitems[0]);
-						System.Drawing.Image img = pic.Image;
-						o[2] = img;
+                        object[] o = new object[3];
 
-						WaitingScreen.Update(img, ct.ToString()+max);
-					}
-					a.Tag = o;
-					if (!memories.Contains(objd.Guid)) memories.Add(objd.Guid, a);
-		
-				} //foreach item								
-				if (!wasrunning) WaitingScreen.Stop();
+                        o[0] = pfd;
+                        o[1] = (Data.ObjectTypes)objd.Type;
+                        o[2] = null;
+                        SimPe.PackedFiles.Wrapper.Picture pic = new SimPe.PackedFiles.Wrapper.Picture();
+                        Interfaces.Scenegraph.IScenegraphFileIndexItem[] iitems = FileTable.FileIndex.FindFile(Data.MetaData.SIM_IMAGE_FILE, pfd.Group, 1, null);
+                        if (iitems.Length > 0)
+                        {
+                            pic.ProcessData(iitems[0]);
+                            System.Drawing.Image img = pic.Image;
+                            o[2] = img;
+
+                            WaitingScreen.Update(img, ct.ToString() + max);
+                        }
+                        a.Tag = o;
+                        if (!memories.Contains(objd.Guid)) memories.Add(objd.Guid, a);
+
+                    } //foreach item								
+                }
+                finally { if (!wasrunning) WaitingScreen.Stop(); }
 			} // if items>0
 			//System.Threading.Thread.CurrentThread.Priority = System.Threading.ThreadPriority.Normal;
 		}

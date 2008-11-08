@@ -87,7 +87,7 @@ namespace SimPe
         #endregion
         static int namect = 0;
         string name;
-        public string Name
+        public new string Name
         {
             get { return name; }
         }

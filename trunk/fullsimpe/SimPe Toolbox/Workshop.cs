@@ -292,16 +292,16 @@ namespace SimPe.Plugin
 		
 			if (!Helper.WindowsRegistry.UseCache) return;
 			WaitingScreen.UpdateMessage("Loading Cache");
-			try 
-			{
-				cachefile.Load(CacheFileName);
-			} 
-			catch (Exception ex) 
-			{
-				Helper.ExceptionMessage("", ex);
-			}			
-
-			cachefile.LoadObjects();
+            try
+            {
+                cachefile.Load(CacheFileName);
+                cachefile.LoadObjects();
+            }
+            catch (Exception ex)
+            {
+                Helper.ExceptionMessage("", ex);
+            }
+            finally { WaitingScreen.Stop(); }
 		}
 
 		/// <summary>
@@ -311,7 +311,7 @@ namespace SimPe.Plugin
 		{
 			if (!Helper.WindowsRegistry.UseCache) return;
 			if (!cachechg) return;
-			WaitingScreen.UpdateMessage("Saving Cache");
+			if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Saving Cache");
 
 			cachefile.Save(CacheFileName);
 		}		
@@ -323,7 +323,7 @@ namespace SimPe.Plugin
 			if (lbobj.Items.Count==0) 
 			{								
 				DateTime start = DateTime.Now;						
-				if (Helper.StartedGui==Executable.Classic) WaitingScreen.Wait();
+				//if (Helper.StartedGui==Executable.Classic) WaitingScreen.Wait();
 				this.ilist.ImageSize = new Size(Helper.WindowsRegistry.OWThumbSize,Helper.WindowsRegistry.OWThumbSize);
 				//LoadCachIndex();
 				lbobj.BeginUpdate();
@@ -1004,77 +1004,85 @@ namespace SimPe.Plugin
 					} else return;
 				}
 
-				if (this.rbClone.Checked) 
-				{					
-					if (tabControl2.SelectedIndex<2) 
-					{
-						WaitingScreen.Wait();
-						this.RecolorClone(pfd, localgroup, this.cbdefault.Checked, this.cbwallmask.Checked, this.cbanim.Checked);						
-						WaitingScreen.Stop(this);
-					} 
-					
+                if (this.rbClone.Checked)
+                {
+                    if (tabControl2.SelectedIndex < 2)
+                    {
+                        WaitingScreen.Wait();
+                        try { this.RecolorClone(pfd, localgroup, this.cbdefault.Checked, this.cbwallmask.Checked, this.cbanim.Checked); }
+                        finally { WaitingScreen.Stop(this); }
+                    }
 
-					FixObject fo = new FixObject(package, FixVersion.UniversityReady, true);
-					System.Collections.Hashtable map = null;
-					
-					if (this.cbfix.Checked) 
-					{
-						map = fo.GetNameMap(true);
-						if (map==null) return;
-					}
 
-					
-					if (this.cbfix.Checked) 
-					{
-						if (sfd.ShowDialog()==DialogResult.OK) 
-						{
-							WaitingScreen.Wait();
-							package.FileName = sfd.FileName;
-							fo.Fix(map, true);
+                    FixObject fo = new FixObject(package, FixVersion.UniversityReady, true);
+                    System.Collections.Hashtable map = null;
 
-							if (cbclean.Checked) fo.CleanUp();
-							package.Save();
-							
-						} 
-						else 
-						{
-							package = null;
-						}
-					}
+                    if (this.cbfix.Checked)
+                    {
+                        map = fo.GetNameMap(true);
+                        if (map == null) return;
+                    }
 
-					if ((this.cbgid.Checked) && (package!=null))
-					{
-						WaitingScreen.Wait();
-						fo.FixGroup();
-						if (this.cbfix.Checked) package.Save();
-					}
 
-					WaitingScreen.Stop(this);
-				}
-				else //if Recolor
-				{
-					if (this.cbColor.Checked) cbColorExt.Checked = false;
+                    if (this.cbfix.Checked)
+                    {
+                        if (sfd.ShowDialog() == DialogResult.OK)
+                        {
+                            WaitingScreen.Wait();
+                            try
+                            {
+                                package.FileName = sfd.FileName;
+                                fo.Fix(map, true);
 
-					if (tabControl2.SelectedIndex==0) 
-					{
-						foreach (IAlias ia in lbobj.SelectedItems) 
-						{
-							pfd = (Interfaces.Files.IPackedFileDescriptor)ia.Tag[0];
-							localgroup = (uint)ia.Tag[1];
-							package = null;
-							ReColor(pfd, localgroup);
-						}
-					} 
-					else if (tabControl2.SelectedIndex==1) 
-					{
-						package = null;
-						ReColor(pfd, localgroup);
-					}
-					else 
-					{
-						ReColor(null, Data.MetaData.LOCAL_GROUP);
-					}
-				}
+                                if (cbclean.Checked) fo.CleanUp();
+                                package.Save();
+
+
+                            }
+                            finally { WaitingScreen.Stop(this); }
+                        }
+                        else
+                        {
+                            package = null;
+                        }
+                    }
+
+                    if ((this.cbgid.Checked) && (package != null))
+                    {
+                        WaitingScreen.Wait();
+                        try
+                        {
+                            fo.FixGroup();
+                            if (this.cbfix.Checked) package.Save();
+
+                        }
+                        finally { WaitingScreen.Stop(this); }
+                    }
+                }
+                else //if Recolor
+                {
+                    if (this.cbColor.Checked) cbColorExt.Checked = false;
+
+                    if (tabControl2.SelectedIndex == 0)
+                    {
+                        foreach (IAlias ia in lbobj.SelectedItems)
+                        {
+                            pfd = (Interfaces.Files.IPackedFileDescriptor)ia.Tag[0];
+                            localgroup = (uint)ia.Tag[1];
+                            package = null;
+                            ReColor(pfd, localgroup);
+                        }
+                    }
+                    else if (tabControl2.SelectedIndex == 1)
+                    {
+                        package = null;
+                        ReColor(pfd, localgroup);
+                    }
+                    else
+                    {
+                        ReColor(null, Data.MetaData.LOCAL_GROUP);
+                    }
+                }
 
 				Close();
 			} 
@@ -1141,7 +1149,7 @@ namespace SimPe.Plugin
 					SimPe.PackedFiles.Wrapper.Picture pic = new SimPe.PackedFiles.Wrapper.Picture();
 					pic.ProcessData(pfd, thumbs);
 					Bitmap bm = (Bitmap)ImageLoader.Preview(pic.Image, WaitingScreen.ImageSize);
-					WaitingScreen.Update(bm, message);
+					if (WaitingScreen.Running) WaitingScreen.Update(bm, message);
 					return pic.Image;
 				}
 				catch(Exception){}
@@ -1291,65 +1299,67 @@ namespace SimPe.Plugin
 			}
 		}
 
-		protected void ReColor(Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup) 
-		{
-			// we need packages in the Gmaes and the Download Folder
-			
-			if (( (!System.IO.File.Exists(ScenegraphHelper.GMND_PACKAGE)) || (!System.IO.File.Exists(ScenegraphHelper.MMAT_PACKAGE)) ) && (!this.cbColor.Checked)) 
-			{
-				if (MessageBox.Show(Localization.Manager.GetString("OW_Warning"), "Warning", MessageBoxButtons.YesNo)==DialogResult.No) return;
-			}
+        protected void ReColor(Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup)
+        {
+            // we need packages in the Gmaes and the Download Folder
 
-			if (this.cbColorExt.Checked) if (sfd.ShowDialog()!=DialogResult.OK) return;			
+            if (((!System.IO.File.Exists(ScenegraphHelper.GMND_PACKAGE)) || (!System.IO.File.Exists(ScenegraphHelper.MMAT_PACKAGE))) && (!this.cbColor.Checked))
+            {
+                if (MessageBox.Show(Localization.Manager.GetString("OW_Warning"), "Warning", MessageBoxButtons.YesNo) == DialogResult.No) return;
+            }
 
-			//create a Cloned Object to get all needed Files for the Process
-			bool old = cbgid.Checked;
-			cbgid.Checked = false;
-			WaitingScreen.Wait();
-			WaitingScreen.UpdateMessage("Collecting needed Files");
-			if ((package==null) && (pfd!=null)) RecolorClone(pfd, localgroup, false, false, false);
-			WaitingScreen.Stop(this);
+            if (this.cbColorExt.Checked) if (sfd.ShowDialog() != DialogResult.OK) return;
 
-			cbgid.Checked = old;
-			
-			if (this.cbColor.Checked) 
-			{
-				ObjectRecolor or = new ObjectRecolor(package);
-				or.EnableColorOptions();
-				or.LoadReferencedMATDs();				
+            //create a Cloned Object to get all needed Files for the Process
+            bool old = cbgid.Checked;
+            cbgid.Checked = false;
+            WaitingScreen.Wait();
+            try
+            {
+                WaitingScreen.UpdateMessage("Collecting needed Files");
+                if ((package == null) && (pfd != null)) RecolorClone(pfd, localgroup, false, false, false);
 
-				//load all Pending Textures
-				ObjectCloner oc = new ObjectCloner(package);				
-			}
+                cbgid.Checked = old;
 
-			SimPe.Packages.GeneratableFile dn_pkg = null;
-			if (System.IO.File.Exists(ScenegraphHelper.GMND_PACKAGE)) dn_pkg = SimPe.Packages.GeneratableFile.LoadFromFile(ScenegraphHelper.GMND_PACKAGE);
-			else dn_pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
+                if (this.cbColor.Checked)
+                {
+                    ObjectRecolor or = new ObjectRecolor(package);
+                    or.EnableColorOptions();
+                    or.LoadReferencedMATDs();
 
-			SimPe.Packages.GeneratableFile gm_pkg = null;
-			if (System.IO.File.Exists(ScenegraphHelper.MMAT_PACKAGE)) gm_pkg = SimPe.Packages.GeneratableFile.LoadFromFile(ScenegraphHelper.MMAT_PACKAGE);
-			else gm_pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
-			
-			SimPe.Packages.GeneratableFile npackage = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
-			//Create the Templae for an additional MMAT
-			if (this.cbColorExt.Checked) 
-			{
-	
-				npackage.FileName = sfd.FileName;	
+                    //load all Pending Textures
+                    ObjectCloner oc = new ObjectCloner(package);
+                }
 
-				ColorOptions cs = new ColorOptions(package);
-				cs.Create(npackage);
+                SimPe.Packages.GeneratableFile dn_pkg = null;
+                if (System.IO.File.Exists(ScenegraphHelper.GMND_PACKAGE)) dn_pkg = SimPe.Packages.GeneratableFile.LoadFromFile(ScenegraphHelper.GMND_PACKAGE);
+                else dn_pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
 
-				npackage.Save();
-				package = npackage;
-			}			
+                SimPe.Packages.GeneratableFile gm_pkg = null;
+                if (System.IO.File.Exists(ScenegraphHelper.MMAT_PACKAGE)) gm_pkg = SimPe.Packages.GeneratableFile.LoadFromFile(ScenegraphHelper.MMAT_PACKAGE);
+                else gm_pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
 
-			WaitingScreen.Stop(this);
+                SimPe.Packages.GeneratableFile npackage = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
+                //Create the Templae for an additional MMAT
+                if (this.cbColorExt.Checked)
+                {
+
+                    npackage.FileName = sfd.FileName;
+
+                    ColorOptions cs = new ColorOptions(package);
+                    cs.Create(npackage);
+
+                    npackage.Save();
+                    package = npackage;
+                }
 #if DEBUG
 #else
-			if (package!=npackage) package = null;			
+                if (package != npackage) package = null;
 #endif
-		}
+
+            }
+            finally { WaitingScreen.Stop(this); }
+        }
 
 		private void rbClone_CheckedChanged(object sender, System.EventArgs e)
 		{

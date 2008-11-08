@@ -81,7 +81,7 @@ namespace SimPe.Plugin.Gmdc
 			set {cbact.SelectedItem = value;}
 		}
 
-		public GmdcGroup Group
+		public new GmdcGroup Group
 		{
 			get 
 			{

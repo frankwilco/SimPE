@@ -410,47 +410,47 @@ namespace SimPe.Plugin
 			Scenegraph.FileExcludeList = Scenegraph.DefaultFileExcludeList;
 
 			SimPe.FileTable.FileIndex.Load();
-			WaitingScreen.UpdateMessage("Walking Scenegraph");
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Walking Scenegraph");
 			Scenegraph sg = new Scenegraph(modelnames, exclude, this.setup);
 			if ((Setup.BaseResource & CloneSettings.BaseResourceType.Ref) == CloneSettings.BaseResourceType.Ref) 
 			{
-				WaitingScreen.UpdateMessage("Reading 3IDR References");
+                if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Reading 3IDR References");
 				sg.AddFrom3IDR(package);
 			}
 			if ((Setup.BaseResource & CloneSettings.BaseResourceType.Xml) == CloneSettings.BaseResourceType.Xml) 
 			{
-				WaitingScreen.UpdateMessage("Reading XObject Definition");
+                if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Reading XObject Definition");
 				sg.AddFromXml(package);
 			}
 			if (Setup.IncludeWallmask) 
 			{
-				WaitingScreen.UpdateMessage("Scanning for Wallmasks");
+                if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Scanning for Wallmasks");
 				sg.AddWallmasks(modelnames);
 			}
 			if (Setup.PullResourcesByStr) 
 			{
-				WaitingScreen.UpdateMessage("Scanning for #Str-linked Resources");
+                if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Scanning for #Str-linked Resources");
 				sg.AddStrLinked(package, Setup.StrInstances);
 			}
 			if (Setup.IncludeAnimationResources) 
 			{
-				WaitingScreen.UpdateMessage("Scanning for Animations");
+                if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Scanning for Animations");
 				sg.AddAnims(this.GetAnimNames());
 			}
-			WaitingScreen.UpdateMessage("Collect Slave TXMTs");
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Collect Slave TXMTs");
 			sg.AddSlaveTxmts(sg.GetSlaveSubsets());
-			
-			WaitingScreen.UpdateMessage("Building Package");
-			sg.BuildPackage(package);			
-			WaitingScreen.UpdateMessage("Collect MMAT Files");
+
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Building Package");
+			sg.BuildPackage(package);
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Collect MMAT Files");
 			sg.AddMaterialOverrides(package, setup.OnlyDefaultMmats, true, setup.ThrowExceptions);
-			WaitingScreen.UpdateMessage("Collect Slave TXMTs");
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Collect Slave TXMTs");
 			Scenegraph.AddSlaveTxmts(package, Scenegraph.GetSlaveSubsets(package));
 			
 
 			if (setup.UpdateMmatGuids) 
 			{
-				WaitingScreen.UpdateMessage("Fixing MMAT Files");
+                if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Fixing MMAT Files");
 				this.UpdateMMATGuids(this.GetGuidList(), this.GetPrimaryGuid());			
 			}
 		}
@@ -463,7 +463,7 @@ namespace SimPe.Plugin
 		/// <remarks>Simply Copies MMAT, LIFO, TXTR and TXMT Files</remarks>
 		public void AddParentFiles(string[] orgmodelnames, SimPe.Interfaces.Files.IPackageFile pkg) 
 		{
-			WaitingScreen.UpdateMessage("Loading Parent Files");
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Loading Parent Files");
 			ArrayList names = new ArrayList();
 			foreach (string s in orgmodelnames) names.Add(s);
 
@@ -514,7 +514,7 @@ namespace SimPe.Plugin
 		/// starting with one of the passed Modelnames will be keept</param>
 		public void RemoveSubsetReferences(ArrayList exclude, string[] modelnames)
 		{
-			WaitingScreen.UpdateMessage("Removing unwanted Subsets");
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Removing unwanted Subsets");
 			//Build the ModelName List
 			ArrayList mn = new ArrayList();
 			if (modelnames!=null) 

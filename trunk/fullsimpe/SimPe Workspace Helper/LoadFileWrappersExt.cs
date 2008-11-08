@@ -36,7 +36,7 @@ namespace SimPe
 	/// </summary>
 	public class LoadFileWrappersExt : LoadFileWrappers
 	{
-		/// <summary>
+        /// <summary>
 		/// Constructor of The class
 		/// </summary>
 		/// <param name="registry">
@@ -45,7 +45,18 @@ namespace SimPe
 		/// <param name="toolreg">Registry the tools should be added to</param>
 		public LoadFileWrappersExt() :base(FileTable.WrapperRegistry, FileTable.ToolRegistry)
 		{
-		}
+        }
+
+        static System.Collections.ArrayList exclude;
+        static void CreateExcludeList()
+        {
+            exclude = new ArrayList();
+        }
+
+        static LoadFileWrappersExt()
+        {
+            CreateExcludeList();
+        }
 
         public static void SetShurtcutKey(System.Windows.Forms.ToolStripMenuItem mi, Shortcut sc)
         {
@@ -106,20 +117,21 @@ namespace SimPe
 			item.ChangeEnabledStateEventHandler(item, new SimPe.Events.ResourceEventArgs(null));			
 		}
 
-		/// <summary>
+        /// <summary>
 		/// Build a ToolBar that matches the Content of a MenuItem
 		/// </summary>
 		/// <param name="tb"></param>
 		/// <param name="mi"></param>
 		/// <param name="exclude">List of <see cref="TD.SandBar.MenuButtonItem"/> that should be excluded</param>
-		public static void BuildToolBar(ToolStrip tb, ToolStripItemCollection mi, ArrayList exclude)
-		{
-			System.Collections.Generic.List<ToolStripItemCollection> submenus = new System.Collections.Generic.List<ToolStripItemCollection>();
+        public static void BuildToolBar(ToolStrip tb, ToolStripItemCollection mi) { BuildToolBar(tb, mi, exclude); }
+        public static void BuildToolBar(ToolStrip tb, ToolStripItemCollection mi, System.Collections.ArrayList exclude)
+        {
+            System.Collections.Generic.List<ToolStripItemCollection> submenus = new System.Collections.Generic.List<ToolStripItemCollection>();
             System.Collections.Generic.List<ToolStripMenuItem> items = new System.Collections.Generic.List<ToolStripMenuItem>();
             System.Collections.Generic.List<ToolStripMenuItem> starters = new System.Collections.Generic.List<ToolStripMenuItem>();
 
-			for (int i=mi.Count-1; i>=0; i--)
-			{
+            for (int i = mi.Count - 1; i >= 0; i--)
+            {
                 ToolStripMenuItem tsmi = mi[i] as ToolStripMenuItem;
                 if (tsmi == null)
                 {
@@ -128,24 +140,24 @@ namespace SimPe
                     continue;
                 }
                 if (tsmi.DropDownItems.Count > 0) submenus.Add(tsmi.DropDownItems);
-				else 
-				{
+                else
+                {
                     ToolStripMenuItem item = tsmi;
-					if (exclude.Contains(item)) continue;
-					if (item.Image==null) items.Add(item);
-					else items.Insert(0, item);
-				}
-			}
+                    if (exclude.Contains(item)) continue;
+                    if (item.Image == null) items.Add(item);
+                    else items.Insert(0, item);
+                }
+            }
 
             System.Collections.Generic.List<int> groupindices = new System.Collections.Generic.List<int>();
-			for (int i=0; i<items.Count; i++)
-			{
-                ToolStripMenuItem item = items[i];				
-				ToolStripButton bi = new MyButtonItem(item);
+            for (int i = 0; i < items.Count; i++)
+            {
+                ToolStripMenuItem item = items[i];
+                ToolStripButton bi = new MyButtonItem(item);
                 bool beggroup = (i == 0 && tb.Items.Count > 0) || starters.Contains(item); ;
                 if (beggroup) groupindices.Add(i);
-				tb.Items.Add(bi);
-			}
+                tb.Items.Add(bi);
+            }
 
             //// RECHECK
             foreach (int i in groupindices)
@@ -153,61 +165,11 @@ namespace SimPe
                 ToolStripMenuItem bi = new ToolStripMenuItem("--");
                 items.Insert(i, bi);
             }
-			
-
-			for (int i=0; i<submenus.Count; i++)
-				BuildToolBar(tb, submenus[i], exclude);			
-		}
-
-        ToolStripMenuItem mi;
-		/// <summary>
-		/// Adds the Tool Plugins to the passed menu
-		/// </summary>
-		/// <param name="mi">The Menu you want to add Items to</param>
-		/// <param name="chghandler">A Function to call when the Package was chaged by a Tool</param>
-        public static void AddMenuItems(IToolExt[] toolsp, ref SimPe.Events.ChangedResourceEvent ev, ToolStripMenuItem mi, ToolMenuItemExt.ExternalToolNotify chghandler) 
-		{			
-			foreach (IToolExt tool in toolsp)
-			{		
-				string name = tool.ToString();
-				string[] parts = name.Split("\\".ToCharArray());
-				name = SimPe.Localization.GetString(parts[parts.Length-1]);
-				ToolMenuItemExt item = new ToolMenuItemExt(name, tool, chghandler);
-
-				AddMenuItem(ref ev, mi.DropDownItems, item, parts);
-			}
-		}
-		/// <summary>
-		/// Adds the Tool Plugins to the passed menu
-		/// </summary>
-		/// <param name="mi">The Menu you want to add Items to</param>
-		/// <param name="chghandler">A Function to call when the Package was chaged by a Tool</param>
-		public void AddMenuItems(ref SimPe.Events.ChangedResourceEvent ev, ToolStripMenuItem mi, ToolStrip tb, ToolMenuItemExt.ExternalToolNotify chghandler) 
-		{
-			this.mi = mi;
-			IToolExt[] toolsp = (IToolExt[])FileTable.ToolRegistry.ToolsPlus;
-			AddMenuItems(toolsp, ref ev, mi, chghandler);
-
-			ITool[] tools = FileTable.ToolRegistry.Tools;
-			
-			foreach (ITool tool in tools)
-			{
-				string name = tool.ToString().Trim();
-				if (name=="") continue;
-
-				string[] parts = name.Split("\\".ToCharArray());
-				name = SimPe.Localization.GetString(parts[parts.Length-1]);
-				ToolMenuItemExt item = new ToolMenuItemExt(name, tool, chghandler);
-                Splash.Screen.SetMessage(SimPe.Localization.GetString("Loading")+" " + name);
-
-                AddMenuItem(ref ev, mi.DropDownItems, item, parts);
-			}
 
 
-
-            BuildToolBar(tb, mi.DropDownItems, new ArrayList());
-			//EnableMenuItems(null);
-		}
+            for (int i = 0; i < submenus.Count; i++)
+                BuildToolBar(tb, submenus[i], exclude);
+        }
 
 		/// <summary>
 		/// Link all Listeners with the GUI Control

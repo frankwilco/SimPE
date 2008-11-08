@@ -21,7 +21,7 @@ namespace SimPe
 		private System.Windows.Forms.Panel pnDetails;
 		private System.Windows.Forms.LinkLabel linkLabel1;
 		private System.Windows.Forms.RichTextBox rtb;
-		private System.ComponentModel.IContainer components;
+		//private System.ComponentModel.IContainer components;
 
 		public CheckItem()
 		{
@@ -49,7 +49,7 @@ namespace SimPe
 		/// <summary> 
 		/// Die verwendeten Ressourcen bereinigen.
 		/// </summary>
-		protected override void Dispose( bool disposing )
+		/*protected override void Dispose( bool disposing )
 		{
 			if( disposing )
 			{
@@ -59,7 +59,7 @@ namespace SimPe
 				}
 			}
 			base.Dispose( disposing );
-		}
+		}*/
 
 		#region Vom Komponenten-Designer generierter Code
 		/// <summary> 

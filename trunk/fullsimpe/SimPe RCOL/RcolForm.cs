@@ -1153,8 +1153,8 @@ namespace SimPe.Plugin
 		private void linkLabel1_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
 			WaitingScreen.Wait();
-			SimPe.FileTable.FileIndex.ForceReload();
-			WaitingScreen.Stop();
+            try { SimPe.FileTable.FileIndex.ForceReload(); }
+            finally { WaitingScreen.Stop(); }
 		}
 
 		private void ChildTabPageChanged(object sender, System.EventArgs e)

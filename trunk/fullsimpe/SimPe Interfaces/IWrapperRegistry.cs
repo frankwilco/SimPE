@@ -51,7 +51,7 @@ namespace SimPe.Interfaces
 		void Register(Plugin.IWrapperFactory factory);
 
 		/// <summary>
-		/// Returns the List of Known Wrappers (without Wrappers having a Priority < 0!)
+		/// Returns the List of Known Wrappers (without Wrappers having a Priority &lt; 0!)
 		/// </summary>
 		/// <remarks>The Wrappers should be Returned in Order of Priority starting with the lowest!</remarks>
 		IWrapper[] Wrappers 
@@ -60,7 +60,7 @@ namespace SimPe.Interfaces
 		}
 
 		/// <summary>
-		/// Returns the List of all Known Wrappers including Wrappers with Priority < 0
+		/// Returns the List of all Known Wrappers including Wrappers with Priority &lt; 0
 		/// </summary>
 		/// <remarks>The Wrappers should be Returned in Order of Priority starting with the lowest!</remarks>
 		IWrapper[] AllWrappers 

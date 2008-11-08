@@ -21,7 +21,7 @@
       <cilist name="SaveGameLocationsForGroup">
         <string name="0">{UserSaveGame}</string>
       </cilist>
-      <string name="namelistnr">0</string>
+      <string name="namelistnr"> 1</string>
       <key name="en">
           <string name="short">Original</string>
       	  <string name="long">The Sims 2</string>
@@ -46,7 +46,7 @@
       <!-- SimNameDeepSearch: This is a list of additional Folders (in the EP's Folder), 
       SimPE is using when it performs a 'Deep Search' for SimDescriptions-->
       <int name="Group">1</int>
-      <string name="namelistnr">1</string>
+      <string name="namelistnr"> 1</string>
       <key name="en">
       	  <string name="long">The Sims 2 - University</string>
       </key>
@@ -75,7 +75,7 @@
         <string name="0">TSData\Res\NeighborhoodTemplate\D001\Characters\</string>
       </cilist>
       <int name="Group">1</int>
-      <string name="namelistnr">2</string>
+      <string name="namelistnr"> 2</string>
       <key name="en">
       	  <string name="long">The Sims 2 - Nightlife</string>
       </key>
@@ -97,7 +97,7 @@
         <string name="0">TSData\Res\NeighborhoodTemplate\B001\Characters\</string>
       </cilist>
       <int name="Group">1</int>
-      <string name="namelistnr">3</string>
+      <string name="namelistnr"> 3</string>
       <key name="en">
       	  <string name="long">The Sims 2 - Open For Business</string>
       </key>
@@ -114,7 +114,7 @@
       <string name="ExeName">Sims2SP1.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <int name="Group">1</int>
-      <string name="namelistnr">4</string>
+      <string name="namelistnr"> 1</string>
       <key name="en">
 	  <string name="short">Family Fun</string>
           <string name="name">Family Fun Stuff</string>
@@ -135,7 +135,7 @@
       <string name="ExeName">Sims2SP2.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <int name="Group">1</int>
-      <string name="namelistnr">5</string>
+      <string name="namelistnr"> 2</string>
       <key name="en">
           <string name="name">Glamour Stuff</string>
       	  <string name="long">The Sims 2 - Glamour Stuff</string>
@@ -157,7 +157,7 @@
         <string name="0">TSData\Res\NeighborhoodTemplate\P001\Characters\</string>
       </cilist>
       <int name="Group">1</int>
-      <string name="namelistnr">6</string>
+      <string name="namelistnr"> 4</string>
       <key name="en">
       	  <string name="long">The Sims 2 - Pets</string>
       </key>
@@ -180,7 +180,7 @@
       <cilist name="SimNameDeepSearch">
         <string name="0">TSData\Res\NeighborhoodTemplate\G002\Characters\</string>
       </cilist>
-      <string name="namelistnr">7</string>
+      <string name="namelistnr"> 5</string>
       <key name="en">
       	  <string name="long">The Sims 2 - Seasons</string>
       </key>
@@ -201,7 +201,7 @@
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string> <!-- Provided by Carrigon -->
       <int name="Group">1</int>
-      <string name="namelistnr">8</string>
+      <string name="namelistnr"> 4</string>
       <key name="en">
 	  <string name="short">Celebration!</string>
           <string name="name">Celebration! Stuff</string>
@@ -224,7 +224,7 @@
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string>
       <int name="Group">1</int>
-      <string name="namelistnr">9</string>
+      <string name="namelistnr"> 5</string>
       <key name="en">
 	  <string name="short">Fashion</string>
           <string name="name">H&amp;M Fashion Stuff</string>
@@ -255,7 +255,7 @@
       <cilist name="AdditionalFileTableFolders">
         <string name="0">!TSData\Res\Overrides\</string>
       </cilist>
-      <string name="namelistnr">10</string>
+      <string name="namelistnr"> 6</string>
       <key name="en">
             <string name="name">Bon Voyage</string>
 	    <string name="long">The Sims 2 - Bon Voyage</string>
@@ -277,7 +277,7 @@
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string>
       <int name="Group">1</int>
-      <string name="namelistnr">11</string>
+      <string name="namelistnr"> 6</string>
       <key name="en">
 	  <string name="short">Teen</string>
           <string name="name">Teen Style Stuff</string>
@@ -299,7 +299,7 @@
       <string name="ExeName">Sims2SC.exe</string>
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <int name="Group">1</int>
-      <string name="namelistnr">12</string>
+      <string name="namelistnr"> 7</string>
       <key name="en">
 	  <string name="short">Store</string>
           <string name="name">Store Edition</string>
@@ -326,7 +326,7 @@
       <cilist name="AdditionalFileTableFolders">
         <string name="0">!TSData\Res\Overrides\</string>
       </cilist>
-      <string name="namelistnr">13</string>
+      <string name="namelistnr"> 7</string>
       <key name="en">
         <string name="short">FreeTime</string>
         <string name="name">FreeTime</string>
@@ -349,7 +349,7 @@
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\Res\StuffPack\Objects</string>
       <int name="Group">1</int>
-      <string name="namelistnr">14</string>
+      <string name="namelistnr"> 8</string>
       <key name="en">
         <string name="short">Kitchens</string>
         <string name="name">Kitchen &amp; Bath Interior Design Stuff</string>
@@ -372,7 +372,7 @@
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\Res\StuffPack\Objects</string>
       <int name="Group">1</int>
-      <string name="namelistnr">15</string>
+      <string name="namelistnr"> 9</string>
       <key name="en">
         <string name="short">IKEA</string>
         <string name="name">IKEA Home Stuff</string>
@@ -399,7 +399,7 @@
       <cilist name="AdditionalFileTableFolders">
         <string name="0">!TSData\Res\Overrides\</string>
       </cilist>
-      <string name="namelistnr">16</string>
+      <string name="namelistnr"> 8</string>
       <key name="en">
         <string name="short">Apartment</string>
         <string name="name">Apartment</string>
@@ -422,7 +422,7 @@
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\Res\StuffPack\Objects</string>
       <int name="Group">1</int>
-      <string name="namelistnr">17</string>
+      <string name="namelistnr">10</string>
       <key name="en">
         <string name="short">Mansions</string>
         <string name="name">Mansions and Gardens Stuff</string>
@@ -447,7 +447,7 @@
       <cilist name="SaveGameLocationsForGroup">
         <string name="0">{MyDocuments}\\Electronic Arts\\{DisplayName}</string>
       </cilist>
-      <string name="namelistnr">30</string>
+      <string name="namelistnr"> 1</string>
       <key name="en">
 	  <string name="short">Life Stories</string>
       	  <string name="long">The Sims 2 - Life Stories</string>
@@ -465,7 +465,7 @@
       <cilist name="SaveGameLocationsForGroup">
         <string name="0">{MyDocuments}\Electronic Arts\{DisplayName}</string>
       </cilist>	
-      <string name="namelistnr">29</string>
+      <string name="namelistnr"> 2</string>
       <key name="en">
 	  <string name="short">Pet Stories</string>
       	  <string name="long">The Sims 2 - Pet Stories</string>
@@ -487,7 +487,7 @@
       <cilist name="SaveGameLocationsForGroup">
         <string name="0">{MyDocuments}\\Electronic Arts\\{DisplayName}</string>
       </cilist>
-      <string name="namelistnr">28</string>
+      <string name="namelistnr"> 3</string>
       <key name="en">
 	  <string name="short">Castaway Stories</string>
       	  <string name="long">The Sims 2 - Castaway Stories</string>

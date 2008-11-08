@@ -41,29 +41,31 @@ namespace SimPe.Plugin
 	{
 		#region Attributes
 		byte[] oversize;
-		ushort language;
-		ushort strformat;
 		uint[] index;
 
 		Interfaces.Files.IPackedFileDescriptor[] reffiles;
-		public Interfaces.Files.IPackedFileDescriptor[] ReferencedFiles 
-		{
-			get { return reffiles; }
-			set { reffiles = value;} 
-		}
+        public Interfaces.Files.IPackedFileDescriptor[] ReferencedFiles
+        {
+            get { return duff ? new Interfaces.Files.IPackedFileDescriptor[0] : reffiles; }
+            set { if (duff) return; reffiles = value; }
+        }
 
 		IRcolBlock[] blocks;
 		public IRcolBlock[] Blocks 
 		{
-			get { return blocks; }
-			set { blocks = value;} 
+			get { return duff ? new IRcolBlock[0] : blocks; }
+            set { if (duff) return; blocks = value; } 
 		}
 
-		uint type;
-		public uint Type 
+		uint count;
+		public uint Count 
 		{
-			get {return type;}
+			get {return count;}
 		}
+
+        bool duff = false;
+        Exception e = null;
+        public bool Duff { get { return duff; } }
 		#endregion
 
 		/// <summary>
@@ -108,12 +110,14 @@ namespace SimPe.Plugin
 		{
 			get 
 			{
+                if (duff) return SimPe.Localization.GetString("InvalidCRES").Replace("{0}", e.Message);
 				if (blocks.Length>0) if (blocks[0].NameResource!=null) return blocks[0].NameResource.FileName;
 				return "";
 			}
 
 			set 
 			{
+                if (duff) return;
 				if (blocks.Length>0) if (blocks[0].NameResource!=null) blocks[0].NameResource.FileName = value;
 			}
 		}
@@ -174,6 +178,7 @@ namespace SimPe.Plugin
 			index = new uint[0];
 			blocks = new IRcolBlock[0];
 			oversize = new byte[0];
+            duff = false;
 		}
 
 		public Rcol() : this(null, false) {	}
@@ -218,39 +223,36 @@ namespace SimPe.Plugin
 		/// </summary>
 		/// <param name="id">expected ID</param>
 		/// <param name="reader">the reader</param>
-		internal IRcolBlock ReadBlock(uint id, System.IO.BinaryReader reader)
-		{
-			/*byte len = reader.ReadByte();
-				string s = Helper.ToString(reader.ReadBytes(len));*/
-			string s = reader.ReadString();
-			uint myid = reader.ReadUInt32();
-			if (myid==0xffffffff) return null;
-			if (id!=myid) 
-				throw new Exception("Not matching ID Field in RCOL File.", new Exception("ID=0x"+Helper.HexString(myid)+", Looked for=0x"+Helper.HexString(id)+", Offset=0x"+Helper.HexString((uint)(reader.BaseStream.Position-4))));
-			
+        internal IRcolBlock ReadBlock(uint id, System.IO.BinaryReader reader)
+        {
+            long pos = reader.BaseStream.Position;
+            string s = reader.ReadString();
+            Type tp = (Type)Tokens[s];
+            if (tp == null)
+                throw new Exception("Unknown embedded RCOL Block Name at Offset=0x" + Helper.HexString((uint)pos),
+                    new Exception("RCOL Block Name: " + s));
 
-			Type tp = (Type)Tokens[s];
-			if (tp==null) 
-				throw new Exception("Unknown embedded RCOL Block "+s, new Exception("Offset=0x"+Helper.HexString(reader.BaseStream.Length-4)));
+            pos = reader.BaseStream.Position;
+            uint myid = reader.ReadUInt32();
+            if (myid == 0xffffffff) return null;
+            if (id != myid)
+                throw new Exception("Unexpected embedded RCOL Block ID at Offset=0x" + Helper.HexString((uint)pos),
+                    new Exception("Read: 0x" + Helper.HexString(myid) + "; Expected: 0x" + Helper.HexString(id)));
 
-			IRcolBlock  wrp = AbstractRcolBlock.Create(tp, this, myid);
-			wrp.Unserialize(reader);
-			return wrp;
-		}
+            IRcolBlock wrp = AbstractRcolBlock.Create(tp, this, myid);
+            wrp.Unserialize(reader);
+            return wrp;
+        }
 
 		/// <summary>
 		/// Write a Rcol Block
 		/// </summary>
-		/// <param name="id">The Id that should be written</param>
 		/// <param name="wrp">The content of the Block</param>
 		/// <param name="writer">the writer</param>
-		internal void WriteBlock(uint id, IRcolBlock wrp, System.IO.BinaryWriter writer)
+		internal void WriteBlock(IRcolBlock wrp, System.IO.BinaryWriter writer)
 		{
-			/*writer.Write((byte)wrp.Register(null).Length);
-				writer.Write(Helper.ToBytes(wrp.Register(null), 0));*/
 			writer.Write(wrp.BlockName);
-			writer.Write(id);
-
+            writer.Write(wrp.BlockID);
 			wrp.Serialize(writer);
 		}
 
@@ -259,54 +261,58 @@ namespace SimPe.Plugin
 		/// </summary>
 		/// <param name="reader">The Stream that contains the FileData</param>
 		protected override void Unserialize(System.IO.BinaryReader reader)
-		{
-			type = reader.ReadUInt32();
-			uint count = type; 
-			if (type==0xffff0001) 
-			{
-				language = (ushort)(type & 0x0000ffff);
-				strformat = (ushort)((type >> 16) & 0x0000ffff);
-				count = reader.ReadUInt32();
-			} 
-			else 
-			{
-				language = 0;
-				strformat = 0;
-			}
+        {
+            duff = false;
+            this.e = null;
 
-			reffiles = new Interfaces.Files.IPackedFileDescriptor[count];
-			for (int i=0; i<reffiles.Length; i++) 
-			{
-				SimPe.Packages.PackedFileDescriptor pfd = new SimPe.Packages.PackedFileDescriptor();
-				
-				pfd.Group = reader.ReadUInt32();
-				pfd.Instance = reader.ReadUInt32();
-				if (type==0xffff0001) pfd.SubType = reader.ReadUInt32();
-				pfd.Type = reader.ReadUInt32();
+            count = reader.ReadUInt32();
 
-				reffiles[i] = pfd;
-			}
+            try
+            {
 
-			index = new uint[reader.ReadUInt32()];
-			blocks = new IRcolBlock[index.Length];
-			for (int i=0; i<index.Length; i++) index[i] = reader.ReadUInt32();
-			
+                reffiles = new Interfaces.Files.IPackedFileDescriptor[count == 0xffff0001 ? reader.ReadUInt32() : count];
+                for (int i = 0; i < reffiles.Length; i++)
+                {
+                    SimPe.Packages.PackedFileDescriptor pfd = new SimPe.Packages.PackedFileDescriptor();
 
-			for (int i=0; i<index.Length; i++)
-			{
-				uint id = index[i];
-				IRcolBlock  wrp = ReadBlock(id, reader);	
-				if (wrp==null) break;
-				blocks[i] = wrp;
-			}
+                    pfd.Group = reader.ReadUInt32();
+                    pfd.Instance = reader.ReadUInt32();
+                    pfd.SubType = (count == 0xffff0001) ? reader.ReadUInt32() : 0;
+                    pfd.Type = reader.ReadUInt32();
 
-			if (!fast) 
-			{
-				long size = reader.BaseStream.Length - reader.BaseStream.Position;
-				if (size>0) oversize = reader.ReadBytes((int)size);
-				else oversize = new byte[0];
-			}
-		}
+                    reffiles[i] = pfd;
+                }
+
+                uint nn = reader.ReadUInt32();
+                index = new uint[nn];
+                blocks = new IRcolBlock[index.Length];
+                for (int i = 0; i < index.Length; i++) index[i] = reader.ReadUInt32();
+
+
+                for (int i = 0; i < index.Length; i++)
+                {
+                    uint id = index[i];
+                    IRcolBlock wrp = ReadBlock(id, reader);
+                    if (wrp == null) break;
+                    blocks[i] = wrp;
+                }
+
+                if (!fast)
+                {
+                    long size = reader.BaseStream.Length - reader.BaseStream.Position;
+                    if (size > 0) oversize = reader.ReadBytes((int)size);
+                    else oversize = new byte[0];
+                }
+            }
+            catch (Exception e)
+            {
+                duff = true;
+                this.e = e;
+                //SimPe.Helper.ExceptionMessage(e);
+            }
+            finally { }
+
+        }
 
 		/// <summary>
 		/// Serializes a the Attributes stored in this Instance to the BinaryStream
@@ -318,34 +324,26 @@ namespace SimPe.Plugin
 		/// </remarks>
 		protected override void Serialize(System.IO.BinaryWriter writer)
 		{
-			uint type = (uint)(language | (strformat << 16));
-			if (type==0xffff0001) 
-			{
-				writer.Write(language);
-				writer.Write(strformat);	
-			} 
-			writer.Write((uint)reffiles.Length);
+            if (duff) return;
+            writer.Write(count == 0xffff0001 ? count : (uint)reffiles.Length);
+            writer.Write((uint)reffiles.Length);
 			for (int i=0; i<reffiles.Length; i++) 
 			{
 				SimPe.Packages.PackedFileDescriptor pfd = (SimPe.Packages.PackedFileDescriptor)reffiles[i];
 				writer.Write(pfd.Group);
 				writer.Write(pfd.Instance);
-				if (type==0xffff0001) writer.Write(pfd.SubType);
+				if (count==0xffff0001) writer.Write(pfd.SubType);
 				writer.Write(pfd.Type);
 			}
 
-			//rebuild the Index Block
-			index = new uint[blocks.Length];
-			for (int i=0; i<index.Length; i++) index[i] = blocks[i].BlockID;
+            writer.Write((uint)blocks.Length);
+            for (int i = 0; i < blocks.Length; i++) writer.Write(blocks[i].BlockID);
 
-			writer.Write((uint)index.Length);
-			for (int i=0; i<index.Length; i++) writer.Write(index[i]);
-			
 
-			for (int i=0; i<index.Length; i++)
+            for (int i = 0; i < blocks.Length; i++)
 			{
 				IRcolBlock wrp = blocks[i];
-				WriteBlock(index[i], wrp, writer);
+                WriteBlock(wrp, writer);
 			}
 
 			writer.Write(oversize);

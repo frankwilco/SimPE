@@ -340,6 +340,7 @@
     <Compile Include="ActionExtract.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ActionGroupFilter.cs" />
     <Compile Include="ActionReplace.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -386,6 +387,12 @@
     </Compile>
     <Compile Include="PluginManager.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProfileChooser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProfileChooser.Designer.cs">
+      <DependentUpon>ProfileChooser.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs">
       <SubType>Form</SubType>
@@ -525,9 +532,18 @@
       <DependentUpon>FileTableItemForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProfileChooser.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ProfileChooser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="welcome-fr.rtf" />
     <EmbeddedResource Include="welcome-it.rtf" />
     <EmbeddedResource Include="welcome-ru.rtf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SimPe.exe.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -710,7 +710,7 @@ namespace SimPe.Plugin
 		/// <returns>A List of Modelnames</returns>		
 		public static string[] LoadParentModelNames(SimPe.Interfaces.Files.IPackageFile pkg, bool delete)
 		{
-			WaitingScreen.UpdateMessage("Loading Parent Modelnames");
+            if (WaitingScreen.Running) WaitingScreen.UpdateMessage("Loading Parent Modelnames");
 			ArrayList list = new ArrayList();
 
 			Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFiles(Data.MetaData.GMND);

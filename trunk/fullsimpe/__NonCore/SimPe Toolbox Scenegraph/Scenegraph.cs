@@ -323,58 +323,54 @@ namespace SimPe.Plugin
 		/// </summary>
 		/// <param name="prov"></param>
 		/// <param name="simpe_pkg"></param>
-		public void Execute(IProviderRegistry prov, SimPe.Interfaces.Files.IPackageFile simpe_pkg, ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd) 
-		{
-			this. pfd = pfd;
-			this.open_pkg = simpe_pkg;
-			try 
-			{
-				llopen.Enabled = false;
-				WaitingScreen.Wait();
-				SimPe.Interfaces.Files.IPackageFile orgpkg = simpe_pkg;
+        public void Execute(IProviderRegistry prov, SimPe.Interfaces.Files.IPackageFile simpe_pkg, ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd)
+        {
+            this.pfd = pfd;
+            this.open_pkg = simpe_pkg;
+            WaitingScreen.Wait();
+            try
+            {
+                llopen.Enabled = false;
+                SimPe.Interfaces.Files.IPackageFile orgpkg = simpe_pkg;
 
-				DateTime start = DateTime.Now;
-				FileTable.FileIndex.Load();
-				SimPe.Interfaces.Scenegraph.IScenegraphFileIndex fileindex = FileTable.FileIndex.Clone();				
-				fileindex.AddIndexFromPackage(simpe_pkg);
+                DateTime start = DateTime.Now;
+                FileTable.FileIndex.Load();
+                SimPe.Interfaces.Scenegraph.IScenegraphFileIndex fileindex = FileTable.FileIndex.Clone();
+                fileindex.AddIndexFromPackage(simpe_pkg);
 
-				SimPe.Interfaces.Scenegraph.IScenegraphFileIndex oldfileindex = FileTable.FileIndex;				
-				FileTable.FileIndex = fileindex;
+                SimPe.Interfaces.Scenegraph.IScenegraphFileIndex oldfileindex = FileTable.FileIndex;
+                FileTable.FileIndex = fileindex;
 
-				//find txtr File
-				/*WaitingScreen.UpdateMessage("Collecting Global Files");
-				string[] modelnames = Scenegraph.FindModelNames(simpe_pkg);				
-				try 
-				{					
-					ObjectCloner oc = new ObjectCloner();
-					oc.RcolModelClone(modelnames, false, false);
-					simpe_pkg = oc.Package;
-				} 
-				catch (ScenegraphException) {}*/
+                //find txtr File
+                /*WaitingScreen.UpdateMessage("Collecting Global Files");
+                string[] modelnames = Scenegraph.FindModelNames(simpe_pkg);				
+                try 
+                {					
+                    ObjectCloner oc = new ObjectCloner();
+                    oc.RcolModelClone(modelnames, false, false);
+                    simpe_pkg = oc.Package;
+                } 
+                catch (ScenegraphException) {}*/
 
-				FileTable.FileIndex = oldfileindex;
+                FileTable.FileIndex = oldfileindex;
 
-				
-				gb.BuildGraph(simpe_pkg, fileindex);
-				gb.FindUnused(orgpkg);
-				
-				WaitingScreen.Stop();
-				TimeSpan runtime = DateTime.Now.Subtract(start);
-				if (Helper.WindowsRegistry.HiddenMode)
-					Text = "Runtime: "+runtime.TotalSeconds+" sek. = " + runtime.TotalMinutes+ " min.";
-				RemoteControl.ShowSubForm(this);
 
-				pfd = this.pfd;
-			} 
-			catch (Exception ex)
-			{
-				Helper.ExceptionMessage("", ex);
-			}
-			finally 
-			{
-				WaitingScreen.Stop();
-			}
-		}
+                gb.BuildGraph(simpe_pkg, fileindex);
+                gb.FindUnused(orgpkg);
+
+                WaitingScreen.Stop();
+                TimeSpan runtime = DateTime.Now.Subtract(start);
+                if (Helper.WindowsRegistry.HiddenMode)
+                    Text = "Runtime: " + runtime.TotalSeconds + " sek. = " + runtime.TotalMinutes + " min.";
+                RemoteControl.ShowSubForm(this);
+
+                pfd = this.pfd;
+            }
+#if !DEBUG
+            catch (Exception ex) { Helper.ExceptionMessage("", ex); }
+#endif
+            finally { WaitingScreen.Stop(); }
+        }
 
 		private void button1_Click(object sender, System.EventArgs e)
 		{

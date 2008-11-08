@@ -50,30 +50,32 @@ namespace SimPe
 			InitializeComponent();
 
 			WaitingScreen.Wait();
-			WaitingScreen.UpdateMessage("getting all SemiGlobal Groups");
-			FileTable.FileIndex.Load();
+            try
+            {
+                WaitingScreen.UpdateMessage("getting all SemiGlobal Groups");
+                FileTable.FileIndex.Load();
 
-			Interfaces.Scenegraph.IScenegraphFileIndexItem[] globs = FileTable.FileIndex.FindFile(Data.MetaData.GLOB_FILE, true);
-			ArrayList names = new ArrayList();
-			string max = " / "+globs.Length.ToString();
-			int ct = 0;
-			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item in globs) 
-			{
-				if (ct%17==0) WaitingScreen.UpdateMessage(ct.ToString()+max);
-				ct++;
+                Interfaces.Scenegraph.IScenegraphFileIndexItem[] globs = FileTable.FileIndex.FindFile(Data.MetaData.GLOB_FILE, true);
+                ArrayList names = new ArrayList();
+                string max = " / " + globs.Length.ToString();
+                int ct = 0;
+                foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item in globs)
+                {
+                    if (ct % 17 == 0) WaitingScreen.UpdateMessage(ct.ToString() + max);
+                    ct++;
 
-				SimPe.Plugin.NamedGlob glob = new SimPe.Plugin.NamedGlob();
-				glob.ProcessData(item.FileDescriptor, item.Package);
+                    SimPe.Plugin.NamedGlob glob = new SimPe.Plugin.NamedGlob();
+                    glob.ProcessData(item.FileDescriptor, item.Package);
 
-				if (!names.Contains(glob.SemiGlobalName.Trim().ToLower())) 
-				{
-					cbsemi.Items.Add(glob);
-					names.Add(glob.SemiGlobalName.Trim().ToLower());
-				}
-			}
-			cbsemi.Sorted = true;
-
-			WaitingScreen.Stop();
+                    if (!names.Contains(glob.SemiGlobalName.Trim().ToLower()))
+                    {
+                        cbsemi.Items.Add(glob);
+                        names.Add(glob.SemiGlobalName.Trim().ToLower());
+                    }
+                }
+                cbsemi.Sorted = true;
+            }
+            finally { WaitingScreen.Stop(); }
 		}
 
 		/// <summary>

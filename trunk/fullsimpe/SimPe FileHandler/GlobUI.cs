@@ -48,7 +48,7 @@ namespace SimPe.Plugin
 			int ct = 0;
 			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item in iglobs) 
 			{
-				WaitingScreen.UpdateMessage(ct.ToString()+max);
+                if (WaitingScreen.Running) WaitingScreen.UpdateMessage(ct.ToString() + max);
 				ct++;
 
 				SimPe.Plugin.NamedGlob glob = new SimPe.Plugin.NamedGlob();

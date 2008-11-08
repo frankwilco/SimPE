@@ -78,7 +78,7 @@ namespace SimPe.Plugin
 
 			pfd.Group = reader.ReadUInt32();
 			pfd.Instance = reader.ReadUInt32();
-			if (Parent.Type==0xffff0001) pfd.SubType = reader.ReadUInt32();
+			if (Parent.Count==0xffff0001) pfd.SubType = reader.ReadUInt32();
 			pfd.Type = reader.ReadUInt32();
 
 			u1 = reader.ReadInt16();
@@ -103,7 +103,7 @@ namespace SimPe.Plugin
 
 			writer.Write(pfd.Group);
 			writer.Write(pfd.Instance);
-			if (Parent.Type==0xffff0001) writer.Write(pfd.SubType);
+			if (Parent.Count==0xffff0001) writer.Write(pfd.SubType);
 			writer.Write(pfd.Type);
 
 			writer.Write(u1);

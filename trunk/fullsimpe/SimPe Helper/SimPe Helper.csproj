@@ -172,6 +172,7 @@
     <Compile Include="Alias.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ArgParser.cs" />
     <Compile Include="ASerializeFormater.cs">
       <SubType>Code</SubType>
     </Compile>

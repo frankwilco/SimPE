@@ -1,6 +1,8 @@
 /***************************************************************************
  *   Copyright (C) 2005 by Ambertation                                     *
  *   quaxi@ambertation.de                                                  *
+ *   Copyright (C) 2008 by Peter L Jones                                   *
+ *   peter@users.sf.net                                                    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -18,6 +20,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using System.Windows.Forms;
+using SimPe.Interfaces;
 
 namespace SimPe
 {
@@ -29,36 +33,36 @@ namespace SimPe
 		LoadFileWrappersExt wloader;
 		SimPe.LoadHelpTopics lht;
 		internal PluginManager(
-            System.Windows.Forms.ToolStripMenuItem toolmenu, 
-			System.Windows.Forms.ToolStrip tootoolbar,
+            ToolStripMenuItem toolmenu, 
+			ToolStrip tootoolbar,
 			TD.SandDock.TabControl dc, 
 			LoadedPackage lp,
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox defaultactiontaskbox,
-            System.Windows.Forms.ContextMenuStrip defaultactionmenu,
+            ContextMenuStrip defaultactionmenu,
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox toolactiontaskbox, 
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox extactiontaskbox,
-			System.Windows.Forms.ToolStrip actiontoolbar,
+			ToolStrip actiontoolbar,
 			Ambertation.Windows.Forms.DockContainer docktooldc,
-            System.Windows.Forms.ToolStripMenuItem helpmenu)
-            : base(true)
+            ToolStripMenuItem helpmenu,
+            SimPe.Windows.Forms.ResourceListViewExt lv
+            ) : base(true)
 		{
-			SimPe.PackedFiles.TypeRegistry tr = new SimPe.PackedFiles.TypeRegistry();
+            Splash.Screen.SetMessage("Loading Type Registry");
+            SimPe.PackedFiles.TypeRegistry tr = new SimPe.PackedFiles.TypeRegistry();
 
 			FileTable.ProviderRegistry = tr;
 			FileTable.ToolRegistry = tr;
 			FileTable.WrapperRegistry = tr;
-			FileTable.HelpTopicRegistry = tr;
-			FileTable.SettingsRegistry = tr;
+            FileTable.CommandLineRegistry = tr;
+            FileTable.HelpTopicRegistry = tr;
+            FileTable.SettingsRegistry = tr;
 
 			wloader = new LoadFileWrappersExt();
 
-            Splash.Screen.SetMessage("Loading Dynamic Wrappers");
             this.LoadDynamicWrappers();
-            Splash.Screen.SetMessage("Loading Static Wrappers");
 			this.LoadStaticWrappers();
+            this.LoadMenuItems(toolmenu, tootoolbar);
 
-            Splash.Screen.SetMessage("Loading Menu Items");
-			wloader.AddMenuItems(ref ChangedGuiResourceEvent, toolmenu, tootoolbar, new ToolMenuItemExt.ExternalToolNotify(ClosedToolPluginHandler));
             Splash.Screen.SetMessage("Loading Listeners");
 			wloader.AddListeners(ref ChangedGuiResourceEvent);
 			//dc.ActiveDocumentChanged += new TD.SandDock.ActiveDocumentEventHandler(wloader.ActiveDocumentChanged);
@@ -66,10 +70,10 @@ namespace SimPe
 
 
             Splash.Screen.SetMessage("Loading Default Actions");
-            LoadActionTools(defaultactiontaskbox, actiontoolbar, defaultactionmenu, GetDefaultActions());
+            LoadActionTools(defaultactiontaskbox, actiontoolbar, defaultactionmenu, GetDefaultActions(lv));
             Splash.Screen.SetMessage("Loading External Tools");
 			LoadActionTools(toolactiontaskbox, actiontoolbar, defaultactionmenu, LoadExternalTools());
-            Splash.Screen.SetMessage("Loading ...");
+            Splash.Screen.SetMessage("Loading Default Tools");
 			LoadActionTools(extactiontaskbox, actiontoolbar, null, null);
 
             Splash.Screen.SetMessage("Loading Docks");
@@ -77,7 +81,7 @@ namespace SimPe
             Splash.Screen.SetMessage("Loading Help Topics");
 			lht = new LoadHelpTopics(helpmenu);
 
-            Splash.Screen.SetMessage("");
+            Splash.Screen.SetMessage("Loaded Help Topics");
 		}
 
 		/// <summary>
@@ -103,6 +107,8 @@ namespace SimPe
 		/// </summary>
 		void LoadStaticWrappers()
 		{
+            Splash.Screen.SetMessage("Loading CommandlineHelpFactory");
+            FileTable.WrapperRegistry.Register(new SimPe.CommandlineHelpFactory());
             Splash.Screen.SetMessage("Loading SettingsFactory");
             FileTable.WrapperRegistry.Register(new SimPe.Custom.SettingsFactory());
             Splash.Screen.SetMessage("Loading SimFactory");
@@ -111,23 +117,97 @@ namespace SimPe
             FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.ExtendedWrapperFactory());
             Splash.Screen.SetMessage("Loading DefaultWrapperFactory");
             FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.DefaultWrapperFactory());
-            //FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.GenericWrapperFactory());
             Splash.Screen.SetMessage("Loading ScenegraphWrapperFactory");
             FileTable.WrapperRegistry.Register(new SimPe.Plugin.ScenegraphWrapperFactory());
             Splash.Screen.SetMessage("Loading RefFileFactory");
             FileTable.WrapperRegistry.Register(new SimPe.Plugin.RefFileFactory());
             Splash.Screen.SetMessage("Loading ClstWrapperFactory");
             FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.ClstWrapperFactory());
+            Splash.Screen.SetMessage("Loaded Static Wrappers");
         }
 
 		/// <summary>
 		/// Load all Wrappers found in the Plugins Folder
 		/// </summary>
-		void LoadDynamicWrappers()
-		{			
-			wloader.Scan(Helper.SimPePluginPath);
-			//wloader.AddMenuItems(this.miPlugins, new EventHandler(ToolChangePacakge));
-		}
+        void LoadDynamicWrappers()
+        {
+            Splash.Screen.SetMessage("Loading Dynamic Wrappers");
+            string folder = Helper.SimPePluginPath;
+            if (!System.IO.Directory.Exists(folder)) return;
+
+            string[] files = System.IO.Directory.GetFiles(folder, "*.plugin.dll");
+
+            foreach (string file in files)
+            {
+                Splash.Screen.SetMessage("Loading " + System.IO.Path.GetFileName(file).Replace(".dll", "").Replace(".", " "));
+#if !DEBUG
+				try 
+#endif
+                {
+                    LoadFileWrappersExt.LoadWrapperFactory(file, wloader);
+                }
+#if !DEBUG
+				catch (Exception ex) 
+				{
+					Exception e = new Exception("Unable to load WrapperFactory", new Exception("Invalid Interface in "+file, ex));
+					LoadFileWrappersExt.LoadErrorWrapper(new SimPe.PackedFiles.Wrapper.ErrorWrapper(file, ex), wloader);
+					Helper.ExceptionMessage(ex);
+				}
+#endif
+
+#if !DEBUG
+                try 
+#endif
+                {
+                    LoadFileWrappersExt.LoadToolFactory(file, wloader);
+                }
+#if !DEBUG
+				catch (Exception ex) 
+				{
+					Exception e = new Exception("Unable to load ToolFactory", new Exception("Invalid Interface in "+file, ex));
+					Helper.ExceptionMessage(e);
+
+				}
+#endif
+            }
+            //wloader.AddMenuItems(this.miPlugins, new EventHandler(ToolChangePacakge));
+            Splash.Screen.SetMessage("Loaded Dynamic Wrappers");
+        }
+
+        void LoadMenuItems(ToolStripMenuItem toolmenu, ToolStrip tootoolbar)
+        {
+            ToolMenuItemExt.ExternalToolNotify chghandler = new ToolMenuItemExt.ExternalToolNotify(ClosedToolPluginHandler);
+            IToolExt[] toolsp = (IToolExt[])FileTable.ToolRegistry.ToolsPlus;
+            foreach (IToolExt tool in toolsp)
+            {
+                string name = tool.ToString();
+                string[] parts = name.Split("\\".ToCharArray());
+                name = Localization.GetString(parts[parts.Length - 1]);
+                Splash.Screen.SetMessage("Loading " + name);
+                ToolMenuItemExt item = new ToolMenuItemExt(name, tool, chghandler);
+
+                LoadFileWrappersExt.AddMenuItem(ref ChangedGuiResourceEvent, toolmenu.DropDownItems, item, parts);
+            }
+
+            ITool[] tools = FileTable.ToolRegistry.Tools;
+            foreach (ITool tool in tools)
+            {
+                string name = tool.ToString().Trim();
+                if (name == "") continue;
+
+                string[] parts = name.Split("\\".ToCharArray());
+                name = Localization.GetString(parts[parts.Length - 1]);
+                Splash.Screen.SetMessage("Loading " + name);
+                ToolMenuItemExt item = new ToolMenuItemExt(name, tool, chghandler);
+
+                LoadFileWrappersExt.AddMenuItem(ref ChangedGuiResourceEvent, toolmenu.DropDownItems, item, parts);
+            }
+
+            Splash.Screen.SetMessage("Creating Toolbar");
+            LoadFileWrappersExt.BuildToolBar(tootoolbar, toolmenu.DropDownItems);
+            //EnableMenuItems(null);
+            Splash.Screen.SetMessage("Loaded Menu Items");
+        }
 
 		#region Action Tools			
 		event SimPe.Events.ChangedResourceEvent ChangedGuiResourceEvent;
@@ -184,26 +264,27 @@ namespace SimPe
 		/// Returns a List of Builtin Actions
 		/// </summary>
 		/// <returns></returns>
-		SimPe.Interfaces.IToolAction[] GetDefaultActions()
+		SimPe.Interfaces.IToolAction[] GetDefaultActions(SimPe.Windows.Forms.ResourceListViewExt lv)
 		{
-			return new SimPe.Interfaces.IToolAction[] {
-														  new SimPe.Actions.Default.AddAction(),
-														  new SimPe.Actions.Default.ExportAction(),
-														  new SimPe.Actions.Default.ReplaceAction(),
-														  new SimPe.Actions.Default.DeleteAction(),
-														  new SimPe.Actions.Default.RestoreAction(),
-														  new SimPe.Actions.Default.CloneAction(),
-														  new SimPe.Actions.Default.CreateAction()
-													  };
-		}
+            return new SimPe.Interfaces.IToolAction[] {
+                new SimPe.Actions.Default.AddAction(),
+                new SimPe.Actions.Default.ExportAction(),
+                new SimPe.Actions.Default.ReplaceAction(),
+                new SimPe.Actions.Default.DeleteAction(),
+                new SimPe.Actions.Default.RestoreAction(),
+                new SimPe.Actions.Default.CloneAction(),
+                new SimPe.Actions.Default.CreateAction(),
+                new SimPe.Actions.Default.ActionGroupFilter(lv),
+            };
+        }
 
 		/// <summary>
 		/// Load all available Action Tools
 		/// </summary>
 		void LoadActionTools(
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox taskbox, 
-			System.Windows.Forms.ToolStrip tb,
-            System.Windows.Forms.ContextMenuStrip mi, 
+			ToolStrip tb,
+            ContextMenuStrip mi, 
 			SimPe.Interfaces.IToolAction[] tools)
 		{			
 			if (tools==null) tools = FileTable.ToolRegistry.Actions;
@@ -245,7 +326,7 @@ namespace SimPe
                     
 					
                     if (tfirst && tb.Items.Count != 0)
-                        tb.Items.Add(new System.Windows.Forms.ToolStripSeparator());
+                        tb.Items.Add(new ToolStripSeparator());
                     tb.Items.Add(atd.ToolBarButton);
                     
 					tfirst = false;
@@ -291,5 +372,5 @@ namespace SimPe
 			}
 		}
 		#endregion
-	}
+    }
 }

@@ -152,10 +152,10 @@ namespace Ambertation.Windows.Forms
 			}
 		}		
 
-		public override void OnSetComponentDefaults()
+		/*public override void OnSetComponentDefaults()
 		{
 			base.OnSetComponentDefaults ();
-		}
+		}*/
 
 	}    
 }

@@ -31,7 +31,6 @@ namespace SimPe
     {
         private void SetupMainForm()
         {
-            this.SuspendLayout();
             SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Creating GUI"));
             if (Helper.DebugMode)
             {
@@ -75,10 +74,12 @@ namespace SimPe
                 tbPlugAction,
                 tbAction,
                 dockBottom,
-                this.mbiTopics);
+                this.mbiTopics,
+                lv
+            );
+            SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Loaded Plugins"));
             plugger.ClosedToolPlugin += new ToolMenuItemExt.ExternalToolNotify(ClosedToolPlugin);
             remote.SetPlugger(plugger);
-
 
             remote.LoadedResource += new ChangedResourceEvent(rh_LoadedResource);
             
@@ -120,14 +121,10 @@ namespace SimPe
         void LoadForm(object sender, System.EventArgs e)
         {
             SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Starting Main Form"));
-            this.ResumeLayout();
-            if (Helper.WindowsRegistry.PreviousVersion == 0)
-            {                
-                About.ShowWelcome();
-            }
+
             this.SuspendLayout();
 
-            dcFilter.Collapse(false);            
+            dcFilter.Collapse(false);
 
             cbsemig.Items.Add("[Group Filter]");
             cbsemig.Items.Add(new SimPe.Data.SemiGlobalAlias(true, 0x7FD46CD0, "Globals"));
@@ -136,25 +133,26 @@ namespace SimPe
                 if (sga.Known) this.cbsemig.Items.Add(sga);
             if (cbsemig.Items.Count > 0) cbsemig.SelectedIndex = 0;
 
-            if (!System.IO.File.Exists(SimPe.Helper.LayoutFileName))
+            if (!System.IO.File.Exists(SimPe.Helper.DataFolder.SimPeLayout))
                 ResetLayout(this, null);
             else
                 ReloadLayout();
-            
 
             //Set the Lock State of the Docks
             MakeFloatable(!Helper.WindowsRegistry.LockDocks);
-            this.ResumeLayout();
-            if (Helper.WindowsRegistry.CheckForUpdates)
-                About.ShowUpdate();
-
-            //load Files passed on the commandline
-            package.LoadOrImportFiles(pargs, true);
 
             manager.Visible = true;
             tbContainer.Visible = true;
+
+            this.ResumeLayout();
+
             SimPe.Splash.Screen.Stop();
-            
+
+            if (Helper.WindowsRegistry.PreviousVersion == 0)
+                About.ShowWelcome();
+
+            if (Helper.WindowsRegistry.CheckForUpdates)
+                About.ShowUpdate();
         }
     }
 }

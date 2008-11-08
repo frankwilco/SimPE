@@ -37,7 +37,7 @@ namespace SimPe.Plugin.TabPage
 		internal System.Windows.Forms.TextBox tb_lt_ver;
 		private System.Windows.Forms.Label label48;
 		internal System.Windows.Forms.TextBox tb_lt_name;
-		private System.ComponentModel.IContainer components;
+		//private System.ComponentModel.IContainer components;
 
 		public LightT()
 		{
@@ -67,10 +67,10 @@ namespace SimPe.Plugin.TabPage
 			if( disposing )
 			{				
 				Tag = null;
-				if(components != null)
+				/*if(components != null)
 				{
 					components.Dispose();
-				}
+				}*/
 			}
 			base.Dispose( disposing );
 		}

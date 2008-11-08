@@ -157,7 +157,7 @@ namespace Ambertation.Windows.Forms
 		}
 
 		bool autosz;
-		public bool AutoSize
+		public override bool AutoSize
 		{
 			get {return autosz;}
 			set 

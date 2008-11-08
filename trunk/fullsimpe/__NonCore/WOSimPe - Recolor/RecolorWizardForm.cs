@@ -890,38 +890,43 @@ namespace SimPe.Wizards
 			llimp.Enabled = false;
 
 			WaitingScreen.Wait();
-			WaitingScreen.UpdateMessage("Preparing Recolor Package");
-			lv.Items.Clear();
+            try
+            {
+                WaitingScreen.UpdateMessage("Preparing Recolor Package");
+                lv.Items.Clear();
 
-			SimPe.PackedFiles.Wrapper.ExtObjd objd = (SimPe.PackedFiles.Wrapper.ExtObjd)selectedlv.SelectedItems[0].Tag;
-			
-			SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
-			pkg.FileName = "WOS";
+                SimPe.PackedFiles.Wrapper.ExtObjd objd = (SimPe.PackedFiles.Wrapper.ExtObjd)selectedlv.SelectedItems[0].Tag;
 
-			//Create the Basic Clone
-			WaitingScreen.UpdateMessage("Collecting needed Files");
-			string[] modelnames = SimPe.Plugin.Workshop.BaseClone(objd.FileDescriptor, objd.FileDescriptor.Group, pkg);
-			SimPe.Plugin.ObjectCloner objclone = new SimPe.Plugin.ObjectCloner(pkg);
-			objclone.Setup.OnlyDefaultMmats = false;
-			objclone.Setup.UpdateMmatGuids = false;
-			objclone.RcolModelClone(modelnames);
+                SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
+                pkg.FileName = "WOS";
 
-			WaitingScreen.UpdateMessage("Loading additional References");
-			SimPe.Plugin.ObjectRecolor or = new SimPe.Plugin.ObjectRecolor(pkg);
-			or.LoadReferencedMATDs();
-			//objclone.GetTextureImages(pkg.FindFiles(0x49596978));
-			/*or.LoadReferencedMATDs();
-			objclone.GetTextureImages(pkg.FindFiles(0x49596978));*/
+                //Create the Basic Clone
+                WaitingScreen.UpdateMessage("Collecting needed Files");
+                string[] modelnames = SimPe.Plugin.Workshop.BaseClone(objd.FileDescriptor, objd.FileDescriptor.Group, pkg);
+                SimPe.Plugin.ObjectCloner objclone = new SimPe.Plugin.ObjectCloner(pkg);
+                objclone.Setup.OnlyDefaultMmats = false;
+                objclone.Setup.UpdateMmatGuids = false;
+                objclone.RcolModelClone(modelnames);
 
-			//Build the Recolor
-			WaitingScreen.UpdateMessage("Building Recolor");
-			npackage = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
-			npackage.FileName = "WOS";	
-	
-			cs = new SimPe.Plugin.ColorOptions(pkg);
-			cs.Create(npackage, new SimPe.Plugin.ColorOptions.CreateSelectionCallback(SelectCallback));
+                WaitingScreen.UpdateMessage("Loading additional References");
+                SimPe.Plugin.ObjectRecolor or = new SimPe.Plugin.ObjectRecolor(pkg);
+                or.LoadReferencedMATDs();
+                //objclone.GetTextureImages(pkg.FindFiles(0x49596978));
+                /*or.LoadReferencedMATDs();
+                objclone.GetTextureImages(pkg.FindFiles(0x49596978));*/
 
-			WaitingScreen.Stop();
+                //Build the Recolor
+                WaitingScreen.UpdateMessage("Building Recolor");
+                npackage = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
+                npackage.FileName = "WOS";
+
+                cs = new SimPe.Plugin.ColorOptions(pkg);
+                cs.Create(npackage, new SimPe.Plugin.ColorOptions.CreateSelectionCallback(SelectCallback));
+            }
+            finally
+            {
+                WaitingScreen.Stop();
+            }
 
 			return showselect;
 		}
@@ -929,23 +934,26 @@ namespace SimPe.Wizards
 		public void Recolor2()
 		{
 			WaitingScreen.Wait();
-			lv.Items.Clear();
-			if ((ssf!=null) && (fullmap!=null))
-			{
-				Hashtable map = SimPe.Plugin.SubsetSelectForm.Finish(ssf);
-				cs.ProcessMmatMap(npackage, map, fullmap);
-			}
-			//Select all Textures the package Contains
-			WaitingScreen.UpdateMessage("Select Textures");
-			
-			MakeTexturePreview(npackage);
+            try
+            {
+                lv.Items.Clear();
+                if ((ssf != null) && (fullmap != null))
+                {
+                    Hashtable map = SimPe.Plugin.SubsetSelectForm.Finish(ssf);
+                    cs.ProcessMmatMap(npackage, map, fullmap);
+                }
+                //Select all Textures the package Contains
+                WaitingScreen.UpdateMessage("Select Textures");
 
-			step2.Update();
-			lbno.Visible = !step2.CanContinue;
-			lv.Visible = step2.CanContinue;
+                MakeTexturePreview(npackage);
 
-			WaitingScreen.Stop();
-		}
+                step2.Update();
+                lbno.Visible = !step2.CanContinue;
+                lv.Visible = step2.CanContinue;
+
+            }
+            finally { WaitingScreen.Stop(); }
+        }
 
 		private void SelectTexture(object sender, System.EventArgs e)
 		{
@@ -1012,14 +1020,14 @@ namespace SimPe.Wizards
 
                 if ((System.IO.File.Exists(PathProvider.Global.NvidiaDDSTool)) && ((oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT1Format) || (oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT3Format) || (oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT5Format)))
 				{
-					SimPe.Commandline.LoadDDS(id, SimPe.Plugin.DDSTool.BuildDDS(ofd.FileName, (int)oldid.MipMapLevels, oldid.Format, "-sharpenMethod Smoothen"));
+                    SimPe.Plugin.BuildTxtr.LoadDDS(id, SimPe.Plugin.DDSTool.BuildDDS(ofd.FileName, (int)oldid.MipMapLevels, oldid.Format, "-sharpenMethod Smoothen"));
 				} 
 				else 
 				{
 					id.Format = oldid.Format;
 					if ((oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT1Format) || (oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT3Format) || (oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT5Format)) 
 						id.Format = SimPe.Plugin.ImageLoader.TxtrFormats.Raw32Bit;
-					SimPe.Commandline.LoadTXTR(id, ofd.FileName, oldid.TextureSize, (int)oldid.MipMapLevels, id.Format);
+                    SimPe.Plugin.BuildTxtr.LoadTXTR(id, ofd.FileName, oldid.TextureSize, (int)oldid.MipMapLevels, id.Format);
 				}
 
 				

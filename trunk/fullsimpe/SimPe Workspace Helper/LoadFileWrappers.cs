@@ -160,11 +160,12 @@ namespace SimPe
 		/// </summary>
 		IToolRegistry treg;
 
-		System.Collections.ArrayList ignore;
+        //this is a manual List of Wrappers that are know to cause Problems
+        System.Collections.ArrayList ignore;
 
 		void CreateIgnoreList(){
-			ignore = new ArrayList();
-			ignore.Add("simpe.3d.plugin.dll");
+            ignore = new ArrayList();
+            ignore.Add("simpe.3d.plugin.dll");
 		}
 
 		/// <summary>
@@ -183,83 +184,32 @@ namespace SimPe
 		}
 
 		/// <summary>
-		/// Looks in the given Folder for Files that can be added to the registry
+		/// Tries to load the IWrapperFactory from the passed File
 		/// </summary>
-		/// <param name="folder">The Folder you want to scan</param>
-		public void Scan(string folder) 
+		/// <param name="file">The File where to look in</param>
+		/// <returns>null or a Wrapper Factory</returns>
+        public static void LoadWrapperFactory(string file, LoadFileWrappersExt lfw)
 		{
-			if (!Directory.Exists(folder)) return;
+			object o = LoadPlugin(file, typeof(IWrapperFactory), lfw);
 
-			string[] files = System.IO.Directory.GetFiles(folder, "*.plugin.dll");
-
-			foreach(string file in files) 
-			{
-				string flname = System.IO.Path.GetFileName(file).Trim().ToLower();
-
-				//this is a manua List of Wrappers that are know to cause Problems
-				if (ignore.Contains(flname)) continue;
-
-#if !DEBUG
-				try 
-#endif
-                {
-					IWrapperFactory factory = LoadWrapperFactory(file);
-					if (factory!=null) reg.Register(factory);
-
-                }
-#if !DEBUG
-				catch (Exception ex) 
-				{
-					Exception e = new Exception("Unable to load WrapperFactory", new Exception("Invalid Interface in "+file, ex));
-					reg.Register(new SimPe.PackedFiles.Wrapper.ErrorWrapper(file, ex));
-					Helper.ExceptionMessage(ex);
-				}
-#endif
-
-#if !DEBUG
-                try 
-#endif
-				{
-					IToolFactory tfactory = LoadToolFactory(file);
-					if (tfactory!=null) treg.Register(tfactory);
-                }
-#if !DEBUG
-				catch (Exception ex) 
-				{
-					Exception e = new Exception("Unable to load ToolFactory", new Exception("Invalid Interface in "+file, ex));
-					Helper.ExceptionMessage(e);
-
-				}
-#endif
-            }
+            if (o != null) lfw.reg.Register((IWrapperFactory)o);
 		}
+
+        public static void LoadErrorWrapper(SimPe.PackedFiles.Wrapper.ErrorWrapper w, LoadFileWrappersExt lfw)
+        {
+            lfw.reg.Register(w);
+        }
 
 		/// <summary>
 		/// Tries to load the IWrapperFactory from the passed File
 		/// </summary>
 		/// <param name="file">The File where to look in</param>
 		/// <returns>null or a Wrapper Factory</returns>
-		public static IWrapperFactory LoadWrapperFactory(string file)
+        public static void LoadToolFactory(string file, LoadFileWrappersExt lfw)
 		{
-			Type interfaceType = typeof(IWrapperFactory);
-			object o = LoadPlugin(file, interfaceType);
+            object o = LoadPlugin(file, typeof(IToolFactory), lfw);
 
-			if (o!=null) return (IWrapperFactory)o;
-			else return null;
-		}
-
-		/// <summary>
-		/// Tries to load the IWrapperFactory from the passed File
-		/// </summary>
-		/// <param name="file">The File where to look in</param>
-		/// <returns>null or a Wrapper Factory</returns>
-		public static IToolFactory LoadToolFactory(string file)
-		{
-			Type interfaceType = typeof(IToolFactory);
-			object o = LoadPlugin(file, interfaceType);
-
-			if (o!=null) return (IToolFactory)o;
-			else return null;
+            if (o != null) lfw.treg.Register((IToolFactory)o);
 		}
 
 		/// <summary>
@@ -268,9 +218,10 @@ namespace SimPe
 		/// <param name="file">The File the Class is stored in</param>
 		/// <param name="interfaceType">The Type of the FIle</param>
 		/// <returns>The Class Implementing the given type or null if none was found</returns>
-		public static object LoadPlugin(string file, Type interfaceType)
+        public static object LoadPlugin(string file, Type interfaceType, LoadFileWrappersExt lfw)
 		{
-			if (!File.Exists(file)) return null;
+            if (lfw.ignore.Contains(System.IO.Path.GetFileName(file).Trim().ToLower())) return null;
+            if (!File.Exists(file)) return null;
             if (!Helper.CanLoadPlugin(file)) return null;
 
 			AssemblyName myAssemblyName;
@@ -294,11 +245,8 @@ namespace SimPe
 					if (mit != null)
 
                     {
-                        Splash.Screen.SetMessage(SimPe.Localization.GetString("Loading")+" " + t.Name);
-					
 						object obj = Activator.CreateInstance(t);
 						return obj;
-					
 					}
 				}
 			} 
