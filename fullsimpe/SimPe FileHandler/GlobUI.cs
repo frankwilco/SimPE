@@ -1,6 +1,8 @@
 /***************************************************************************
  *   Copyright (C) 2005 by Ambertation                                     *
  *   quaxi@ambertation.de                                                  *
+ *   Copyright (C) 2008 by Peter L Jones                                   *
+ *   peter@users.sf.net                                                    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -35,45 +37,22 @@ namespace SimPe.Plugin
 		/// </summary>
         private GlobCtrl form;
 
-		static System.Collections.ArrayList globs = null;
-		static void BuildGlobList() 
-		{
-			if (globs!=null) return;
-			globs = new System.Collections.ArrayList();
-
-			FileTable.FileIndex.Load();
-			Interfaces.Scenegraph.IScenegraphFileIndexItem[] iglobs = FileTable.FileIndex.FindFile(Data.MetaData.GLOB_FILE, true);
-			System.Collections.ArrayList names = new System.Collections.ArrayList();
-			string max = " / "+iglobs.Length.ToString();
-			int ct = 0;
-			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item in iglobs) 
-			{
-                if (WaitingScreen.Running) WaitingScreen.UpdateMessage(ct.ToString() + max);
-				ct++;
-
-				SimPe.Plugin.NamedGlob glob = new SimPe.Plugin.NamedGlob();
-				glob.ProcessData(item.FileDescriptor, item.Package);
-
-				if (!names.Contains(glob.SemiGlobalName.Trim().ToLower())) 
-				{
-					Data.SemiGlobalAlias g = new SimPe.Data.SemiGlobalAlias(true, glob.SemiGlobalGroup, glob.SemiGlobalName);
-					globs.Add(g);
-					names.Add(glob.SemiGlobalName.Trim().ToLower());
-				}
-			}
-		}
-
 		/// <summary>
 		/// Constructor for the Class
 		/// </summary>
 		public GlobUI()
 		{
             form = new GlobCtrl();
-
 			form.cbseminame.Items.Clear();
-			BuildGlobList();
-			foreach (Data.SemiGlobalAlias a in globs) if (a.Known) form.cbseminame.Items.Add(a);
-		}
+
+            System.Collections.ArrayList names = new System.Collections.ArrayList();
+            foreach (SimPe.Data.SemiGlobalAlias sga in SimPe.Data.MetaData.SemiGlobals)
+                if (!names.Contains(sga.Name.Trim().ToLower()))
+                {
+                    if (sga.Known) form.cbseminame.Items.Add(sga);
+                    names.Add(sga.Name.Trim().ToLower());
+                }
+        }
 		#endregion
 
 		#region IPackedFileUI Member
