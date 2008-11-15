@@ -199,7 +199,7 @@
       <int name="Flag">34</int><!-- 00100010 -->
       <string name="ExeName">Sims2SP4.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
-      <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string> <!-- Provided by Carrigon -->
+      <string name="ObjectsFolder">TSData\Res\StuffPack\Objects</string> <!-- Provided by Carrigon -->
       <int name="Group">1</int>
       <string name="namelistnr"> 4</string>
       <key name="en">
@@ -222,7 +222,7 @@
       <int name="Flag">34</int><!-- 00100010 -->
       <string name="ExeName">Sims2SP5.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
-      <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string>
+      <string name="ObjectsFolder">TSData\Res\StuffPack\Objects</string>
       <int name="Group">1</int>
       <string name="namelistnr"> 5</string>
       <key name="en">
@@ -275,7 +275,7 @@
       <int name="Flag">34</int><!-- 00100010 -->
       <string name="ExeName">Sims2SP6.exe</string>
       <string name="Censor">quaxi_pets_censor_v1.package</string>
-      <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string>
+      <string name="ObjectsFolder">TSData\Res\StuffPack\Objects</string>
       <int name="Group">1</int>
       <string name="namelistnr"> 6</string>
       <key name="en">
@@ -445,7 +445,7 @@
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <int name="Group">2</int>
       <cilist name="SaveGameLocationsForGroup">
-        <string name="0">{MyDocuments}\\Electronic Arts\\{DisplayName}</string>
+        <string name="0">{MyDocuments}\Electronic Arts\{DisplayName}</string>
       </cilist>
       <string name="namelistnr"> 1</string>
       <key name="en">
@@ -485,7 +485,7 @@
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <int name="Group">8</int>
       <cilist name="SaveGameLocationsForGroup">
-        <string name="0">{MyDocuments}\\Electronic Arts\\{DisplayName}</string>
+        <string name="0">{MyDocuments}\Electronic Arts\{DisplayName}</string>
       </cilist>
       <string name="namelistnr"> 3</string>
       <key name="en">
