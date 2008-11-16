@@ -380,7 +380,8 @@ namespace SimPe.Plugin
 		//all covered by Serialize()
 		#endregion
 
-		#region IFileWrapper Member
+        public const uint Ltxttype = 0x0BF999E7;
+        #region IFileWrapper Member
 
 		/// <summary>
 		/// Returns the Signature that can be used to identify Files processable with this Plugin
@@ -396,16 +397,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Returns a list of File Type this Plugin can process
 		/// </summary>
-		public uint[] AssignableTypes
-		{
-			get
-			{
-				uint[] types = {
-								   0x0BF999E7   //handles the LTXT File
-							   };
-				return types;
-			}
-		}
+		public uint[] AssignableTypes { get { return new uint[] { Ltxttype, }; } }
 
 		#endregion		
 
