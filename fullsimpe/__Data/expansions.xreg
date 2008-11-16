@@ -253,7 +253,7 @@
  
       </cilist>
       <cilist name="AdditionalFileTableFolders">
-        <string name="0">!TSData\Res\Overrides\</string>
+        <string name="0">!TSData\Res\Overrides</string>
       </cilist>
       <string name="namelistnr"> 6</string>
       <key name="en">
@@ -324,7 +324,7 @@
         <string name="0">TSData\Res\NeighborhoodTemplate\F002\Characters\</string>
       </cilist>
       <cilist name="AdditionalFileTableFolders">
-        <string name="0">!TSData\Res\Overrides\</string>
+        <string name="0">!TSData\Res\Overrides</string>
       </cilist>
       <string name="namelistnr"> 7</string>
       <key name="en">
@@ -397,7 +397,7 @@
         <string name="0">TSData\Res\NeighborhoodTemplate\E002\Characters\</string>
       </cilist>
       <cilist name="AdditionalFileTableFolders">
-        <string name="0">!TSData\Res\Overrides\</string>
+        <string name="0">!TSData\Res\Overrides</string>
       </cilist>
       <string name="namelistnr"> 8</string>
       <key name="en">
