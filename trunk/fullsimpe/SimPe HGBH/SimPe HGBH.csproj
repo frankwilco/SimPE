@@ -258,6 +258,7 @@
     <Compile Include="BnfoWrapper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LotWrapper.cs" />
     <Compile Include="ExtNgbh.cs">
       <SubType>Code</SubType>
     </Compile>
