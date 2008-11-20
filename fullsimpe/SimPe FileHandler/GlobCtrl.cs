@@ -57,25 +57,24 @@ namespace SimPe.Plugin
 
         private void SemiGlobalChanged(object sender, System.EventArgs e)
         {
-
-
             if (cbseminame.SelectedIndex < 0)
             {
-                this.tbgroup.Text = "0xffffffff";
-                foreach (Data.SemiGlobalAlias a in cbseminame.Items)
+                for (int i = 0; i < cbseminame.Items.Count; i++)
                 {
+                    Data.SemiGlobalAlias a = cbseminame.Items[i] as Data.SemiGlobalAlias;
                     if (a.Name.ToLower() == cbseminame.Text.ToLower())
                     {
-                        tbgroup.Text = "0x" + Helper.HexString(a.Id);
-                        break;
+                        cbseminame.SelectedIndex = i;
+                        return;
                     }
                 }
-
-                return;
+                tbgroup.Text = "0x" + Helper.HexString(Hashes.GroupHash(cbseminame.Text));
             }
-
-            Data.SemiGlobalAlias al = (Data.SemiGlobalAlias)cbseminame.Items[cbseminame.SelectedIndex];
-            tbgroup.Text = "0x" + Helper.HexString(al.Id);
+            else
+            {
+                Data.SemiGlobalAlias a = cbseminame.Items[cbseminame.SelectedIndex] as Data.SemiGlobalAlias;
+                tbgroup.Text = "0x" + Helper.HexString(a.Id);
+            }
 
             if (cbseminame.Tag == null)
             {
@@ -93,20 +92,5 @@ namespace SimPe.Plugin
         }
         #endregion
 
-
-        private void label43_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbgroup_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label42_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
