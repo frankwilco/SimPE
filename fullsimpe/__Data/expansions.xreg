@@ -419,15 +419,16 @@
       </key>
     </key>
 
-    <!-- Information about The Sims 2 Mansions and Gardens -->
+    <!-- Information about The Sims 2 Mansions and Gardens (EP! Thanks Numenor) -->
     <key name="Mansions">
       <int name="Version">17</int>
-      <int name="PreferedRuntimeVersion">16</int>
-      <string name="RegKey">Software\EA Games\The Sims 2 Mansions and Gardens Stuff</string>
-      <int name="Flag">34</int><!-- 00100010 -->
-      <string name="ExeName">Sims2SP9.exe</string>
+      <string name="RegKey">Software\EA Games\The Sims 2 Mansion and Garden Stuff</string>
+      <int name="Flag">13</int><!-- 00001101 -->
+      <string name="ExeName">Sims2EP9.exe</string>
       <string name="Censor">quaxi_pets_censor_v1.package</string>
-      <string name="ObjectsFolder">TSData\Res\StuffPack\Objects</string>
+	  <cilist name="AdditionalFileTableFolders">
+        <string name="0">!TSData\Res\Overrides\</string>
+      </cilist>
       <int name="Group">1</int>
       <string name="namelistnr">10</string>
       <key name="en">
