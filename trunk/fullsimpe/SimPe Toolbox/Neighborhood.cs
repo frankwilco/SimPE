@@ -272,7 +272,7 @@ namespace SimPe.Plugin
 			if (System.IO.File.Exists(name)) 
 			{
                 actime = " (" + System.IO.File.GetLastWriteTime(name).ToString();
-                if (Helper.WindowsRegistry.HiddenMode) actime += ", " + NeighborhoodIdentifier(flname);
+                /*if (Helper.WindowsRegistry.HiddenMode)*/ actime += ", " + NeighborhoodIdentifier(flname);
                 actime += ")";
 				ret = true;
 				try 
