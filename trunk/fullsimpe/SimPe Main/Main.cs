@@ -781,5 +781,13 @@ namespace SimPe
                 , tsmiSavePrefs.Text
                 , MessageBoxButtons.OK);
         }
+
+        private void tsmiStopWaiting_Click(object sender, EventArgs e)
+        {
+            Application.UseWaitCursor = false;
+            Wait.Stop();
+            WaitingScreen.Stop();
+            Splash.Screen.Stop();
+        }
     }
 }
