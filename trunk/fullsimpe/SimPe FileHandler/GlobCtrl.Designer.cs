@@ -47,7 +47,6 @@
             this.tbgroup.Size = new System.Drawing.Size(100, 20);
             this.tbgroup.TabIndex = 16;
             this.tbgroup.Text = "0x0";
-            this.tbgroup.TextChanged += new System.EventHandler(this.tbgroup_TextChanged);
             // 
             // label43
             // 
@@ -59,7 +58,6 @@
             this.label43.Size = new System.Drawing.Size(47, 13);
             this.label43.TabIndex = 15;
             this.label43.Text = "Group:";
-            this.label43.Click += new System.EventHandler(this.label43_Click);
             // 
             // cbseminame
             // 
@@ -68,9 +66,10 @@
             this.cbseminame.ItemHeight = 13;
             this.cbseminame.Location = new System.Drawing.Point(57, 30);
             this.cbseminame.Name = "cbseminame";
-            this.cbseminame.Size = new System.Drawing.Size(184, 21);
+            this.cbseminame.Size = new System.Drawing.Size(190, 21);
             this.cbseminame.TabIndex = 14;
             this.cbseminame.SelectedIndexChanged += new System.EventHandler(this.SemiGlobalChanged);
+            this.cbseminame.TextUpdate += new System.EventHandler(this.SemiGlobalChanged);
             // 
             // label42
             // 
@@ -82,14 +81,13 @@
             this.label42.Size = new System.Drawing.Size(45, 13);
             this.label42.TabIndex = 12;
             this.label42.Text = "Name:";
-            this.label42.Click += new System.EventHandler(this.label42_Click);
             // 
             // button3
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(161, 102);
+            this.button3.Location = new System.Drawing.Point(167, 102);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(80, 23);
             this.button3.TabIndex = 2;
@@ -106,7 +104,7 @@
             this.panel6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(808, 24);
+            this.panel6.Size = new System.Drawing.Size(277, 24);
             this.panel6.TabIndex = 0;
             // 
             // lbglobfile
@@ -143,7 +141,7 @@
             this.Controls.Add(this.label42);
             this.Controls.Add(this.button3);
             this.Name = "GlobCtrl";
-            this.Size = new System.Drawing.Size(808, 408);
+            this.Size = new System.Drawing.Size(277, 141);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.ResumeLayout(false);
