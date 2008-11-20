@@ -30,7 +30,7 @@ using System.Runtime.CompilerServices;
 // Sie können alle Werte oder die standardmäßige Revision und Buildnummer 
 // mit '*' angeben:
 
-[assembly: AssemblyVersion("0.73.19.*")]
+[assembly: AssemblyVersion("0.73.20.*")]
 
 //
 // Um die Assembly zu signieren, müssen Sie einen Schlüssel angeben. Weitere Informationen 
