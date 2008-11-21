@@ -69,6 +69,8 @@ namespace SimPe
             this.cbProfiles.FormattingEnabled = true;
             resources.ApplyResources(this.cbProfiles, "cbProfiles");
             this.cbProfiles.Name = "cbProfiles";
+            this.cbProfiles.TextUpdate += new System.EventHandler(this.cbProfiles_TextChanged);
+            this.cbProfiles.TextChanged += new System.EventHandler(this.cbProfiles_TextChanged);
             // 
             // ProfileChooser
             // 
