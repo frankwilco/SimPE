@@ -66,6 +66,11 @@
   </semiglobal>
   <semiglobal>
     <known />
+    <group>7F759586</group>
+    <name>WaterPlantGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
     <group>7FE10572</group>
     <name>ShoppingRackGlobals</name>
   </semiglobal>
@@ -106,6 +111,11 @@
   </semiglobal>
   <semiglobal>
     <known />
+    <group>7F84A9F4</group>
+    <name>MirrorGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
     <group>7F48CA31</group>
     <name>PlantGlobals</name>
   </semiglobal>
@@ -143,11 +153,6 @@
     <known />
     <group>7F7638B3</group>
     <name>SinkGlobals</name>
-  </semiglobal>
-  <semiglobal>
-    <known />
-    <group>7FDC2970</group>
-    <name>Displayglobals</name>
   </semiglobal>
   <semiglobal>
     <known />
@@ -236,11 +241,6 @@
   </semiglobal>
   <semiglobal>
     <known />
-    <group>7F84A9F4</group>
-    <name>MirrorGlobals</name>
-  </semiglobal>
-  <semiglobal>
-    <known />
     <group>7FA3FCFE</group>
     <name>TrashGlobals</name>
   </semiglobal>
@@ -276,6 +276,11 @@
   </semiglobal>
   <semiglobal>
     <known />
+    <group>7F62606D</group>
+    <name>WeatherGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
     <group>7F675EF2</group>
     <name>SocialMarkerGlobals</name>
   </semiglobal>
@@ -306,13 +311,13 @@
   </semiglobal>
   <semiglobal>
     <known />
-    <group>7F62606D</group>
-    <name>WeatherGlobals</name>
+    <group>7F3A03A4</group>
+    <name>MailBoxGlobals</name>
   </semiglobal>
   <semiglobal>
     <known />
-    <group>7F3A03A4</group>
-    <name>MailBoxGlobals</name>
+    <group>7FDC2970</group>
+    <name>Displayglobals</name>
   </semiglobal>
   <semiglobal>
     <known />
@@ -356,11 +361,6 @@
   </semiglobal>
   <semiglobal>
     <known />
-    <group>7F1BFB16</group>
-    <name>BigRinkGlobals</name>
-  </semiglobal>
-  <semiglobal>
-    <known />
     <group>7FFD4F2D</group>
     <name>FireplaceGlobals</name>
   </semiglobal>
@@ -396,6 +396,11 @@
   </semiglobal>
   <semiglobal>
     <known />
+    <group>7F74C118</group>
+    <name>ArcadeGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
     <group>7F0AB421</group>
     <name>DateRewardGlobals</name>
   </semiglobal>
@@ -411,13 +416,13 @@
   </semiglobal>
   <semiglobal>
     <known />
-    <group>7F48AF7A</group>
-    <name>ClothingBoothGlobals</name>
+    <group>7FB01AF3</group>
+    <name>Clock_Alarm_Globals</name>
   </semiglobal>
   <semiglobal>
     <known />
-    <group>7F3B5482</group>
-    <name>StairsSpiralGlobals</name>
+    <group>7F48AF7A</group>
+    <name>ClothingBoothGlobals</name>
   </semiglobal>
   <semiglobal>
     <known />
@@ -428,6 +433,11 @@
     <known />
     <group>7FE69D2A</group>
     <name>TelevisionChannelGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F1BFB16</group>
+    <name>BigRinkGlobals</name>
   </semiglobal>
   <semiglobal>
     <known />
@@ -448,11 +458,6 @@
     <known />
     <group>7F20C1E4</group>
     <name>MagazineGlobals</name>
-  </semiglobal>
-  <semiglobal>
-    <known />
-    <group>7F759586</group>
-    <name>WaterPlantGlobals</name>
   </semiglobal>
   <semiglobal>
     <known />
@@ -478,6 +483,11 @@
     <known />
     <group>7F17E3A4</group>
     <name>MajorGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F6662D5</group>
+    <name>ightGlobals</name>
   </semiglobal>
   <semiglobal>
     <known />
@@ -576,13 +586,18 @@
   </semiglobal>
   <semiglobal>
     <known />
-    <group>7FD3AF67</group>
-    <name>ThoughtGlobals</name>
+    <group>7FE1C9FB</group>
+    <name>MicrowaveGlobals</name>
   </semiglobal>
   <semiglobal>
     <known />
-    <group>7F74C118</group>
-    <name>ArcadeGlobals</name>
+    <group>7FC6E1D8</group>
+    <name>CeilingFanGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FD3AF67</group>
+    <name>ThoughtGlobals</name>
   </semiglobal>
   <semiglobal>
     <known />
@@ -641,11 +656,6 @@
   </semiglobal>
   <semiglobal>
     <known />
-    <group>7F6662D5</group>
-    <name>ightGlobals</name>
-  </semiglobal>
-  <semiglobal>
-    <known />
     <group>7F8C6EDA</group>
     <name>CareerCandyFactoryGlobals</name>
   </semiglobal>
@@ -701,11 +711,6 @@
   </semiglobal>
   <semiglobal>
     <known />
-    <group>7FE1C9FB</group>
-    <name>MicrowaveGlobals</name>
-  </semiglobal>
-  <semiglobal>
-    <known />
     <group>7FDA22BB</group>
     <name>StoveGrill_Globals</name>
   </semiglobal>
@@ -746,8 +751,8 @@
   </semiglobal>
   <semiglobal>
     <known />
-    <group>7FB01AF3</group>
-    <name>Clock_Alarm_Globals</name>
+    <group>7F3B5482</group>
+    <name>StairsSpiralGlobals</name>
   </semiglobal>
   <semiglobal>
     <known />
