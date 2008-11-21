@@ -67,7 +67,7 @@ namespace SimPe
         /// <summary>
         /// True if the WaitingScreen is displayed
         /// </summary>
-        public static bool Running { get { return scr != null; } }
+        public static bool Running { get { return count > 0; } }
         /// <summary>
         /// Returns the Size of the Dispalyed Image
         /// </summary>
@@ -77,11 +77,12 @@ namespace SimPe
         static WaitingScreen scr;
         static object lockFrm = new object();
         static object lockScr = new object();
+        static uint count = 0;
         static WaitingScreen Screen
         {
             get
             {
-                System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen.getScreen");
+                System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen.getScreen: " + count);
                 lock (lockScr)
                 {
                     if (scr == null)
@@ -97,17 +98,17 @@ namespace SimPe
         string prevMessage = "";
         SimPe.WaitingForm frm;
 
-        void doUpdate(System.Drawing.Image image) { System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen.doUpdate(image)"); lock (lockFrm) { prevImage = image; if (frm != null) frm.SetImage(image); } Application.DoEvents(); }
-        void doUpdate(string msg) { System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen.doUpdate(message): " + msg); lock (lockFrm) { prevMessage = msg; if (frm != null) frm.SetMessage(msg); } Application.DoEvents(); }
+        void doUpdate(System.Drawing.Image image) { System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen.doUpdate(image): " + count); lock (lockFrm) { prevImage = image; if (frm != null) frm.SetImage(image); } Application.DoEvents(); }
+        void doUpdate(string msg) { System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen.doUpdate(message): " + msg + ", " + count); lock (lockFrm) { prevMessage = msg; if (frm != null) frm.SetMessage(msg); } Application.DoEvents(); }
         void doUpdate(System.Drawing.Image image, string msg) { doUpdate(image); doUpdate(msg); }
-        void doWait() { System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen.doWait()"); Application.UseWaitCursor = true; lock (lockFrm) { if (frm != null) frm.StartSplash(); } }
-        void doStop() { System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen.doStop()"); Application.UseWaitCursor = false; lock (lockFrm) { if (frm != null) frm.StopSplash(); } }
+        void doWait() { System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen.doWait(): " + ++count); Application.UseWaitCursor = true; lock (lockFrm) { if (frm != null) frm.StartSplash(); } }
+        void doStop() { System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen.doStop(): " + count--); Application.UseWaitCursor = false; lock (lockFrm) { if (frm != null) frm.StopSplash(); } }
 
 
 
         private WaitingScreen()
         {
-            System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen..ctor()");
+            System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen..ctor(): " + count);
             if (Helper.WindowsRegistry.WaitingScreen)
             {
                 lock (lockFrm)
@@ -119,8 +120,8 @@ namespace SimPe
                     prevMessage = frm.Message;
                     doUpdate(prevImage, prevMessage);
                     System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen..ctor() - set frm.Image and frm.Message");
-                    frm.StartSplash();
-                    System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen..ctor() - returned from frm.StartSplash()");
+                    //frm.StartSplash();
+                    //System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen..ctor() - returned from frm.StartSplash()");
                 }
             }
         }
@@ -137,6 +138,7 @@ namespace SimPe
                     scr = null;
                 }
             }
+            count = 0;
         }
     }
 }
