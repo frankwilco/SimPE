@@ -515,7 +515,7 @@ namespace SimPe
 			if (list==null) return;
 			bool run = WaitingScreen.Running;
 			if (!run) WaitingScreen.Wait();
-			WaitingScreen.UpdateMessage("Saving File");
+			WaitingScreen.UpdateMessage("Load Descriptors From Disk");
 			//list = new PackedFileDescriptors();
 			try 
 			{
