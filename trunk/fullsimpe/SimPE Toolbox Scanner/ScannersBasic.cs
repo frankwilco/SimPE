@@ -557,6 +557,9 @@ namespace SimPe.Plugin.Scanner
 			if (list==null) list = new Hashtable();
 			else list.Clear();
 
+            string WaitingScreenMessage = "";
+            if (WaitingScreen.Running) WaitingScreenMessage = WaitingScreen.Message;
+            if (WaitingScreen.Running) WaitingScreen.Message = "Init Cache File";
 			if (cachefile==null) 
 			{
 				cachefile = MemoryCacheFile.InitCacheFile();
@@ -572,7 +575,8 @@ namespace SimPe.Plugin.Scanner
 			AbstractScanner.AddColumn(ListView, "Duplicate GUID", 80);
 			AbstractScanner.AddColumn(ListView, "First found", 80);
 
-			foreach (MemoryCacheItem mci in cachefile.List) 
+            if (WaitingScreen.Running) WaitingScreen.Message = "Create hashtable";
+            foreach (MemoryCacheItem mci in cachefile.List) 
 			{
 				string flname = null;
 				if (mci.ParentCacheContainer==null)  
@@ -592,7 +596,8 @@ namespace SimPe.Plugin.Scanner
 					}
 				}*/
 			}
-		}
+            if (WaitingScreen.Running) WaitingScreen.Message = WaitingScreenMessage;
+        }
 
 
 		public void ScanPackage(ScannerItem si, SimPe.Cache.PackageState ps, System.Windows.Forms.ListViewItem lvi)

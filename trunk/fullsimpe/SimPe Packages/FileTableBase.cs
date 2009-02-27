@@ -1,3 +1,24 @@
+/***************************************************************************
+ *   Copyright (C) 2005-2008 by Peter L Jones                              *
+ *   peter@drealm.info                                                     *
+ *   Copyright (C) 2005 by Ambertation                                     *
+ *   quaxi@ambertation.de                                                  *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
 using System;
 using System.Collections;
 using System.Xml;
@@ -38,12 +59,12 @@ namespace SimPe
 
                 ArrayList folders = new ArrayList();
 
-                System.Xml.XmlReaderSettings xrs = new XmlReaderSettings();
+                XmlReaderSettings xrs = new XmlReaderSettings();
                 xrs.CloseInput = true;
                 xrs.IgnoreComments = true;
                 xrs.IgnoreProcessingInstructions = true;
                 xrs.IgnoreWhitespace = true;
-                System.Xml.XmlReader xr = System.Xml.XmlReader.Create(filename, xrs);
+                XmlReader xr = XmlReader.Create(filename, xrs);
                 try
                 {
                     xr.ReadStartElement("folders");
@@ -138,11 +159,11 @@ namespace SimPe
         {
             try
             {
-                System.Xml.XmlWriterSettings xws = new System.Xml.XmlWriterSettings();
+                XmlWriterSettings xws = new XmlWriterSettings();
                 xws.CloseOutput = true;
                 xws.Indent = true;
                 xws.Encoding = System.Text.Encoding.UTF8;
-                System.Xml.XmlWriter xw = System.Xml.XmlWriter.Create(Helper.DataFolder.FoldersXREGW, xws);
+                XmlWriter xw = XmlWriter.Create(Helper.DataFolder.FoldersXREGW, xws);
 
                 try
                 {
@@ -213,11 +234,11 @@ namespace SimPe
         {
             try
             {
-                System.Xml.XmlWriterSettings xws = new System.Xml.XmlWriterSettings();
+                XmlWriterSettings xws = new XmlWriterSettings();
                 xws.CloseOutput = true;
                 xws.Indent = true;
                 xws.Encoding = System.Text.Encoding.UTF8;
-                System.Xml.XmlWriter xw = System.Xml.XmlWriter.Create(Helper.DataFolder.FoldersXREGW, xws);
+                XmlWriter xw = XmlWriter.Create(Helper.DataFolder.FoldersXREGW, xws);
 
                 try
                 {
@@ -291,7 +312,7 @@ namespace SimPe
             }
         }
 
-        private static void writenode(System.Xml.XmlWriter xw, bool ign, string root, string version, string folder)
+        private static void writenode(XmlWriter xw, bool ign, string root, string version, string folder)
         {
             xw.WriteStartElement("path");
             if (ign)

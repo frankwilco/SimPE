@@ -161,10 +161,12 @@ namespace SimPe.Packages
 		/// <param name="flname">Filename for the Package</param>
 		protected void Save(MemoryStream ms, string flname)
 		{
-			string bakfile = GetBakFileName(flname);
-			string tmpfile = System.IO.Path.GetTempFileName();
+            StreamFactory.CloseStream(flname);
+
+            string tmpfile = System.IO.Path.GetTempFileName();
 			try 
 			{
+                // Try to save to a temp file
 				System.IO.FileStream fs = new FileStream(tmpfile, FileMode.Create);
 				try 
 				{
@@ -177,19 +179,21 @@ namespace SimPe.Packages
 					fs = null;
 				}
 
-				if (System.IO.File.Exists(bakfile)) System.IO.File.Delete(bakfile);
+                // If the destination already exists...
 				if (System.IO.File.Exists(flname)) 
 				{
-					StreamFactory.CloseStream(flname);
-					
-					if (Helper.WindowsRegistry.AutoBackup) System.IO.File.Copy(flname, bakfile, true);
-					System.IO.File.Delete(flname);
-				}
-				
-				System.IO.File.Move(tmpfile, flname);
+                    // ...back up the current package content...
+                    if (Helper.WindowsRegistry.AutoBackup)
+                    {
+                        string bakfile = GetBakFileName(flname);
+                        if (System.IO.File.Exists(bakfile))
+                            System.IO.File.Delete(bakfile);
+                        System.IO.File.Copy(flname, bakfile, true);
+                    }
 
-				if (!Helper.WindowsRegistry.AutoBackup) 
-					if (System.IO.File.Exists(bakfile)) System.IO.File.Delete(bakfile);
+                    // ...and get rid
+                    System.IO.File.Delete(flname);
+				}
 			} 
 			catch (Exception ex) 
 			{
@@ -197,7 +201,11 @@ namespace SimPe.Packages
 				throw ex;
 			}
 
-			StreamItem si = StreamFactory.UseStream(flname, FileAccess.Read);
+            // At this point we have successfully written tmpfile and deleted flname
+            // Rename the temp file to the destination
+            System.IO.File.Move(tmpfile, flname);
+
+			StreamFactory.UseStream(flname, FileAccess.Read);
 		}
 
 		/// <summary>

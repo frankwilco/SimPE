@@ -236,7 +236,7 @@ namespace SimPe
                 i = ArgParser.Parse(argv, "-enable");
                 if (i >= 0) { haveEnable = true; needEnable = false; } else return false;
 
-                List<string> flags = new List<string>(new string[] { "localmode", "noplugins", "fileformat", "noerrors", });
+                List<string> flags = new List<string>(new string[] { "localmode", "noplugins", "fileformat", "noerrors", "anypackage", });
                 while (!needEnable)
                 {
                     if (argv.Count <= i) { Message.Show(Help()[0]); return true; } // -enable {nothing}
@@ -246,6 +246,7 @@ namespace SimPe
                         case 1: Helper.NoPlugins = true; haveEnable = false; break;
                         case 2: Helper.FileFormat = true; haveEnable = false; break;
                         case 3: Helper.NoErrors = true; haveEnable = false; break;
+                        case 4: Helper.AnyPackage = true; haveEnable = false; break;
                         default:
                             if (haveEnable) { Message.Show(Help()[0]); return true; } // -enable {unknown}
                             else { needEnable = true; break; } // done one lot of -enables
@@ -255,6 +256,7 @@ namespace SimPe
                         i = ArgParser.Parse(argv, "-enable");
                         if (i >= 0) { haveEnable = true; needEnable = false; }
                     }
+                    if (!haveEnable && argv.Count <= i) break; // processed everything
                 }
 
                 if (Helper.LocalMode || Helper.NoPlugins || Helper.NoErrors)
@@ -269,7 +271,7 @@ namespace SimPe
                 return false; // Don't exit SimPE!
             }
 
-            public string[] Help() { return new string[] { "-enable localmode  -enable noplugins  -enable fileformat  -enable noerrors", null }; }
+            public string[] Help() { return new string[] { "-enable localmode  -enable noplugins  -enable fileformat  -enable noerrors  -enable anypackage", null }; }
 
             #endregion
         }

@@ -8,8 +8,8 @@
     <RemoteDebugMachine>
     </RemoteDebugMachine>
     <StartAction>Program</StartAction>
-    <StartProgram>J:\Dynamic\Projects\SimPE\fullsimpe-svn\__Debug\SimPe.exe</StartProgram>
-    <StartWorkingDirectory>J:\Dynamic\Projects\SimPE\fullsimpe-svn\__Debug\</StartWorkingDirectory>
+    <StartProgram>D:\Development\SimPE\fullsimpe-svn\__Debug\SimPe.exe</StartProgram>
+    <StartWorkingDirectory>D:\Development\SimPE\fullsimpe-svn\__Debug\</StartWorkingDirectory>
     <StartArguments>
     </StartArguments>
     <StartPage>
@@ -27,8 +27,8 @@
     <RemoteDebugMachine>
     </RemoteDebugMachine>
     <StartAction>Program</StartAction>
-    <StartProgram>J:\Dynamic\Projects\SimPE\SimPe\SimPe.exe</StartProgram>
-    <StartWorkingDirectory>J:\Dynamic\Projects\SimPE\SimPe\</StartWorkingDirectory>
+    <StartProgram>D:\Development\SimPE\SimPe\SimPe.exe</StartProgram>
+    <StartWorkingDirectory>D:\Development\SimPE\SimPe\</StartWorkingDirectory>
     <StartArguments>
     </StartArguments>
     <StartPage>
@@ -38,6 +38,6 @@
     <StartWithIE>false</StartWithIE>
   </PropertyGroup>
   <PropertyGroup>
-    <ReferencePath>J:\Dynamic\Projects\SimPE\SimPe\</ReferencePath>
+    <ReferencePath>D:\Development\SimPE\SimPe\</ReferencePath>
   </PropertyGroup>
 </Project>

@@ -81,21 +81,22 @@ namespace SimPe.Plugin
         public class SubLot
         {
             uint apartmentSublot; public uint ApartmentSublot { get { return apartmentSublot; } set { apartmentSublot = value; } }
-            uint unknown_1; internal uint Unknown1 { get { return unknown_1; } set { unknown_1 = value; } }
+            uint family; public uint Family { get { return family; } set { family = value; } }
             uint unknown_2; internal uint Unknown2 { get { return unknown_2; } set { unknown_2 = value; } }
             uint unknown_3; internal uint Unknown3 { get { return unknown_3; } set { unknown_3 = value; } }
+            internal SubLot() { }
             internal SubLot(System.IO.BinaryReader reader) { this.Unserialize(reader); }
             private void Unserialize(System.IO.BinaryReader reader)
             {
                 apartmentSublot = reader.ReadUInt32();
-                unknown_1 = reader.ReadUInt32();
+                family = reader.ReadUInt32();
                 unknown_2 = reader.ReadUInt32();
                 unknown_3 = reader.ReadUInt32();
             }
             internal void Serialize(System.IO.BinaryWriter writer)
             {
                 writer.Write(apartmentSublot);
-                writer.Write(unknown_1);
+                writer.Write(family);
                 writer.Write(unknown_2);
                 writer.Write(unknown_3);
             }

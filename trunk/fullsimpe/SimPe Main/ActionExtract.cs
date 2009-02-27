@@ -77,7 +77,8 @@ namespace SimPe.Actions.Default
 				xml += "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>" + Helper.lbr;		
 				xml += "<package type=\""+((uint)package.Header.IndexType).ToString()+"\">" + Helper.lbr;
 				for (int i=0; i<pfds.Length; i++) 
-				{								
+				{
+                    System.Windows.Forms.Application.DoEvents();		
 					Packages.PackedFileDescriptor fii = (Packages.PackedFileDescriptor)pfds[i];					
 					Data.TypeAlias a = fii.TypeName;
 

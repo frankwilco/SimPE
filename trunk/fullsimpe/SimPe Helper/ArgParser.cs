@@ -42,7 +42,7 @@ namespace SimPe
         {
             if (argv.Count <= index) return -1;
             int i = parm.IndexOf(argv[index]);
-            if (i > 0) argv.RemoveAt(index);
+            if (i >= 0) argv.RemoveAt(index);
             return i;
         }
 

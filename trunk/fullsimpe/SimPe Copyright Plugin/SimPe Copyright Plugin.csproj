@@ -51,7 +51,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\__Release\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -76,7 +76,7 @@
   <ItemGroup>
     <Reference Include="SandDock">
       <Name>SandDock</Name>
-      <HintPath>..\SimPe\bin\Release\SandDock.dll</HintPath>
+      <HintPath>..\__Release\SandDock.dll</HintPath>
     </Reference>
     <Reference Include="simpe.commonhandler">
       <Name>simpe.commonhandler</Name>
@@ -88,7 +88,7 @@
     </Reference>
     <Reference Include="simpe.gmdc.exporter.base">
       <Name>simpe.gmdc.exporter.base</Name>
-      <HintPath>..\SimPe\bin\Release\simpe.gmdc.exporter.base.dll</HintPath>
+      <HintPath>..\__Release\simpe.gmdc.exporter.base.dll</HintPath>
     </Reference>
     <Reference Include="simpe.helper">
       <Name>simpe.helper</Name>
@@ -104,7 +104,7 @@
     </Reference>
     <Reference Include="simpe.sims">
       <Name>simpe.sims</Name>
-      <HintPath>..\SimPe\bin\Release\simpe.sims.dll</HintPath>
+      <HintPath>..\__Release\simpe.sims.dll</HintPath>
     </Reference>
     <Reference Include="simpe.workspace">
       <Name>simpe.workspace</Name>

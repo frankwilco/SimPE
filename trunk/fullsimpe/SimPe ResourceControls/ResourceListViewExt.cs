@@ -45,7 +45,12 @@ namespace SimPe.Windows.Forms
                 lv.Columns.Remove(clSize);
                 lv.Columns.Remove(clOffset);
             }
-            
+
+            colHeads = new List<ColumnHeader>(new ColumnHeader[] { clType, clTName, clGroup, clInstHi, clInst, clOffset, clSize });
+        }
+        static ResourceListViewExt()
+        {
+            colNames = new List<string>(new string[] { "Name", "Type", "Group", "InstHi", "Inst", "Offset", "Size" });
         }
 
         public void BeginUpdate()
@@ -366,7 +371,50 @@ namespace SimPe.Windows.Forms
             set { lv.ContextMenuStrip = value; }
         }
 
-        static string[] colNames = new string[] { "Name", "Type", "Group", "InstHi", "Inst", "Offset", "Size" };
+
+
+
+        static List<string> colNames = null;
+        private List<ColumnHeader> colHeads = null;
+
+        private class CHSort : IComparer<ColumnHeader>
+        {
+            #region IComparer<ColumnHeader> Members
+
+            public int Compare(ColumnHeader x, ColumnHeader y)
+            {
+                if (x.ListView == null && y.ListView == null) return 0;
+                if (x.ListView == null) return 1;
+                if (y.ListView == null) return -1;
+                return x.DisplayIndex.CompareTo(y.DisplayIndex);
+            }
+
+            #endregion
+        }
+
+        private List<string> order = null;
+        /// <summary>
+        /// The colNames of the columns in display order, followed by those omitted; comma-separated values
+        /// </summary>
+        public List<string> Columns
+        {
+            get
+            {
+                List<ColumnHeader> columns = new List<ColumnHeader>();
+                foreach (ColumnHeader ch in lv.Columns) columns.Add(ch);
+
+                foreach (ColumnHeader ch in colHeads) if (!columns.Contains(ch)) columns.Add(ch);
+
+                columns.Sort(new CHSort());
+
+                order = new List<string>();
+                foreach (ColumnHeader ch in columns)
+                    order.Add(colNames[colHeads.IndexOf(ch)]);
+
+                return order;
+            }
+        }
+
         public void StoreLayout()
         {
             Helper.WindowsRegistry.Layout.TypeColumnWidth = clType.Width;
@@ -377,13 +425,7 @@ namespace SimPe.Windows.Forms
             Helper.WindowsRegistry.Layout.OffsetColumnWidth = clOffset.Width;
             Helper.WindowsRegistry.Layout.SizeColumnWidth = clSize.Width;
 
-            ColumnHeader[] ach = new ColumnHeader[] { clType, clTName, clGroup, clInstHi, clInst, clOffset, clSize };
-            List<string> order = new List<string>();
-            foreach (ColumnHeader ch in ach)
-                order.Add(lv.Columns.Contains(ch) ? colNames[ch.DisplayIndex] : "");
-            foreach (string cn in colNames)
-                if (!order.Contains(cn)) order.Add(cn);
-            Helper.WindowsRegistry.Layout.ColumnOrder = order;
+            Helper.WindowsRegistry.Layout.ColumnOrder = Columns;
         }
 
         public void RestoreLayout()
@@ -395,12 +437,14 @@ namespace SimPe.Windows.Forms
             clOffset.Width = Helper.WindowsRegistry.Layout.OffsetColumnWidth;
             clSize.Width = Helper.WindowsRegistry.Layout.SizeColumnWidth;
 
-            ColumnHeader[] ach = new ColumnHeader[] { clType, clTName, clGroup, clInstHi, clInst, clOffset, clSize };
-            List<string> order = Helper.WindowsRegistry.Layout.ColumnOrder;
-            List<string> lcn = new List<string>(colNames);
+            order = Helper.WindowsRegistry.Layout.ColumnOrder;
             lv.Columns.Clear();
-            foreach (string s in order)
-                lv.Columns.Add(ach[lcn.IndexOf(s)]);
+            for (int i = 0; i < colHeads.Count; i++)
+                lv.Columns.Add(colHeads[i]);
+            for (int i = 0; i < colHeads.Count; i++)
+                if (colHeads[i].DisplayIndex != order.IndexOf(colNames[i]))
+                    colHeads[i].DisplayIndex = order.IndexOf(colNames[i]);
+
             if (!Helper.WindowsRegistry.ResourceListShowExtensions) lv.Columns.Remove(clTName);
             if (!Helper.WindowsRegistry.HiddenMode)
             {

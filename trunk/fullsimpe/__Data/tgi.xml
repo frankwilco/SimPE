@@ -589,8 +589,9 @@
 		<known/>
 	</type>
 	<type value="6C589723">
-		<name>UNK: 0x6C589723</name>
-		<shortname>UNK</shortname>
+		<name>Lot Definition</name>
+		<shortname>LOTD</shortname>
+		<known/>
 	</type>
 	<type value="CD8B6498">
 		<name>UNK: 0xCD8B6498</name>
@@ -779,5 +780,9 @@
 		<name>Pet Unknown</name>
 		<shortname>PUNK</shortname>
 		<known/>
+	</type>
+	<type value="B21BE28B">
+		<name>Weather Info</name>
+		<shortname>WTHR</shortname>
 	</type>
 </tgi>

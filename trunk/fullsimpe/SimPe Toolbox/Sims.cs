@@ -451,6 +451,7 @@ namespace SimPe.Plugin
             {
                 foreach (Interfaces.Files.IPackedFileDescriptor spfd in pfds)
                 {
+                    Application.DoEvents();
                     PackedFiles.Wrapper.ExtSDesc sdesc = new SimPe.PackedFiles.Wrapper.ExtSDesc();
                     sdesc.ProcessData(spfd, package);
 

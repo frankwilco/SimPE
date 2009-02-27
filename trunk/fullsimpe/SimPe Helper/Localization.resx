@@ -1498,4 +1498,7 @@ advised to make no changes and certainly not to save any packages.</value>
 Use the "-profile savedprofilename" command line option
 to run SimPe with this profile.</value>
   </data>
+  <data name="FileTableIncludeGraphics" xml:space="preserve">
+    <value>Include Graphics</value>
+  </data>
 </root>

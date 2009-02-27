@@ -611,7 +611,7 @@ namespace SimPe
         /// <summary>
         /// Bit number identifying what's been "enabled" on the commandline
         /// </summary>
-        private enum RunModeFlags : int { localmode = 0, noplugins, fileformat, noerrors, }; // bit number
+        private enum RunModeFlags : int { localmode = 0, noplugins, fileformat, noerrors, anypackage, }; // bit number
         private static Boolset RunModeFlag = (int)0;
         /// <summary>
         /// "localmode": when true, do not load the file table
@@ -629,6 +629,10 @@ namespace SimPe
         /// "noerrors": when true, suppress ExceptionMessage dialog
         /// </summary>
         public static bool NoErrors { get { return RunModeFlag[(int)RunModeFlags.noerrors]; } set { RunModeFlag[(int)RunModeFlags.noerrors] = value; } }
+        /// <summary>
+        /// "anypackage": when true, allow packages to be opened regardless of DBPF version number
+        /// </summary>
+        public static bool AnyPackage { get { return RunModeFlag[(int)RunModeFlags.anypackage]; } set { RunModeFlag[(int)RunModeFlags.anypackage] = value; } }
 
         /// <summary>
         /// Indicates whether a given plugin should load, based on "noplugins" command line option
@@ -1275,9 +1279,9 @@ namespace SimPe
 		public static string CompareableFileName(string fl)
 		{
 #if MAC
-			return fl.Trim();
+			return fl.Trim().TrimEnd('/');
 #else
-			return fl.Trim().ToLower();
+			return fl.Trim().TrimEnd('\\').ToLower();
 #endif
 		}
 

@@ -126,7 +126,7 @@
     <value>80, 8</value>
   </data>
   <data name="lbmsg.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 32</value>
+    <value>154, 32</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lbmsg.TabIndex" type="System.Int32, mscorlib">
