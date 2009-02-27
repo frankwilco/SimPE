@@ -114,7 +114,7 @@ namespace SimPe
             if (obj is uint) return val.CompareTo((uint)obj);
             if (obj is FileTableItemType) return val.CompareTo(((FileTableItemType)obj).val);
 
-            return 0;
+            return ((object)val) == obj ? 0 : 1; // random objects are not equal
         }
 
         #endregion

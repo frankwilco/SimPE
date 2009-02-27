@@ -75,7 +75,7 @@ namespace SimPe.Plugin
         public Lot()
             : base()
 		{
-            FileName = "";
+            filename = new byte[64];
             sz = new Size(1, 1);
             unknown_1 = new List<UInt32>();
 		}

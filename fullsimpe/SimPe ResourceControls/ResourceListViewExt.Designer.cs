@@ -65,11 +65,7 @@
             // 
             // lv
             // 
-            this.lv.AccessibleDescription = null;
             this.lv.AllowColumnReorder = true;
-            this.lv.AccessibleName = null;
-            resources.ApplyResources(this.lv, "lv");
-            this.lv.BackgroundImage = null;
             this.lv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.clType,
@@ -79,7 +75,7 @@
             this.clInst,
             this.clOffset,
             this.clSize});
-            this.lv.Font = null;
+            resources.ApplyResources(this.lv, "lv");
             this.lv.FullRowSelect = true;
             this.lv.HideSelection = false;
             this.lv.Name = "lv";
@@ -87,16 +83,16 @@
             this.lv.UseCompatibleStateImageBehavior = false;
             this.lv.View = System.Windows.Forms.View.Details;
             this.lv.VirtualMode = true;
-            this.lv.DoubleClick += new System.EventHandler(this.lv_DoubleClick);
+            this.lv.SearchForVirtualItem += new System.Windows.Forms.SearchForVirtualItemEventHandler(this.lv_SearchForVirtualItem);
             this.lv.VirtualItemsSelectionRangeChanged += new System.Windows.Forms.ListViewVirtualItemsSelectionRangeChangedEventHandler(this.lv_VirtualItemsSelectionRangeChanged);
             this.lv.SelectedIndexChanged += new System.EventHandler(this.lv_SelectedIndexChanged);
+            this.lv.DoubleClick += new System.EventHandler(this.lv_DoubleClick);
             this.lv.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lv_MouseUp);
-            this.lv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lv_KeyDown);
             this.lv.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lv_ColumnClick);
             this.lv.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.lv_RetrieveVirtualItem);
             this.lv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lv_KeyUp);
             this.lv.CacheVirtualItems += new System.Windows.Forms.CacheVirtualItemsEventHandler(this.lv_CacheVirtualItems);
-            this.lv.SearchForVirtualItem += new System.Windows.Forms.SearchForVirtualItemEventHandler(this.lv_SearchForVirtualItem);
+            this.lv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lv_KeyDown);
             this.lv.Click += new System.EventHandler(this.lv_Click);
             // 
             // clTName
@@ -105,11 +101,8 @@
             // 
             // ResourceListViewExt
             // 
-            this.AccessibleDescription = null;
-            this.AccessibleName = null;
-            resources.ApplyResources(this, "$this");
-            this.BackgroundImage = null;
             this.Controls.Add(this.lv);
+            resources.ApplyResources(this, "$this");
             this.Name = "ResourceListViewExt";
             this.ResumeLayout(false);
 
@@ -123,8 +116,8 @@
         private System.Windows.Forms.ColumnHeader clInst;
         private System.Windows.Forms.ColumnHeader clOffset;
         private System.Windows.Forms.ColumnHeader clSize;
-        private System.Windows.Forms.ListView/*DoubleBuffered*/ lv;
         private System.Windows.Forms.ColumnHeader clTName;
+        private ListViewDoubleBuffered lv;
 
     }
 }

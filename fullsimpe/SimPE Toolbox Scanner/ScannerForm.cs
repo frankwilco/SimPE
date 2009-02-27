@@ -86,7 +86,7 @@ namespace SimPe.Plugin
             //
             InitializeComponent();
 
-
+            scanClicked = Scan;
 
             //hide the Identifier Tab in non Hiden Mode
             if (!Helper.WindowsRegistry.HiddenMode)
@@ -290,7 +290,6 @@ namespace SimPe.Plugin
 
         private void Scan(string folder, bool rec, ScannerCollection usedscanners)
         {
-
             //scan all Files
             pb.Value = 0;
             string[] files = System.IO.Directory.GetFiles(folder, "*.package");
@@ -300,16 +299,16 @@ namespace SimPe.Plugin
 
             int ct = files.Length + dfiles.Length + dofiles.Length + tfiles.Length;
             Scan(files, true, 0, ct, usedscanners);
-            Scan(dfiles, false, files.Length, ct, usedscanners);
-            Scan(dofiles, false, files.Length + dfiles.Length, ct, usedscanners);
-            Scan(tfiles, false, files.Length + dfiles.Length + dofiles.Length, ct, usedscanners);
+            if (!stopClicked) Scan(dfiles, false, files.Length, ct, usedscanners);
+            if (!stopClicked) Scan(dofiles, false, files.Length + dfiles.Length, ct, usedscanners);
+            if (!stopClicked) Scan(tfiles, false, files.Length + dfiles.Length + dofiles.Length, ct, usedscanners);
             pb.Value = 0;
 
             //issue a recursive Scan
-            if (rec)
+            if (!stopClicked && rec)
             {
                 string[] dirs = System.IO.Directory.GetDirectories(folder, "*");
-                foreach (string dir in dirs) Scan(dir, true, usedscanners);
+                foreach (string dir in dirs) { Scan(dir, true, usedscanners); if (stopClicked) break; }
             }
 
         }
@@ -370,6 +369,7 @@ namespace SimPe.Plugin
                             if (ps.State != SimPe.Cache.TriState.Null) cachechg = true;
                         }
                         else s.UpdateState(si, ps, lvi);
+                        if (stopClicked) break;
                     }
 
                     lv.Items.Add(lvi);
@@ -377,6 +377,7 @@ namespace SimPe.Plugin
 
 
                     Application.DoEvents();
+                    if (stopClicked) break;
                 }
                 catch (Exception ex)
                 {
@@ -419,10 +420,8 @@ namespace SimPe.Plugin
             this.ilist = new System.Windows.Forms.ImageList(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbscanners = new System.Windows.Forms.TabPage();
-            this.btscan = new System.Windows.Forms.Button();
             this.lbscanners = new System.Windows.Forms.CheckedListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbrec = new System.Windows.Forms.CheckBox();
             this.tboperations = new System.Windows.Forms.TabPage();
             this.pnop = new System.Windows.Forms.Panel();
             this.tbcache = new System.Windows.Forms.TabPage();
@@ -434,6 +433,8 @@ namespace SimPe.Plugin
             this.label6 = new System.Windows.Forms.Label();
             this.lbid = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btscan = new System.Windows.Forms.Button();
+            this.cbrec = new System.Windows.Forms.CheckBox();
             this.gbinfo = new System.Windows.Forms.GroupBox();
             this.lbprop = new System.Windows.Forms.ComboBox();
             this.tbflname = new System.Windows.Forms.TextBox();
@@ -465,9 +466,9 @@ namespace SimPe.Plugin
             "Neighborhoods Folder",
             "Bodyshop Sim Templates Folder",
             "..."});
-            this.cbfolder.Location = new System.Drawing.Point(11, 19);
+            this.cbfolder.Location = new System.Drawing.Point(9, 16);
             this.cbfolder.Name = "cbfolder";
-            this.cbfolder.Size = new System.Drawing.Size(770, 24);
+            this.cbfolder.Size = new System.Drawing.Size(774, 21);
             this.cbfolder.TabIndex = 1;
             this.cbfolder.SelectedIndexChanged += new System.EventHandler(this.SelectFolder);
             // 
@@ -475,9 +476,9 @@ namespace SimPe.Plugin
             // 
             this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(742, 46);
+            this.linkLabel1.Location = new System.Drawing.Point(750, 40);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(38, 17);
+            this.linkLabel1.Size = new System.Drawing.Size(30, 13);
             this.linkLabel1.TabIndex = 2;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "scan";
@@ -491,10 +492,10 @@ namespace SimPe.Plugin
             // 
             this.pb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.pb.Location = new System.Drawing.Point(0, 445);
+            this.pb.Location = new System.Drawing.Point(0, 448);
             this.pb.Maximum = 1000;
             this.pb.Name = "pb";
-            this.pb.Size = new System.Drawing.Size(792, 19);
+            this.pb.Size = new System.Drawing.Size(792, 16);
             this.pb.TabIndex = 7;
             // 
             // lv
@@ -509,9 +510,9 @@ namespace SimPe.Plugin
             this.lv.FullRowSelect = true;
             this.lv.HideSelection = false;
             this.lv.LargeImageList = this.ilist;
-            this.lv.Location = new System.Drawing.Point(11, 78);
+            this.lv.Location = new System.Drawing.Point(9, 68);
             this.lv.Name = "lv";
-            this.lv.Size = new System.Drawing.Size(770, 103);
+            this.lv.Size = new System.Drawing.Size(774, 151);
             this.lv.TabIndex = 3;
             this.lv.UseCompatibleStateImageBehavior = false;
             this.lv.View = System.Windows.Forms.View.Details;
@@ -547,32 +548,21 @@ namespace SimPe.Plugin
             this.tabControl1.Controls.Add(this.tboperations);
             this.tabControl1.Controls.Add(this.tbcache);
             this.tabControl1.Controls.Add(this.tbidentify);
-            this.tabControl1.Location = new System.Drawing.Point(11, 196);
+            this.tabControl1.Location = new System.Drawing.Point(9, 232);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(295, 243);
+            this.tabControl1.Size = new System.Drawing.Size(378, 210);
             this.tabControl1.TabIndex = 4;
             // 
             // tbscanners
             // 
             this.tbscanners.Controls.Add(this.lbscanners);
             this.tbscanners.Controls.Add(this.label1);
-            this.tbscanners.Location = new System.Drawing.Point(4, 25);
+            this.tbscanners.Location = new System.Drawing.Point(4, 22);
             this.tbscanners.Name = "tbscanners";
-            this.tbscanners.Size = new System.Drawing.Size(287, 214);
+            this.tbscanners.Size = new System.Drawing.Size(370, 184);
             this.tbscanners.TabIndex = 0;
             this.tbscanners.Text = "Scanner Settings";
-            // 
-            // btscan
-            // 
-            this.btscan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btscan.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btscan.Location = new System.Drawing.Point(312, 411);
-            this.btscan.Name = "btscan";
-            this.btscan.Size = new System.Drawing.Size(96, 28);
-            this.btscan.TabIndex = 6;
-            this.btscan.Text = "Scan";
-            this.btscan.Click += new System.EventHandler(this.Scan);
             // 
             // lbscanners
             // 
@@ -581,36 +571,26 @@ namespace SimPe.Plugin
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.lbscanners.CheckOnClick = true;
             this.lbscanners.HorizontalScrollbar = true;
-            this.lbscanners.Location = new System.Drawing.Point(14, 39);
+            this.lbscanners.Location = new System.Drawing.Point(12, 34);
             this.lbscanners.Name = "lbscanners";
-            this.lbscanners.Size = new System.Drawing.Size(259, 157);
+            this.lbscanners.Size = new System.Drawing.Size(347, 124);
             this.lbscanners.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 14);
+            this.label1.Location = new System.Drawing.Point(9, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 17);
+            this.label1.Size = new System.Drawing.Size(87, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "active Scanners:";
-            // 
-            // cbrec
-            // 
-            this.cbrec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbrec.AutoSize = true;
-            this.cbrec.Location = new System.Drawing.Point(414, 416);
-            this.cbrec.Name = "cbrec";
-            this.cbrec.Size = new System.Drawing.Size(90, 21);
-            this.cbrec.TabIndex = 7;
-            this.cbrec.Text = "Recursive";
             // 
             // tboperations
             // 
             this.tboperations.Controls.Add(this.pnop);
-            this.tboperations.Location = new System.Drawing.Point(4, 25);
+            this.tboperations.Location = new System.Drawing.Point(4, 22);
             this.tboperations.Name = "tboperations";
-            this.tboperations.Size = new System.Drawing.Size(287, 214);
+            this.tboperations.Size = new System.Drawing.Size(238, 184);
             this.tboperations.TabIndex = 1;
             this.tboperations.Text = "Operations";
             // 
@@ -622,9 +602,9 @@ namespace SimPe.Plugin
             this.pnop.AutoScroll = true;
             this.pnop.BackColor = System.Drawing.SystemColors.Window;
             this.pnop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnop.Location = new System.Drawing.Point(11, 10);
+            this.pnop.Location = new System.Drawing.Point(9, 9);
             this.pnop.Name = "pnop";
-            this.pnop.Size = new System.Drawing.Size(263, 195);
+            this.pnop.Size = new System.Drawing.Size(219, 171);
             this.pnop.TabIndex = 0;
             // 
             // tbcache
@@ -632,9 +612,9 @@ namespace SimPe.Plugin
             this.tbcache.Controls.Add(this.button3);
             this.tbcache.Controls.Add(this.button2);
             this.tbcache.Controls.Add(this.btclear);
-            this.tbcache.Location = new System.Drawing.Point(4, 25);
+            this.tbcache.Location = new System.Drawing.Point(4, 22);
             this.tbcache.Name = "tbcache";
-            this.tbcache.Size = new System.Drawing.Size(287, 214);
+            this.tbcache.Size = new System.Drawing.Size(238, 184);
             this.tbcache.TabIndex = 2;
             this.tbcache.Text = "Cache";
             // 
@@ -642,9 +622,9 @@ namespace SimPe.Plugin
             // 
             this.button3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button3.Location = new System.Drawing.Point(60, 130);
+            this.button3.Location = new System.Drawing.Point(50, 114);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(160, 28);
+            this.button3.Size = new System.Drawing.Size(133, 24);
             this.button3.TabIndex = 11;
             this.button3.Text = "Reload FileTable";
             this.toolTip1.SetToolTip(this.button3, "Press this Button if you want to reload the FileTable.");
@@ -654,9 +634,9 @@ namespace SimPe.Plugin
             // 
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button2.Location = new System.Drawing.Point(60, 96);
+            this.button2.Location = new System.Drawing.Point(50, 84);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(160, 28);
+            this.button2.Size = new System.Drawing.Size(133, 24);
             this.button2.TabIndex = 10;
             this.button2.Text = "Reload Cache";
             this.toolTip1.SetToolTip(this.button2, "Press this Button if you want to reload the Cache from your HD.");
@@ -666,9 +646,9 @@ namespace SimPe.Plugin
             // 
             this.btclear.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btclear.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btclear.Location = new System.Drawing.Point(60, 62);
+            this.btclear.Location = new System.Drawing.Point(50, 55);
             this.btclear.Name = "btclear";
-            this.btclear.Size = new System.Drawing.Size(160, 28);
+            this.btclear.Size = new System.Drawing.Size(133, 24);
             this.btclear.TabIndex = 9;
             this.btclear.Text = "Clear Cache";
             this.toolTip1.SetToolTip(this.btclear, "Press this Button if you want to clear the Scanner Cache.");
@@ -680,9 +660,9 @@ namespace SimPe.Plugin
             this.tbidentify.Controls.Add(this.label6);
             this.tbidentify.Controls.Add(this.lbid);
             this.tbidentify.Controls.Add(this.label5);
-            this.tbidentify.Location = new System.Drawing.Point(4, 25);
+            this.tbidentify.Location = new System.Drawing.Point(4, 22);
             this.tbidentify.Name = "tbidentify";
-            this.tbidentify.Size = new System.Drawing.Size(287, 214);
+            this.tbidentify.Size = new System.Drawing.Size(238, 184);
             this.tbidentify.TabIndex = 3;
             this.tbidentify.Text = "Debug";
             // 
@@ -691,18 +671,17 @@ namespace SimPe.Plugin
             this.lbscandebug.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.lbscandebug.HorizontalScrollbar = true;
-            this.lbscandebug.ItemHeight = 16;
-            this.lbscandebug.Location = new System.Drawing.Point(3, 136);
+            this.lbscandebug.Location = new System.Drawing.Point(2, 118);
             this.lbscandebug.Name = "lbscandebug";
-            this.lbscandebug.Size = new System.Drawing.Size(281, 68);
+            this.lbscandebug.Size = new System.Drawing.Size(235, 43);
             this.lbscandebug.TabIndex = 5;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 116);
+            this.label6.Location = new System.Drawing.Point(2, 101);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(119, 17);
+            this.label6.Size = new System.Drawing.Size(90, 13);
             this.label6.TabIndex = 4;
             this.label6.Text = "loaded Scanners:";
             // 
@@ -711,20 +690,40 @@ namespace SimPe.Plugin
             this.lbid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.lbid.HorizontalScrollbar = true;
-            this.lbid.ItemHeight = 16;
-            this.lbid.Location = new System.Drawing.Point(3, 29);
+            this.lbid.Location = new System.Drawing.Point(2, 25);
             this.lbid.Name = "lbid";
-            this.lbid.Size = new System.Drawing.Size(281, 68);
+            this.lbid.Size = new System.Drawing.Size(235, 43);
             this.lbid.TabIndex = 3;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 9);
+            this.label5.Location = new System.Drawing.Point(2, 8);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(120, 17);
+            this.label5.Size = new System.Drawing.Size(90, 13);
             this.label5.TabIndex = 2;
             this.label5.Text = "loaded Identifiers:";
+            // 
+            // btscan
+            // 
+            this.btscan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btscan.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btscan.Location = new System.Drawing.Point(392, 418);
+            this.btscan.Name = "btscan";
+            this.btscan.Size = new System.Drawing.Size(80, 24);
+            this.btscan.TabIndex = 6;
+            this.btscan.Text = "Scan";
+            this.btscan.Click += new System.EventHandler(this.Scan);
+            // 
+            // cbrec
+            // 
+            this.cbrec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbrec.AutoSize = true;
+            this.cbrec.Location = new System.Drawing.Point(478, 424);
+            this.cbrec.Name = "cbrec";
+            this.cbrec.Size = new System.Drawing.Size(74, 17);
+            this.cbrec.TabIndex = 7;
+            this.cbrec.Text = "Recursive";
             // 
             // gbinfo
             // 
@@ -737,9 +736,9 @@ namespace SimPe.Plugin
             this.gbinfo.Controls.Add(this.llopen);
             this.gbinfo.Controls.Add(this.thumb);
             this.gbinfo.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.gbinfo.Location = new System.Drawing.Point(312, 199);
+            this.gbinfo.Location = new System.Drawing.Point(392, 234);
             this.gbinfo.Name = "gbinfo";
-            this.gbinfo.Size = new System.Drawing.Size(459, 204);
+            this.gbinfo.Size = new System.Drawing.Size(382, 177);
             this.gbinfo.TabIndex = 2;
             this.gbinfo.TabStop = false;
             this.gbinfo.Text = "Information";
@@ -748,27 +747,27 @@ namespace SimPe.Plugin
             // 
             this.lbprop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.lbprop.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbprop.Location = new System.Drawing.Point(149, 117);
+            this.lbprop.Location = new System.Drawing.Point(124, 101);
             this.lbprop.MaxDropDownItems = 15;
             this.lbprop.Name = "lbprop";
-            this.lbprop.Size = new System.Drawing.Size(299, 25);
+            this.lbprop.Size = new System.Drawing.Size(249, 21);
             this.lbprop.Sorted = true;
             this.lbprop.TabIndex = 10;
             // 
             // tbflname
             // 
-            this.tbflname.Location = new System.Drawing.Point(11, 165);
+            this.tbflname.Location = new System.Drawing.Point(9, 143);
             this.tbflname.Name = "tbflname";
             this.tbflname.ReadOnly = true;
-            this.tbflname.Size = new System.Drawing.Size(391, 22);
+            this.tbflname.Size = new System.Drawing.Size(326, 20);
             this.tbflname.TabIndex = 9;
             // 
             // cbenable
             // 
             this.cbenable.AutoSize = true;
-            this.cbenable.Location = new System.Drawing.Point(352, 19);
+            this.cbenable.Location = new System.Drawing.Point(293, 16);
             this.cbenable.Name = "cbenable";
-            this.cbenable.Size = new System.Drawing.Size(79, 21);
+            this.cbenable.Size = new System.Drawing.Size(65, 17);
             this.cbenable.TabIndex = 7;
             this.cbenable.Text = "Enabled";
             this.cbenable.CheckedChanged += new System.EventHandler(this.SetEnabledState);
@@ -776,18 +775,18 @@ namespace SimPe.Plugin
             // lbtype
             // 
             this.lbtype.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbtype.Location = new System.Drawing.Point(149, 29);
+            this.lbtype.Location = new System.Drawing.Point(124, 25);
             this.lbtype.Name = "lbtype";
-            this.lbtype.Size = new System.Drawing.Size(197, 28);
+            this.lbtype.Size = new System.Drawing.Size(164, 24);
             this.lbtype.TabIndex = 8;
             this.lbtype.Text = "Type";
             // 
             // lbname
             // 
             this.lbname.Font = new System.Drawing.Font("Verdana", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbname.Location = new System.Drawing.Point(149, 58);
+            this.lbname.Location = new System.Drawing.Point(124, 50);
             this.lbname.Name = "lbname";
-            this.lbname.Size = new System.Drawing.Size(299, 49);
+            this.lbname.Size = new System.Drawing.Size(249, 43);
             this.lbname.TabIndex = 7;
             this.lbname.Text = "Caption";
             // 
@@ -795,9 +794,9 @@ namespace SimPe.Plugin
             // 
             this.llopen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.llopen.AutoSize = true;
-            this.llopen.Location = new System.Drawing.Point(408, 168);
+            this.llopen.Location = new System.Drawing.Point(340, 146);
             this.llopen.Name = "llopen";
-            this.llopen.Size = new System.Drawing.Size(40, 17);
+            this.llopen.Size = new System.Drawing.Size(31, 13);
             this.llopen.TabIndex = 8;
             this.llopen.TabStop = true;
             this.llopen.Text = "open";
@@ -806,9 +805,9 @@ namespace SimPe.Plugin
             // thumb
             // 
             this.thumb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.thumb.Location = new System.Drawing.Point(11, 29);
+            this.thumb.Location = new System.Drawing.Point(9, 25);
             this.thumb.Name = "thumb";
-            this.thumb.Size = new System.Drawing.Size(128, 117);
+            this.thumb.Size = new System.Drawing.Size(107, 102);
             this.thumb.TabIndex = 0;
             this.thumb.TabStop = false;
             // 
@@ -816,9 +815,9 @@ namespace SimPe.Plugin
             // 
             this.llSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.llSave.AutoSize = true;
-            this.llSave.Location = new System.Drawing.Point(731, 186);
+            this.llSave.Location = new System.Drawing.Point(741, 223);
             this.llSave.Name = "llSave";
-            this.llSave.Size = new System.Drawing.Size(50, 17);
+            this.llSave.Size = new System.Drawing.Size(39, 13);
             this.llSave.TabIndex = 8;
             this.llSave.TabStop = true;
             this.llSave.Text = "save...";
@@ -830,7 +829,7 @@ namespace SimPe.Plugin
             // 
             // ScannerForm
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(792, 465);
             this.Controls.Add(this.btscan);
             this.Controls.Add(this.llSave);
@@ -887,9 +886,9 @@ namespace SimPe.Plugin
             }
         }
 
+        bool stopClicked = false;
         private void Scan(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
-
             errorlog = "";
             cachechg = false;
             lv.Items.Clear();
@@ -898,8 +897,11 @@ namespace SimPe.Plugin
 
             lv.BeginUpdate();
             WaitingScreen.Wait();
+            WaitingScreen.Message = "";
+            stopClicked = false;
             try
             {
+                btscan.Enabled = false;
                 if (Helper.WindowsRegistry.UseCache) cachefile.LoadFiles();
 
                 //Setup ListView
@@ -926,10 +928,20 @@ namespace SimPe.Plugin
 
                 SimPe.Plugin.Scanner.AbstractScanner.AssignFileTable();
                 //setup Scanners
-                foreach (IScanner s in scanners) s.InitScan(this.lv);
+                foreach (IScanner s in scanners) { WaitingScreen.Message = s.GetType().Name; s.InitScan(this.lv); }
+
+                btscan.Text = "Stop";
+                scanClicked = StopScan;
+                btscan.Enabled = true;
+                WaitingScreen.Stop();
+                Cursor.Current = Cursors.AppStarting;
 
                 //scan all Files
                 Scan(folder, cbrec.Checked, scanners);
+
+                Cursor.Current = Cursors.Default;
+                WaitingScreen.Wait();
+                WaitingScreen.Message = "Finishing scan";
 
                 //finish Scanners
                 foreach (IScanner s in scanners) s.FinishScan();
@@ -950,11 +962,21 @@ namespace SimPe.Plugin
             }
             finally
             {
+                btscan.Text = "Scan";
+                scanClicked = Scan;
+                btscan.Enabled = true;
                 WaitingScreen.Stop();
+                WaitingScreen.Message = "";
                 lv.EndUpdate();
             }
 
             if (errorlog.Trim() != "") Helper.ExceptionMessage(new Warning("Unreadable Files were found", errorlog));
+        }
+
+        private void StopScan(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+        {
+            btscan.Enabled = false;
+            stopClicked = true;
         }
 
         private void SelectItem(object sender, System.EventArgs e)
@@ -1018,9 +1040,11 @@ namespace SimPe.Plugin
             lv.Sort();
         }
 
+        delegate void ScanClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e);
+        ScanClicked scanClicked;
         private void Scan(object sender, System.EventArgs e)
         {
-            Scan(null, (System.Windows.Forms.LinkLabelLinkClickedEventArgs)null);
+            scanClicked(null, null);
         }
 
         private void ReloadFileTable(object sender, System.EventArgs e)

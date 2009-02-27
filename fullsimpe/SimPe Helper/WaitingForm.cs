@@ -51,7 +51,7 @@ namespace SimPe
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
 			InitializeComponent();
-			this.TopMost = Helper.WindowsRegistry.WaitingScreenTopMost;
+			//this.TopMost = Helper.WindowsRegistry.WaitingScreenTopMost;
             myhandle = Handle;
             image = pbsimpe.Image;
             message = lbmsg.Text;
@@ -132,8 +132,8 @@ namespace SimPe
                 {
                     int i = m.WParam.ToInt32();
                     System.Diagnostics.Trace.WriteLine("SimPe.WaitingForm.WndProc() - WM_SHOW_HIDE: " + i);
-                    if (i == 1) this.Show();//{ if (!this.Visible) this.ShowDialog(); else Application.DoEvents(); }
-                    else this.Hide();//this.Close();
+                    if (i == 1) { this.Show(); this.Focus(); }
+                    else this.Hide();
                 }
             }
             base.WndProc(ref m);

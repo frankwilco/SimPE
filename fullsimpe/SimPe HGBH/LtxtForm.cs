@@ -97,7 +97,7 @@ namespace SimPe.Plugin
         private Label label31;
         internal TextBox tbSAu2;
         private Label label30;
-        internal TextBox tbSAu1;
+        internal TextBox tbSAFamily;
         private TableLayoutPanel tableLayoutPanel1;
         internal ListBox lbu7;
         private Label label32;
@@ -115,6 +115,10 @@ namespace SimPe.Plugin
         internal LinkLabel llFamily;
         internal LinkLabel llSubLot;
         internal LinkLabel llAptBase;
+        private FlowLayoutPanel flowLayoutPanel4;
+        internal Button btnDelApt;
+        private Button btnAddApt;
+        internal FlowLayoutPanel flpAptBtns;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -166,14 +170,18 @@ namespace SimPe.Plugin
             this.tbu7 = new System.Windows.Forms.TextBox();
             this.lbu7 = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.label26 = new System.Windows.Forms.Label();
+            this.flpAptBtns = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnAddApt = new System.Windows.Forms.Button();
+            this.btnDelApt = new System.Windows.Forms.Button();
             this.lbApts = new System.Windows.Forms.ListBox();
             this.gbApartment = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.llFamily = new System.Windows.Forms.LinkLabel();
             this.llSubLot = new System.Windows.Forms.LinkLabel();
             this.tbSAu3 = new System.Windows.Forms.TextBox();
-            this.tbSAu1 = new System.Windows.Forms.TextBox();
+            this.tbSAFamily = new System.Windows.Forms.TextBox();
             this.tbApartment = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.tbSAu2 = new System.Windows.Forms.TextBox();
@@ -243,6 +251,8 @@ namespace SimPe.Plugin
             this.tableLayoutPanel6.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.flowLayoutPanel4.SuspendLayout();
+            this.flpAptBtns.SuspendLayout();
             this.gbApartment.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -334,15 +344,44 @@ namespace SimPe.Plugin
             // tableLayoutPanel5
             // 
             resources.ApplyResources(this.tableLayoutPanel5, "tableLayoutPanel5");
-            this.tableLayoutPanel5.Controls.Add(this.label26, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.flowLayoutPanel4, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.lbApts, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.gbApartment, 2, 0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             // 
+            // flowLayoutPanel4
+            // 
+            resources.ApplyResources(this.flowLayoutPanel4, "flowLayoutPanel4");
+            this.flowLayoutPanel4.Controls.Add(this.label26);
+            this.flowLayoutPanel4.Controls.Add(this.flpAptBtns);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            // 
             // label26
             // 
             resources.ApplyResources(this.label26, "label26");
+            this.flowLayoutPanel4.SetFlowBreak(this.label26, true);
             this.label26.Name = "label26";
+            // 
+            // flpAptBtns
+            // 
+            resources.ApplyResources(this.flpAptBtns, "flpAptBtns");
+            this.flpAptBtns.Controls.Add(this.btnAddApt);
+            this.flpAptBtns.Controls.Add(this.btnDelApt);
+            this.flpAptBtns.Name = "flpAptBtns";
+            // 
+            // btnAddApt
+            // 
+            resources.ApplyResources(this.btnAddApt, "btnAddApt");
+            this.btnAddApt.Name = "btnAddApt";
+            this.btnAddApt.UseVisualStyleBackColor = true;
+            this.btnAddApt.Click += new System.EventHandler(this.btnAddApt_Click);
+            // 
+            // btnDelApt
+            // 
+            resources.ApplyResources(this.btnDelApt, "btnDelApt");
+            this.btnDelApt.Name = "btnDelApt";
+            this.btnDelApt.UseVisualStyleBackColor = true;
+            this.btnDelApt.Click += new System.EventHandler(this.btnDelApt_Click);
             // 
             // lbApts
             // 
@@ -373,7 +412,7 @@ namespace SimPe.Plugin
             this.tableLayoutPanel8.Controls.Add(this.llFamily, 0, 1);
             this.tableLayoutPanel8.Controls.Add(this.llSubLot, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.tbSAu3, 3, 1);
-            this.tableLayoutPanel8.Controls.Add(this.tbSAu1, 1, 1);
+            this.tableLayoutPanel8.Controls.Add(this.tbSAFamily, 1, 1);
             this.tableLayoutPanel8.Controls.Add(this.tbApartment, 1, 0);
             this.tableLayoutPanel8.Controls.Add(this.label31, 2, 1);
             this.tableLayoutPanel8.Controls.Add(this.tbSAu2, 3, 0);
@@ -400,11 +439,11 @@ namespace SimPe.Plugin
             this.tbSAu3.Name = "tbSAu3";
             this.tbSAu3.TextChanged += new System.EventHandler(this.SAChange);
             // 
-            // tbSAu1
+            // tbSAFamily
             // 
-            resources.ApplyResources(this.tbSAu1, "tbSAu1");
-            this.tbSAu1.Name = "tbSAu1";
-            this.tbSAu1.TextChanged += new System.EventHandler(this.SAChange);
+            resources.ApplyResources(this.tbSAFamily, "tbSAFamily");
+            this.tbSAFamily.Name = "tbSAFamily";
+            this.tbSAFamily.TextChanged += new System.EventHandler(this.SAChange);
             // 
             // tbApartment
             // 
@@ -474,7 +513,7 @@ namespace SimPe.Plugin
             // 
             resources.ApplyResources(this.tbApBase, "tbApBase");
             this.tbApBase.Name = "tbApBase";
-            this.tbApBase.TextChanged += new System.EventHandler(this.CommonChange);
+            this.tbApBase.TextChanged += new System.EventHandler(this.tbApBase_TextChanged);
             // 
             // label23
             // 
@@ -884,6 +923,10 @@ namespace SimPe.Plugin
             this.flowLayoutPanel3.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            this.flowLayoutPanel4.ResumeLayout(false);
+            this.flowLayoutPanel4.PerformLayout();
+            this.flpAptBtns.ResumeLayout(false);
+            this.flpAptBtns.PerformLayout();
             this.gbApartment.ResumeLayout(false);
             this.gbApartment.PerformLayout();
             this.tableLayoutPanel8.ResumeLayout(false);
@@ -918,7 +961,10 @@ namespace SimPe.Plugin
             else
                 wrapper.Type = Ltxt.LotType.Unknown;
             tbtype.Text = "0x" + Helper.HexString((byte)wrapper.Type);
-		}
+            flpAptBtns.Enabled = (wrapper.Type == Ltxt.LotType.ApartmentBase);
+
+            wrapper.Changed = true;
+        }
 
 		private void Commit(object sender, System.EventArgs e)
 		{
@@ -1039,17 +1085,17 @@ namespace SimPe.Plugin
 
             if (lbApts.SelectedIndex < 0)
             {
-                tbApartment.Text = tbSAu1.Text = tbSAu2.Text = tbSAu3.Text = "";
-                llFamily.Enabled = llSubLot.Enabled = false;
+                tbApartment.Text = tbSAFamily.Text = tbSAu2.Text = tbSAu3.Text = "";
+                btnDelApt.Enabled = llFamily.Enabled = llSubLot.Enabled = false;
             }
             else
             {
                 Ltxt.SubLot sl = wrp.SubLots[lbApts.SelectedIndex];
                 tbApartment.Text = (string)lbApts.SelectedItem;
-                tbSAu1.Text = "0x" + Helper.HexString(sl.Unknown1);
+                tbSAFamily.Text = "0x" + Helper.HexString(sl.Family);
                 tbSAu2.Text = "0x" + Helper.HexString(sl.Unknown2);
                 tbSAu3.Text = "0x" + Helper.HexString(sl.Unknown3);
-                llFamily.Enabled = llSubLot.Enabled = true;
+                btnDelApt.Enabled = llFamily.Enabled = llSubLot.Enabled = true;
             }
 
             wrapper = wrp;
@@ -1067,7 +1113,7 @@ namespace SimPe.Plugin
 			{
                 Ltxt.SubLot sl = wrp.SubLots[lbApts.SelectedIndex];
                 sl.ApartmentSublot = Helper.StringToUInt32(tbApartment.Text, sl.ApartmentSublot, 16);
-                sl.Unknown1 = Helper.StringToUInt32(tbSAu1.Text, sl.Unknown1, 16);
+                sl.Family = Helper.StringToUInt32(tbSAFamily.Text, sl.Family, 16);
                 sl.Unknown2 = Helper.StringToUInt32(tbSAu2.Text, sl.Unknown2, 16);
                 sl.Unknown3 = Helper.StringToUInt32(tbSAu3.Text, sl.Unknown3, 16);
                 lbApts.Items[lbApts.SelectedIndex] = "0x" + Helper.HexString(sl.ApartmentSublot);
@@ -1142,7 +1188,7 @@ namespace SimPe.Plugin
                     break;
                 case 2:
                     type = (uint)0x46414D49;
-                    inst = wrapper.SubLots[lbApts.SelectedIndex].Unknown1;
+                    inst = wrapper.SubLots[lbApts.SelectedIndex].Family;
                     break;
                 default:
                     return;
@@ -1154,6 +1200,41 @@ namespace SimPe.Plugin
             if (pfd == null) return;
 
             SimPe.RemoteControl.OpenPackedFile(pfd, wrapper.Package);
+        }
+
+        private void btnAddApt_Click(object sender, EventArgs e)
+        {
+            wrapper.SubLots.Add(new Ltxt.SubLot());
+            lbApts.Items.Add("0x" + Helper.HexString(wrapper.SubLots[wrapper.SubLots.Count - 1].ApartmentSublot));
+            lbApts.SelectedIndex = wrapper.SubLots.Count - 1;
+
+            wrapper.Changed = true;
+        }
+
+        private void btnDelApt_Click(object sender, EventArgs e)
+        {
+            int i = lbApts.SelectedIndex;
+
+            lbApts.BeginUpdate();
+            lbApts.SelectedIndex = -1;
+
+            wrapper.SubLots.RemoveAt(i);
+            lbApts.Items.RemoveAt(i);
+
+            if (i > 0) i--;
+            else if (lbApts.Items.Count == 0) i = -1;
+
+            lbApts.SelectedIndex = i;
+            lbApts.EndUpdate();
+
+            wrapper.Changed = true;
+        }
+
+        private void tbApBase_TextChanged(object sender, EventArgs e)
+        {
+            if (wrapper == null) return;
+            wrapper.ApartmentBase = Helper.StringToUInt32(tbApBase.Text, wrapper.ApartmentBase, 16);
+            llAptBase.Enabled = (wrapper.ApartmentBase != 0);
         }
 	}
 }

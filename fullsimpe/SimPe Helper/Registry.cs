@@ -771,7 +771,7 @@ namespace SimPe
 #if MAC
 				object o = rkf.GetValue("CheckForUpdates", false);
 #else
-				object o = rkf.GetValue("CheckForUpdates", true);
+                object o = rkf.GetValue("CheckForUpdates", false);
 #endif
 				return Convert.ToBoolean(o);
 			}

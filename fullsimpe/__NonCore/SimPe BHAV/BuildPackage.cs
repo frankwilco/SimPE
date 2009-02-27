@@ -41,7 +41,7 @@ namespace SimPe.Plugin
             string output = "";
             string input = "";
 
-            while (argv.Count > 0 && input.Length == 0 && output.Length == 0)
+            while (argv.Count - i > 0 && input.Length == 0 && output.Length == 0)
             {
                 if (ArgParser.Parse(argv, i, "-desc", ref input)) continue;
                 if (ArgParser.Parse(argv, i, "-out", ref output)) continue;

@@ -750,20 +750,28 @@ namespace SimPe
             MessageBox.Show(s, "SimPe", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        /// <summary>
+        /// Write out profile files
+        /// </summary>
+        private void saveProfile()
+        {
+            Helper.WindowsRegistry.Flush(); // Writes SimPeXREGW
+            StoreLayout(); // Writes SimPeLayoutW
+            Helper.WindowsRegistry.Layout.Flush(); // Writes Layout2XREGW
+            File.SetLastWriteTime(Helper.DataFolder.FoldersXREGW, DateTime.Now); // It was written by the Options form
+        }
         private void tsmiSaveProfile_Click(object sender, EventArgs e)
         {
             ProfileChooser pc = new ProfileChooser();
             if (pc.ShowDialog() != DialogResult.OK) return;
             string path = Path.Combine(Helper.DataFolder.Profiles, pc.Value);
 
-            File.Copy(Helper.DataFolder.FoldersXREGW, Path.Combine(path, Path.GetFileName(Helper.DataFolder.FoldersXREG)), true);
+            saveProfile();
 
-            Helper.WindowsRegistry.Flush();
-            File.Copy(Helper.DataFolder.Layout2XREGW, Path.Combine(path, Path.GetFileName(Helper.DataFolder.Layout2XREG)), true);
             File.Copy(Helper.DataFolder.SimPeXREGW, Path.Combine(path, Path.GetFileName(Helper.DataFolder.SimPeXREG)), true);
-
-            StoreLayout();
             File.Copy(Helper.DataFolder.SimPeLayoutW, Path.Combine(path, Path.GetFileName(Helper.DataFolder.SimPeLayout)), true);
+            File.Copy(Helper.DataFolder.Layout2XREGW, Path.Combine(path, Path.GetFileName(Helper.DataFolder.Layout2XREG)), true);
+            File.Copy(Helper.DataFolder.FoldersXREGW, Path.Combine(path, Path.GetFileName(Helper.DataFolder.FoldersXREG)), true);
 
             MessageBox.Show(
                 Localization.GetString("spWrittenDesc")
@@ -773,8 +781,7 @@ namespace SimPe
 
         private void tsmiSavePrefs_Click(object sender, EventArgs e)
         {
-            Helper.WindowsRegistry.Flush();
-            StoreLayout();
+            saveProfile();
 
             MessageBox.Show(
                 Localization.GetString("Done!")

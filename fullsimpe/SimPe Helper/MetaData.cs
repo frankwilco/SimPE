@@ -748,9 +748,18 @@ namespace SimPe.Data
         }
         static void LoadSemGlobList()
         {
-                
             sgl = new SemiGlobalListing();
             sgl.Sort();
+        }
+        public static uint SemiGlobalID(string sgname)
+        {
+            foreach (SemiGlobalAlias sga in SemiGlobals) if (sga.Name.Trim().ToLowerInvariant().Equals(sgname.Trim().ToLowerInvariant())) return sga.Id;
+            return 0;
+        }
+        public static string SemiGlobalName(uint sgid)
+        {
+            foreach (SemiGlobalAlias sga in SemiGlobals) if (sga.Id == sgid) return sga.Name;
+            return "";
         }
 
 

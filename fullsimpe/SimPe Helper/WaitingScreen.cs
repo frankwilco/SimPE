@@ -52,6 +52,10 @@ namespace SimPe
         /// <param name="both">the MessageAndImage to show</param>
         public static void Update(System.Drawing.Image image, string msg) { Screen.doUpdate(image, msg); }
         /// <summary>
+        /// Show the WaitingScreen for a specific form
+        /// </summary>
+        public static void Wait(Form form) { Screen.doWait(form); }
+        /// <summary>
         /// Show the WaitingScreen
         /// </summary>
         public static void Wait() { Screen.doWait(); }
@@ -98,12 +102,33 @@ namespace SimPe
         string prevMessage = "";
         SimPe.WaitingForm frm;
 
+        Form parent = null;
         void doUpdate(System.Drawing.Image image) { System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen.doUpdate(image): " + count); lock (lockFrm) { prevImage = image; if (frm != null) frm.SetImage(image); } Application.DoEvents(); }
         void doUpdate(string msg) { System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen.doUpdate(message): " + msg + ", " + count); lock (lockFrm) { prevMessage = msg; if (frm != null) frm.SetMessage(msg); } Application.DoEvents(); }
         void doUpdate(System.Drawing.Image image, string msg) { doUpdate(image); doUpdate(msg); }
-        void doWait() { System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen.doWait(): " + ++count); Application.UseWaitCursor = true; lock (lockFrm) { if (frm != null) frm.StartSplash(); } }
-        void doStop() { System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen.doStop(): " + count--); Application.UseWaitCursor = false; lock (lockFrm) { if (frm != null) frm.StopSplash(); } }
+        void doWait() { doWait(Form.ActiveForm); }
+        void doWait(Form form)
+        {
+            System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen.doWait(...): " + ++count);
+            if (count > 1) return;
 
+            Application.UseWaitCursor = true;
+            lock (lockFrm)
+            {
+                if (parent != form)
+                {
+                    if (parent != null) parent.Activated -= new EventHandler(parent_Activated);
+                    parent = form;
+                    if (parent != null) parent.Activated += new EventHandler(parent_Activated);
+                }
+                parent_Activated(null, null);
+                if (frm != null) frm.Owner = form;
+            }
+        }
+
+        void doStop() { System.Diagnostics.Trace.WriteLine("SimPe.WaitingScreen.doStop(): " + count--); if (parent != null && count == 0) parent.Activate(); Application.UseWaitCursor = false; lock (lockFrm) { if (frm != null) frm.StopSplash(); } }
+
+        void parent_Activated(object sender, EventArgs e) { if (frm != null && count > 0) { frm.StartSplash(); } }
 
 
         private WaitingScreen()

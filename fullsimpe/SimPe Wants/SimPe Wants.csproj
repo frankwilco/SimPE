@@ -1,0 +1,130 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{283AB63B-00B1-4479-8D1D-E2CEC07C4B64}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SimPe.Wants</RootNamespace>
+    <AssemblyName>pjse.Wants.plugin</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\__Debug\Plugins\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\__Release\Plugins\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Settings.cs" />
+    <Compile Include="SWAFEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SWAFEditor.Designer.cs">
+      <DependentUpon>SWAFEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SWAFWrapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WrapperFactory.cs" />
+    <Compile Include="XWNTEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XWNTEditor.Designer.cs">
+      <DependentUpon>XWNTEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XWNTWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\pjseCoderPlugin-cvs\pjse filetable\SimPe pjse filetable.csproj">
+      <Project>{84085FAA-A947-492E-88BC-B941A4623811}</Project>
+      <Name>SimPe pjse filetable</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\pjseCoderPlugin-cvs\pjse System Classes\SimPe pjse System Classes.csproj">
+      <Project>{0B9D2E1D-30F3-4718-B66B-791BFBAC3DB7}</Project>
+      <Name>SimPe pjse System Classes</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\pjseCoderPlugin-cvs\SimPe BHAV\SimPe pjse coder plugin.csproj">
+      <Project>{19BF4C91-3A16-41D2-A7F0-2DE5BD7E13CF}</Project>
+      <Name>SimPe pjse coder plugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe FileHandler\SimPe FileHandlers.csproj">
+      <Project>{97551C0A-6295-4E32-8E15-A4FF456E65A6}</Project>
+      <Name>SimPe FileHandlers</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe HandlerCommon\SimPe HandlerCommon.csproj">
+      <Project>{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}</Project>
+      <Name>SimPe HandlerCommon</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Helper\SimPe Helper.csproj">
+      <Project>{59E3C353-1350-42D8-A045-CBBAD232F228}</Project>
+      <Name>SimPe Helper</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Interfaces\SimPe Interfaces.csproj">
+      <Project>{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}</Project>
+      <Name>SimPe Interfaces</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Packages\SimPe Packages.csproj">
+      <Project>{1C6C45BF-FE19-4C23-B327-01F45B0F269C}</Project>
+      <Name>SimPe Packages</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Sims\SimPe Sims.csproj">
+      <Project>{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}</Project>
+      <Name>SimPe Sims</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Toolbox\SimPe Toolbox.csproj">
+      <Project>{4B573801-C012-4C34-88A8-3D4CE694C905}</Project>
+      <Name>SimPe Toolbox</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Workspace Helper\SimPe Workspace Helper.csproj">
+      <Project>{45021667-BAD2-4ECA-8423-F4734F914CBB}</Project>
+      <Name>SimPe Workspace Helper</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SWAFEditor.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SWAFEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XWNTEditor.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>XWNTEditor.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

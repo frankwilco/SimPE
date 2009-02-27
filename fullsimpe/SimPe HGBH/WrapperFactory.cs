@@ -45,7 +45,7 @@ namespace SimPe.Plugin
 			{
                 SimPe.PackedFiles.Wrapper.SdscFreetime.RegisterAsAspirationEditor(new SimPe.Plugin.SimAspirationEditor());
 				FileTable.ProviderRegistry.LotProvider.LoadingLot += new SimPe.Interfaces.Providers.LoadLotData(LotProvider_LoadingLot);
-				IWrapper[] wrappers = {
+                IWrapper[] wrappers = {
 										  new Plugin.EnhancedNgbh(),
 										  new Plugin.Ngbh(this.LinkedProvider),
 										  new Plugin.Ltxt(this.LinkedProvider),
@@ -55,7 +55,8 @@ namespace SimPe.Plugin
 									      new Plugin.RoadTexture(),
 										  new Plugin.Tatt(),		
 										  new Plugin.Bnfo(),
-										  new Plugin.Nhtr()
+										  new Plugin.Nhtr(),
+                                          new Plugin.Lot(),
 									  };
 				return wrappers;
 			}

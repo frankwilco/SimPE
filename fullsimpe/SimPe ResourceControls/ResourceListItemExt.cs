@@ -27,7 +27,7 @@ namespace SimPe.Windows.Forms
             this.pfd = pfd;
 
 
-            object[] subitems = new object[7];
+            string[] subitems = new string[7];
             subitems[0] = visible ? pfd.GetRealName() : pfd.Descriptor.ToResListString(); // Name
             subitems[1] = GetExtText(); // Type
             subitems[2] = "0x" + Helper.HexString(pfd.Descriptor.Group); // Group
@@ -45,12 +45,10 @@ namespace SimPe.Windows.Forms
             subitems[6] = "0x" + Helper.HexString(pfd.Descriptor.Size);
 
 
-            List<string> order = Helper.WindowsRegistry.Layout.ColumnOrder;
-            List<string> cn = new List<string>(colNames);
             this.SubItems.Clear();
-            this.Text = (string)subitems[cn.IndexOf(order[0])];
-            for (int i = 1; i < order.Count; i++)
-                SubItems.Add((string)subitems[cn.IndexOf(order[i])]);
+            this.Text = (string)subitems[0];
+            for (int i = 1; i < subitems.Length; i++)
+                SubItems.Add(subitems[i]);
 
 
             this.ImageIndex = ResourceViewManager.GetIndexForResourceType(pfd.Descriptor.Type);
@@ -61,7 +59,6 @@ namespace SimPe.Windows.Forms
 
             ChangeDescription(true);
         }
-        static string[] colNames = new string[] { "Name", "Type", "Group", "InstHi", "Inst", "Offset", "Size" };
 
         string GetExtText()
         {

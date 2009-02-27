@@ -261,6 +261,7 @@ namespace SimPe.Plugin
 
 		protected bool AddNeighborhood(ExpansionItem.NeighborhoodPath np, string path, string filename) 
 		{
+            Application.DoEvents();
 			string flname = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(path), System.IO.Path.Combine(System.IO.Path.GetFileName(path), System.IO.Path.GetFileName(path)+filename));
 			if (!System.IO.File.Exists(flname)) return false;
 
@@ -333,6 +334,7 @@ namespace SimPe.Plugin
 		protected void UpdateList()
 		{
             WaitingScreen.Wait();
+            Application.DoEvents();
 
             try
             {

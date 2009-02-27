@@ -88,6 +88,7 @@ namespace SimPe.Plugin
             else
                 form.cbtype.SelectedIndex = 0;
             form.tbtype.Text = "0x" + Helper.HexString((byte)wrp.Type);
+            form.flpAptBtns.Enabled = (wrp.Type == Ltxt.LotType.ApartmentBase);
 
             form.tbRoads.Text = "0x" + Helper.HexString(wrp.LotRoads);
 
@@ -137,7 +138,7 @@ namespace SimPe.Plugin
             form.lbApts.Items.Clear();
             foreach (Ltxt.SubLot sl in wrp.SubLots)
                 form.lbApts.Items.Add("0x" + Helper.HexString(sl.ApartmentSublot));
-            form.tbApartment.Text = form.tbSAu1.Text = form.tbSAu2.Text = form.tbSAu3.Text = "";
+            form.tbApartment.Text = form.tbSAFamily.Text = form.tbSAu2.Text = form.tbSAu3.Text = "";
 
 
             form.lbu7.Items.Clear();
@@ -159,7 +160,10 @@ namespace SimPe.Plugin
                 !form.lbApts.Enabled;
 
             form.llAptBase.Enabled = (wrp.ApartmentBase != 0);
-            form.llFamily.Enabled = form.llSubLot.Enabled = false;
+            form.flpAptBtns.Visible = (wrp.Version >= LtxtVersion.Apartment || wrp.SubVersion >= LtxtSubVersion.Apartment)
+                && Helper.WindowsRegistry.HiddenMode;
+            form.flpAptBtns.Enabled = (wrp.Type == Ltxt.LotType.ApartmentBase);
+            form.btnDelApt.Enabled = form.llFamily.Enabled = form.llSubLot.Enabled = false;
 
 			form.wrapper = wrp;
 		}		
