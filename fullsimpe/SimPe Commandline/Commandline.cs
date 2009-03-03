@@ -402,8 +402,9 @@ namespace SimPe
                 Helper.WindowsRegistry.LockDocks = true;
                 Helper.WindowsRegistry.Flush();
 
-                return !(Message.Show(SimPe.Localization.GetString("PresetChanged").Replace("{name}", SimPe.Localization.GetString("PresetClassic")),
-                    SimPe.Localization.GetString("Information"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes);
+                System.Windows.Forms.DialogResult dr = Message.Show(SimPe.Localization.GetString("PresetChanged").Replace("{name}", SimPe.Localization.GetString("PresetClassic")),
+                    SimPe.Localization.GetString("Information"), System.Windows.Forms.MessageBoxButtons.YesNo);
+                return dr != System.Windows.Forms.DialogResult.Yes;
             }
             public string[] Help() { return new string[] { "-classicpreset", null }; }
             #endregion
@@ -418,9 +419,10 @@ namespace SimPe
 
                 ForceModernLayout();
 
-                return (Message.Show(SimPe.Localization.GetString("PresetChanged").Replace("{name}",
+                System.Windows.Forms.DialogResult dr = Message.Show(SimPe.Localization.GetString("PresetChanged").Replace("{name}",
                     SimPe.Localization.GetString("PresetModern")), SimPe.Localization.GetString("Information"),
-                    System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes);
+                    System.Windows.Forms.MessageBoxButtons.YesNo);
+                return dr != System.Windows.Forms.DialogResult.Yes;
             }
             public string[] Help() { return new string[] { "-modernpreset", null }; }
             #endregion
