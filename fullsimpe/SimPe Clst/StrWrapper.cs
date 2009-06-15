@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2005 by Peter L Jones                                   *
- *   peter@drealm.info                                                     *
+ *   pljones@users.sf.net                                                  *
  *   Copyright (C) 2005 by Ambertation                                     *
  *   quaxi@ambertation.de                                                  *
  *                                                                         *
@@ -29,7 +29,7 @@ namespace SimPe.PackedFiles.Wrapper
 	/// This is the actual FileWrapper
 	/// </summary>
 	/// <remarks>
-	/// The wrapper is used to (un)serialize the Data of a file into it's Attributes. So Basically it reads 
+	/// The wrapper is used to (un)serialize the Data of a file into it's Attributes. So Basically it reads
 	/// a BinaryStream and translates the data into some userdefine Attributes.
 	/// </remarks>
 	public class Str
@@ -64,7 +64,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <summary>
 		/// Returns the Filename
 		/// </summary>
-		public string FileName 
+		public string FileName
 		{
 			get { return Helper.ToString(filename); }
 			set
@@ -85,10 +85,10 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </summary>
 		public SimPe.Data.MetaData.FormatCode Format
 		{
-			get { return format; }			
+			get { return format; }
 			set { format = value; } // should check it's valid
 		}
-		
+
 		/// <summary>
 		/// Returns/Sets all stored lines
 		/// </summary>
@@ -106,9 +106,9 @@ namespace SimPe.PackedFiles.Wrapper
 		/// Gets or Sets the list of languages in the file
 		/// </summary>
 		/// <remarks>Adds empty lists when setting for missing languages</remarks>
-		public StrLanguageList Languages 
+		public StrLanguageList Languages
 		{
-			get 
+			get
 			{
 				StrLanguageList lngs = new StrLanguageList();
 				foreach (byte k in lines.Keys) lngs.Add(k);
@@ -116,9 +116,9 @@ namespace SimPe.PackedFiles.Wrapper
 
 				return lngs;
 			}
-			set 
+			set
 			{
-				foreach (StrLanguage l in value) 
+				foreach (StrLanguage l in value)
 				{
 					if (!lines.ContainsKey(l.Id)) lines.Add(l.Id, new StrItemList());
 				}
@@ -133,14 +133,14 @@ namespace SimPe.PackedFiles.Wrapper
 		public void Add(StrToken item)
 		{
 			StrItemList lng = (StrItemList)lines[item.Language.Id];
-			if (lng == null) 
+			if (lng == null)
 			{
 				lng = new StrItemList();
 				lines[item.Language.Id] = lng;
 			}
 
 			lng.Add(item);
-		}		
+		}
 
 		/// <summary>
 		/// Removes this Item From the List
@@ -158,15 +158,15 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </summary>
 		public StrItemList Items
 		{
-			get 
-			{ 
+			get
+			{
 				StrItemList items = new StrItemList();
 				StrLanguageList lngs = Languages;
 				foreach (StrLanguage k in lngs) items.AddRange((StrItemList)lines[k.Id]);
 
 				return items;
-			}			
-			set 
+			}
+			set
 			{
 				lines = new Hashtable();
 				foreach (StrToken i in value) this.Add(i);
@@ -178,9 +178,9 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </summary>
 		/// <param name="l">the Language</param>
 		/// <returns>List of Strings</returns>
-		public StrItemList LanguageItems(StrLanguage l) 
-		{			
-			if (l==null) return new StrItemList();			
+		public StrItemList LanguageItems(StrLanguage l)
+		{
+			if (l==null) return new StrItemList();
 			return LanguageItems((Data.MetaData.Languages)l.Id);
 		}
 
@@ -189,12 +189,12 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </summary>
 		/// <param name="l">the Language</param>
 		/// <returns>List of Strings</returns>
-		public StrItemList LanguageItems(Data.MetaData.Languages l) 
-		{	
-			
+		public StrItemList LanguageItems(Data.MetaData.Languages l)
+		{
+
 			StrItemList items = (StrItemList)lines[(byte)l];
 			if (items==null) items = new StrItemList();
-			
+
 			return items;
 		}
 
@@ -210,19 +210,19 @@ namespace SimPe.PackedFiles.Wrapper
 			StrToken name;
 			if (list.Length>index) name = list[index];
 			else name = new StrToken(0, 0, "", "");
-			 
-			if (name.Title.Trim()=="") 
+
+			if (name.Title.Trim()=="")
 			{
 				list = this.LanguageItems(1);
 				if (list.Length>index) name = list[index];
 			}
-			
+
 
 			return name;
 		}
 
 		/// <summary>
-		/// Returns all Langugae specific Strings, if the String is not included in the passed 
+		/// Returns all Langugae specific Strings, if the String is not included in the passed
 		/// Language the Fallback String (use en) will be returned
 		/// </summary>
 		/// <param name="l">the Language</param>
@@ -232,23 +232,23 @@ namespace SimPe.PackedFiles.Wrapper
 			if (l==Data.MetaData.Languages.English) return this.LanguageItems(l);
 
 			StrItemList real = (StrItemList)LanguageItems(l).Clone();
-			StrItemList fallback = null;	
+			StrItemList fallback = null;
 			if (this.Languages.Contains(Data.MetaData.Languages.English))
-				fallback = LanguageItems(Data.MetaData.Languages.English);	
+				fallback = LanguageItems(Data.MetaData.Languages.English);
 			else if (this.Languages.Count==1)
 			{
-				fallback = LanguageItems(Languages[0]);	
+				fallback = LanguageItems(Languages[0]);
 			}
-			else fallback = LanguageItems(Data.MetaData.Languages.English);	
-					
+			else fallback = LanguageItems(Data.MetaData.Languages.English);
 
-			for (int i=0; i<fallback.Length; i++) 
+
+			for (int i=0; i<fallback.Length; i++)
 				if (real.Length <= i) real.Add(fallback[i]);
 				else if ((real[i] == null) || (real[i].Title.Trim() == ""))
 					real[i] = fallback[i];
 			return real;
 		}
-		
+
 
 		#endregion
 
@@ -256,7 +256,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// Constructor
 		/// </summary>
 		public Str(int limit) : base()
-		{		
+		{
 			filename = new byte[64];
 			format = SimPe.Data.MetaData.FormatCode.normal;
 			lines = new Hashtable();
@@ -267,7 +267,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// Constructor
 		/// </summary>
 		public Str() : base()
-		{		
+		{
 			filename = new byte[64];
 			format = SimPe.Data.MetaData.FormatCode.normal;
 			lines = new Hashtable();
@@ -278,10 +278,10 @@ namespace SimPe.PackedFiles.Wrapper
 		/// Removes all String Items that are not assigned to the Default Language
 		/// </summary>
 		public void ClearNonDefault()
-		{			
+		{
 			StrItemList sil = this.Items;
-			foreach (StrToken si in sil) 
-				if (si.Language.Id!=1) 
+			foreach (StrToken si in sil)
+				if (si.Language.Id!=1)
 					this.Remove(si);
 		}
 
@@ -292,22 +292,22 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			StrItemList sil = this.Items;
 			StrItemList def = this.LanguageItems(new StrLanguage(1));
-			foreach (StrToken si in sil) 
-				if (si.Language.Id!=1) 				
+			foreach (StrToken si in sil)
+				if (si.Language.Id!=1)
 					if (si.Index>0 && si.Index<def.Count)
 					{
 						si.Title = def[si.Index].Title;
 						si.Description = def[si.Index].Description;
-					}				
+					}
 		}
 
 		#region IWrapper member
-		public override bool CheckVersion(uint version) 
+		public override bool CheckVersion(uint version)
 		{
 			return true;
 		}
 		#endregion
-		
+
 		#region AbstractWrapper Member
 		protected override IPackedFileUI CreateDefaultUIHandler()
 		{
@@ -326,7 +326,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"This File contains Text Resources in various Languages.",
 				9,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.txt.png"))
-				);  
+				);
 		}
 
 		/// <summary>
@@ -337,7 +337,7 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			lines = new Hashtable();
 			if (reader.BaseStream.Length <= 0x40) return;
-			
+
 			byte[] fi = reader.ReadBytes(0x40);
 
 			SimPe.Data.MetaData.FormatCode fo = (SimPe.Data.MetaData.FormatCode)reader.ReadUInt16();
@@ -358,11 +358,11 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </summary>
 		/// <param name="writer">The Stream the Data should be stored to</param>
 		/// <remarks>
-		/// Be sure that the Position of the stream is Proper on 
+		/// Be sure that the Position of the stream is Proper on
 		/// return (i.e. must point to the first Byte after your actual File)
 		/// </remarks>
 		protected override void Serialize(System.IO.BinaryWriter writer)
-		{			
+		{
 			writer.Write(filename);
 			writer.Write((ushort)format);
 			ArrayList lngs = this.Languages;
@@ -371,14 +371,14 @@ namespace SimPe.PackedFiles.Wrapper
 			foreach (StrLanguage k in lngs) items.AddRange((ArrayList)lines[k.Id]);
 			writer.Write((ushort)items.Count);
 
-			foreach (StrToken i in items) 
+			foreach (StrToken i in items)
 			{
 				i.Serialize(writer);
 			}//foreach language
 		}
 		#endregion
 
-		#region IFileWrapperSaveExtension Member		
+		#region IFileWrapperSaveExtension Member
 		//all covered by Serialize()
 		#endregion
 
@@ -417,11 +417,11 @@ namespace SimPe.PackedFiles.Wrapper
 								   0x54544173,  //Pie String (TTAB)
 								   0x43545353   //CTSS
 							   };
-			
+
 				return types;
 			}
 		}
 
-		#endregion		
+		#endregion
 	}
 }

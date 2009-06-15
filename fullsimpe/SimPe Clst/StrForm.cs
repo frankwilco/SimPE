@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2005 by Peter L Jones                                   *
- *   peter@drealm.info                                                     *
+ *   pljones@users.sf.net                                                  *
  *   Copyright (C) 2005 by Ambertation                                     *
  *   quaxi@ambertation.de                                                  *
  *                                                                         *
@@ -133,7 +133,7 @@ namespace SimPe.PackedFiles.UserInterface
 			lbstr.Text = wrapper.FileName;
 			tbformat.Text = "0x"+Helper.HexString((ushort)wrapper.Format);
 
-			lbtexts.Items.Clear();			
+			lbtexts.Items.Clear();
 
 			llcommit.Enabled = false;
 			llchangeall.Enabled = false;
@@ -144,7 +144,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 			cblanguage.Items.Clear();
 			cblanguage.Sorted = false;
-			
+
 			foreach (StrLanguage s in wrapper.Languages)
 				cblanguage.Items.Add(s);
 
@@ -153,7 +153,7 @@ namespace SimPe.PackedFiles.UserInterface
 				cblanguage.SelectedIndex = 0;
 
 			Tag = null;
-		}		
+		}
 		#endregion
 
 		#region Windows Form Designer generated code
@@ -197,9 +197,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// strPanel
-			// 
+			//
 			this.strPanel.AccessibleDescription = resources.GetString("strPanel.AccessibleDescription");
 			this.strPanel.AccessibleName = resources.GetString("strPanel.AccessibleName");
 			this.strPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("strPanel.Anchor")));
@@ -228,9 +228,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.strPanel.TabIndex = ((int)(resources.GetObject("strPanel.TabIndex")));
 			this.strPanel.Text = resources.GetString("strPanel.Text");
 			this.strPanel.Visible = ((bool)(resources.GetObject("strPanel.Visible")));
-			// 
+			//
 			// button1
-			// 
+			//
 			this.button1.AccessibleDescription = resources.GetString("button1.AccessibleDescription");
 			this.button1.AccessibleName = resources.GetString("button1.AccessibleName");
 			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("button1.Anchor")));
@@ -252,9 +252,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.button1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button1.TextAlign")));
 			this.button1.Visible = ((bool)(resources.GetObject("button1.Visible")));
 			this.button1.Click += new System.EventHandler(this.ClearStr);
-			// 
+			//
 			// btcommit
-			// 
+			//
 			this.btcommit.AccessibleDescription = resources.GetString("btcommit.AccessibleDescription");
 			this.btcommit.AccessibleName = resources.GetString("btcommit.AccessibleName");
 			this.btcommit.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btcommit.Anchor")));
@@ -276,9 +276,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.btcommit.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btcommit.TextAlign")));
 			this.btcommit.Visible = ((bool)(resources.GetObject("btcommit.Visible")));
 			this.btcommit.Click += new System.EventHandler(this.CommitStr);
-			// 
+			//
 			// cblanguage
-			// 
+			//
 			this.cblanguage.AccessibleDescription = resources.GetString("cblanguage.AccessibleDescription");
 			this.cblanguage.AccessibleName = resources.GetString("cblanguage.AccessibleName");
 			this.cblanguage.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cblanguage.Anchor")));
@@ -300,9 +300,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cblanguage.Text = resources.GetString("cblanguage.Text");
 			this.cblanguage.Visible = ((bool)(resources.GetObject("cblanguage.Visible")));
 			this.cblanguage.SelectedIndexChanged += new System.EventHandler(this.LanguageChanged);
-			// 
+			//
 			// label4
-			// 
+			//
 			this.label4.AccessibleDescription = resources.GetString("label4.AccessibleDescription");
 			this.label4.AccessibleName = resources.GetString("label4.AccessibleName");
 			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label4.Anchor")));
@@ -322,9 +322,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label4.Text = resources.GetString("label4.Text");
 			this.label4.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label4.TextAlign")));
 			this.label4.Visible = ((bool)(resources.GetObject("label4.Visible")));
-			// 
+			//
 			// groupBox1
-			// 
+			//
 			this.groupBox1.AccessibleDescription = resources.GetString("groupBox1.AccessibleDescription");
 			this.groupBox1.AccessibleName = resources.GetString("groupBox1.AccessibleName");
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("groupBox1.Anchor")));
@@ -345,9 +345,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = resources.GetString("groupBox1.Text");
 			this.groupBox1.Visible = ((bool)(resources.GetObject("groupBox1.Visible")));
-			// 
+			//
 			// gbstr
-			// 
+			//
 			this.gbstr.AccessibleDescription = resources.GetString("gbstr.AccessibleDescription");
 			this.gbstr.AccessibleName = resources.GetString("gbstr.AccessibleName");
 			this.gbstr.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("gbstr.Anchor")));
@@ -375,9 +375,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.gbstr.TabStop = false;
 			this.gbstr.Text = resources.GetString("gbstr.Text");
 			this.gbstr.Visible = ((bool)(resources.GetObject("gbstr.Visible")));
-			// 
+			//
 			// lldelall
-			// 
+			//
 			this.lldelall.AccessibleDescription = resources.GetString("lldelall.AccessibleDescription");
 			this.lldelall.AccessibleName = resources.GetString("lldelall.AccessibleName");
 			this.lldelall.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lldelall.Anchor")));
@@ -400,9 +400,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.lldelall.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lldelall.TextAlign")));
 			this.lldelall.Visible = ((bool)(resources.GetObject("lldelall.Visible")));
 			this.lldelall.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.DelInAll);
-			// 
+			//
 			// lldelete
-			// 
+			//
 			this.lldelete.AccessibleDescription = resources.GetString("lldelete.AccessibleDescription");
 			this.lldelete.AccessibleName = resources.GetString("lldelete.AccessibleName");
 			this.lldelete.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lldelete.Anchor")));
@@ -425,9 +425,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.lldelete.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lldelete.TextAlign")));
 			this.lldelete.Visible = ((bool)(resources.GetObject("lldelete.Visible")));
 			this.lldelete.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.StrDelete);
-			// 
+			//
 			// llchangeall
-			// 
+			//
 			this.llchangeall.AccessibleDescription = resources.GetString("llchangeall.AccessibleDescription");
 			this.llchangeall.AccessibleName = resources.GetString("llchangeall.AccessibleName");
 			this.llchangeall.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llchangeall.Anchor")));
@@ -450,9 +450,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.llchangeall.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llchangeall.TextAlign")));
 			this.llchangeall.Visible = ((bool)(resources.GetObject("llchangeall.Visible")));
 			this.llchangeall.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ChangeInAllLanguages);
-			// 
+			//
 			// lladdall
-			// 
+			//
 			this.lladdall.AccessibleDescription = resources.GetString("lladdall.AccessibleDescription");
 			this.lladdall.AccessibleName = resources.GetString("lladdall.AccessibleName");
 			this.lladdall.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lladdall.Anchor")));
@@ -475,9 +475,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.lladdall.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lladdall.TextAlign")));
 			this.lladdall.Visible = ((bool)(resources.GetObject("lladdall.Visible")));
 			this.lladdall.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AddToAll);
-			// 
+			//
 			// lladd
-			// 
+			//
 			this.lladd.AccessibleDescription = resources.GetString("lladd.AccessibleDescription");
 			this.lladd.AccessibleName = resources.GetString("lladd.AccessibleName");
 			this.lladd.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lladd.Anchor")));
@@ -500,9 +500,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.lladd.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lladd.TextAlign")));
 			this.lladd.Visible = ((bool)(resources.GetObject("lladd.Visible")));
 			this.lladd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.StrAdd);
-			// 
+			//
 			// llcommit
-			// 
+			//
 			this.llcommit.AccessibleDescription = resources.GetString("llcommit.AccessibleDescription");
 			this.llcommit.AccessibleName = resources.GetString("llcommit.AccessibleName");
 			this.llcommit.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llcommit.Anchor")));
@@ -525,9 +525,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.llcommit.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llcommit.TextAlign")));
 			this.llcommit.Visible = ((bool)(resources.GetObject("llcommit.Visible")));
 			this.llcommit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CommitChanges);
-			// 
+			//
 			// rtbdesc
-			// 
+			//
 			this.rtbdesc.AccessibleDescription = resources.GetString("rtbdesc.AccessibleDescription");
 			this.rtbdesc.AccessibleName = resources.GetString("rtbdesc.AccessibleName");
 			this.rtbdesc.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("rtbdesc.Anchor")));
@@ -552,9 +552,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.rtbdesc.WordWrap = ((bool)(resources.GetObject("rtbdesc.WordWrap")));
 			this.rtbdesc.ZoomFactor = ((System.Single)(resources.GetObject("rtbdesc.ZoomFactor")));
 			this.rtbdesc.TextChanged += new System.EventHandler(this.ChangeText);
-			// 
+			//
 			// rtbvalue
-			// 
+			//
 			this.rtbvalue.AccessibleDescription = resources.GetString("rtbvalue.AccessibleDescription");
 			this.rtbvalue.AccessibleName = resources.GetString("rtbvalue.AccessibleName");
 			this.rtbvalue.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("rtbvalue.Anchor")));
@@ -579,9 +579,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.rtbvalue.WordWrap = ((bool)(resources.GetObject("rtbvalue.WordWrap")));
 			this.rtbvalue.ZoomFactor = ((System.Single)(resources.GetObject("rtbvalue.ZoomFactor")));
 			this.rtbvalue.TextChanged += new System.EventHandler(this.ChangeText);
-			// 
+			//
 			// label3
-			// 
+			//
 			this.label3.AccessibleDescription = resources.GetString("label3.AccessibleDescription");
 			this.label3.AccessibleName = resources.GetString("label3.AccessibleName");
 			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label3.Anchor")));
@@ -601,9 +601,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label3.Text = resources.GetString("label3.Text");
 			this.label3.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label3.TextAlign")));
 			this.label3.Visible = ((bool)(resources.GetObject("label3.Visible")));
-			// 
+			//
 			// label2
-			// 
+			//
 			this.label2.AccessibleDescription = resources.GetString("label2.AccessibleDescription");
 			this.label2.AccessibleName = resources.GetString("label2.AccessibleName");
 			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label2.Anchor")));
@@ -623,9 +623,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label2.Text = resources.GetString("label2.Text");
 			this.label2.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label2.TextAlign")));
 			this.label2.Visible = ((bool)(resources.GetObject("label2.Visible")));
-			// 
+			//
 			// splitter1
-			// 
+			//
 			this.splitter1.AccessibleDescription = resources.GetString("splitter1.AccessibleDescription");
 			this.splitter1.AccessibleName = resources.GetString("splitter1.AccessibleName");
 			this.splitter1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("splitter1.Anchor")));
@@ -644,9 +644,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.splitter1.TabIndex = ((int)(resources.GetObject("splitter1.TabIndex")));
 			this.splitter1.TabStop = false;
 			this.splitter1.Visible = ((bool)(resources.GetObject("splitter1.Visible")));
-			// 
+			//
 			// panel1
-			// 
+			//
 			this.panel1.AccessibleDescription = resources.GetString("panel1.AccessibleDescription");
 			this.panel1.AccessibleName = resources.GetString("panel1.AccessibleName");
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("panel1.Anchor")));
@@ -666,9 +666,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.panel1.TabIndex = ((int)(resources.GetObject("panel1.TabIndex")));
 			this.panel1.Text = resources.GetString("panel1.Text");
 			this.panel1.Visible = ((bool)(resources.GetObject("panel1.Visible")));
-			// 
+			//
 			// lbtexts
-			// 
+			//
 			this.lbtexts.AccessibleDescription = resources.GetString("lbtexts.AccessibleDescription");
 			this.lbtexts.AccessibleName = resources.GetString("lbtexts.AccessibleName");
 			this.lbtexts.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbtexts.Anchor")));
@@ -690,9 +690,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.lbtexts.TabIndex = ((int)(resources.GetObject("lbtexts.TabIndex")));
 			this.lbtexts.Visible = ((bool)(resources.GetObject("lbtexts.Visible")));
 			this.lbtexts.SelectedIndexChanged += new System.EventHandler(this.StringSelected);
-			// 
+			//
 			// tbformat
-			// 
+			//
 			this.tbformat.AccessibleDescription = resources.GetString("tbformat.AccessibleDescription");
 			this.tbformat.AccessibleName = resources.GetString("tbformat.AccessibleName");
 			this.tbformat.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbformat.Anchor")));
@@ -716,9 +716,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbformat.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbformat.TextAlign")));
 			this.tbformat.Visible = ((bool)(resources.GetObject("tbformat.Visible")));
 			this.tbformat.WordWrap = ((bool)(resources.GetObject("tbformat.WordWrap")));
-			// 
+			//
 			// label1
-			// 
+			//
 			this.label1.AccessibleDescription = resources.GetString("label1.AccessibleDescription");
 			this.label1.AccessibleName = resources.GetString("label1.AccessibleName");
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label1.Anchor")));
@@ -738,9 +738,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label1.Text = resources.GetString("label1.Text");
 			this.label1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label1.TextAlign")));
 			this.label1.Visible = ((bool)(resources.GetObject("label1.Visible")));
-			// 
+			//
 			// panel2
-			// 
+			//
 			this.panel2.AccessibleDescription = resources.GetString("panel2.AccessibleDescription");
 			this.panel2.AccessibleName = resources.GetString("panel2.AccessibleName");
 			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("panel2.Anchor")));
@@ -763,9 +763,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.panel2.TabIndex = ((int)(resources.GetObject("panel2.TabIndex")));
 			this.panel2.Text = resources.GetString("panel2.Text");
 			this.panel2.Visible = ((bool)(resources.GetObject("panel2.Visible")));
-			// 
+			//
 			// lbstr
-			// 
+			//
 			this.lbstr.AccessibleDescription = resources.GetString("lbstr.AccessibleDescription");
 			this.lbstr.AccessibleName = resources.GetString("lbstr.AccessibleName");
 			this.lbstr.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbstr.Anchor")));
@@ -785,9 +785,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.lbstr.Text = resources.GetString("lbstr.Text");
 			this.lbstr.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbstr.TextAlign")));
 			this.lbstr.Visible = ((bool)(resources.GetObject("lbstr.Visible")));
-			// 
+			//
 			// banner
-			// 
+			//
 			this.banner.AccessibleDescription = resources.GetString("banner.AccessibleDescription");
 			this.banner.AccessibleName = resources.GetString("banner.AccessibleName");
 			this.banner.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("banner.Anchor")));
@@ -807,9 +807,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.banner.Text = resources.GetString("banner.Text");
 			this.banner.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("banner.TextAlign")));
 			this.banner.Visible = ((bool)(resources.GetObject("banner.Visible")));
-			// 
+			//
 			// llcreate
-			// 
+			//
 			this.llcreate.AccessibleDescription = resources.GetString("llcreate.AccessibleDescription");
 			this.llcreate.AccessibleName = resources.GetString("llcreate.AccessibleName");
 			this.llcreate.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llcreate.Anchor")));
@@ -832,9 +832,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.llcreate.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llcreate.TextAlign")));
 			this.llcreate.Visible = ((bool)(resources.GetObject("llcreate.Visible")));
 			this.llcreate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CreateTextFile);
-			// 
+			//
 			// linkLabel1
-			// 
+			//
 			this.linkLabel1.AccessibleDescription = resources.GetString("linkLabel1.AccessibleDescription");
 			this.linkLabel1.AccessibleName = resources.GetString("linkLabel1.AccessibleName");
 			this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("linkLabel1.Anchor")));
@@ -857,9 +857,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.linkLabel1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("linkLabel1.TextAlign")));
 			this.linkLabel1.Visible = ((bool)(resources.GetObject("linkLabel1.Visible")));
 			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-			// 
+			//
 			// StrForm
-			// 
+			//
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
 			this.AccessibleName = resources.GetString("$this.AccessibleName");
 			this.AutoScaleBaseSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScaleBaseSize")));
@@ -894,18 +894,18 @@ namespace SimPe.PackedFiles.UserInterface
 		{
 			if (lbtexts.SelectedIndex<0) return;
 
-			try 
+			try
 			{
 				Str wrp = (Str)wrapper;
-				StrToken item = (StrToken)lbtexts.Items[lbtexts.SelectedIndex];				
+				StrToken item = (StrToken)lbtexts.Items[lbtexts.SelectedIndex];
 				wrp.Remove(item);
 
 				lbtexts.Items.Remove(item);
 				LanguageChanged(null, null);
 
 				wrp.Changed = true;
-			} 
-			catch (Exception ex) 
+			}
+			catch (Exception ex)
 			{
 				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), ex);
 			}
@@ -915,11 +915,11 @@ namespace SimPe.PackedFiles.UserInterface
 		{
 			if (lbtexts.SelectedIndex<0) return;
 
-			try 
+			try
 			{
 				Str wrp = (Str)wrapper;
-				
-				foreach (StrItemList list in wrp.Lines.Values) 
+
+				foreach (StrItemList list in wrp.Lines.Values)
 				{
 					if (list.Count>lbtexts.SelectedIndex)
 						list.RemoveAt(lbtexts.SelectedIndex);
@@ -928,8 +928,8 @@ namespace SimPe.PackedFiles.UserInterface
 				lbtexts.Items.Remove(lbtexts.Items[lbtexts.SelectedIndex]);
 				LanguageChanged(null, null);
 				wrp.Changed = true;
-			} 
-			catch (Exception ex) 
+			}
+			catch (Exception ex)
 			{
 				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), ex);
 			}
@@ -937,7 +937,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 		private void CreateTextFile(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-			try 
+			try
 			{
 				string list = "";
 				for (int i=0; i < lbtexts.Items.Count; i++)
@@ -947,21 +947,21 @@ namespace SimPe.PackedFiles.UserInterface
 				}
 
 				Clipboard.SetDataObject(list, true);
-			} 
+			}
 			catch (Exception) { }
 		}
 
 		private void ClearStr(object sender, System.EventArgs e)
 		{
 
-			try 
+			try
 			{
-				Str wrp = (Str)wrapper;	
+				Str wrp = (Str)wrapper;
 				wrp.Items = new StrItemList();
 				this.cblanguage.Items.Clear();
 
 				StrLanguageList lngs = new StrLanguageList();
-				for (int i=1; i<45; i++) 
+				for (int i=1; i<45; i++)
 				{
 					StrLanguage lng = new StrLanguage((byte)i);
 					cblanguage.Items.Add(lng);
@@ -970,7 +970,7 @@ namespace SimPe.PackedFiles.UserInterface
 				wrp.Languages = lngs;
 				this.cblanguage.SelectedIndex = 0;
 				LanguageChanged(null, null);
-			} 
+			}
 			catch (Exception) { }
 		}
 
@@ -980,21 +980,21 @@ namespace SimPe.PackedFiles.UserInterface
 			lbtexts.Items.Clear();
 			if (this.cblanguage.SelectedIndex<0) return;
 
-			try 
+			try
 			{
-				Str wrp = (Str)wrapper;	
+				Str wrp = (Str)wrapper;
 				foreach (StrToken s in wrp.LanguageItems((StrLanguage)cblanguage.Items[cblanguage.SelectedIndex])) lbtexts.Items.Add(s);
-			} 
-			catch (Exception ex) 
+			}
+			catch (Exception ex)
 			{
 				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), ex);
-			}  			
-			
+			}
+
 		}
 
 		private void StringSelected(object sender, System.EventArgs e)
 		{
-			if (this.Tag!=null) return;			
+			if (this.Tag!=null) return;
 			llcommit.Enabled = false;
 			llchangeall.Enabled = false;
 			lldelete.Enabled = false;
@@ -1002,7 +1002,7 @@ namespace SimPe.PackedFiles.UserInterface
 			if (lbtexts.SelectedIndex<0) return;
 
 			this.Tag = true;
-			try 
+			try
 			{
 				StrToken s = (StrToken)lbtexts.Items[lbtexts.SelectedIndex];
 
@@ -1014,11 +1014,11 @@ namespace SimPe.PackedFiles.UserInterface
 				lldelall.Enabled = true;
 
 				gbstr.Text = "0x"+Helper.HexString((ushort)lbtexts.SelectedIndex);
-			} 
-			catch (Exception ex) 
+			}
+			catch (Exception ex)
 			{
 				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), ex);
-			}  
+			}
 			finally
 			{
 				this.Tag = null;
@@ -1036,13 +1036,13 @@ namespace SimPe.PackedFiles.UserInterface
 		{
 			if (this.Tag!=null) return;
 
-			
+
 			llcommit.Enabled = (lbtexts.SelectedIndex<0);
 			if (this.cblanguage.SelectedIndex<0) return;
 
 			this.Tag = true;
-			try 
-			{				
+			try
+			{
 				Str wrp = (Str)wrapper;
 
 				if (lbtexts.SelectedIndex < 0)
@@ -1063,12 +1063,12 @@ namespace SimPe.PackedFiles.UserInterface
 				}
 
 				wrp.Changed = true;
-			} 
-			catch (Exception ex) 
+			}
+			catch (Exception ex)
 			{
 				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), ex);
-			} 
-			finally 
+			}
+			finally
 			{
 				this.Tag = null;
 			}
@@ -1076,29 +1076,29 @@ namespace SimPe.PackedFiles.UserInterface
 
 		private void CommitStr(object sender, System.EventArgs e)
 		{
-			try 
+			try
 			{
 				if (this.lbtexts.SelectedIndex>=0) CommitChanges(null, null);
-				Str wrp = (Str)wrapper;	
+				Str wrp = (Str)wrapper;
 				//foreach (StrItem s in wrp.LanguageItems((StrLanguage)cblanguage.Items[cblanguage.SelectedIndex])) lbtexts.Items.Add(s);
 				wrp.SynchronizeUserData();
 				MessageBox.Show(Localization.Manager.GetString("commited"));
-			} 
-			catch (Exception ex) 
+			}
+			catch (Exception ex)
 			{
 				Helper.ExceptionMessage(Localization.Manager.GetString("errwritingfile"), ex);
-			}  
-		} 
+			}
+		}
 
 		private void ChangeInAllLanguages(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
 			int curIndex = lbtexts.SelectedIndex;			// The current language string index
 			if (curIndex < 0) return;
-			try 
+			try
 			{
 				Str wrp = (Str)wrapper;
 				StrToken s = (StrToken)lbtexts.Items[curIndex];	// The StrItem in the current language (lbtexts.Items)
-			
+
 				s.Title = rtbvalue.Text;
 				s.Description = rtbdesc.Text;
 
@@ -1117,8 +1117,8 @@ namespace SimPe.PackedFiles.UserInterface
 
 				LanguageChanged(null, null);
 				wrp.Changed = true;
-			} 
-			catch (Exception ex) 
+			}
+			catch (Exception ex)
 			{
 				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), ex);
 			}
@@ -1126,18 +1126,18 @@ namespace SimPe.PackedFiles.UserInterface
 
 		private void AddToAll(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-			try 
-			{				
+			try
+			{
 				Str wrp = (Str)wrapper;
-				
+
 				//find longest String List
 				int count = 0;
 				foreach (StrLanguage lng in wrp.Languages) count = Math.Max(count, wrp.LanguageItems(lng).Length);
-				
-				foreach (StrLanguage lng in wrp.Languages) 
+
+				foreach (StrLanguage lng in wrp.Languages)
 				{
 					if (lng == null) continue;
-					while (wrp.LanguageItems(lng).Length < count) 
+					while (wrp.LanguageItems(lng).Length < count)
 						wrp.Add(new StrToken(wrp.LanguageItems(lng).Length, lng, "", ""));
 
 					wrp.Add(new StrToken(wrp.LanguageItems(lng).Length, lng, rtbvalue.Text, rtbdesc.Text));
@@ -1145,11 +1145,11 @@ namespace SimPe.PackedFiles.UserInterface
 
 				LanguageChanged(null, null);
 				wrp.Changed = true;
-			} 
-			catch (Exception ex) 
+			}
+			catch (Exception ex)
 			{
 				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), ex);
-			}		
+			}
 		}
 
 		private void linkLabel1_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
@@ -1157,7 +1157,7 @@ namespace SimPe.PackedFiles.UserInterface
 			StrLanguageList ls = new StrLanguageList();
 			this.cblanguage.Items.Clear();
 			this.cblanguage.Sorted = false;
-			for (byte i=1; i<45; i++) 
+			for (byte i=1; i<45; i++)
 			{
 				ls.Add(new StrLanguage(i));
 				this.cblanguage.Items.Add(ls[ls.Count-1]);
@@ -1168,7 +1168,7 @@ namespace SimPe.PackedFiles.UserInterface
 			wrp.Changed = true;
 
 			this.cblanguage.Sorted = true;
-			if (this.cblanguage.Items.Count>0) this.cblanguage.SelectedIndex = 0;			
+			if (this.cblanguage.Items.Count>0) this.cblanguage.SelectedIndex = 0;
 		}
 
 		private void ChangeText(object sender, System.EventArgs e)
