@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2005 by Peter L Jones                                   *
- *   peter@drealm.info                                                     *
+ *   pljones@users.sf.net                                                  *
  *   Copyright (C) 2005 by Ambertation                                     *
  *   quaxi@ambertation.de                                                  *
  *                                                                         *
@@ -25,13 +25,13 @@ using SimPe.Interfaces.Plugin;
 
 namespace SimPe.PackedFiles.Wrapper
 {
-	public enum ShelveDimension : uint 
+	public enum ShelveDimension : uint
 	{
 		Big = 0x0,
 		Medium = 0x1,
 		Small = 0x2,
 		Unknown2 = 0x64,
-		Unknown1 = 0x96,			
+		Unknown1 = 0x96,
 		Multitile = 0xffff00fe,
 		Indetermined = 0xffff00ff
 	}
@@ -42,7 +42,7 @@ namespace SimPe.PackedFiles.Wrapper
 	{
 		#region Attributes
 		/// <summary>
-		///the stored Filename		
+		///the stored Filename
 		/// </summary>
         private byte[] filename = new byte[0x40];
 		private byte[] filename2 = new byte[0];
@@ -67,11 +67,11 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </summary>
 		public string FileName
 		{
-			get 
+			get
 			{
 				return Helper.ToString(filename);
-			}		
-			set 
+			}
+			set
 			{
 				filename = Helper.SetLength(Helper.ToBytes(value, 64), 64);
 			}
@@ -131,57 +131,57 @@ namespace SimPe.PackedFiles.Wrapper
             get { return gridalignguid; }
             set { gridalignguid = value; }
         }
-		
+
 
 		/// <summary>
 		/// returns the dimension of an Object on the Shelve
 		/// </summary>
-		public ShelveDimension ShelveDimension 
+		public ShelveDimension ShelveDimension
 		{
-			get 
-			{ 
-				if (data.Length>0x004F) 
+			get
+			{
+				if (data.Length>0x004F)
 				{
-					
+
 					short v = data[0x004F];
 					if (v!= 0x64 && v!=0x96 && v!=0 && v!=1 && v!=2) return ShelveDimension.Indetermined;
-					return (ShelveDimension)v; 
+					return (ShelveDimension)v;
 				}
 				return 0;
 			}
-			set 
-			{ 
-				if (data.Length>0x004F) data[0x004F] = (short)value; 
+			set
+			{
+				if (data.Length>0x004F) data[0x004F] = (short)value;
 			}
 		}
 
 		/// <summary>
 		/// returns the Instance of the assigned Catalog Description
 		/// </summary>
-		public ushort CTSSInstance 
+		public ushort CTSSInstance
 		{
-			get 
-			{ 
-				if (data.Length>0x29) return (ushort)data[0x29]; 
+			get
+			{
+				if (data.Length>0x29) return (ushort)data[0x29];
 				return 0;
 			}
-			set 
-			{ 
-				if (data.Length>0x29) data[0x29] = (short)value; 
+			set
+			{
+				if (data.Length>0x29) data[0x29] = (short)value;
 			}
 		}
 
 		/// <summary>
 		/// Retursn / Sets the Type of an Object
 		/// </summary>
-		public SimPe.Data.ObjectTypes Type 
+		public SimPe.Data.ObjectTypes Type
 		{
-			get { 
-				if (data.Length>0x09) return (SimPe.Data.ObjectTypes)data[0x09]; 
+			get {
+				if (data.Length>0x09) return (SimPe.Data.ObjectTypes)data[0x09];
 				return SimPe.Data.ObjectTypes.Normal;
 			}
-			set { 
-				if (data.Length>0x09) data[0x09] = (short)value; 
+			set {
+				if (data.Length>0x09) data[0x09] = (short)value;
 			}
 		}
 
@@ -205,12 +205,12 @@ namespace SimPe.PackedFiles.Wrapper
 
 		public Data.ObjFunctionSubSort FunctionSubSort
 		{
-			get 
+			get
 			{
 				uint val = (uint)((data[0x5e]&0xff) | ((fsort.Value&0xfff)<<8));
 				return (Data.ObjFunctionSubSort)val;
 			}
-			set 
+			set
 			{
 				uint val = (uint)value;
 				fsort.Value = (ushort)((val >> 8) & 0xfff);
@@ -228,7 +228,7 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 
-		public short Price 
+		public short Price
 		{
 			get {return data[0x12];}
 			set {data[0x12] = value; }
@@ -253,9 +253,9 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </summary>
 		public static SimPe.PackedFiles.Wrapper.ObjdPropertyParser PropertyParser
 		{
-			get 
+			get
 			{
-				if (tpp==null) 
+				if (tpp==null)
 					tpp = new SimPe.PackedFiles.Wrapper.ObjdPropertyParser(System.IO.Path.Combine(Helper.SimPeDataPath, "objddefinition.xml"));
 				return tpp;
 			}
@@ -270,7 +270,7 @@ namespace SimPe.PackedFiles.Wrapper
         public ExtObjd(object o) : this() { if (o != null) { throw new ArgumentException(); } }
 
         public ExtObjd() : base()
-		{			
+		{
 			Type = SimPe.Data.ObjectTypes.Normal;
 		}
 
@@ -286,14 +286,14 @@ namespace SimPe.PackedFiles.Wrapper
 			return new AbstractWrapperInfo(
 				"Extended OBJD Wrapper",
 				"Quaxi, Peter L Jones",
-				"This file is used to set up the basic catalog properties of an Object. " + 
+				"This file is used to set up the basic catalog properties of an Object. " +
 					"It also contains the unique ID for the Object (or part of the Object).",
 				7,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.objd.png"))
-				); 
+				);
 		}
-		protected override void Serialize(System.IO.BinaryWriter writer) 
-		{		
+		protected override void Serialize(System.IO.BinaryWriter writer)
+		{
 			const int MAX_VALUES = 0x6c;
 			if (data.Length>0x27)
 			{
@@ -302,8 +302,8 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 
 			writer.Write(filename);
-			int ct =0;			
-			foreach (short s in data) 
+			int ct =0;
+			foreach (short s in data)
 			{
 				writer.Write(s);
 				ct++;
@@ -316,22 +316,22 @@ namespace SimPe.PackedFiles.Wrapper
 			byte[] name = Helper.ToBytes(flname, 0);
 			writer.Write((uint)name.Length);
 			writer.Write(name);
-			
+
 			//write some special Fields
 			if (Length>0x5c+4)
 			{
 				writer.BaseStream.Seek(0x5c, System.IO.SeekOrigin.Begin);
 				writer.Write(guid);
-            } 
-            
+            }
+
             if (Length > 0x6A + 8)
             {
                 writer.BaseStream.Seek(0x6A, System.IO.SeekOrigin.Begin);
                 writer.Write(diagonalguid);
                 writer.Write(gridalignguid);
-            }           
+            }
 
-			if (Length>0x7a+4) 
+			if (Length>0x7a+4)
 			{
 				writer.BaseStream.Seek(0x7a, System.IO.SeekOrigin.Begin);
 				writer.Write(proxyguid);
@@ -344,17 +344,17 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 
 
-			
+
 			//if (free>0) writer.Write(new byte[free]);
 		}
 
 		protected override void Unserialize(System.IO.BinaryReader reader)
-		{	
-			ok = ObjdHealth.Ok;		
-			try 
+		{
+			ok = ObjdHealth.Ok;
+			try
 			{
 				UnserializeNew(reader);
-			} 
+			}
 			catch {
 				ok = ObjdHealth.Unreadable;
 				reader.BaseStream.Seek(0, System.IO.SeekOrigin.Begin);
@@ -363,7 +363,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 			//read some special Data
 			if (Length>0x5c+4)
-			{				
+			{
 				reader.BaseStream.Seek(0x5c, System.IO.SeekOrigin.Begin);
 				guid = reader.ReadUInt32();
 			}
@@ -376,7 +376,7 @@ namespace SimPe.PackedFiles.Wrapper
             }
 
 			if (Length>0x7a+4)
-			{				
+			{
 				reader.BaseStream.Seek(0x7a, System.IO.SeekOrigin.Begin);
 				proxyguid = reader.ReadUInt32();
 			}
@@ -387,13 +387,13 @@ namespace SimPe.PackedFiles.Wrapper
 				originalguid = reader.ReadUInt32();
 			}
 
-			
+
 			UpdateFlags();
 		}
 
 		protected void UnserializeNew(System.IO.BinaryReader reader)
-		{						
-			filename = reader.ReadBytes(0x40);				
+		{
+			filename = reader.ReadBytes(0x40);
 			int count = (int)((reader.BaseStream.Length - 0x40) / 2);
 			count = 0x6c;
 			data = new short[count];
@@ -401,8 +401,8 @@ namespace SimPe.PackedFiles.Wrapper
 
 			int sz = reader.ReadInt32();
 			filename2 = reader.ReadBytes(sz);
-			
-			if (Helper.ToString(filename2) != this.FileName) 
+
+			if (Helper.ToString(filename2) != this.FileName)
 				ok = ObjdHealth.UnmatchingFilenames;
 
 			if (reader.BaseStream.Position != reader.BaseStream.Length)
@@ -410,16 +410,16 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 		protected void UnserializeOld(System.IO.BinaryReader reader)
-		{						
-			filename = reader.ReadBytes(0x40);				
+		{
+			filename = reader.ReadBytes(0x40);
 			int count = (int)((reader.BaseStream.Length - 0x40) / 2);
 			data = new short[count];
-			for (int i=0; i<count; i++) 
+			for (int i=0; i<count; i++)
 			{
-				try 
+				try
 				{
-					data[i] = reader.ReadInt16();			
-				} 
+					data[i] = reader.ReadInt16();
+				}
 				catch (System.IO.EndOfStreamException ex)
 				{
 					throw new System.IO.EndOfStreamException("Reading Error in OBJd at "+i.ToString()+".", ex);
@@ -432,7 +432,7 @@ namespace SimPe.PackedFiles.Wrapper
 		#region IFileWrapper Member
 		public uint[] AssignableTypes
 		{
-			get 
+			get
 			{
 				uint[] Types = {
 								   0x4F424A44
@@ -443,13 +443,13 @@ namespace SimPe.PackedFiles.Wrapper
 
 		public Byte[] FileSignature
 		{
-			get 
+			get
 			{
-				Byte[] sig = {					 
+				Byte[] sig = {
 							 };
 				return sig;
 			}
-		}		
+		}
 
 		public override string Description
 		{
@@ -466,7 +466,7 @@ namespace SimPe.PackedFiles.Wrapper
 		public override object[] GetConstructorArguments()
 		{
             return new object[0];
-        }		
+        }
 
 		#endregion
 	}
@@ -476,9 +476,9 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// This is used to determin the Health of a OBJd File
 	/// </summary>
-	public enum ObjdHealth : byte 
+	public enum ObjdHealth : byte
 	{
-		Ok, 
+		Ok,
 		Unreadable,
 		UnmatchingFilenames,
 		OverLength
@@ -487,7 +487,7 @@ namespace SimPe.PackedFiles.Wrapper
 	#endregion
 
 	#region Room Sort
-	public class ObjRoomSort : FlagBase 
+	public class ObjRoomSort : FlagBase
 	{
 		public ObjRoomSort(short flags) : base((ushort)flags) {}
 		public ObjRoomSort(object o) : base(o) {}
@@ -549,7 +549,7 @@ namespace SimPe.PackedFiles.Wrapper
 	#endregion
 
 	#region Function Sort
-	public class ObjFunctionSort : FlagBase 
+	public class ObjFunctionSort : FlagBase
 	{
 		public ObjFunctionSort(short flags) : base((ushort)flags) {}
 		public ObjFunctionSort(object o) : base(o) {}

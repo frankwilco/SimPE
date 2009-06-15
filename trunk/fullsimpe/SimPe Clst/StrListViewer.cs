@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2005 by Peter L Jones                                   *
- *   peter@drealm.info                                                     *
+ *   pljones@users.sf.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -38,7 +38,7 @@ namespace SimPe.PackedFiles.UserInterface
 	{
 		#region Form elements
 
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -53,7 +53,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -99,7 +99,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private StrLanguage currentLang = null;
 
 
-		internal void UpdateGUI(Str wrp) 
+		internal void UpdateGUI(Str wrp)
 		{
 			wrapper = wrp;
 			this.treeView1.Nodes.Clear();
@@ -116,8 +116,8 @@ namespace SimPe.PackedFiles.UserInterface
 		#endregion
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -143,9 +143,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.menuItem11 = new System.Windows.Forms.MenuItem();
 			this.menuItem12 = new System.Windows.Forms.MenuItem();
 			this.SuspendLayout();
-			// 
+			//
 			// treeView1
-			// 
+			//
 			this.treeView1.ContextMenu = this.cmLangList;
 			this.treeView1.Dock = System.Windows.Forms.DockStyle.Left;
 			this.treeView1.ImageIndex = -1;
@@ -156,9 +156,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.treeView1.Sorted = true;
 			this.treeView1.TabIndex = 0;
 			this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-			// 
+			//
 			// cmLangList
-			// 
+			//
 			this.cmLangList.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 																					   this.menuItem1,
 																					   this.menuItem2,
@@ -166,34 +166,34 @@ namespace SimPe.PackedFiles.UserInterface
 																					   this.menuItem3,
 																					   this.menuItem8,
 																					   this.menuItem9});
-			// 
+			//
 			// menuItem1
-			// 
+			//
 			this.menuItem1.Index = 0;
 			this.menuItem1.Shortcut = System.Windows.Forms.Shortcut.CtrlC;
 			this.menuItem1.Text = "&Copy";
-			// 
+			//
 			// menuItem2
-			// 
+			//
 			this.menuItem2.Index = 1;
 			this.menuItem2.Shortcut = System.Windows.Forms.Shortcut.CtrlV;
 			this.menuItem2.Text = "&Paste";
-			// 
+			//
 			// menuItem3
-			// 
+			//
 			this.menuItem3.Index = 3;
 			this.menuItem3.Text = "&Set all to these";
-			// 
+			//
 			// splitter1
-			// 
+			//
 			this.splitter1.Location = new System.Drawing.Point(216, 0);
 			this.splitter1.Name = "splitter1";
 			this.splitter1.Size = new System.Drawing.Size(3, 144);
 			this.splitter1.TabIndex = 1;
 			this.splitter1.TabStop = false;
-			// 
+			//
 			// listView1
-			// 
+			//
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
 																						this.colLine,
 																						this.colTitle,
@@ -208,24 +208,24 @@ namespace SimPe.PackedFiles.UserInterface
 			this.listView1.Size = new System.Drawing.Size(621, 144);
 			this.listView1.TabIndex = 2;
 			this.listView1.View = System.Windows.Forms.View.Details;
-			// 
+			//
 			// colLine
-			// 
+			//
 			this.colLine.Text = "Line";
 			this.colLine.Width = 36;
-			// 
+			//
 			// colTitle
-			// 
+			//
 			this.colTitle.Text = "Title";
 			this.colTitle.Width = 246;
-			// 
+			//
 			// colDesc
-			// 
+			//
 			this.colDesc.Text = "Description";
 			this.colDesc.Width = 307;
-			// 
+			//
 			// cmStrList
-			// 
+			//
 			this.cmStrList.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 																					  this.menuItem10,
 																					  this.menuItem4,
@@ -233,61 +233,61 @@ namespace SimPe.PackedFiles.UserInterface
 																					  this.menuItem6,
 																					  this.menuItem11,
 																					  this.menuItem12});
-			// 
+			//
 			// menuItem4
-			// 
+			//
 			this.menuItem4.Index = 1;
 			this.menuItem4.Shortcut = System.Windows.Forms.Shortcut.CtrlC;
 			this.menuItem4.Text = "&Copy";
-			// 
+			//
 			// menuItem5
-			// 
+			//
 			this.menuItem5.Index = 2;
 			this.menuItem5.Shortcut = System.Windows.Forms.Shortcut.CtrlV;
 			this.menuItem5.Text = "&Paste";
-			// 
+			//
 			// menuItem6
-			// 
+			//
 			this.menuItem6.Index = 3;
 			this.menuItem6.Text = "&Set in all languages";
-			// 
+			//
 			// menuItem7
-			// 
+			//
 			this.menuItem7.Index = 2;
 			this.menuItem7.Text = "Pas&te As...";
-			// 
+			//
 			// menuItem8
-			// 
+			//
 			this.menuItem8.Index = 4;
 			this.menuItem8.Shortcut = System.Windows.Forms.Shortcut.Ins;
 			this.menuItem8.Text = "&Add";
-			// 
+			//
 			// menuItem9
-			// 
+			//
 			this.menuItem9.Index = 5;
 			this.menuItem9.Shortcut = System.Windows.Forms.Shortcut.Del;
 			this.menuItem9.Text = "&Delete";
-			// 
+			//
 			// menuItem10
-			// 
+			//
 			this.menuItem10.DefaultItem = true;
 			this.menuItem10.Index = 0;
 			this.menuItem10.Text = "&Edit";
-			// 
+			//
 			// menuItem11
-			// 
+			//
 			this.menuItem11.Index = 4;
 			this.menuItem11.Shortcut = System.Windows.Forms.Shortcut.Ins;
 			this.menuItem11.Text = "&Add";
-			// 
+			//
 			// menuItem12
-			// 
+			//
 			this.menuItem12.Index = 5;
 			this.menuItem12.Shortcut = System.Windows.Forms.Shortcut.Del;
 			this.menuItem12.Text = "&Delete";
-			// 
+			//
 			// StrListViewer
-			// 
+			//
 			this.Controls.Add(this.listView1);
 			this.Controls.Add(this.splitter1);
 			this.Controls.Add(this.treeView1);
@@ -305,9 +305,9 @@ namespace SimPe.PackedFiles.UserInterface
 			StrItemList items = wrapper.LanguageItems(l);
 			if (items == null) return;
 
-			for (int i = 0; i < items.Length; i++) 
+			for (int i = 0; i < items.Length; i++)
 			{
-			
+
 				StrToken s = items[i];
 				string[] ss = new string[3];
 				ss[0] = i.ToString();

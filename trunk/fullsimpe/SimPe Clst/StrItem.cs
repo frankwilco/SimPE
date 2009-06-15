@@ -2,7 +2,7 @@
  *   Copyright (C) 2005 by Ambertation                                     *
  *   quaxi@ambertation.de                                                  *
  *   Copyright (C) 2005 by Peter L Jones (blame me for string bugs!)       *
- *   peter@drealm.info                                                     *
+ *   pljones@users.sf.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -43,7 +43,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// This is the only way to set the Language ID
 		/// </summary>
 		/// <param name="lid">The Language ID</param>
-		public StrLanguage(byte lid) 
+		public StrLanguage(byte lid)
 		{
 			this.lid = lid;
 		}
@@ -94,7 +94,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 		public override bool Equals(object obj)
 		{
-			if (obj.GetType() == typeof(StrLanguage)) 
+			if (obj.GetType() == typeof(StrLanguage))
 				return (lid == ((StrLanguage)obj).Id);
 			return base.Equals(obj);
 		}
@@ -134,7 +134,7 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// Typesave ArrayList for StrItem Objects
 	/// </summary>
-	public class StrLanguageList : ArrayList 
+	public class StrLanguageList : ArrayList
 	{
 		public new StrLanguage this[int index]
 		{
@@ -162,7 +162,7 @@ namespace SimPe.PackedFiles.Wrapper
 			return base.Contains(strlng);
 		}
 
-		public int Length 
+		public int Length
 		{
 			get { return this.Count; }
 		}
@@ -180,7 +180,7 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// An Item stored in a STR# File
 	/// </summary>
-	public class StrToken 
+	public class StrToken
 	{
 		int index;
 		StrLanguage lid;
@@ -221,13 +221,13 @@ namespace SimPe.PackedFiles.Wrapper
 			get { return lid; }
 		}
 
-		public string Title 
+		public string Title
 		{
 			get { return title; }
 			set { if (title != value) { title = value; dirty = true; } }
 		}
 
-		public string Description 
+		public string Description
 		{
 			get { return desc; }
 			set { if (desc != value) { desc = value; dirty = true; } }
@@ -249,7 +249,7 @@ namespace SimPe.PackedFiles.Wrapper
 		 * byte - Language ID
 		 * char[]\0 - Title
 		 * char[]\0 - Description
-		 */		
+		 */
 		internal static void Unserialize(BinaryReader reader, Hashtable lines)
 		{
 			StrLanguage lid = new StrLanguage(reader.ReadByte());
@@ -261,7 +261,7 @@ namespace SimPe.PackedFiles.Wrapper
 			((StrItemList)lines[lid.Id]).Add(new StrToken(((StrItemList)lines[lid.Id]).Count, lid, title, desc));
 		}
 
-		
+
 		internal void Serialize(BinaryWriter writer)
 		{
 			if (lid   != null) writer.Write(lid.Id); else writer.Write((byte)0);
@@ -285,7 +285,7 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// Typesave ArrayList for StrItem Objects
 	/// </summary>
-	public class StrItemList : ArrayList 
+	public class StrItemList : ArrayList
 	{
 		public new StrToken this[int index]
 		{
@@ -317,9 +317,9 @@ namespace SimPe.PackedFiles.Wrapper
 		public bool Contains(StrToken stritem)
 		{
 			return base.Contains(stritem);
-		}		
+		}
 
-		public int Length 
+		public int Length
 		{
 			get { return this.Count; }
 		}

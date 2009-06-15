@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2005 by Peter L Jones                                   *
- *   peter@drealm.info                                                     *
+ *   pljones@users.sf.net                                                  *
  *   Copyright (C) 2005 by Ambertation                                     *
  *   quaxi@ambertation.de                                                  *
  *                                                                         *
@@ -107,11 +107,11 @@ namespace SimPe.PackedFiles.UserInterface
 
 			lbclst.Items.Clear();
 			foreach (ClstItem i in wrapper.Items)
-				if (i!=null) 
+				if (i!=null)
 					lbclst.Items.Add(i);
-				else 
+				else
 					lbclst.Items.Add("Error");
-		}		
+		}
 		#endregion
 
 		#region Windows Form Designer generated code
@@ -131,9 +131,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.clstPanel.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// clstPanel
-			// 
+			//
 			this.clstPanel.AccessibleDescription = resources.GetString("clstPanel.AccessibleDescription");
 			this.clstPanel.AccessibleName = resources.GetString("clstPanel.AccessibleName");
 			this.clstPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("clstPanel.Anchor")));
@@ -156,9 +156,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.clstPanel.TabIndex = ((int)(resources.GetObject("clstPanel.TabIndex")));
 			this.clstPanel.Text = resources.GetString("clstPanel.Text");
 			this.clstPanel.Visible = ((bool)(resources.GetObject("clstPanel.Visible")));
-			// 
+			//
 			// lbformat
-			// 
+			//
 			this.lbformat.AccessibleDescription = resources.GetString("lbformat.AccessibleDescription");
 			this.lbformat.AccessibleName = resources.GetString("lbformat.AccessibleName");
 			this.lbformat.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbformat.Anchor")));
@@ -178,9 +178,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.lbformat.Text = resources.GetString("lbformat.Text");
 			this.lbformat.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbformat.TextAlign")));
 			this.lbformat.Visible = ((bool)(resources.GetObject("lbformat.Visible")));
-			// 
+			//
 			// label9
-			// 
+			//
 			this.label9.AccessibleDescription = resources.GetString("label9.AccessibleDescription");
 			this.label9.AccessibleName = resources.GetString("label9.AccessibleName");
 			this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label9.Anchor")));
@@ -200,9 +200,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label9.Text = resources.GetString("label9.Text");
 			this.label9.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label9.TextAlign")));
 			this.label9.Visible = ((bool)(resources.GetObject("label9.Visible")));
-			// 
+			//
 			// lbclst
-			// 
+			//
 			this.lbclst.AccessibleDescription = resources.GetString("lbclst.AccessibleDescription");
 			this.lbclst.AccessibleName = resources.GetString("lbclst.AccessibleName");
 			this.lbclst.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbclst.Anchor")));
@@ -224,9 +224,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.lbclst.Sorted = true;
 			this.lbclst.TabIndex = ((int)(resources.GetObject("lbclst.TabIndex")));
 			this.lbclst.Visible = ((bool)(resources.GetObject("lbclst.Visible")));
-			// 
+			//
 			// panel4
-			// 
+			//
 			this.panel4.AccessibleDescription = resources.GetString("panel4.AccessibleDescription");
 			this.panel4.AccessibleName = resources.GetString("panel4.AccessibleName");
 			this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("panel4.Anchor")));
@@ -248,9 +248,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.panel4.TabIndex = ((int)(resources.GetObject("panel4.TabIndex")));
 			this.panel4.Text = resources.GetString("panel4.Text");
 			this.panel4.Visible = ((bool)(resources.GetObject("panel4.Visible")));
-			// 
+			//
 			// label12
-			// 
+			//
 			this.label12.AccessibleDescription = resources.GetString("label12.AccessibleDescription");
 			this.label12.AccessibleName = resources.GetString("label12.AccessibleName");
 			this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label12.Anchor")));
@@ -270,9 +270,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label12.Text = resources.GetString("label12.Text");
 			this.label12.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label12.TextAlign")));
 			this.label12.Visible = ((bool)(resources.GetObject("label12.Visible")));
-			// 
+			//
 			// ClstForm
-			// 
+			//
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
 			this.AccessibleName = resources.GetString("$this.AccessibleName");
 			this.AutoScaleBaseSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScaleBaseSize")));

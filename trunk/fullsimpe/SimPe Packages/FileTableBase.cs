@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2005-2008 by Peter L Jones                              *
- *   peter@drealm.info                                                     *
+ *   pljones@users.sf.net                                                  *
  *   Copyright (C) 2005 by Ambertation                                     *
  *   quaxi@ambertation.de                                                  *
  *                                                                         *
@@ -25,7 +25,7 @@ using System.Xml;
 using SimPe.Interfaces.Wrapper;
 
 namespace SimPe
-{	
+{
 	/// <summary>
 	/// Do not use this class direct, use <see cref="SimPe.FileTable"/> instead!
 	/// </summary>
@@ -332,7 +332,7 @@ namespace SimPe
 		{
 			get { return wreg; }
 			set { wreg = value;}
-		}		
+		}
 
 		static SimPe.Interfaces.IProviderRegistry preg;
 		/// <summary>
@@ -343,15 +343,15 @@ namespace SimPe
 			get { return preg; }
 			set { preg = value;}
 		}
-		
+
 		static IGroupCache gc;
 		/// <summary>
 		/// Returns The Group Cache used to determin local Groups
 		/// </summary>
-		public static IGroupCache GroupCache 
+		public static IGroupCache GroupCache
 		{
 			get { return gc; }
 			set { gc = value;}
-		}		
+		}
 	}
 }
