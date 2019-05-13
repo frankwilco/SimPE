@@ -1,4 +1,5 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <EnableASPDebugging>false</EnableASPDebugging>
     <EnableASPXDebugging>false</EnableASPXDebugging>
@@ -8,8 +9,8 @@
     <RemoteDebugMachine>
     </RemoteDebugMachine>
     <StartAction>Program</StartAction>
-    <StartProgram>D:\Development\SimPE\fullsimpe-svn\__Debug\SimPe.exe</StartProgram>
-    <StartWorkingDirectory>D:\Development\SimPE\fullsimpe-svn\__Debug\</StartWorkingDirectory>
+    <StartProgram>B:\NMP\SimPE\fullsimpe\__Debug\SimPe.exe</StartProgram>
+    <StartWorkingDirectory>B:\NMP\SimPE\fullsimpe\__Debug\</StartWorkingDirectory>
     <StartArguments>
     </StartArguments>
     <StartPage>
@@ -27,8 +28,8 @@
     <RemoteDebugMachine>
     </RemoteDebugMachine>
     <StartAction>Program</StartAction>
-    <StartProgram>D:\Development\SimPE\SimPe\SimPe.exe</StartProgram>
-    <StartWorkingDirectory>D:\Development\SimPE\SimPe\</StartWorkingDirectory>
+    <StartProgram>B:\NMP\SimPE\SimPe\SimPe.exe</StartProgram>
+    <StartWorkingDirectory>B:\NMP\SimPE\SimPe\</StartWorkingDirectory>
     <StartArguments>
     </StartArguments>
     <StartPage>
@@ -38,6 +39,6 @@
     <StartWithIE>false</StartWithIE>
   </PropertyGroup>
   <PropertyGroup>
-    <ReferencePath>D:\Development\SimPE\</ReferencePath>
+    <ReferencePath>B:\NMP\SimPE\</ReferencePath>
   </PropertyGroup>
 </Project>
