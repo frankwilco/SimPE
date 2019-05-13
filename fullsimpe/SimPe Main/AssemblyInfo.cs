@@ -1,12 +1,11 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
-//
-// Allgemeine Informationen über eine Assembly werden über folgende Attribute 
-// gesteuert. Ändern Sie diese Attributswerte, um die Informationen zu modifizieren,
-// die mit einer Assembly verknüpft sind.
-//
-[assembly: AssemblyTitle("SimPe - Simple Package Editor")]
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+[assembly: AssemblyTitle("SimPE - Simple Package Editor")]
 [assembly: AssemblyDescription("Package Editor for the Sims 2")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ambertation")]
@@ -17,46 +16,22 @@ using System.Runtime.CompilerServices;
 #endif
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]		
+[assembly: AssemblyCulture("")]
 
+// Setting ComVisible to false makes the types in this assembly not visible 
+// to COM components.  If you need to access a type in this assembly from 
+// COM, set the ComVisible attribute to true on that type.
+[assembly: ComVisible(false)]
+
+// Version information for an assembly consists of the following four values:
 //
-// Versionsinformationen für eine Assembly bestehen aus folgenden vier Werten:
-//
-//      Hauptversion
-//      Nebenversion 
-//      Buildnummer
+//      Major Version
+//      Minor Version 
+//      Build Number
 //      Revision
 //
-// Sie können alle Werte oder die standardmäßige Revision und Buildnummer 
-// mit '*' angeben:
+// You can specify all the values or you can default the Build and Revision Numbers 
+// by using the '*' as shown below:
+// [assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("0.75.0.*")]
 
-[assembly: AssemblyVersion("0.73.44.*")]
-
-//
-// Um die Assembly zu signieren, müssen Sie einen Schlüssel angeben. Weitere Informationen 
-// über die Assemblysignierung finden Sie in der Microsoft .NET Framework-Dokumentation.
-//
-// Mit den folgenden Attributen können Sie festlegen, welcher Schlüssel für die Signierung verwendet wird. 
-//
-// Hinweise: 
-//   (*) Wenn kein Schlüssel angegeben ist, wird die Assembly nicht signiert.
-//   (*) KeyName verweist auf einen Schlüssel, der im CSP (Crypto Service
-//       Provider) auf Ihrem Computer installiert wurde. KeyFile verweist auf eine Datei, die einen
-//       Schlüssel enthält.
-//   (*) Wenn die Werte für KeyFile und KeyName angegeben werden, 
-//       werden folgende Vorgänge ausgeführt:
-//       (1) Wenn KeyName im CSP gefunden wird, wird dieser Schlüssel verwendet.
-//       (2) Wenn KeyName nicht vorhanden ist und KeyFile vorhanden ist, 
-//           wird der Schlüssel in KeyFile im CSP installiert und verwendet.
-//   (*) Um eine KeyFile zu erstellen, können Sie das Programm sn.exe (Strong Name) verwenden.
-//       Wenn KeyFile angegeben wird, muss der Pfad von KeyFile
-//       relativ zum Projektausgabeverzeichnis sein:
-//       %Project Directory%\obj\<configuration>. Wenn sich KeyFile z.B.
-//       im Projektverzeichnis befindet, geben Sie das AssemblyKeyFile-Attribut 
-//       wie folgt an: [assembly: AssemblyKeyFile("..\\..\\mykey.snk")]
-//   (*) Das verzögern der Signierung ist eine erweiterte Option. Weitere Informationen finden Sie in der
-//       Microsoft .NET Framework-Dokumentation.
-//
-[assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile("")]
-[assembly: AssemblyKeyName("")]
