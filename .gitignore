@@ -1,9 +1,17 @@
 # =========================
-# SimPE Build Files
+# SimPE
 # =========================
 
+# Build files
 __[Dd]ebug/
 __[Rr]elease/
+
+# PJ Repositories
+/pjBodyMeshTool-cvs
+/pjHoodTool-cvs
+/pjOBJDTool-cvs
+/pjObjKeyTool-cvs
+/pjseCoderPlugin-cvs
 
 # =========================
 # Operating System Files
