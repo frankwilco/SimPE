@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual C# Express 2005
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOSimPE - Interfaces", "..\WOSimPE - Interfaces\WOSimPE - Interfaces.csproj", "{833C3B98-5A2D-476B-8B4B-C9548C1C99B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOSimPe - Recolor", "..\WOSimPe - Recolor\WOSimPe - Recolor.csproj", "{55A67A5D-43E8-4290-B52F-230233B1439D}"

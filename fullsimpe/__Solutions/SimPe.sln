@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual C# Express 2005
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build", "..\Build\Build.csproj", "{BA6E610A-3015-4536-99CD-D73892E9BD1E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7368AF5F-2C82-4750-A31F-63AA4432758C} = {7368AF5F-2C82-4750-A31F-63AA4432758C}

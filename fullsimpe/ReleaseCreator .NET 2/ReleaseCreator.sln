@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReleaseCreator", "ReleaseCreator.csproj", "{D4FBD23A-BA7F-4885-9A4A-995E346DBA94}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ftp", "Ftp\Ftp\Ftp.csproj", "{807EA345-BE77-43E7-B137-67594E0823CD}"

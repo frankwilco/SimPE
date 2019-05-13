@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe ExamplePlugin", "..\SimPe ExamplePlugin\SimPe ExamplePlugin.csproj", "{E86E8EF6-EF83-4CD4-B2A7-20A08CD835A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Helper", "..\SimPe Helper\SimPe Helper.csproj", "{59E3C353-1350-42D8-A045-CBBAD232F228}"
