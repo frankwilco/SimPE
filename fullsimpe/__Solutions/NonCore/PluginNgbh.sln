@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual C# Express 2005
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe NGBH Scanner", "..\..\__NonCore\SimPe NGBH Scanner\SimPe NGBH Scanner.csproj", "{DE27E48A-F5C1-4AE4-A50D-FFA0FFF4CFFD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe HGBH", "..\..\SimPe HGBH\SimPe HGBH.csproj", "{2A67C9C3-9577-4922-991F-291EAA6B4F2D}"

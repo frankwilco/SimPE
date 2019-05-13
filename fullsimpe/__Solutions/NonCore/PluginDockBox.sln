@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Dockbox", "..\..\__NonCore\SimPe Dockbox\SimPe Dockbox.csproj", "{5C259432-EF3E-4BAA-BB2F-28E1459FD0D9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Sims2CommunityPack", "..\..\SimPe Sims2CommunityPack\SimPe Sims2CommunityPack.csproj", "{2EF93119-5C98-4167-B1AF-966E6A45AB79}"
