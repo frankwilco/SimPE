@@ -263,7 +263,7 @@ namespace SimPe.Plugin
 			username = username.Replace("_", ".");
 
 			if (lv!=null) lv.Items.Clear();
-			Hashtable ht = new Hashtable(CaseInsensitiveHashCodeProvider.DefaultInvariant, CaseInsensitiveComparer.DefaultInvariant);
+            Hashtable ht = new Hashtable(StringComparer.InvariantCultureIgnoreCase);
 			string old = Hashes.StripHashFromName(FindMainOldName(package).ToLower().Trim());
 			if (old.EndsWith("_cres")) old = old.Substring(0, old.Length-5);
 
@@ -322,7 +322,7 @@ namespace SimPe.Plugin
 
 		protected  Hashtable GetReplacementMap()
 		{
-			Hashtable ht = new Hashtable(CaseInsensitiveHashCodeProvider.DefaultInvariant, CaseInsensitiveComparer.DefaultInvariant);
+            Hashtable ht = new Hashtable(StringComparer.InvariantCultureIgnoreCase);
 			foreach (ListViewItem lvi in lv.Items)
 			{
 				string oldname = lvi.SubItems[2].Text.Trim().ToLower();
@@ -359,7 +359,7 @@ namespace SimPe.Plugin
 		/// <param name="retnull">Return null, if no GUID-DB-username was available</param>
 		/// <returns>a Unique String or null</returns>
 		public static string GetUniqueName(bool retnull)
-			{
+		{
 			string uname = Helper.WindowsRegistry.Username.Trim();
 			if (uname=="") 
 			{

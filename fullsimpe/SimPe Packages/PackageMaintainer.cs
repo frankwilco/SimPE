@@ -56,7 +56,7 @@ namespace SimPe.Packages
 		/// </summary>
 		internal PackageMaintainer()
 		{
-			ht = new Hashtable(new CaseInsensitiveHashCodeProvider(), new CaseInsensitiveComparer());
+            ht = new Hashtable(StringComparer.CurrentCultureIgnoreCase);
 		}
 
 		/// <summary>
