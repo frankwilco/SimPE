@@ -9,8 +9,8 @@
     <RemoteDebugMachine>
     </RemoteDebugMachine>
     <StartAction>Program</StartAction>
-    <StartProgram>B:\NMP\SimPE\fullsimpe\__Debug\SimPe.exe</StartProgram>
-    <StartWorkingDirectory>B:\NMP\SimPE\fullsimpe\__Debug\</StartWorkingDirectory>
+    <StartProgram>B:\NFPM\SimPE\fullsimpe\__Debug\SimPe.exe</StartProgram>
+    <StartWorkingDirectory>B:\NFPM\SimPE\fullsimpe\__Debug\</StartWorkingDirectory>
     <StartArguments>
     </StartArguments>
     <StartPage>
@@ -28,8 +28,8 @@
     <RemoteDebugMachine>
     </RemoteDebugMachine>
     <StartAction>Program</StartAction>
-    <StartProgram>B:\NMP\SimPE\SimPe\SimPe.exe</StartProgram>
-    <StartWorkingDirectory>B:\NMP\SimPE\SimPe\</StartWorkingDirectory>
+    <StartProgram>B:\NFPM\SimPE\SimPe\SimPe.exe</StartProgram>
+    <StartWorkingDirectory>B:\NFPM\SimPE\SimPe\</StartWorkingDirectory>
     <StartArguments>
     </StartArguments>
     <StartPage>
@@ -39,6 +39,6 @@
     <StartWithIE>false</StartWithIE>
   </PropertyGroup>
   <PropertyGroup>
-    <ReferencePath>B:\NMP\SimPE\</ReferencePath>
+    <ReferencePath>B:\NFPM\SimPE\</ReferencePath>
   </PropertyGroup>
 </Project>
