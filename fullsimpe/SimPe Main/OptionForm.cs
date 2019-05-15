@@ -54,20 +54,34 @@ namespace SimPe
                 this.pgPaths.SelectedObject = SimPe.PathSettings.Global;
 
 
-                for (byte i = 1; i < 0x44; i++) this.cblang.Items.Add(new SimPe.PackedFiles.Wrapper.StrLanguage(i));
+                for (byte i = 1; i < 0x44; i++)
+                {
+                    this.cblang.Items.Add(new SimPe.PackedFiles.Wrapper.StrLanguage(i));
+                }
                 SelectCategory(nbFolders, null);
 
                 SimPe.GuiTheme[] gts = (SimPe.GuiTheme[])System.Enum.GetValues(typeof(SimPe.GuiTheme));
-                foreach (SimPe.GuiTheme gt in gts) cbThemes.Items.Add(gt);
+                foreach (SimPe.GuiTheme gt in gts)
+                {
+                    cbThemes.Items.Add(gt);
+                }
                 cbThemes.SelectedIndex = 0;
 
                 SimPe.Registry.ReportFormats[] rfs = (SimPe.Registry.ReportFormats[])System.Enum.GetValues(typeof(SimPe.Registry.ReportFormats));
-                foreach (SimPe.Registry.ReportFormats rf in rfs) cbReport.Items.Add(rf);
+                foreach (SimPe.Registry.ReportFormats rf in rfs)
+                {
+                    cbReport.Items.Add(rf);
+                }
                 cbReport.SelectedIndex = 0;
 
                 foreach (SimPe.Interfaces.ISettings settings in FileTable.SettingsRegistry.Settings)
+                {
                     this.cbCustom.Items.Add(settings);
-                if (cbCustom.Items.Count > 0) cbCustom.SelectedIndex = 0;
+                }
+                if (cbCustom.Items.Count > 0)
+                {
+                    cbCustom.SelectedIndex = 0;
+                }
 
                 CreateFileTableCheckboxes();
             }
@@ -78,12 +92,6 @@ namespace SimPe
         void Execute()
         {
             this.Tag = true;
-            //linkLabel3.Enabled = (Helper.WindowsRegistry.EPInstalled>=1);
-            tbgame.Text = PathProvider.Global[Expansions.BaseGame].InstallFolder;
-            tbep1.Text = PathProvider.Global[Expansions.University].InstallFolder;
-            tbep2.Text = PathProvider.Global[Expansions.Business].InstallFolder;
-            //tbep1.Text = Helper.WindowsRegistry.RealEP1GamePath;
-            tbsavegame.Text = PathProvider.SimSavegameFolder;
             tbdds.Text = PathProvider.Global.NvidiaDDSPath;
             this.cbdebug.Checked = Helper.WindowsRegistry.GameDebug;
             cbautobak.Checked = Helper.WindowsRegistry.AutoBackup;
@@ -119,13 +127,6 @@ namespace SimPe
             this.tbUserId.Text = "0x" + Helper.HexString(Helper.WindowsRegistry.CachedUserId);
             this.tbUsername.Text = Helper.WindowsRegistry.Username;
             this.tbPassword.Text = Helper.WindowsRegistry.Password;
-
-            this.tbep1.ReadOnly = (PathProvider.Global.EPInstalled < 1);
-            this.tbep2.ReadOnly = (PathProvider.Global.EPInstalled < 2);
-            this.button5.Enabled = (PathProvider.Global.EPInstalled >= 1);
-            this.btNightlife.Enabled = (PathProvider.Global.EPInstalled >= 2);
-            llsetep1.Enabled = button5.Enabled;
-            llNightlife.Enabled = btNightlife.Enabled;
 
             if (((byte)Helper.WindowsRegistry.LanguageCode <= cblang.Items.Count) && ((byte)Helper.WindowsRegistry.LanguageCode > 0))
             {
@@ -167,10 +168,6 @@ namespace SimPe
 
         private void SaveOptionsClick(object sender, System.EventArgs e)
         {
-            /*Helper.WindowsRegistry.SimsPath = this.tbgame.Text;
-            Helper.WindowsRegistry.SimsEP1Path = this.tbep1.Text;
-            Helper.WindowsRegistry.SimsEP2Path = this.tbep2.Text;
-            Helper.WindowsRegistry.SimSavegameFolder = this.tbsavegame.Text;*/
             PathProvider.Global.NvidiaDDSPath = tbdds.Text;
             Helper.WindowsRegistry.LanguageCode = (Data.MetaData.Languages)cblang.SelectedIndex + 1;
             Helper.WindowsRegistry.GameDebug = cbdebug.Checked;
@@ -244,43 +241,10 @@ namespace SimPe
             if (tli != null) lbext.Items.Add(tli);
         }
 
-        private void button2_Click(object sender, System.EventArgs e)
-        {
-            if (System.IO.Directory.Exists(tbgame.Text)) fbd.SelectedPath = tbgame.Text;
-            if (fbd.ShowDialog() == DialogResult.OK) this.tbgame.Text = fbd.SelectedPath;
-        }
-
-        private void button3_Click(object sender, System.EventArgs e)
-        {
-            if (System.IO.Directory.Exists(tbsavegame.Text)) fbd.SelectedPath = tbsavegame.Text;
-            if (fbd.ShowDialog() == DialogResult.OK) this.tbsavegame.Text = fbd.SelectedPath;
-        }
-
         private void button4_Click(object sender, System.EventArgs e)
         {
             if (System.IO.Directory.Exists(tbdds.Text)) ofd.InitialDirectory = tbdds.Text;
             if (ofd.ShowDialog() == DialogResult.OK) this.tbdds.Text = System.IO.Path.GetDirectoryName(ofd.FileName);
-        }
-
-        private void label2_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-        {
-            tbgame.Text = PathProvider.Global[Expansions.BaseGame].RealInstallFolder;
-        }
-
-        private void linkLabel3_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-        {
-            tbep1.Text = PathProvider.Global[Expansions.University].RealInstallFolder;
-        }
-
-        private void linkLabel4_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-        {
-            tbsavegame.Text = PathProvider.RealSavegamePath;
-        }
-
-        private void button5_Click(object sender, System.EventArgs e)
-        {
-            if (System.IO.Directory.Exists(tbep1.Text)) fbd.SelectedPath = tbep1.Text;
-            if (fbd.ShowDialog() == DialogResult.OK) this.tbep1.Text = fbd.SelectedPath;
         }
 
         private void ClearCaches(object sender, System.EventArgs e)
@@ -298,11 +262,6 @@ namespace SimPe
         private void LoadDDS(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
             System.Windows.Forms.Help.ShowHelp(this, "http://developer.nvidia.com/object/nv_texture_tools.html");
-        }
-
-        private void visualStyleLinkLabel1_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-        {
-            tbep1.Text = SimPe.PathProvider.Global[Expansions.University].RealInstallFolder;
         }
 
         void EnablePanel(Divelements.Navisight.NavigationButton panel)
@@ -928,17 +887,6 @@ namespace SimPe
             tbUserId.Text = "0x" + Helper.HexString(0);
         }
 
-        private void llNightlife_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-        {
-            tbep2.Text = PathProvider.Global[Expansions.Nightlife].RealInstallFolder;
-        }
-
-        private void btNightlife_Click(object sender, System.EventArgs e)
-        {
-            if (System.IO.Directory.Exists(tbep2.Text)) fbd.SelectedPath = tbep2.Text;
-            if (fbd.ShowDialog() == DialogResult.OK) this.tbep2.Text = fbd.SelectedPath;
-        }
-
         private void cbblur_CheckedChanged(object sender, System.EventArgs e)
         {
             Helper.WindowsRegistry.BlurNudity = cbblur.Checked;
@@ -1282,7 +1230,7 @@ namespace SimPe
                                 if (eis != null)
                                     if (cbs.Checked && !ei.ShareOneGroup(eis)) cbs.Checked = false;
                             }
-                        } //foreach
+                        }
                     }
                     #endregion
                     ChangeFileTable(cb, ei.Expansion);
@@ -1382,6 +1330,11 @@ namespace SimPe
         class MyPropertyGrid : PropertyGrid
         {
 
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
