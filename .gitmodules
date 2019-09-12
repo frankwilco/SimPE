@@ -1,0 +1,3 @@
+[submodule "pjse"]
+	path = pjse
+	url = https://github.com/FranklinDM/PJSE.git
