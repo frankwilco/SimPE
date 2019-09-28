@@ -195,13 +195,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Build\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="AbstractTool.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AbstractToolPlus.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AssemblyInfo.cs">
+    <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CheckControl.cs">
@@ -263,9 +266,7 @@
     <Compile Include="LoadedPackage.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LoadFileWrappers.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="LoadFileWrappers.cs" />
     <Compile Include="LoadFileWrappersExt.cs">
     </Compile>
     <Compile Include="LoadHelpTopics.cs">

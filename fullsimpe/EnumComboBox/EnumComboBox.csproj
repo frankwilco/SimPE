@@ -98,12 +98,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs">
+    <Compile Include="..\Build\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EnumComboBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="EnumComboBox.cs" />
     <Compile Include="ExtProgressBar.cs">
       <SubType>UserControl</SubType>
     </Compile>

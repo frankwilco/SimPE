@@ -167,7 +167,7 @@
       <HintPath>..\xpcommoncontrols.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <ProjectReference Include="..\..\pjseCoderPlugin-cvs\pjse System Classes\SimPe pjse System Classes.csproj">
+    <ProjectReference Include="..\..\pjse\pjseCoderPlugin\pjse System Classes\SimPe pjse System Classes.csproj">
       <Project>{0B9D2E1D-30F3-4718-B66B-791BFBAC3DB7}</Project>
       <Name>SimPe pjse System Classes</Name>
     </ProjectReference>
@@ -218,7 +218,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs">
+    <Compile Include="..\Build\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SdscApartment.cs" />

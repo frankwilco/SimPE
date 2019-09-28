@@ -171,6 +171,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Build\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Alias.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -178,7 +181,7 @@
     <Compile Include="ASerializeFormater.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AssemblyInfo.cs">
+    <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CaseInvariantArrayList.cs">
@@ -425,14 +428,15 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\pjseCoderPlugin-cvs\pjse System Classes\SimPe pjse System Classes.csproj">
+    <ProjectReference Include="..\..\pjse\pjseCoderPlugin\pjse System Classes\SimPe pjse System Classes.csproj">
       <Project>{0B9D2E1D-30F3-4718-B66B-791BFBAC3DB7}</Project>
       <Name>SimPe pjse System Classes</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>copy "$(ProjectDir)..\SimPe Main\AssemblyInfo.cs" "$(ProjectDir)AssemblyInfo.cs"</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
