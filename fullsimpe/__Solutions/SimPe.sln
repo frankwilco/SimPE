@@ -1,5 +1,8 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build", "..\Build\Build.csproj", "{BA6E610A-3015-4536-99CD-D73892E9BD1E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7368AF5F-2C82-4750-A31F-63AA4432758C} = {7368AF5F-2C82-4750-A31F-63AA4432758C}
@@ -52,6 +55,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TGA_View", "..\TGA_View\TGA_View.csproj", "{320E7C5E-60E6-4069-9852-D296DB688F5D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewHexEdit", "..\HexEdit\NewHexEdit.csproj", "{57FB03C0-014D-4347-BF66-16E62ECA1EFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe pjse System Classes", "..\..\pjse\pjseCoderPlugin\pjse System Classes\SimPe pjse System Classes.csproj", "{0B9D2E1D-30F3-4718-B66B-791BFBAC3DB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -210,6 +215,12 @@ Global
 		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Release MAC|Any CPU.Build.0 = Release Mac|Any CPU
 		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B9D2E1D-30F3-4718-B66B-791BFBAC3DB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B9D2E1D-30F3-4718-B66B-791BFBAC3DB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B9D2E1D-30F3-4718-B66B-791BFBAC3DB7}.Release MAC|Any CPU.ActiveCfg = Release|Any CPU
+		{0B9D2E1D-30F3-4718-B66B-791BFBAC3DB7}.Release MAC|Any CPU.Build.0 = Release|Any CPU
+		{0B9D2E1D-30F3-4718-B66B-791BFBAC3DB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B9D2E1D-30F3-4718-B66B-791BFBAC3DB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
