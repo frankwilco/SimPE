@@ -51,7 +51,6 @@ if not exist "%25TargetDir%25Data\Plugins" mkdir "%25TargetDir%25Data\Plugins"
 
 copy "$(SolutionDir)..\__etc\*.*" "%25TargetDir%25"
 
-"$(SolutionDir)ReplaceVistaIcon.exe" "%25TargetDir%25SimPe.exe" "$(SolutionDir)..\SimPe Main\img\Simpe2.ico" 0
 </PostBuildEvent>
   </PropertyGroup>
 </Project>
